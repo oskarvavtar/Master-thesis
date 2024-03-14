@@ -1,0 +1,139 @@
+ \documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsthm}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{mathrsfs}
+\usepackage{titling}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{bbm}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\graphicspath{ {./Slike/} }
+\usepackage{subcaption}
+
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ %total={170mm,257mm},
+ left=30mm,
+ right=30mm,
+ top=20mm,
+ bottom=20mm
+}
+
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\Loc}{\mathcal{L}}
+\renewcommand{\L}{\mathbb{L}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\r}{\mathrm{r}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ZZ}{\mathcal{Z}}
+
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\oklepaj}[1]{\left(#1\right)}
+\newcommand{\oglati}[1]{\left[#1\right]}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\pika}{\boldsymbol{\cdot}}
+\newcommand{\1}{\mathbbm{1}}
+\renewcommand{\sp}[1]{\langle #1\rangle}
+\newcommand{\ind}{\perp\!\!\!\!\perp}
+\renewcommand{\c}{\mathsf{c}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\5}{\vspace{0.5cm}}
+
+\theoremstyle{definition}
+\newtheorem*{form}{Formalities}
+\newtheorem*{ex}{Example}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{sol}{Solution}
+\newtheorem*{dis}{Disclaimer}
+\newtheorem{df}[thm]{Definition}
+\newtheorem*{rem}{Remark}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+
+\setlength{\droptitle}{-2cm}
+\title{\textsc{Random Polymers Near a Homogeneous Interface}\\\vspace{0.3cm}\small{Statistical Mechanics}\vspace{-0.7cm}}
+\author{Oskar Vavtar}
+\date{\today}
+
+\begin{document}
+\begin{center}
+\Huge{\textcolor{teal}{\texttt{TITLE}}} \\
+\vspace{2cm}
+\Huge{\textcolor{teal}{\texttt{TITLE}}} \\
+\vspace{2cm}
+Leiden University \\
+\vspace{2cm}
+{\textsc{Absence of Phase Transitions and Preservation of Gibbs Property Under Renormalization}} \\
+\vspace{2cm}
+Oskar Vavtar \\
+\vspace{2cm}
+\Huge{\textcolor{teal}{\texttt{TITLE}}} \\
+\vspace{2cm}
+\Huge{\textcolor{teal}{\texttt{TITLE}}} \\
+\vspace{2cm}
+\Huge{\textcolor{teal}{\texttt{TITLE}}}
+\end{center}
+\pagebreak
+\tableofcontents
+\pagebreak
+
+% #################################################################################################
+% #################################################################################################
+% #################################################################################################
+
+\section{Introduction (probably better name)}
+
+\textcolor{blue}{I assume this chapter will include a brief introduction to Gibbs measures/thermodynamical formalism (possibly including definitions of Ising and Potts model), as well as the theory of fuzzy Gibbs measures, results from Berghout's thesis.} 
+
+\pagebreak
+
+% #################################################################################################
+% #################################################################################################
+% #################################################################################################
+
+\section{(Non-)Gibbsianity of fuzzy Potts model}
+
+This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's theorem \textcolor{red}{\texttt{[reference]}} about its (non-)Gibbsianity, using the results due to Berghout and Verbitskiy \textcolor{red}{\texttt{[reference]}}. Moreover, it introduces the notion of random cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
+
+% #################################################################################################
+
+\subsection{Fuzzy Potts model}
+
+In this introductory section of the chapter, we define the fuzzy Potts model and state the celebrated result about its (non-)Gibbsianity, due to H\"aggstr\"om \textcolor{red}{\texttt{[reference]}}. Moreover, we explain the strategy and structure of our alternative proof of (part of) the said result. \\
+
+Consider the Potts model with spin space $\set{1,\ldots,q}$, $q\geq 3$ integer, on lattice $\L$, say $\L=\Z^d$, which defines a model on $\Omega=\set{1,\ldots,q}^\L$. The \textit{fuzzy Potts model} is defined by considering some integer $1<s<q$, so that the spin space is $\set{1,\ldots,s}$ and the whole model defined on $\Sigma=\set{1,\ldots,s}^\L$. Moreover, we consider a vector $\r=(r_1,\ldots,r_s)\in\N^s$, such that $r_1+\ldots+r_s=q$ and define a fuzzy transformation $\pi_\r:\set{1,\ldots,q}\ra\set{1,\ldots,s}$ by putting 
+$$\pi_\r(a) ~:=~ \begin{cases}
+1: ~&1\leq a\leq r_1,\\
+2: ~&r_1+1\leq a\leq r_1+r_2 \\
+\cdots \\
+n: ~&\sum_{i=1}^{n-1} r_i + 1\leq a\leq \sum_{i=1}^n r_i,\\
+\cdots \\
+s: ~&\sum_{i=1}^{s-1}r_i + 1\leq a\leq q,
+\end{cases}$$
+i.e., $\pi_a=n$ iff $a\in(\sum_{i=1}^{n-1}r_i,\sum_{i=1}^n r_i]\cap \N$, $n\in\set{1,\ldots,s}$. In other words, the entire fuzzy map $\pi=\pi_\r$ is encoded by a single $s$-vector $\r$. \\
+
+Fixing $q\geq 2$, $\beta\geq 0$ and writing $\mu_{q,\beta}^{\Z^d,\#}$ for the Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ for boundary condition $\#\in\set{0,\ldots,q}$ with inverse temperature $\beta$, the fuzzy transformation $\pi_\r$ induces the fuzzy Gibbs measure 
+$$\nu_{q,\beta,\r}^{\Z^d,\#} ~:=~ \mu_{q,\beta}^{\Z^d,\#}\circ\pi_\r^{-1}.$$
+Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 3$ and $d\geq 2$}, there exists $\beta_c(d,q)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{q,\beta}^{\Z^d,0}=\ldots=\mu_{q,\beta}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$.
+
+\begin{thm}[H\"aggstr\"om, 2003, \textcolor{red}{\texttt{[reference]}}]
+Let $d\geq 2$, $q\geq 3$, $\#\in\set{0,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\#}=\mu_{q,\beta}^{\Z^d,\#}\circ\pi_{\r}^{-1}$.
+\begin{itemize}
+	\item[(i)] For each $\beta<\beta_c(d,\min_{1\leq i\leq s}r_i)$, the measure $\nu_{q,\beta,\r}^{\Z^d,\#}$ is a Gibbs measure.
+	\item[(ii)] \textcolor{blue}{\texttt{The non-Gibbs part.}}
+\end{itemize}
+\end{thm}
+
+% #################################################################################################
+% #################################################################################################
+% #################################################################################################
+
+\end{document}
