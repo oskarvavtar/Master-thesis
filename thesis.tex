@@ -24,6 +24,8 @@
  bottom=20mm
 }
 
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\G}{\mathcal{G}}
 \renewcommand{\H}{\mathcal{H}}
 \newcommand{\Loc}{\mathcal{L}}
 \renewcommand{\L}{\mathbb{L}}
@@ -33,6 +35,8 @@
 \renewcommand{\r}{\mathrm{r}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\ZZ}{\mathcal{Z}}
+
+\newcommand{\Potts}{\mathrm{Potts}}
 
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\oklepaj}[1]{\left(#1\right)}
@@ -54,7 +58,7 @@
 \newtheorem*{sol}{Solution}
 \newtheorem*{dis}{Disclaimer}
 \newtheorem{df}[thm]{Definition}
-\newtheorem*{rem}{Remark}
+\newtheorem{rem}[thm]{Remark}
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{cor}[thm]{Corollary}
 
@@ -71,7 +75,7 @@
 \vspace{2cm}
 Leiden University \\
 \vspace{2cm}
-{\textsc{Absence of Phase Transitions and Preservation of Gibbs Property Under Renormalization}} \\
+{\textsc{Absence of Phase Transitions and Preservation of Gibbs Property under Renormalization}} \\
 \vspace{2cm}
 Oskar Vavtar \\
 \vspace{2cm}
@@ -109,7 +113,7 @@ This chapter aims to introduce the fuzzy Potts model and provide an alternative,
 
 In this introductory section of the chapter, we define the fuzzy Potts model and state the celebrated result about its (non-)Gibbsianity, due to H\"aggstr\"om \textcolor{red}{\texttt{[reference]}}. Moreover, we explain the strategy and structure of our alternative proof of (part of) the said result. \\
 
-Consider the Potts model with spin space $\set{1,\ldots,q}$, $q\geq 3$ integer, on lattice $\L$, say $\L=\Z^d$, which defines a model on $\Omega=\set{1,\ldots,q}^\L$. The \textit{fuzzy Potts model} is defined by considering some integer $1<s<q$, so that the spin space is $\set{1,\ldots,s}$ and the whole model defined on $\Sigma=\set{1,\ldots,s}^\L$. Moreover, we consider a vector $\r=(r_1,\ldots,r_s)\in\N^s$, such that $r_1+\ldots+r_s=q$ and define a fuzzy transformation $\pi_\r:\set{1,\ldots,q}\ra\set{1,\ldots,s}$ by putting 
+Consider the Potts model with spin space $\set{1,\ldots,q}$, $q\geq 2$, on lattice $\L$, say $\L=\Z^d$, which defines a model on $\Omega=\set{1,\ldots,q}^\L$. The \textit{fuzzy Potts model} is defined by considering some integer $1<s<q$, so that the spin space is $\set{1,\ldots,s}$ and the whole model defined on $\Sigma=\set{1,\ldots,s}^\L$. Moreover, we consider a vector $\r=(r_1,\ldots,r_s)\in\N^s$, such that $r_1+\ldots+r_s=q$ and define a fuzzy transformation $\pi_\r:\set{1,\ldots,q}\ra\set{1,\ldots,s}$ by putting 
 $$\pi_\r(a) ~:=~ \begin{cases}
 1: ~&1\leq a\leq r_1,\\
 2: ~&r_1+1\leq a\leq r_1+r_2 \\
@@ -122,15 +126,36 @@ i.e., $\pi_a=n$ iff $a\in(\sum_{i=1}^{n-1}r_i,\sum_{i=1}^n r_i]\cap \N$, $n\in\s
 
 Fixing $q\geq 2$, $\beta\geq 0$ and writing $\mu_{q,\beta}^{\Z^d,\#}$ for the Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ for boundary condition $\#\in\set{0,\ldots,q}$ with inverse temperature $\beta$, the fuzzy transformation $\pi_\r$ induces the fuzzy Gibbs measure 
 $$\nu_{q,\beta,\r}^{\Z^d,\#} ~:=~ \mu_{q,\beta}^{\Z^d,\#}\circ\pi_\r^{-1}.$$
-Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 3$ and $d\geq 2$}, there exists $\beta_c(d,q)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{q,\beta}^{\Z^d,0}=\ldots=\mu_{q,\beta}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$.
+Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 2$ and $d\geq 2$}, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{q,\beta}^{\Z^d,0}=\ldots=\mu_{q,\beta}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures \textcolor{purple}{\texttt{[q+1?]}}.
 
 \begin{thm}[H\"aggstr\"om, 2003, \textcolor{red}{\texttt{[reference]}}]
-Let $d\geq 2$, $q\geq 3$, $\#\in\set{0,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\#}=\mu_{q,\beta}^{\Z^d,\#}\circ\pi_{\r}^{-1}$.
+Let $d\geq 2$, $q\geq 3$, $\#\in\set{0,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min_{1\leq i\leq s}r_i$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\#}=\mu_{q,\beta}^{\Z^d,\#}\circ\pi_{\r}^{-1}$.
 \begin{itemize}
-	\item[(i)] For each $\beta<\beta_c(d,\min_{1\leq i\leq s}r_i)$, the measure $\nu_{q,\beta,\r}^{\Z^d,\#}$ is a Gibbs measure.
+	\item[(i)] For each $\beta<\beta_c(d,r^*)$, the measure $\nu_{q,\beta,\r}^{\Z^d,\#}$ is a Gibbs measure.
 	\item[(ii)] \textcolor{blue}{\texttt{The non-Gibbs part.}}
 \end{itemize}
 \end{thm}
+
+\begin{rem}
+\textcolor{blue}{\texttt{Remark about the ordering of $\beta_c(d,r_1),\ldots,\beta_c(d,r_s)$, given the ordering of $r_1,\ldots,r_s$. Explain that this condition gives uniqueness of Gibbs measure on each $\set{1,\ldots,r_i}^{\Z^d}$.}}
+\end{rem}
+
+In light of the theory from the previous chapter, we are particularly interested in part (i) of the theorem, the Gibbs regime. The van Enter-Fern\'andez-Sokal hypothesis, would suggest that, since for $\beta<\beta_c(d,r^*)$ the Gibbs property is preserved, \textcolor{purple}{each $\mu_{q,\beta}^{\Z^d,\#}$ should admit a continuous disintegration in terms of $\nu_{q,\beta,\r}^{\Z^d,\#}$}. Moreover, proving the latter would -- applying the result of \textcolor{red}{\texttt{[theorem reference]}} -- constitute an alternative and independent proof of \textcolor{red}{\texttt{[Theorem 2.1]}}.(i). \\
+
+Given \textcolor{red}{\texttt{Theorem reference}}, it is sufficient to verify (for a fixed $\beta<\beta_c(d,r^*))$, that for each $\sigma\in\Sigma=\set{1,\ldots,s}^{\Z^d}$, there is a unique Gibbs measure for $q$-Potts model with inverse temperature beta on the fibre $\Omega_\sigma=\pi_\r^{-1}(\sigma)$, i.e., that
+$$|\G_{\Omega_\sigma}(\Phi_{q,\beta}^\Potts)| ~=~ 1, \quad \forall \sigma\in\Sigma.$$
+Luckily, one can express the fibres in a rather nice way, allowing for an easier procedure. Given $\sigma\in\Sigma$, we simply have
+$$\Omega_\sigma ~=~ \pi_{\r}^{-1} ~=~ \prod_{i\in\Z^d}\pi_{\r}^{-1}(\sigma_i).$$
+Writing $\A_j:=\pi_{\r}^{-1}(j)$ and $U_j:=\set{i\in\Z^d:\pi_{\r}(\sigma_i)=j}$, $j=1,\ldots,s$, we could also write
+$$\Omega_\sigma ~=~ \textcolor{purple}{\bigotimes_{j=1}^s\A_j^{U_j}} ~:=~ \prod_{i\in\Z^d}\begin{cases}\A_1:~&i\in U_1,\\
+\cdots\\
+\A_s:~&i\in U_s.\end{cases}$$
+One way of proving the uniqueness of $q$-Potts Gibbs measure on such $\Omega_\sigma$ for \textcolor{blue}{\texttt{an appropriate}} inverse temperature $\beta$, is via the following two steps (so far stated informally):
+\begin{itemize}
+	\item[(1)] Given the assumption on $\beta$, we know that for each $j=1,\ldots,s$, there is a unique Gibbs measure for Potts model on $\A_j^{\Z^d}$ with inverse temperature $\beta$. We wish to show that this implies also uniqueness of Gibbs measure for Potts model on $\A_j^{U_j}$, given the same inverse temperature.
+	\item[(2)] Given the uniqueness of Gibbs measure for Potts model on $\A_j^{U_j}$ with inverse temperature $\beta$ for all $j=1,\ldots,s$, we need to show that this implies the uniqueness of Gibbs measure for Potts model on $\bigotimes_{j=1}^s \A_j^{U_j}$, given the same inverse temperature.
+\end{itemize}
+\textcolor{blue}{\texttt{The above steps are written in a rather vague manner, so I'd either rewrite them or write them again for the $s=2$ case where it might be more manageable.}}
 
 % #################################################################################################
 % #################################################################################################
