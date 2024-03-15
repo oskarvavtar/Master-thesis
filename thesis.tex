@@ -25,18 +25,24 @@
 }
 
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\D}{\mathcal{D}}
+\renewcommand{\d}{\mathrm{d}}
 \newcommand{\G}{\mathcal{G}}
 \renewcommand{\H}{\mathcal{H}}
 \newcommand{\Loc}{\mathcal{L}}
 \renewcommand{\L}{\mathbb{L}}
+\newcommand{\M}{\mathcal{M}}
 \newcommand{\N}{\mathbb{N}}
 \renewcommand{\P}{\mathbb{P}}
+\newcommand{\PP}{\mathsf{P}}
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\r}{\mathrm{r}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\ZZ}{\mathcal{Z}}
 
+\newcommand{\BM}{\mathrm{BM}}
 \newcommand{\Potts}{\mathrm{Potts}}
+\newcommand{\TV}{\mathrm{TV}}
 
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\oklepaj}[1]{\left(#1\right)}
@@ -51,9 +57,8 @@
 \newcommand{\5}{\vspace{0.5cm}}
 
 \theoremstyle{definition}
-\newtheorem*{form}{Formalities}
-\newtheorem*{ex}{Example}
 \newtheorem{thm}{Theorem}[section]
+\newtheorem{ex}[thm]{Example}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem*{sol}{Solution}
 \newtheorem*{dis}{Disclaimer}
@@ -155,7 +160,50 @@ One way of proving the uniqueness of $q$-Potts Gibbs measure on such $\Omega_\si
 	\item[(1)] Given the assumption on $\beta$, we know that for each $j=1,\ldots,s$, there is a unique Gibbs measure for Potts model on $\A_j^{\Z^d}$ with inverse temperature $\beta$. We wish to show that this implies also uniqueness of Gibbs measure for Potts model on $\A_j^{U_j}$, given the same inverse temperature.
 	\item[(2)] Given the uniqueness of Gibbs measure for Potts model on $\A_j^{U_j}$ with inverse temperature $\beta$ for all $j=1,\ldots,s$, we need to show that this implies the uniqueness of Gibbs measure for Potts model on $\bigotimes_{j=1}^s \A_j^{U_j}$, given the same inverse temperature.
 \end{itemize}
-\textcolor{blue}{\texttt{The above steps are written in a rather vague manner, so I'd either rewrite them or write them again for the $s=2$ case where it might be more manageable.}}
+\textcolor{blue}{\texttt{Here, I will remark that it is enough to check this for $s=2$, and proceed to restate the above points more formally, in terms of two propositions.}}
+
+% #################################################################################################
+
+\subsection{Preliminaries, part 1: stochastic domination}
+
+In this and the next section, we will introduce some tools, which will be used to prove \textcolor{red}{\texttt{[Proposition reference]}}. The section will cover the basics on stochastic domination, a well-established tool in mathematical statistical mechanics. In the section that follows, we introduce the theory of random cluster representations, which are important in study of the Potts model in particular. 
+
+
+Assume firstly that $\A\subset\R$ is linearly ordered; in our case, we are generally assuming $\A$ to be finite, though this theory can be extended to closed subsets of $\R$. Then linear order of $\A$ induces a natural (coordinatewise) partial order on $\Omega=\A^\L$: given two configurations $\xi,\xi'\in\Omega$, we write
+$$\xi\preceq\xi' ~\iff~ \xi(i)\leq\xi'(i),~\forall i\in\L.$$
+This allows us to introduce a notion of increasing functions:
+
+\begin{df}[Increasing functions and events]
+~
+\begin{itemize}
+	\item[(1)] We say that a function $f:\Omega\ra\R$ is \textit{increasing} (or \textit{non-decreasing}), if for each $\xi,\xi'\in\Omega$, $\xi\preceq\xi'$ implies $f(\xi)\leq f(\xi')$. 
+	\item[(2)] Equipped with the previous notion, we say that an event $A$ (or a simply $A\subset\Omega$ measurable) is \textit{increasing} if $\1_A$ is an increasing function.
+\end{itemize}
+\end{df}
+
+\begin{ex}
+\textcolor{blue}{\texttt{Percolation probability.}}
+\end{ex}
+
+ This allows us to define a certain partial order on $\M_1(\Omega)$, the set of probability measures on $\Omega$. \textcolor{blue}{\texttt{Some comment about motivation for defining stochastic domination/ordering on measures?}}
+ 
+\begin{df}[Stochastic domination]
+Let $\mu$ and $\mu'$ be probability measures on $\Omega$. We say that $\mu$ is \textit{stochastically dominated} by $\mu'$, writing $\mu\preceq_\D\mu'$, if
+$$\int f\,\d\mu ~\leq~ \int f\,\d\mu', \quad \forall f\in\BM(\Omega,\R).$$
+\end{df}
+
+\textcolor{blue}{\texttt{Somethingsomething coupling}}
+
+\begin{df}[Coupling]
+Given two probability measures $\mu,\mu'$ on $\Omega$, their \textit{coupling} is defined to be a probability measure $\PP$ on $\Omega\times\Omega$, such that its marginals agree with $\mu$ and $\mu'$, that is
+$$\PP(\set{(\xi,\xi'):\xi\in A}) ~=~ \mu(A) \quad \text{and} \quad \PP(\set{(\xi,\xi'):\xi'\in B}) ~=~ \mu'(B).$$
+\end{df}
+
+\textcolor{blue}{\texttt{The rest of this section will depend on which argument exactly I will use in the proof, but both Strassen and Holley could be introduced, as a part of a ``general introduction''.}}
+
+% #################################################################################################
+
+\subsection{Preliminaries, part 2: random cluster representations}
 
 % #################################################################################################
 % #################################################################################################
