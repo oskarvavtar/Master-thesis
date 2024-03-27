@@ -25,6 +25,8 @@
 }
 
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\BB}{\mathscr{B}}
 \newcommand{\D}{\mathcal{D}}
 \renewcommand{\d}{\mathrm{d}}
 \newcommand{\G}{\mathcal{G}}
@@ -100,7 +102,9 @@ Oskar Vavtar \\
 
 \section{Introduction (probably better name)}
 
-\textcolor{blue}{I assume this chapter will include a brief introduction to Gibbs measures/thermodynamical formalism (possibly including definitions of Ising and Potts model), as well as the theory of fuzzy Gibbs measures, results from Berghout's thesis.} 
+\textcolor{blue}{I assume this chapter will include a brief introduction to Gibbs measures/thermodynamical formalism (possibly including definitions of Ising and Potts model), as well as the theory of fuzzy Gibbs measures, results from Berghout's thesis.}\\ 
+
+\textcolor{teal}{Could also be split into two chapters, first covering SM basics+examples and the second one stuff from Berghout's thesis.}
 
 \pagebreak
 
@@ -114,9 +118,75 @@ This chapter aims to introduce the fuzzy Potts model and provide an alternative,
 
 % #################################################################################################
 
+\subsection{Classical Potts model}
+
+In this introductory section of the chapter, we define the classical Potts model, with respect to which the fuzzy Potts model will be later defined. We also state the celebrated result the existence of phase transition with respect to the inverse temperature parameter. \\
+
+The Potts model is a natural generalization of (ferromagnetic) Ising model with zero external field ($h=0$), where instead of two possible values ($+/-$ or $1/-1$ in the context of the Ising model), the spins may assume $q\geq 2$ different values, taking $\set{1,\ldots,q}$ to be the state \textcolor{blue}{(spin)} space, and consequently $\Omega=\set{1,\ldots,q}^{\Z^d}$ to be the configuration space. As in the case of the Ising model, the interaction $\Phi$ is defined for $\textcolor{blue}{A}=\set{x,y}$, with $x\sim y$ (i.e., $|x-y|=1$) and is given by
+$$\Phi(\omega_x,\omega_y) ~=~ 2\1_{\set{\omega_x\neq \omega_y}}-1 ~=~ \begin{cases}
+1: ~&\omega_x\neq\omega_y, \\
+-1: ~&\omega_x=\omega_y.
+\end{cases}$$
+Clearly, taking $q=2$ and identifying $\set{0,1}$ with $\set{-,+}$, one obtains the zero external field Ising model. The above interaction yields the following finite volume Hamiltonian expression: given $\Lambda\Subset\Z^d$, $\omega_\Lambda\in\Omega_\Lambda$ and $\sigma_{\Lambda^\c}\in\Omega_{\Lambda^\c}$, we have
+$$\H_\Lambda(\omega_\Lambda\sigma_{\Lambda^\c}) ~=~ \beta\sum_{(x,y)\in\tilde{\Lambda}}(2\1_{\set{\omega_x\neq\omega_y}}-1)+\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}(2\1_{\set{\omega_x\neq\sigma_y}}-1),$$
+where $\tilde{\Lambda}:=\set{(x,y):x\sim y,\,x,y\in\Lambda}$ and $\partial\tilde{\Lambda}:=\set{(x,y):x\sim y,\,x\in\Lambda,y\in\Lambda^\c}$. We might, however, take a simpler equivalent interaction, which we justify shortly, in a remark. In the spirit of thermodynamical formalism, the system of Hamiltonians $(\H_\Lambda)_{\Lambda\Subset\Z^d}$ yields admits a specification $\gamma=(\gamma_\Lambda)_{\Lambda\Subset\Z^d}$, where for each $\Lambda\Subset\Z^d$ we have
+\begin{align*}
+\gamma_\Lambda:\BB(\Omega_\Lambda)\times\Omega_{\Lambda^\c}&\ra (0,1) \\
+(\set{\omega_{\Lambda}},\sigma_{\Lambda^\c})&\mapsto\gamma_{\Lambda}(\omega_{\Lambda}|\sigma_{\Lambda^\c})=\frac{1}{\ZZ}\exp\!\oklepaj{-\H_\Lambda(\omega_\Lambda\sigma_{\Lambda^\c})},
+\end{align*}
+where $\ZZ_\Lambda=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp\!\oklepaj{-\H_\Lambda(\tilde{\omega}_{\Lambda}\sigma_{\Lambda^\c})}$.
+
+\begin{rem}
+\begin{itemize}
+	\item[(1)] Both $\H_\Lambda$ and $\ZZ_\Lambda$, depend not only on $\Lambda$ but also on $q$ and $\beta$.
+	\item[(2)] Notice that $$\H_{\Lambda}(\omega_{\Lambda}\sigma_{\Lambda^\c})=2\beta\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega_x\neq\omega_y}} + 2\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega_x\neq\sigma_y}}-\beta(|\tilde{\Lambda}|+|\partial\tilde{\Lambda}|),$$
+	where $C_{\beta,\Lambda}:=\beta(|\tilde{\Lambda}|+|\partial\tilde{\Lambda}|)$ is a  constant independent of $\omega_{\Lambda},\sigma_{\Lambda^\c}$, giving us
+	\begin{align*}
+	\gamma_{\Lambda}(\omega_{\Lambda}|\sigma_{\Lambda^\c}) ~&=~ \frac{\exp(-\H_{\Lambda}(\omega_{\Lambda}\sigma_{\Lambda^\c}))}{\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp(-\H_{\Lambda}(\tilde{\omega}_{\Lambda}\sigma_{\Lambda^\c}))} \\
+	&=~ \frac{\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega_x\neq\omega_y}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega_x\neq\sigma_y}}}}\exp(C_{\beta,\Lambda})}{\exp(C_{\beta,\Lambda})\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\tilde{\omega}_x\neq\tilde{\omega}_y}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\tilde{\omega}_x\neq\sigma_y}}}}} \\
+	&=~ \frac{\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega_x\neq\omega_y}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega_x\neq\sigma_y}}}}}{\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\tilde{\omega}_x\neq\tilde{\omega}_y}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\tilde{\omega}_x\neq\sigma_y}}}}},
+	\end{align*}
+	so the same specification would be obtained by selecting an alternative interaction and system of (finite volume) Hamiltonians
+	\begin{align*}
+	\Phi'(\omega_x,\omega_y) ~&=~ 2\1_{\set{\omega_x\neq\omega_y}}, \\
+	\H_{\Lambda}'(\omega_{\Lambda}\sigma_{\Lambda^\c}) ~&=~ 2\beta\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega_x\neq\omega_y}}+2\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega_x\neq\sigma_y}}.
+	\end{align*}
+	For the sake of simplicity, from now on, we use will use $\Phi'$ and $(\H_\Lambda')_{\Lambda\Subset\Z^d}$ in our computations instead, and simply denote them by $\Phi$ and $(\H_{\Lambda})_{\Lambda\Subset\Z^d}$.
+	\item[(3)] The interaction we initially used, is often also written in the literature as 
+	$$\Phi(\omega_x,\omega_y) ~=~ 1-2\1_{\set{\omega_x=\omega_y}}.$$
+	Had we used this version, we would in point (2) obtain $\Phi'(\omega_x,\omega_y)=-2\1_{\set{\omega_x=\omega_y}}$ instead.
+	\item[(4)] There are several other interactions that equivalently define the Potts model. \textcolor{blue}{Give examples.} \textcolor{blue}{$\1_{\set{\omega_x\neq\omega_y}}$ and $-\1_{\set{\omega_x=\omega_y}}$?}
+\end{itemize}
+\end{rem}
+
+In the spirit of thermodynamical formalism, the (infinite volume) Gibbs measure for $q$-state Potts model on $\Omega$ with inverse temperature $\beta$ is any probability measure on $\Omega$, whose finite-volume conditional probabilities agree with the specification $\gamma$, that is, a measure $\mu\in\M_1(\Omega)$ such that for each $\Lambda\Subset\Z^d$ and $\omega$, one has
+$$\mu(\omega~\text{on}~\Lambda|\sigma~\text{off}~\Lambda) ~=~ \gamma_\Lambda(\omega_\Lambda|\sigma_{\Lambda^\c}),$$
+for $\mu$-a.e.~$\sigma\in\Omega$.
+
+\begin{rem}
+Notice that for any fixed $\sigma_{\Lambda^\c}\in\Omega_{\Lambda^\c}$, the map $\gamma_\Lambda(\pika|\sigma_{\Lambda^\c})$ is a probability measure on $\Omega_\Lambda$, which we can denote as $\mu_\Lambda^\sigma=\mu_{q,\beta,\Lambda}^\sigma$. We can, in this case, restate $\mu\in\M_1(\Omega)$ to be Gibbs measure for $q$-state Potts model with inverse temperature $\beta$ if for each $\Lambda\Subset\Z^d$ and $\mu$-a.e.~$\sigma\in\Omega$, 
+$$\mu(\pika~\text{on}~\Lambda|\sigma~\text{off}~\Lambda) ~=~ \mu_{q,\beta,\Lambda}^\sigma.$$
+\end{rem}
+
+The Potts model enjoys \textcolor{blue}{a similar} phase transition result as the Ising model, as is stated in the following theorem.
+
+\begin{thm}[\textcolor{blue}{By whom?ACCN?}]
+For $q$-state Potts model on $\Z^d$ with $d\geq 2$, there exists a critical inverse temprature $\beta_c=\beta_c(d,q)\in(0,\infty)$ such that
+\begin{itemize}
+	\item[(i)] for each $\beta<\beta_c$ there is a unique Gibbs measure, and 
+	\item[(ii)] for each $\beta>\beta_c$, there exist $q$ mutually singular Gibbs measures.
+\end{itemize}
+\end{thm}
+
+It is worth mentioning that the mutually singular Gibbs measures in the $\beta>\beta_c$ regime are precisely the measures $\mu_{q,\beta}^1,\ldots,\mu_{q,\beta}^q$, where for $i\in\set{1,\ldots,q}$, $\mu_{q,\beta}^i$ is the thermodynamical limit
+$$\mu_{q,\beta}^i ~=~ \lim_{\Lambda\Uparrow\Z^d}\mu_{q,\beta,\Lambda}^{\mathsf{i}},$$
+where $\mathsf{i}=\set{i}^{\Z^d}$ is the constant boundary condition.
+
+% #################################################################################################
+
 \subsection{Fuzzy Potts model}
 
-In this introductory section of the chapter, we define the fuzzy Potts model and state the celebrated result about its (non-)Gibbsianity, due to H\"aggstr\"om \textcolor{red}{\texttt{[reference]}}. Moreover, we explain the strategy and structure of our alternative proof of (part of) the said result. \\
+\textcolor{blue}{In this introductory section of the chapter, we define the fuzzy Potts model and state the celebrated result about its (non-)Gibbsianity, due to H\"aggstr\"om \textcolor{red}{\texttt{[reference]}}. Moreover, we explain the strategy and structure of our alternative proof of (part of) the said result.} \\
 
 Consider the Potts model with spin space $\set{1,\ldots,q}$, $q\geq 2$, on lattice $\L$, say $\L=\Z^d$, which defines a model on $\Omega=\set{1,\ldots,q}^\L$. The \textit{fuzzy Potts model} is defined by considering some integer $1<s<q$, so that the spin space is $\set{1,\ldots,s}$ and the whole model defined on $\Sigma=\set{1,\ldots,s}^\L$. Moreover, we consider a vector $\r=(r_1,\ldots,r_s)\in\N^s$, such that $r_1+\ldots+r_s=q$ and define a fuzzy transformation $\pi_\r:\set{1,\ldots,q}\ra\set{1,\ldots,s}$ by putting 
 $$\pi_\r(a) ~:=~ \begin{cases}
