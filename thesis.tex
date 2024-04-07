@@ -1,4 +1,4 @@
- \documentclass[12pt]{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
@@ -43,6 +43,7 @@
 \newcommand{\ZZ}{\mathcal{Z}}
 
 \newcommand{\BM}{\mathrm{BM}}
+\newcommand{\Law}{\mathrm{Law}}
 \newcommand{\Potts}{\mathrm{Potts}}
 \newcommand{\TV}{\mathrm{TV}}
 
@@ -114,7 +115,7 @@ Oskar Vavtar \\
 
 \section{(Non-)Gibbsianity of fuzzy Potts model}
 
-This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's theorem \textcolor{red}{\texttt{[reference]}} about its (non-)Gibbsianity, using the results due to Berghout and Verbitskiy \textcolor{red}{\texttt{[reference]}}. Moreover, it introduces the notion of random cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
+This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's result \textcolor{red}{\texttt{[reference]}} about conditions for its Gibbsianity, using the results due to Berghout and Verbitskiy \textcolor{red}{\texttt{[reference]}}. Moreover, it introduces the notion of random cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
 
 % #################################################################################################
 
@@ -276,7 +277,88 @@ $$\PP(\set{(\xi,\xi'):\xi\in A}) ~=~ \mu(A) \quad \text{and} \quad \PP(\set{(\xi
 \subsection{Preliminaries, part 2: random cluster representations}
 
 % #################################################################################################
+
+\pagebreak
+
 % #################################################################################################
+% #################################################################################################
+% #################################################################################################
+
+\section{(Non-)Gibbsianity of random spin-flip dynamics}
+
+In this chapter, we introduce the random spin-flip dynamics model, which was explored by van Enter, Fern\'andez, den Hollander and Redig in \textcolor{red}{\texttt{[reference]}}, and proceed to demonstrate, that a special case of this model may be seen as a fuzzy Gibbs model. We present some results about conditions for Gibbsianity and \textcolor{blue}{demonstrate that in the fuzzy Gibbs case, the proofs are analogue to \texttt{our} approach, which in turn verifies, that the example does not contradict the van Enter-Fern\'andez-Sokal hypothesis}.
+
+% #################################################################################################
+
+\subsection{The general model}
+
+We proceed to introduce the model, as defined in \textcolor{red}{\texttt{[reference]}}, with some minor changes in notation. In principle, we are interested in a (probability) measure valued stochastic process $(\nu_t)_{t\geq 0}$, starting from a Gibbs measure. In particular the question the original paper explores is how the conditions on the starting measure and on process-inducing dynamics influence the (non-)Gibbsianity of $\nu_t$, $t>0$. \\
+
+Define first $\Omega_0:=\set{-1,+1}^{\Z^d}$ to be the configuration space. We first consider dynamics on configurations, which is governed by spin-flip rates $\Z^d\times\Omega_0\ni(x,\omega)\mapsto c(x,\omega)$, which satisfy the following conditions:
+\begin{itemize}
+	\item[(i)] Finite range: for any $x\in\Z^d$, the map $c_x:=(\omega\mapsto c(x,\omega))$ is a local function of $\omega$, with $\mathrm{diam}(\D_{c_x})\leq R<\infty$.
+	\item[(ii)] Translation invariance: \textcolor{blue}{for any $x\in\Z^d$, $\tau_x c_0=c_x$}. % define $\tau_x$
+	\item[(iii)] Strict positivity: for all $x\in\Z^d$ and $\omega\in\Omega$, $c(x,\omega)>0$.
+\end{itemize}
+
+\begin{rem}
+It is a direct consequence of assuming (i)-(iii), that there's $m,M\in(0,\infty)$, such that 
+$$0 ~<~ m ~\leq~ c(x,\omega) ~\leq~ M ~<~ \infty, \quad \forall x\in\Z^d,\,\omega\in\Omega.$$
+\end{rem}
+
+The idea behind the dynamics is as follows: one starts with a (possibly random) configuration $\omega_0$ at time $0$ and flips (random) spins at random times, which are being governed by $(c_x)_{x\in\Z^d}$. That is, site $x\in\Z^d$ is being flipped at \textcolor{blue}{(exponential?)} rate $c_x$, which in general depends on the current configuration, through its value at $x$ and a certain neighbourhood of $x$. Note that unless $\mathrm{diam}(\D_{c_x})=0$ for each $x\in\Z^d$ (i.e., $c(x,\omega)=c(x,\omega(x))$), the flips of individual sites are not independent.\footnote{This scenario, however, will be the one we will focus on later on.} \\
+
+The goal now is to describe a semigroup $(S(t))_{t\geq 0}$ that will describe the dynamics induced by $(c_x)_{x\in\Z^d}$. This motivates us to define a generator $L$ on the space of local functions; writing $\omega^x$ for the configuration that agrees with $\omega$ off $x$ and with $-\omega$ on $x$, we can define
+$$Lf ~=~ \sum_{x\in\Z^d}c_x(f(\omega^x)-f(\omega)), \quad f\in\Loc.$$ It is known \textcolor{red}{\texttt{[reference?]}} that the closure of $L$ on $\mathcal{C}(\Omega_0)$ constitutes a generator of a unique Feller process $(\omega_t)_{t\geq 0}$, with $\P_\omega$ the corresponding path-measure, conditional on $\omega_0=\omega$. Furthermore, we obtain the associated semigroup $(S(t))_{t\geq 0}$, which is given by
+$$S(t) ~=~ \exp(tL), \quad t\geq 0.$$
+It is precisely this semigroup, that in turn also gives us dynamics on measures. To be precise, $(S(t))_{t\geq 0}$ acts on probability measures via	
+$$\int_{\Omega_0} [S(t)f](\omega)\,\d\nu(\omega) ~=~ \int_{\Omega_0}f(\omega)\,\d[\nu S(t)](\omega), \quad f\in\Loc,\,\nu\in\M_1(\Omega),\,t\geq 0.$$
+In a more explicit language, the measure $\nu S(t)$ assigns a measurable set $A\subset\Omega_0$ a value $[\nu S(t)](A)=\int S(t)\1_A\,\d\nu$. \\
+
+The interpretation turn out to be very intuitive. Letting $\omega_0\in\nu$ be the initial configuration and running the spin-flip dynamics the measure, then
+$$\nu S(t) ~=~ \Law(\omega_t), \quad \forall t\geq 0.$$ 
+
+Of central interest is the situation where $\omega_0\sim\mu$, where $\mu$ is a Gibbs measure, that is, $\mu\in\G_{\Omega_0}(\Phi)$ for some translation invariant, finite range \textcolor{blue}{good} interaction $\Phi$. It is also worth noting, that the dynamics induced by $(c_x)_{x\in\Z^d}$ \textcolor{blue}{admits (was this assumption or fact)} a $L$-invariant\footnote{$\int Lf\,\d\rho=0$ for each $f\in\Loc$.} Borel probability measure $\rho$ on $\Omega_0$ which is \textit{reversible}, that is,
+$$\int_{\Omega_0}(Lf)g\,\d\rho ~=~ \int_{\Omega_0}f(Lg)\,\d\rho, \quad \forall f,g\in\Loc.$$
+Writing $\rho^x$ for the law of $\omega^x$ where $\omega\sim\rho$, the reversibility of $\rho$ for $L$-induced spin flip dynamics is equivalent to
+$$\frac{\d\rho^x}{\d\rho} ~=~ \frac{c(x,\omega)}{c(x,\omega^x)}, \quad \forall x\in\Z^d,\,\sigma\in\Omega_0,$$
+which implies that there exists a continuous version of Radon-Nikod\'ym derivative $\frac{\d\rho^x}{\d\rho}$. It then follows from Proposition 2.2.~in \textcolor{red}{\texttt{[reference]}} that there exists a \textcolor{blue}{good} interaction $\Psi_\rho$ such that $\rho\in\G_{\Omega_0}(\Psi_\rho)$. Since we assumed $(c_{x})_{x\in\Z^d}$ to have finite range and be translation invariant, we can choose $\Psi_\rho$ to be of finite range and translation invariant as well.\\
+
+The most general result given in the paper is the following:
+
+\begin{thm}
+Let $\mu\in\G_{\Omega_0}(\Phi)$ be the law of the original configuration and $\rho\in\Phi(\Psi)$ the reversible measure associated with $(c_x)_{x\in\Z^d}$-dynamics, with $\Phi,\Psi$ finite range \textcolor{blue}{and translation invariant}. Then there exists $t_0=t_0(\mu,\rho)>0$, such that $\mu S(t)$ is Gibbsian for each $0\leq t\leq t_0$. 
+\end{thm}
+
+\textcolor{blue}{\texttt{A brief comment.}}
+ 
+% #################################################################################################
+
+\subsection{Infinite-temperature dynamics}
+
+A particularly nice setting, which my much nicer computational prospects is one of ``infinite-temperature'' dynamics, which means simply that spin flips of sites are independent of each other, i.e., the path measure $\P_\omega$ may be expressed as a product measure,
+$$\P_\omega ~=~ \bigotimes_{x\in\Z^d}\P_{\omega(x)}.$$
+This regime corresponds to $c_x$ depending on configuration only through its values at site $x$, that is, $\mathrm{diam}(\D_{c_x})=0$ for each $x\in\Z^d$. We will see why this model is computationally much simpler in the next section. \\
+
+In this section, we will present some results from \textcolor{red}{\texttt{[reference]}} regarding the Gibbsianity of $(\mu S(t))_{t\geq 0}$ as well as present their proofs, which we will in the next section argue to be \textcolor{blue}{almost analogous} to our approach. \\
+
+Before that, we present a result that is the central tool used in those proofs. If $\mu\in\G_{\Omega_0}(\Phi)$ is the law of the initial configuration, write $\H=(\H_\Lambda)_{\Lambda\Subset\Z^d}$ for the Hamiltonians consistent with $\Phi$. In all the proofs that will be presented, one argues by considering the distributions $\hat{\mu}_t$ of random variables of form $(\omega_0,\omega_t)$, $t\geq 0$. Formally, $\hat{\mu}_t$ enjoys the following correspondence with $\mu$ and $S(t)$:
+$$\int_{\Omega_0^2} f(\sigma)g(\eta)\,\d\hat{\mu}_t(\sigma,\eta) ~=~ \int_{\Omega_0}f(\omega)[S(t)g](\omega)\,\d\mu(\omega), \quad f,g\in\Loc.$$
+Technically speaking, due to its definition as a joint distribution, $\hat{\mu}_t$ has ``better chances'' of being Gibbsian than $\mu S(t)$. \textcolor{blue}{\texttt{(Elaboration? Any implication?)}} Assuming that it is indeed Gibbsian and writing $(p_t^x)_{t\geq 0}$ for the transition kernel associated with the dynamics at site $x$, the Hamiltonians associated with $\hat{\mu}_t$ may be expressed as
+$$\H_\Lambda^{(t)}(\sigma_\Lambda,\eta_\Lambda) ~=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}\log p_t^x(\sigma(x),\eta(x)), \quad \sigma,\eta\in\Omega_0.$$
+The following result is the first part of the Proposition 3.7.~in \textcolor{red}{\texttt{[reference]}}:
+\begin{prop}
+Assume that $\hat{\mu}_t$ is indeed Gibbsian. If for each fixed $\eta\in\Omega_0$, there is a unique Gibbs measure associated with the Hamiltonians $(\H_\Lambda^{(t)}(\pika,\eta))_{\Lambda\Subset\Z^d}$ (which one could denote by $|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|=1$), then $\nu S(t)$ is Gibbsian.
+\end{prop}
+One can quickly notice a similarity with \textcolor{blue}{\texttt{Berghout's resut}}. \\
+
+\textcolor{blue}{\texttt{Background about Dobrushin's uniqueness condition/high temperature Gibbs measures, if not done before.}}\\
+
+The first result of interest is rather general, as it assumes nothing about the Gibbs measure of the initial configuration, other than its uniqueness w.r.t.~the associated interaction:
+
+\begin{thm}
+\end{thm}
+
 % #################################################################################################
 
 \end{document}
