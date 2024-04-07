@@ -58,6 +58,8 @@
 \renewcommand{\c}{\mathsf{c}}
 \newcommand{\supp}{\mathrm{supp}}
 \newcommand{\5}{\vspace{0.5cm}}
+\renewcommand{\tilde}{\widetilde}
+\renewcommand{\hat}{\widehat}
 
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
@@ -346,6 +348,13 @@ Before that, we present a result that is the central tool used in those proofs. 
 $$\int_{\Omega_0^2} f(\sigma)g(\eta)\,\d\hat{\mu}_t(\sigma,\eta) ~=~ \int_{\Omega_0}f(\omega)[S(t)g](\omega)\,\d\mu(\omega), \quad f,g\in\Loc.$$
 Technically speaking, due to its definition as a joint distribution, $\hat{\mu}_t$ has ``better chances'' of being Gibbsian than $\mu S(t)$. \textcolor{blue}{\texttt{(Elaboration? Any implication?)}} Assuming that it is indeed Gibbsian and writing $(p_t^x)_{t\geq 0}$ for the transition kernel associated with the dynamics at site $x$, the Hamiltonians associated with $\hat{\mu}_t$ may be expressed as
 $$\H_\Lambda^{(t)}(\sigma_\Lambda,\eta_\Lambda) ~=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}\log p_t^x(\sigma(x),\eta(x)), \quad \sigma,\eta\in\Omega_0.$$
+Another assumption that authors make in this section is, that the generators of local spin-sites $(L_x)_{x\in\Z^d}$ are independent of $x$ (i.e., are all the same), and are of form
+$$L_x ~=~ \frac{1}{2}\begin{pmatrix}
+-1+\varepsilon & 1-\varepsilon \\
+1+\varepsilon & -1-\varepsilon
+\end{pmatrix}, \quad 0\leq \varepsilon<1,$$
+which indeed yields that rates $(p_t^x)_{x\in\Z^d}$ are also independent of $x$, hence all the same.\\
+
 The following result is the first part of the Proposition 3.7.~in \textcolor{red}{\texttt{[reference]}}:
 \begin{prop}
 Assume that $\hat{\mu}_t$ is indeed Gibbsian. If for each fixed $\eta\in\Omega_0$, there is a unique Gibbs measure associated with the Hamiltonians $(\H_\Lambda^{(t)}(\pika,\eta))_{\Lambda\Subset\Z^d}$ (which one could denote by $|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|=1$), then $\nu S(t)$ is Gibbsian.
@@ -357,7 +366,67 @@ One can quickly notice a similarity with \textcolor{blue}{\texttt{Berghout's res
 The first result of interest is rather general, as it assumes nothing about the Gibbs measure of the initial configuration, other than its uniqueness w.r.t.~the associated interaction:
 
 \begin{thm}
+Let $\mu$ be \textcolor{blue}{either an infinite-~or high-temprature Gibbs measure}, that is, $\mu\in\G_{\Omega_0}(\Phi)$, where $\Phi$ is such that $|\G_{\Omega_0}(\Phi)|=1$. Then, $\mu S(t)$ is Gibbsian for each $t\geq 0$.
 \end{thm}
+
+Before stating the proof, we remark that $\H_\Lambda^t$ may be rewritten as
+$$\H_\Lambda^{(t)}(\sigma_\Lambda,\eta_\Lambda) ~=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}h_1^x(t)\sigma(x) - \sum_{x\in\Lambda}h_2^x(t)\eta(x) - \sum_{x\in\Lambda}h_{1,2}^x(t)\sigma(x)\eta(x), \quad \sigma,\eta\in\Omega_0,$$
+where 
+\begin{align*}
+h_1^x(t) ~&=~ \frac{1}{4}\log\frac{p_t^x(+1,+1)p_t^x(+1,-1)}{p_t^x(-1,+1)p_t^x(-1,-1)}, \\
+h_2^x(t) ~&=~ \frac{1}{4}\log\frac{p_t^x(+1,+1)p_t^x(-1,+1)}{p_t^x(+1,-1)p_t^x(-1,-1)} \\
+h_{1,2}^x(t) ~&=~ \frac{1}{4}\log\frac{p_t^{x}(+1,+1)p_t^x(-1,-1)}{p_t^x{(+1,-1)}p_t^{x}(-1,+1)}.
+\end{align*}
+The assumption of independence of $p_t^x$ from $x$, allows us to simply write $h_1,h_2,h_{1,2}$. In fact, the precise expression by which $L_x$ is given also allows us to write those values out nicely, as can be seen in Equation (5.9) in \textcolor{red}{\texttt{[reference]}}, but is for our purposes unimportant.
+
+\begin{proof}
+In this case, \textcolor{blue}{we know} the joint distribution $\hat{\mu}_t$ of $(\omega_0,\omega_t)$ to be Gibbsian and consistent with the Hamiltonians $\H^{(t)}$, which can -- due to assumptions of independence of $L_x$ from $x$ -- be written out as
+\begin{align*}
+\H_\Lambda^{(t)}(\sigma_\Lambda,\eta_\Lambda) ~&=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}\oklepaj{h_1(t)+h_{1,2}(t)\eta(x)}\sigma(x) - h_2(t)\sum_{x\in\Lambda}\eta(x).
+\end{align*}
+We wish to show, that for each fixed $\eta\in\Omega_0$, $|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|=1$, as the conclusion then follows from \textcolor{red}{\texttt{[reference of Proposition]}}. Indeed, fix arbitrary $\sigma\in\Omega_0$; we immediately notice, that the last term on the RHS is constant in $\sigma$, so we can consider an alternative collection of Hamiltonians $\tilde{\H}^{(t)}(\pika;\eta)$, given by
+$$\tilde{\H}_\Lambda^{(t)}(\sigma_\Lambda;\eta) ~=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}\oklepaj{h_1(t)+h_{1,2}(t)\eta(x)}\sigma(x),$$
+which induces the same specification as $\H^{(t)}(\pika,\eta)$, and hence 
+$$\G_{\Omega_0}(\tilde{\H}^{(t)}(\pika;\eta))=\G_{\Omega_0}(\H^{(t)}(\pika,\eta)).$$
+\textcolor{blue}{Since $\tilde{\H}^{(t)}(\pika;\eta)$ differs from $\H$ only in the single site interaction, $\tilde{\H}^{(t)}(\pika;\eta)$ satisfies \textcolor{red}{\texttt{[Dobrushin]}} if and only if $\H$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}}. $\H$ indeed satisfies it by assumption, from which it follows that $|\G_{\Omega_0}(\tilde{\H}^{(t)}(\pika;\eta))|=1$ and hence 
+$$|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|=1.$$
+As this works for any choice of $\eta$, \textcolor{red}{\texttt{[reference of Proposition]}} allows us to conclude.
+\end{proof}
+
+Another example the authors consider is one of the Ising model in the non-uniqueness regime, in particular of $\beta\gg\beta_c$. Here they make an additional assumption on the dynamics, which is that $\varepsilon=0$ in the definition of $L_x$, which translates on neither $+1$ nor $-1$ being favoured, and \textcolor{blue}{results in $h_1\equiv 0$, $h_2\equiv 0$} and $h_{1,2}(t)=:h_t=-\frac{1}{2}\log\tanh(\frac{t}{2})$.
+
+\begin{thm}
+Let $\mu_{\beta,h}$ denote some Gibbs measure of Ising model on $\Omega_0$ with $\beta\gg\beta_c$.
+\begin{itemize}
+	\item[(1)] There exists a $t_0=t_0(\beta,h)$, such that $\nu_{\beta,h}S(t)$ is Gibbsian for all $0\leq t\leq t_0$.
+	\item[(2)] Moreover, if $h>0$, then there exists a $t_1=t_1(h)$, such that $\mu_{\beta,h}S(t)$ is Gibbsian for all $t\geq t_1$.
+\end{itemize} 
+\end{thm}
+
+\begin{proof}
+Recalling that the Hamiltonian of the Ising model is of form 
+$$\H(\sigma)=-\beta\sum_{(x,y)}\sigma(x)\sigma(y)-h\sum_{x}\sigma(x),$$ 
+\textcolor{blue}{slightly ignoring the finite volume and boundary condition business}, we obtain that $\H^{(t)}$ is of form
+$$\H^{(t)}(\sigma,\eta) ~=~ -\beta\sum_{(x,y)}\sigma(x)\sigma(y)-h\sum_{x}\sigma(x) - h_t\sum_x \sigma(x)\eta(x).$$
+\begin{itemize}
+	\item[(1)] We want to exploit the fact that for small $t$, the ``dynamical field'' $h_t$ is large and -- intuitively speaking -- ``forces'' $\sigma$ in ``direction'' of $\eta$. In this spirit, we wish to rewrite the joint Hamiltonian as
+\begin{align*}
+\H^{(t)}(\sigma,\eta) ~&=~ \sqrt{h_t}\oklepaj{-\frac{\beta}{\sqrt{h_t}}\sum_{(x,y)}\sigma(x)\sigma(y)-\frac{h}{\sqrt{h_t}}\sum_{x}\sigma(x)-\sqrt{h_t}\sum_{x}\sigma(x)\eta(x)} \\
+&=:~ \sqrt{h_t}\hat{\H}^{(t)}(\sigma,\eta).
+\end{align*}
+\textcolor{blue}{It is known from \textcolor{red}{\texttt{reference}}} that for fixed $\eta\in\Omega_0$ and for $0\leq t\leq t_0'$ small enough, $\eta$ is the unique ground state of $\hat{\H}^{(t)}(\pika,\eta)$, so for any $\lambda\geq\lambda_0$ large enough, $\lambda\hat{\H}^{(t)}$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}. It follows that for $0\leq t\leq t_0$ such that $\sqrt{h_t}\geq \lambda_0$, $|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|$ for all $\eta\in\Omega_0$, allowing us to conclude.
+	\item[(2)] We want to exploit the fact that $h_t$ is small for large field and is hence overpowered by $h$; this time around, we write
+\begin{align*}
+\H^{(t)}(\sigma,\eta) ~&=~ \beta\oklepaj{-\sqrt{\beta}\sum_{(x,y)}\sigma(x)\sigma(y)-\frac{h}{\beta}\sum_{x}\sigma(x)-\frac{h_t}{\sqrt{\beta}}\sum_{x}\sigma(x)\eta(x)} \\
+&=:~ \sqrt{h_t}\overline{\H}^{(t)}(\sigma,\eta).
+\end{align*}
+\textcolor{blue}{For fixed $\eta\in\Omega_0$ and $t>t_1(h)$ large enough, $\frac{h}{|h|}$ is the unique ground state of $\overline{\H}^{(t)}(\pika,\eta)$.} Thus, again by \textcolor{red}{\texttt{[reference]}}, for $\beta$ large enough, $\sqrt{\beta}\overline{\H}^{(t)}(\pika,\eta)$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}. \textcolor{purple}{Why is this enough? Is ``large enough'' independent of $\eta$? Or is there a uniform bound?}
+\end{itemize}
+\end{proof}
+
+\begin{rem}
+The same result can be obtained for $\varepsilon>0$, though in that case $t_i$'s also depend on $\delta=\frac{1-\varepsilon}{1+\varepsilon}$.
+\end{rem}
 
 % #################################################################################################
 
