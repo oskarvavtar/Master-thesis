@@ -79,9 +79,9 @@
 
 \begin{document}
 \begin{center}
-\Huge{\textcolor{teal}{\texttt{TITLE}}} \\
+\Huge{\textcolor{teal}{\texttt{TITLE PAGE}}} \\
 \vspace{2cm}
-\Huge{\textcolor{teal}{\texttt{TITLE}}} \\
+\Huge{\textcolor{teal}{\texttt{TITLE PAGE}}} \\
 \vspace{2cm}
 Leiden University \\
 \vspace{2cm}
@@ -89,11 +89,11 @@ Leiden University \\
 \vspace{2cm}
 Oskar Vavtar \\
 \vspace{2cm}
-\Huge{\textcolor{teal}{\texttt{TITLE}}} \\
+\Huge{\textcolor{teal}{\texttt{TITLE PAGE}}} \\
 \vspace{2cm}
-\Huge{\textcolor{teal}{\texttt{TITLE}}} \\
+\Huge{\textcolor{teal}{\texttt{TITLE PAGE}}} \\
 \vspace{2cm}
-\Huge{\textcolor{teal}{\texttt{TITLE}}}
+\Huge{\textcolor{teal}{\texttt{TITLE PAGE}}}
 \end{center}
 \pagebreak
 \tableofcontents
@@ -425,7 +425,7 @@ $$\H^{(t)}(\sigma,\eta) ~=~ -\beta\sum_{(x,y)}\sigma(x)\sigma(y)-h\sum_{x}\sigma
 \end{proof}
 
 \begin{rem}
-The same result can be obtained for $\varepsilon>0$, though in that case $t_i$'s also depend on $\delta=\frac{1-\varepsilon}{1+\varepsilon}$.
+The same result can be obtained for $\varepsilon>0$, though in that case $t_i$'s also depend on the proportion $\frac{1-\varepsilon}{1+\varepsilon}$.
 \end{rem}
 
 % #################################################################################################
@@ -443,7 +443,54 @@ It is thus rather simple to describe probabilities of a certain value being assu
 where $\P(\text{odd flips of}~x)$ of course corresponds to the probability of there being even number of arrivals of Poisson process with intensity $c$ until time $t$. Famously, the latter carries the probability of $\frac{1}{2}(1-e^{-2tc})$, yielding
 $$[\mu S(t)](\omega_t(x)=1) ~=~ \mu(\omega_0(x)=1)\frac{1+e^{-2tc}}{2} + \mu(\omega_0(x)=-1)\frac{1-e^{-2tc}}{2}.$$
 
-The assumptions of this particular model allow us to consider the alternative to considering the joint distribution of $(\omega_0,\omega_t)$, as was done before. In particular, we will rather focus on the joint distribution of $\omega_0$ and dynamics (that is, whether there was odd or even number of spins at any site) until time $t$. The advantage of this approach is, that while $\omega_t$ does indeed depend on $\omega_0$ (and their joint distribution is not necessarily Gibbsian), the information about the dynamics up until $t$ \textit{is} -- due to no bias via $\varepsilon=0$ -- independent of $\omega_0$. The joint distribution is thus a product measure and \textcolor{purple}{hence automatically Gibbsian on $\Omega_0^2$.} Moreover, it is also easy to see that such construction allows us to see each $\mu S(t)$ as a fuzzy Gibbs measure, allowing us to use tools from \textcolor{red}{\texttt{[first chapter]}}.
+The assumptions of this particular model allow us to consider the alternative to considering the joint distribution of $(\omega_0,\omega_t)$, as was done before. In particular, we will rather focus on the joint distribution of $\omega_0$ and ``dynamics'' (that is, whether there was odd or even number of spins at any site) until time $t$. The advantage of this approach is, that while $\omega_t$ does indeed depend on $\omega_0$ (and their joint distribution is not necessarily Gibbsian), the information about the dynamics up until $t$ \textit{is} -- due to no bias via $\varepsilon=0$ -- independent of $\omega_0$. The joint distribution is thus a product measure and \textcolor{purple}{hence automatically Gibbsian} on $\Omega_0^2$. Moreover, it is also easy to see that such construction allows us to see each $\mu S(t)$ as a fuzzy Gibbs measure, allowing us to use tools from \textcolor{red}{\texttt{[first chapter]}}. \\
+
+We first fix some value $\kappa\in[0,1]$ and define an $\Omega_0$-valued random variable $X\sim\mu$. Moreover, define another $\Omega_0$-valued random variable, $Y^\kappa$, whose law $\rho^\kappa$ is given as
+$$\rho^\kappa ~=~ \oglati{(1-\kappa)\delta_{+1}-\kappa\delta_{\set{-1}}}^{\otimes\Z^d},$$
+that is $(Y_x^\kappa)_{x\in\Z^d}$ are i.i.d.~with
+$$Y_x^\kappa ~=~ \begin{cases}
+1, \quad &\text{with probability}~1-\kappa,\\
+-1, \quad &\text{with probability}~\kappa.	
+\end{cases}$$
+At last we define a random variable $Z^\kappa:=X\cdot Y^\kappa$, and denote its law by $\nu^\kappa$. Clearly, due to independence of $X$ and $Y^\kappa$, one has $(Z_i^\kappa)_{x\in\Z^d}$ i.i.d.~with 
+$$Z_x^\kappa ~=~ \begin{cases}
+X_i, \quad &\text{with probability}~1-\kappa,\\
+-X_i, \quad &\text{with probability}~\kappa.
+\end{cases}$$
+It follows that arbitrary $x\in\Z^d$, one has
+\begin{align*}
+\nu^\kappa(Z_x^\kappa=1) ~&=~ \mu(X_x=1)\rho^\kappa(Y_x^\kappa=1) + \mu(X_x=-1)\rho^\kappa(Y_x^\kappa=-1) \\
+&=~ \mu(X_x=1)(1-\kappa)+\mu(X_x=-1)\kappa.
+\end{align*}
+It is clear, that if define 
+$$\kappa(t) ~=~ \frac{1-e^{-2ct}}{2}, \quad t\geq 0,$$
+we obtain
+$$\mu S(t) ~=~ \nu^{\kappa(t)}, \quad t\geq 0.$$
+One the other hand, defining the map
+\begin{align*}
+\pi:\Omega_0\times\Omega_0&\ra\Omega_0 \\
+(\omega^\c,\omega^\mathsf{d})&\mapsto\omega^\c\omega^\mathsf{d},
+\end{align*}
+we can clearly see that
+$$\nu^{\kappa} ~=~ (\mu\otimes\rho^\kappa)\circ\pi^{-1}.$$
+Clearly, such map is a surjection from $\Omega=\Omega_0^2$ to $\Sigma=\Omega_0$, so $\mu\otimes\rho^\kappa$ being Gibbsian, it yields that $\nu^\kappa$ is indeed a fuzzy Gibbs measure, so the same holds true for $\mu S(t)$, $t\geq 0$. \\
+
+This allows us to utilize the \textcolor{blue}{fibre approach} on measures $\mu S(t)$. In this case, the particular fibres are very simple: for each $\sigma\in\Sigma$ and $\omega\in\Omega_0$, there a unique $\omega'\in\Omega_0$, such that $\omega\omega'=\sigma$. In fact, one precisely has that
+$$\omega' ~=~ \oklepaj{\frac{\sigma(x)}{\omega(x)}}_{x\in\Z^d}.$$
+Since individual sites can only assume values $+1$ and $-1$, we can utilize the fact that for $\alpha,\beta\in\set{-1,+1}$ one has $\frac{\alpha}{\beta}=\alpha\beta$, to write
+$$\Omega_\sigma ~=~ \set{(\omega,\omega\sigma):\omega\in\Omega_0}.\footnote{Here, there should be no confusion between $\Omega_0=\set{-1,+1}^{\Z^d}$ and $\Omega_{\mathbf{0}}=\pi^{-1}(\mathbf{0})$, where $\mathbf{0}$ is the configuration with all sites equal to $0$.}$$ 
+
+First we demonstrate, how we can prove \textcolor{red}{\texttt{[Theorem for unique $\mu$]}}, using the fibre approach. 
+\begin{proof}
+Since $\mu\otimes\rho^\kappa$ is a product measure, its Hamiltonians $\H^\kappa=(\H_\Lambda^\kappa)_{\Lambda\Subset\Z^d}$ take the from
+$$\H^\kappa(\omega^\c,\omega^\mathsf{d}) ~=~ \H(\omega^\c)-\sum_{x}\log\rho^\kappa(\omega^\mathsf{d}(x)),$$
+where $\rho^\kappa(\omega^\mathsf{d}(x))$ equals $1-\kappa$ is $\omega^\mathsf{d}(x)=+1$ and $\kappa$ if $\omega^\mathsf{d}(x)=-1$. Fixing some $\sigma\in\Sigma$, if one is to restrict possible values of $(\omega^\c,\omega^\mathsf{d})$ to $\Omega_\sigma$, we are left to consider $\H^\kappa(\omega,\omega\sigma)$, $\omega\in\Omega_0$, where
+\begin{align*}
+\H^\kappa(\omega,\omega\sigma) ~&=~ \H(\omega) - \sum_{x:\sigma(x)=1}\log\rho^\kappa(\omega(x)) - \sum_{x:\sigma(x)=-1}\log\rho^\kappa(-\omega(x)) \\
+&=~ \H(\omega) - \sum_{x:\sigma(x)=1}\log\rho^\kappa(\omega(x)) - \sum_{x:\sigma(x)=-1}\log\!\oklepaj{1-\rho^\kappa(\omega(x))}.
+\end{align*}
+\textcolor{purple}{Similar as in the proof in the previous section, $(\omega\mapsto\H^\kappa(\omega,\omega\sigma))$ differs from $\H$ only by a single-site interaction}, yielding that one admits a unique Gibbs measure on $\Omega_0$ iff the other does. By assumption, $|\G_{\Omega_0}(\H)|=1$, so $|\G_{\Omega_0}(\H^\kappa(\pika,\pika\sigma))|=1$, regardless of $\sigma$. Given that $\Omega_\sigma=\set{(\omega,\omega\sigma):\omega\in\Omega}$, this is equivalent to $|\G_{\Omega_\sigma}(\H^\kappa)|=1$ for all $\sigma\in\Sigma$, which combined with \textcolor{red}{\texttt{[Berghout's result]}} yields the final conclusion of Gibbsianity of $\nu^\kappa$. Since this works for all $\kappa\in[0,1]\supset\set{\kappa(t):t\geq 0}$, it indeed follows that $\mu S(t)=\nu^{\kappa(t)}$ is Gibbsian for all $t\geq 0$.
+\end{proof}
 
 % #################################################################################################
 
