@@ -418,7 +418,7 @@ $$\H^{(t)}(\sigma,\eta) ~=~ -\beta\sum_{(x,y)}\sigma(x)\sigma(y)-h\sum_{x}\sigma
 	\item[(2)] We want to exploit the fact that $h_t$ is small for large field and is hence overpowered by $h$; this time around, we write
 \begin{align*}
 \H^{(t)}(\sigma,\eta) ~&=~ \beta\oklepaj{-\sqrt{\beta}\sum_{(x,y)}\sigma(x)\sigma(y)-\frac{h}{\beta}\sum_{x}\sigma(x)-\frac{h_t}{\sqrt{\beta}}\sum_{x}\sigma(x)\eta(x)} \\
-&=:~ \sqrt{h_t}\overline{\H}^{(t)}(\sigma,\eta).
+&=:~ \sqrt{\beta}\overline{\H}^{(t)}(\sigma,\eta).
 \end{align*}
 \textcolor{blue}{For fixed $\eta\in\Omega_0$ and $t>t_1(h)$ large enough, $\frac{h}{|h|}$ is the unique ground state of $\overline{\H}^{(t)}(\pika,\eta)$.} Thus, again by \textcolor{red}{\texttt{[reference]}}, for $\beta$ large enough, $\sqrt{\beta}\overline{\H}^{(t)}(\pika,\eta)$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}. \textcolor{purple}{Why is this enough? Is ``large enough'' independent of $\eta$? Or is there a uniform bound?}
 \end{itemize}
@@ -427,6 +427,23 @@ $$\H^{(t)}(\sigma,\eta) ~=~ -\beta\sum_{(x,y)}\sigma(x)\sigma(y)-h\sum_{x}\sigma
 \begin{rem}
 The same result can be obtained for $\varepsilon>0$, though in that case $t_i$'s also depend on $\delta=\frac{1-\varepsilon}{1+\varepsilon}$.
 \end{rem}
+
+% #################################################################################################
+
+\subsection{Alternative approach: dynamics as a fuzzy map}
+
+\textcolor{blue}{In the previous section, we have remarked on the similarity between \textcolor{red}{\texttt{[Proposition]}} and \textcolor{red}{\texttt{Berghout's result}}.} The aim of this section is firstly to argue that one can view the dynamics described in the previous section as a fuzzy model, and secondly to demonstrate that the proofs of those same results are very similar, despite the alternative approach. \\
+
+Recall again that we assumed that the dynamics are i.i.d.\footnote{This is concluded by combining the assumption that $\P_\omega=\bigotimes_{x\in\Z^d}\P_{\omega(x)}$ and the assumption that $(L_x)_{x\in\Z^d}$ are independent of $x$.}, with no bias towards either $+1$ or $-1$ spins ($\varepsilon=0$). Considering the spin flip rates $c(x,\omega)$, the first assumption removes the dependence on the first coordinate and restricts the dependence in the second coordinate to only $\omega(x)$, while the second assumptions fully removes the dependence on the second coordinate. This yields that the dynamics are given by a collection of independent \textcolor{blue}{Poisson clocks} with rate $c>0$. \\
+
+It is thus rather simple to describe probabilities of a certain value being assumed at a specific spin at any given time. Indeed, on has that, for $x\in\Z^d$ and $t>0$,
+\begin{align*}
+[\mu S(t)](\omega_t(x)=1) ~=~ \mu(\omega_0(x)=1)\P(\text{even flips of}~x) + \mu(\omega_0(x)=-1)\P(\text{odd flips of}~x),
+\end{align*}
+where $\P(\text{odd flips of}~x)$ of course corresponds to the probability of there being even number of arrivals of Poisson process with intensity $c$ until time $t$. Famously, the latter carries the probability of $\frac{1}{2}(1-e^{-2tc})$, yielding
+$$[\mu S(t)](\omega_t(x)=1) ~=~ \mu(\omega_0(x)=1)\frac{1+e^{-2tc}}{2} + \mu(\omega_0(x)=-1)\frac{1-e^{-2tc}}{2}.$$
+
+The assumptions of this particular model allow us to consider the alternative to considering the joint distribution of $(\omega_0,\omega_t)$, as was done before. In particular, we will rather focus on the joint distribution of $\omega_0$ and dynamics (that is, whether there was odd or even number of spins at any site) until time $t$. The advantage of this approach is, that while $\omega_t$ does indeed depend on $\omega_0$ (and their joint distribution is not necessarily Gibbsian), the information about the dynamics up until $t$ \textit{is} -- due to no bias via $\varepsilon=0$ -- independent of $\omega_0$. The joint distribution is thus a product measure and \textcolor{purple}{hence automatically Gibbsian on $\Omega_0^2$.} Moreover, it is also easy to see that such construction allows us to see each $\mu S(t)$ as a fuzzy Gibbs measure, allowing us to use tools from \textcolor{red}{\texttt{[first chapter]}}.
 
 % #################################################################################################
 
