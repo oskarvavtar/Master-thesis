@@ -480,16 +480,22 @@ $$\omega' ~=~ \oklepaj{\frac{\sigma(x)}{\omega(x)}}_{x\in\Z^d}.$$
 Since individual sites can only assume values $+1$ and $-1$, we can utilize the fact that for $\alpha,\beta\in\set{-1,+1}$ one has $\frac{\alpha}{\beta}=\alpha\beta$, to write
 $$\Omega_\sigma ~=~ \set{(\omega,\omega\sigma):\omega\in\Omega_0}.\footnote{Here, there should be no confusion between $\Omega_0=\set{-1,+1}^{\Z^d}$ and $\Omega_{\mathbf{0}}=\pi^{-1}(\mathbf{0})$, where $\mathbf{0}$ is the configuration with all sites equal to $0$.}$$ 
 
-First we demonstrate, how we can prove \textcolor{red}{\texttt{[Theorem for unique $\mu$]}}, using the fibre approach. 
-\begin{proof}
-Since $\mu\otimes\rho^\kappa$ is a product measure, its Hamiltonians $\H^\kappa=(\H_\Lambda^\kappa)_{\Lambda\Subset\Z^d}$ take the from
+First we demonstrate, how we can prove \textcolor{red}{\texttt{[Theorem for unique $\mu$]}}, using the fibre approach.  Before starting, we remark that since $\mu\otimes\rho^\kappa$ is a product measure, its Hamiltonians $\H^\kappa=(\H_\Lambda^\kappa)_{\Lambda\Subset\Z^d}$ take the from
 $$\H^\kappa(\omega^\c,\omega^\mathsf{d}) ~=~ \H(\omega^\c)-\sum_{x}\log\rho^\kappa(\omega^\mathsf{d}(x)),$$
-where $\rho^\kappa(\omega^\mathsf{d}(x))$ equals $1-\kappa$ is $\omega^\mathsf{d}(x)=+1$ and $\kappa$ if $\omega^\mathsf{d}(x)=-1$. Fixing some $\sigma\in\Sigma$, if one is to restrict possible values of $(\omega^\c,\omega^\mathsf{d})$ to $\Omega_\sigma$, we are left to consider $\H^\kappa(\omega,\omega\sigma)$, $\omega\in\Omega_0$, where
+where $\rho^\kappa(\omega^\mathsf{d}(x))$ equals $1-\kappa$ is $\omega^\mathsf{d}(x)=+1$ and $\kappa$ if $\omega^\mathsf{d}(x)=-1$.
+In light of \textcolor{red}{\texttt{[Berghout's result]}} and the fact that $\set{\kappa(t):t\geq 0}\subset[0,1]$, we only need to prove the following:
+
+\begin{prop}
+For each $\kappa\in[0,1]$, we have $|\G_{\Omega_\sigma}(\H^\kappa)|=1$ for each $\sigma\in\Sigma$.
+\end{prop}
+
+\begin{proof}
+Fixing some $\sigma\in\Sigma$, if one is to restrict possible values of $(\omega^\c,\omega^\mathsf{d})$ to $\Omega_\sigma$, we are left to consider $\H^\kappa(\omega,\omega\sigma)$, $\omega\in\Omega_0$, where
 \begin{align*}
 \H^\kappa(\omega,\omega\sigma) ~&=~ \H(\omega) - \sum_{x:\sigma(x)=1}\log\rho^\kappa(\omega(x)) - \sum_{x:\sigma(x)=-1}\log\rho^\kappa(-\omega(x)) \\
 &=~ \H(\omega) - \sum_{x:\sigma(x)=1}\log\rho^\kappa(\omega(x)) - \sum_{x:\sigma(x)=-1}\log\!\oklepaj{1-\rho^\kappa(\omega(x))}.
 \end{align*}
-\textcolor{purple}{Similar as in the proof in the previous section, $(\omega\mapsto\H^\kappa(\omega,\omega\sigma))$ differs from $\H$ only by a single-site interaction}, yielding that one admits a unique Gibbs measure on $\Omega_0$ iff the other does. By assumption, $|\G_{\Omega_0}(\H)|=1$, so $|\G_{\Omega_0}(\H^\kappa(\pika,\pika\sigma))|=1$, regardless of $\sigma$. Given that $\Omega_\sigma=\set{(\omega,\omega\sigma):\omega\in\Omega}$, this is equivalent to $|\G_{\Omega_\sigma}(\H^\kappa)|=1$ for all $\sigma\in\Sigma$, which combined with \textcolor{red}{\texttt{[Berghout's result]}} yields the final conclusion of Gibbsianity of $\nu^\kappa$. Since this works for all $\kappa\in[0,1]\supset\set{\kappa(t):t\geq 0}$, it indeed follows that $\mu S(t)=\nu^{\kappa(t)}$ is Gibbsian for all $t\geq 0$.
+\textcolor{purple}{Similar as in the proof in the previous section, $(\omega\mapsto\H^\kappa(\omega,\omega\sigma))$ differs from $\H$ only by a single-site interaction}, yielding that one admits a unique Gibbs measure on $\Omega_0$ iff the other does. By assumption, $|\G_{\Omega_0}(\H)|=1$, so $|\G_{\Omega_0}(\H^\kappa(\pika,\pika\sigma))|=1$, regardless of $\sigma$. Given that $\Omega_\sigma=\set{(\omega,\omega\sigma):\omega\in\Omega}$, this is equivalent to $|\G_{\Omega_\sigma}(\H^\kappa)|=1$ for all $\sigma\in\Sigma$.
 \end{proof}
 
 % #################################################################################################
