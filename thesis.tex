@@ -27,6 +27,7 @@
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\B}{\mathcal{B}}
 \newcommand{\BB}{\mathscr{B}}
+\newcommand{\BBB}{\mathbb{B}}
 \newcommand{\D}{\mathcal{D}}
 \renewcommand{\d}{\mathrm{d}}
 \newcommand{\G}{\mathcal{G}}
@@ -46,6 +47,7 @@
 \newcommand{\Law}{\mathrm{Law}}
 \newcommand{\Potts}{\mathrm{Potts}}
 \newcommand{\TV}{\mathrm{TV}}
+\newcommand{\extr}{\mathrm{extr}}
 
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\oklepaj}[1]{\left(#1\right)}
@@ -103,11 +105,159 @@ Oskar Vavtar \\
 % #################################################################################################
 % #################################################################################################
 
-\section{Introduction (probably better name)}
+\section{Introduction}
 
-\textcolor{blue}{I assume this chapter will include a brief introduction to Gibbs measures/thermodynamical formalism (possibly including definitions of Ising and Potts model), as well as the theory of fuzzy Gibbs measures, results from Berghout's thesis.}\\ 
+\textcolor{blue}{Blahblahblah}
 
-\textcolor{teal}{Could also be split into two chapters, first covering SM basics+examples and the second one stuff from Berghout's thesis.}
+% #################################################################################################
+
+\subsection{Preliminaries: interactions, Hamiltonians and Gibbs measures}
+
+The central aim of statistical mechanics is to provide a probabilistic description of microscopic physical phenomena. In particular one aims to study a collection of particles (often infinite), indexed in some lattice $\L$ and each taking values in some set $\A_x$, $x\in\L$, called the \textit{(single-)spin space}, which we will assume to be finite.\footnote{In general, one can take $\A$ to be infinite, even uncountable (e.g., $\R^d$).} Each manifestation of this macroscopic system corresponds to a (random) configuration in $\Omega=\prod_{x\in\L}\A_x$; often we will assume that the system is homogeneous, i.e., $\Omega=\A^{\L}$. In order to talk about randomness, we have to consider probability distributions on $\Omega$; we will write $\M_1(\Omega)$ for the set of probability measures on $\Omega$. One often calls those measures \textit{random fields}. \\
+
+There is however a particular class of probability measures that are of interest, called \textit{Gibbs measures}, which we will start introducing formally in a moment, but not before giving some intuitive but \textit{very} informal description. Generally, we assume that the particles interact in some sense, which contributes some (positive or negative) energy. If some configuration carries energy $\H(\omega)$, then the Gibbs measure (consistent with $\H$) would assign $\omega$ a probability proportional to $e^{-\H(\omega)}$. Intuitively, Gibbs measures award configurations with low energy and penalize configurations with high energy. 
+
+% *************************************************************************************************
+
+\subsubsection{Formal definition, part 1: finite volume setting}
+
+In this section we assume $|\L|<\infty$; an often used example would be a finite graph $G=(V,E)$. In order to capture the interactions, one defines a collection of maps $\Phi=\set{\Phi_\Lambda:\Lambda\subseteq\L}$, called \textit{interaction}, where for $\omega\in\Omega$, $\Phi_\Lambda(\omega)$, depends on $\omega$ only through its values in $\Lambda$, that is, $\Phi_\Lambda(\omega)=\Phi_\Lambda(\omega(x):x\in\Lambda)$. The value $\Phi_\Lambda(\omega)$ represents the amount of energy that the interaction between particles in $\Lambda$ contributes to the system.
+
+\begin{ex}
+Often studied are the \textit{nearest-neighbour} interactions. If $\L$ is a (not necessarily finite) graph $G=(V,E)$, then $\Phi_\Lambda$ is constant zero, unless $\Lambda=\set{x,y}$, where $x\sim y$. 
+\end{ex}
+
+The total energy of the systems is then obtained by summing up energies of all subsets:
+$$\H(\omega) ~=~ \sum_{\Lambda\subseteq \L}\Phi_\Lambda(\omega), \quad \omega\in\Omega.$$
+We call the function $\H=\H^\Phi$ a \textit{Hamiltonian} consistent with $\Phi$. As already suggested above, the Gibbs measure $\mu=\mu^\Phi$ is then defined so that
+$$\mu(\omega) ~=~ \frac{1}{\ZZ}e^{-\H(\omega)}, \quad \omega\in\Omega,$$
+where $\ZZ=\ZZ^\Phi$ is called the \textit{partition function} and is given by $\ZZ ~=~ \sum_{\omega\in\Omega}e^{-\H(\omega)}.$ In this finite volume setting, Gibbs measures also often called \textit{Gibbs canonical ensembles.} \\
+
+While from probabilistic point of view, this may be interesting enough model, it is rather disinteresting from the statistical mechanical point of view. In particular, there is no notion of phase transitions, i.e., coexistence of several Gibbs measure consistent with the same interaction, which is one of the main focuses of study in statistical mechanics. This does, however, change when we relax the assumption about finiteness of $\L$ and take it to be a countably infinite lattice, as we will see shortly.
+
+% *************************************************************************************************
+
+\subsubsection{Formal definition, part 2: infinite volume setting}
+
+In practice, one often wishes to consider $\L$ to be an infinite lattice. Unfortunately, the construction presented in the previous section doesn't translate to this setting, as the Hamiltonian \textcolor{blue}{would correspond to a infinite sum and hence the Gibbs measure wouldn't be well defined.} We thus have to consider an alternative construction of Gibbs measures in infinite volumes. The most intuitive approach perhaps appears to be to construct them as (weak) limits of measures from the previous section, as finite volumes increase to $\L$ in a suitable sense. This indeed is a valid idea: one can construct infinite-volume Gibbs measures in this way and those measures form an import class. However, it is not the entire story. We will now proceed to define (repeating some already mentioned notions) a more general notion of infinite-volume Gibbs measures, which includes all such limit measures as well as other ones. \\
+
+From now on we restrict ourselves to $\L=\Z^d$. In the rest of the thesis, we will only consider $\L$ to be either $\Z^d$ or some subset of it. Moreover, given $\omega\in\Omega$ and $\Lambda\subseteq\Z^d$, we write $\omega_\Lambda:=\omega|_\Lambda$ as well as $\Omega_\Lambda:=\prod_{x\in\Lambda}\A_x$, so that $\omega_\Lambda\in\Omega_\Lambda$, and $\B_\Lambda$ for the (corresponding) $\sigma$-algebra on $\Omega_\Lambda$, generated by the cylinders on subsets of $\Lambda$.\footnote{The advantage of directly selecting $\omega_\Lambda$ from $\Omega_\Lambda$, rather than $\omega$ from $\Omega$ and just restricting it, is that for $\Lambda\Subset\Z^d$ one has $|\Omega_\Lambda|<\infty$, which allows for finite sums.} Also, given another $\tilde{\omega}\in\Omega$, we write $$[\omega_\Lambda\tilde{\omega}_\Lambda](x) ~:=~ \begin{cases}
+\omega(x): ~&x\in\Lambda,\\
+\tilde{\omega}(x): ~&x\in\Lambda^\c.
+\end{cases}$$
+
+\begin{df}~
+\begin{itemize}
+	\item[(1)] An \textit{interaction} is a collection of maps $\Phi=\{\Phi_\Lambda:\Lambda\Subset\Z^d\}$, such that
+$$\Phi_\Lambda(\omega) ~=~ \Phi_\Lambda(\omega_\Lambda), \quad \omega\in\Omega,$$
+that is, $\Phi_\Lambda$ depends on $\omega$ only through its values in $\Lambda$. We say that $\Phi$ is \textit{uniformly absolutely convergent} (write $\Phi\in\BB^1(\Omega)$) if 
+$$\|\Phi\| ~:=~ \sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Z^d}}\|\Phi_\Lambda\|_\infty ~<~ \infty$$
+and write $\BB^1(\Omega)$ for the collection of all UAC interactions on $\Omega$.
+	\item[(2)] For $\Phi\in\BB^1(\Omega)$, we define a corresponding collection of Hamiltonians $\H^\Phi=\set{\H_\Lambda^\Phi:\Lambda\Subset\Z^d}$, given by
+	$$\H_\Lambda^\Phi(\omega) ~=~ \sum_{\substack{\Delta\Subset\Z^d:\\\Delta\cap\Lambda\neq\emptyset}}\Phi_\Lambda(\omega), \quad \omega\in\Omega.$$
+	\textcolor{blue}{Add definition of quasilocal Hamiltonian?}
+	\item[(3)] For $\Phi\in\BB^1(\Omega)$, we define a \textit{specification} as a collection $\gamma^\Phi=\set{\gamma_\Lambda^\Phi:\Lambda\Subset\Z^d}$ via
+	$$\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\Lambda^\c}) ~=~ \frac{1}{\ZZ_\Lambda^{\Phi,\omega}}\exp(-\H_\Lambda^\Phi(\tilde{\omega}_\Lambda\omega_{\Lambda^\c})), \quad \omega,\tilde{\omega}\in\Omega,$$
+	where $\ZZ_\Lambda^{\Phi,\omega}=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp(-\H_\Lambda^\Phi(\tilde{\omega}_\Lambda\omega_{\Lambda^\c}))$.
+\end{itemize}
+\end{df}
+
+\begin{rem}
+Formally, $\gamma^\Phi$ should be seen as a collection of probability kernels, where for each $\Lambda\Subset\Z^d$, $\gamma_\Lambda^\Phi:\B_\Lambda\times\Omega_{\Lambda^\c}\ra(0,1)$, so $\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\Lambda^\c})$ should be actually read as $\gamma_\Lambda^{\Phi}(\set{\tilde{\omega}_\Lambda}|\omega_{\Lambda^\c})$. The probability of a general $A\in\B_\Lambda$ is now given by
+$$\gamma_\Lambda^\Phi(A|\omega_{\Lambda^\c}) ~=~ \sum_{\tilde{\omega}_\Lambda\in A}\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\Lambda^\c}).$$
+The corresponding expectation is given for suitable $f:\Omega\ra\R$ by
+$$\gamma_\Lambda^\Phi[f|\omega_{\Lambda^\c}] ~=~ \sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}f(\tilde{\omega}_\Lambda\omega_{\Lambda^\c})\gamma_{\Lambda}^\Phi(\tilde{\omega}_\Lambda|\omega_{\Lambda^\c}).$$
+In further generality, we may call \textit{a specification} any collection of probability kernels $\gamma=\set{\gamma_\Lambda:\Lambda\Subset\Z^d}$ such that for each $\Lambda\Subset\Z^d$
+\begin{itemize}
+	\item and  $A\in\B_{\Lambda}$, $\omega\mapsto\gamma(A|\omega)$ is $\B_{\Lambda^\c}$-measurable,
+	\item $\gamma_\Lambda(A|\pika)=\1_A$ for each \textcolor{purple}{$A\in\B_\Lambda$},
+	\item and $\Delta\subset\Lambda$, $\int \gamma_\Delta(A|\omega')\,\gamma_\Lambda(\d\omega'|\omega)=\gamma_\Lambda(A|\omega)$.
+\end{itemize}
+\end{rem}
+
+Finally, after introducing all this notions, we are able to formally define the infinite-volume Gibbs measures, using a very natural definition.
+
+\begin{df}
+A probability measure $\mu\in\M_1(\Omega)$ is said to be a Gibbs measure consistent with $\Phi\in\BB^1(\Omega)$, if it is consistent with $\gamma^\Phi$, that is, if for each $\Lambda\Subset\Z^d$ we have
+$$\mu(\omega_\Lambda|\omega_{\Lambda^\c}) ~=~ \gamma_\Lambda^\Phi(\omega_\Lambda|\omega_{\Lambda^\c}) \quad~\text{for}~\mu\text{-a.a.}~\omega\in\Omega.\footnote{The notation $\mu(a_\Lambda|b_{\Lambda^\c})$ should be read as $\mu(a~\text{on}~\Lambda|b~\text{off}~\Lambda)$.}$$
+We write $\G_\Omega(\Phi)$ for the set of all Gibbs measure on $\Omega$ consistent with $\Phi$. Alternatively, if our main reference is a specification $\gamma$ or a collection of Hamiltonians $\H$, we may also write $\G_\Omega(\gamma)$ or $\G_\Omega(\H)$, so in our notation $\G_\Omega(\Phi)$, $\G_\Omega(\H^\Phi)$ and $\G_\Omega(\gamma^\Phi)$ would refer to the same thing.
+\end{df}
+
+\begin{rem}
+~
+\begin{itemize}
+	\item[(i)] Equivalently, one could define $\mu$ to be Gibbs for $\gamma$ if for each $\Lambda\Subset\Z^d$ and $f\in C(\Omega,\R)$ one has
+	$$\int f\,\d\mu ~=~ \int\gamma_\Lambda[f|\omega_{\Lambda^\c}]\,\d\mu(\omega).$$
+	\item[(ii)] For each $\Phi\in\BB^1(\Omega)$, $\G_\Omega(\Phi)\neq\emptyset$.
+\end{itemize}
+\end{rem}
+
+\noindent\textcolor{blue}{Say something about infinite volume limits?}
+
+\textcolor{blue}{\begin{ex}[Ising model]~\end{ex}}
+
+Very important is the following characterization of Gibbs measures:
+\begin{prop}
+~
+\begin{itemize}
+	\item[(i)] Let $\Phi\in\BB^1(\Omega)$. Then $\gamma^\Phi$ has the following two properties:
+		\begin{itemize}
+			\item \textit{uniform non-nullness}: for every $\Lambda\Subset\Z^d$ there exist $\alpha_\Lambda,\beta_\Lambda\in(0,1)$ such that
+			$$\alpha_\Lambda ~\leq~ \gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\Lambda^\c}) ~\leq~ \beta_\Lambda, \quad\forall\tilde{\omega}_\Lambda\in\Omega_\Lambda,\,\omega\in\Omega.$$
+			\item \textit{quasilocality}: writing $\BBB_n=[-n,n]^d\cap\Z^d$ for $n\in\N$, for every $\Lambda\Subset\Z^d$ one has
+			$$\sup_{\omega,\tilde{\omega}\in\Omega}\sup_{\xi,\zeta\in\Omega}|\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\BBB_n\setminus\Lambda}\xi_{\BBB_n^\c\setminus\Lambda})-\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\BBB_n\setminus\Lambda}\zeta_{\BBB_n^\c\setminus\Lambda})| ~\xrightarrow{n\ra\infty}~ 0.$$
+		\end{itemize}
+		\item[(ii)] Let $\mu$ be a fully supported Borel probability measure on $\Omega$. If there exists a specification (in the sense of \textcolor{red}{\texttt{[Remark]}}) which is uniformly non-null, quasilocal and with which $\mu$ is consistent (in the sense of \textcolor{red}{\texttt{[Definition]}}), then there exists some $\Phi\in\BB^1(\Omega)$ so that $\mu\in\G_\Omega(\Phi)$.
+		
+\end{itemize}
+\end{prop}
+
+% *************************************************************************************************
+
+\subsubsection{Coexistence of several Gibbs measures}
+
+While the result in \textcolor{red}{\texttt{[Remark]}}(ii) tells us that for an UAC interaction, there's always a Gibbs measure, it tells us nothing else about the cardinality in $\G_\Omega(\Phi)$: in particular it doesn't guarantee that there's only one. In fact several Gibbs measures consistent with the same interaction may exist; in this case, we say that the system has a \textit{phase transition}. Given a model with some parameter(s), an important question is for which parameter values there's only one Gibbs measure and for which parameter there's several.
+
+\textcolor{blue}{\begin{ex}[Ising]~\end{ex}}
+
+The spaces of Gibbs measures do carry some nice properties:
+\begin{prop}
+Let $\Phi\in\BB^1(\Omega)$.
+\begin{itemize}
+	\item[(i)] $\G_\Omega(\Phi)$ is convex.
+	\item[(ii)] Extremal measures of $\G_\Omega(\Phi)$ (denoted by $\extr(\G_\Omega(\Phi))$) are mutually singular.
+	\item[(iii)] For each $\mu\in\G_\Omega(\Phi)$,
+	$$\gamma_{\BBB_n}^\Phi(\pika|\omega) ~\xrightarrow{w}~ \mu, \quad \text{for}~\mu\text{-a.a.}~\omega\in\Omega.$$
+	In other words, $\mu$ can be obtained as a thermodynamic limit with some fixed boundary condition.
+\end{itemize}
+\end{prop}
+
+Before concluding this preliminary section, we present an important result, which is very commonly used to verify uniqueness of a Gibbs measure with respect to the interaction:
+\begin{thm}[Dobrushin's Uniqueness Condition]
+Let $\Phi\in\BB^1(\Omega)$ and define for $x,y\in\Z^d$,
+$$c_{x,y}^\Phi ~:=~ \sup_{\substack{\omega,\tilde{\omega}\in\Omega:\\\omega\equiv\tilde{\omega}~\text{off}~ y}}\|\gamma_x^\Phi(\pika|\omega)-\gamma_x^\Phi(\pika|\tilde{\omega})\|_\TV.$$
+If
+$$\sup_{x\in\Z^d}\sum_{y\in\Z^d}c_{x,y}^\Phi ~<~ \textcolor{purple}{1},$$
+then $|\G_\Omega(\Phi)|=1$.
+\end{thm}
+
+In practice, the following criterion is useful in particular:
+
+\begin{cor}
+$\Phi\in\BB^1(\Omega)$ satisfies the Dobrushin's Uniqueness Condition as soon as
+$$\sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Phi_\Lambda(\omega)-\Phi_\Lambda(\tilde{\omega})| ~<~ \textcolor{purple}{2}.$$
+We will call interaction satisfying this \textit{high-temperature interactions}.
+\end{cor}
+
+% *************************************************************************************************
+
+% #################################################################################################
+
+\subsection{Renormalisation group pathologies}
+
+We now direct our attention to the source of the questions that inspired the theory which is presented in this thesis.
+
+% #################################################################################################
 
 \pagebreak
 
