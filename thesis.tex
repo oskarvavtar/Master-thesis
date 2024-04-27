@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \graphicspath{ {./Slike/} }
 \usepackage{subcaption}
+\usepackage{tikz-cd}
 
 \usepackage{geometry}
 \geometry{
@@ -39,6 +40,7 @@
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\PP}{\mathsf{P}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\RR}{\mathcal{R}}
 \renewcommand{\r}{\mathrm{r}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\ZZ}{\mathcal{Z}}
@@ -255,9 +257,36 @@ We will call interaction satisfying this \textit{high-temperature interactions}.
 
 \subsection{Renormalisation group pathologies}
 
-We now direct our attention to the source of the questions that inspired the theory which is presented in this thesis.
+We now direct our attention to the source of the questions that inspired the theory which is presented in this thesis. Those can be traced back to the seminal paper of Aernout van Enter, Roberto Fern\'andez and Alan Sokal, carrying the title \textit{Regularity Properties and Pathologies of Position-Space Renormalization-Group Transformations}. \\
+
+\textcolor{blue}{Informally, the problem goes as follows.} Consider (measure) spaces $\Omega,\Omega'$ of configurations on a (for now) finite volume $\Lambda$ and suppose $\Omega$ is equipped with a probability measure $\mu$. A renormalization-group (RG) map is given as a a probability kernel $T$ from $\Omega$ to $\Omega'$. $T$ can be either a deterministic or a stochastic map.\footnote{In the deterministic case, $T(\pika,\omega')$ corresponds to Dirac measure $\delta_{\omega'}$.} This maps gives us a natural measure $\mu'$ on $\Omega'$, which is given by
+$$\mu'(\omega') ~=~ (\mu T)(\omega') ~:=~ \sum_{\omega\in\Omega}\mu(\omega)T(\omega,\omega'), \quad \omega'\in\Omega'.$$
+Note that if $T$ is deterministic, given by a map $\tilde{T}:\Omega\ra\Omega'$, $\mu T$ would correspond to the push-forward measure $\mu\circ \tilde{T}^{-1}$. Thus, the RG map is without a problem defined between measures. In applications, however, an alternative route is usually taken. In particular, one defines the RG map as a map $\RR$ between (suitable) Hamiltonians: given a Hamiltonian $\H$, with which $\mu$ is consistent $(\mu\propto e^{-\H})$, $\RR$ assigns $\H$ the Hamiltonian $\H'$, which corresponds to $\mu'=\mu T$ ($\mu'\propto e^{-\H'}$). In particular, $\H'$ may be obtained via the formula
+$$\H'(\omega') ~=~ (\RR\H)(\omega') ~=~ -\log\sum_{\omega\in\Omega} e^{-\H(\omega)}T(\omega,\omega)' + C,$$
+with $C$ a constant. The interplay between $T$ and $\RR$ is captured in the following diagram:
+$$\begin{tikzcd}
+\H & {\H'} \\
+	\mu & {\mu'}
+	\arrow["\RR", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["T"', from=2-1, to=2-2]
+	\arrow[from=2-2, to=1-2]
+\end{tikzcd}$$
+This nice formalism, however, fails to translate when we instead take an infinite volume $\Lambda$, for example $\Z^d$. First clear problem is that there might be several Gibbs measures consistent with $\H$, implying that $\H\mapsto\mu$ is a multi-valued map. \textcolor{purple}{While $\mu'$ can still be defined rather simply,
+$$\mu'(A') ~:=~ \int_\Omega T(\omega,A)\,\d\mu(\omega),$$}
+it yields a new problem, which has \textcolor{purple}{first demonstrated} in \textcolor{red}{\texttt{[Isreal paper]}} and widely argued in \textcolor{red}{\texttt{[vEFS]}}: $\mu'$ might fail to be Gibbsian, that is, it might fail to be consistent with any suitable Hamiltonian, yielding that the map $\mu'\mapsto\H'$ might not be defined for all image measures $\mu'$. This led authors of \textcolor{red}{\texttt{vEFS}} to reformulate the formalism, for which several results were proven and many new open questions posed. \\
+
+\textcolor{blue}{This thesis in particular is concerned with a established conjecture, stated in the following chapter, regarding the sufficient condition for Gibbsianity of $\mu'$, in a certain deterministic setting, which was already heavily explored in \textcolor{red}{\texttt{[Berghout]}}.}
 
 % #################################################################################################
+
+\pagebreak
+
+% #################################################################################################
+% #################################################################################################
+% #################################################################################################
+
+\section{Fuzzy Gibbs formalism}
 
 \pagebreak
 
