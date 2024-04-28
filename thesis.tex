@@ -230,11 +230,11 @@ Let $\Phi\in\BB^1(\Omega)$.
 	\item[(ii)] Extremal measures of $\G_\Omega(\Phi)$ (denoted by $\extr(\G_\Omega(\Phi))$) are mutually singular.
 	\item[(iii)] For each $\mu\in\G_\Omega(\Phi)$,
 	$$\gamma_{\BBB_n}^\Phi(\pika|\omega) ~\xrightarrow{w}~ \mu, \quad \text{for}~\mu\text{-a.a.}~\omega\in\Omega.$$
-	In other words, $\mu$ can be obtained as a thermodynamic limit with some fixed boundary condition.
+	In other words, $\mu$ can be obtained as a thermodynamic limit with some fixed boundary condition. (See next section.)
 \end{itemize}
 \end{prop}
 
-Before concluding this preliminary section, we present an important result, which is very commonly used to verify uniqueness of a Gibbs measure with respect to the interaction:
+\textcolor{blue}{Before concluding this preliminary section, we present an important result, which is very commonly used to verify uniqueness of a Gibbs measure with respect to the interaction:}
 \begin{thm}[Dobrushin's Uniqueness Condition]
 Let $\Phi\in\BB^1(\Omega)$ and define for $x,y\in\Z^d$,
 $$c_{x,y}^\Phi ~:=~ \sup_{\substack{\omega,\tilde{\omega}\in\Omega:\\\omega\equiv\tilde{\omega}~\text{off}~ y}}\|\gamma_x^\Phi(\pika|\omega)-\gamma_x^\Phi(\pika|\tilde{\omega})\|_\TV.$$
@@ -251,7 +251,68 @@ $$\sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)
 We will call interaction satisfying this \textit{high-temperature interactions}.
 \end{cor}
 
+In practice, one may sometimes approach a collection of Hamiltonians, that differ from each other purely by a single-site interaction. A very useful fact, which will be of great importance in a later chapter on spin-flip dynamics, is that as soon as one of them satisfies \textcolor{red}{\texttt{[Eq in Cor]}}, so do all the other:
+\begin{lem}
+Suppose that $\Phi\in\BB^1(\Omega)$ satisfies \textcolor{red}{\texttt{Eq in Cor}}. Moreover, let $\Psi\in\BB^1(\Omega)$ be a \textit{single-site} interaction, i.e., $\Psi_\Lambda$ is non-zero only for $\Lambda=\set{x}$, $x\in\Z^d$. Then, $\Phi^*:=\Phi+\Psi$ satisfies \textcolor{red}{\texttt{[Eq in Cor]}} as well.
+\end{lem}
+
+\begin{proof}
+By triangle inequality,
+\begin{align*}
+\sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Phi_\Lambda^*(\omega)-\Phi_\Lambda^*(\tilde{\omega})| ~&\leq~ \sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Phi_\Lambda(\omega)-\Phi_\Lambda(\tilde{\omega})| \\
+&+~ \sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Psi_\Lambda(\omega)-\Psi_\Lambda(\tilde{\omega})| \\
+&<~ 2 \\
+&+~ \sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Psi_\Lambda(\omega)-\Psi_\Lambda(\tilde{\omega})|
+\end{align*}
+Using that for any $x\in\Z^d$ and $\Lambda\Subset\Z^d$ containing $x$, $\Psi_\Lambda\equiv 0$ as soon as $\Lambda\neq\set{x}$, we have that
+$$\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Psi_\Lambda(\omega)-\Psi_\Lambda(\tilde{\omega})| ~=~ (|\!\set{x}\!|-1)\sup_{\omega,\tilde{\omega}\in\Omega}|\Psi_x(\omega)-\Psi_x(\tilde{\omega})|.$$
+The right-hand side clearly equals zero, since $|\!\set{x}\!|=1$, yielding the conclusion.
+\end{proof}
+
 % *************************************************************************************************
+
+\subsubsection{Thermodynamic limits}
+
+For technical reasons, we conclude this preliminary section with a few words about thermodynamic limits, on which we have already hinted earlier and also borrowed the notion in \textcolor{red}{\texttt{[Remark]}}. \\
+
+While definition is straightforward, it leads us to introduce a couple of notions beforehand.
+\begin{df}
+~
+\begin{itemize}
+	\item[(1)] We say that $(\Lambda_n)_{n\in\N}$, where $\Lambda_n\Subset\Z^d$ for each $n\in\N$, is a \textit{van Hove sequence}, if it satisfies the following conditions:
+	\begin{itemize}
+		\item[(i)] it is \textit{increasing}: $\Lambda_n\subset\Lambda_{n+1}$ for each $n\in\N$,
+		\item[(ii)] it \textit{invades} $\Z^d$: $\bigcup_{n\geq 1}\Lambda_n=\Z^d$, and
+		\item[(iii)] $\lim_{n\ra\infty}\frac{|\partial\Lambda_n|}{|\Lambda_n|}=0$. \textcolor{blue}{Definition of $\partial\Lambda$?}
+	\end{itemize}
+	We denote van Hove convergence by $\Lambda_n\Uparrow\Z^d$.
+	\item[(2)] A function $f:\Omega\ra\R$ is said to be \textit{local} if there's $\Delta\Subset\Z^d$, such that for any choice of $\omega,\tilde{\omega}\in\Omega$, 
+	$$\omega(x)=\tilde{\omega}(x)~\forall x\in\Delta ~\Longrightarrow~ f(\omega)=f(\tilde{\omega}).$$
+	We sometimes write $\supp(f)$ for the minimal such $\Delta$. We denote the collection of all local functions $f:\Omega\ra\R$ by $\Loc(\Omega)$.
+	\item[(c)] Given (probability) measures $\mu,\mu_1,\mu_2,\ldots$ on $\Omega$, we say that $(\mu_n)_{n\in\N}$ converges \textit{weakly} to $\mu$, writing $\mu_n\xrightarrow{w}\mu$, if
+	$$\int_\Omega f\,\d\mu_n ~\ra~ \int_\Omega f\,\d\mu, \quad \forall f\in\Loc(\Omega).$$
+\end{itemize}
+\end{df}
+
+Now we are fully equipped to define thermodynamic-limit Gibbs measures:
+\textcolor{purple}{
+\begin{df}
+We say that $\mu$ is a thermodynamic-limit Gibbs measure for $\Phi\in\BB^1(\Omega)$, if there exists a boundary condition $\omega\in\Omega$, such that
+$$\gamma_{\Lambda_n}^\Phi(\pika|\omega_{\Lambda^\c}) ~\xrightarrow{w}~ \mu \quad \text{as}~n\ra\infty,$$
+for some van Hove sequence $(\Lambda_n)_{n\in\N}$.
+\end{df}
+}
+
+\textcolor{purple}{
+\begin{rem}
+Using the same procedure, we may also define non-Gibbs thermodynamic-limit measures, using a more general specificaiton $\gamma$ (in the sense of \textcolor{red}{\texttt{[Remark]}}), not necessarily as configurations on vertices (but for example on edges, as will be seen later).
+\end{rem}
+}
+
+\textcolor{blue}{
+\begin{ex}[Ising: +,- vs Dobrushin]
+\end{ex}
+}
 
 % #################################################################################################
 
@@ -276,7 +337,22 @@ This nice formalism, however, fails to translate when we instead take an infinit
 $$\mu'(A') ~:=~ \int_\Omega T(\omega,A)\,\d\mu(\omega),$$}
 it yields a new problem, which has \textcolor{purple}{first demonstrated} in \textcolor{red}{\texttt{[Isreal paper]}} and widely argued in \textcolor{red}{\texttt{[vEFS]}}: $\mu'$ might fail to be Gibbsian, that is, it might fail to be consistent with any suitable Hamiltonian, yielding that the map $\mu'\mapsto\H'$ might not be defined for all image measures $\mu'$. This led authors of \textcolor{red}{\texttt{vEFS}} to reformulate the formalism, for which several results were proven and many new open questions posed. \\
 
-\textcolor{blue}{This thesis in particular is concerned with a established conjecture, stated in the following chapter, regarding the sufficient condition for Gibbsianity of $\mu'$, in a certain deterministic setting, which was already heavily explored in \textcolor{red}{\texttt{[Berghout]}}.}
+\textcolor{blue}{This thesis in particular is concerned with a established conjecture, stated in the following chapter, regarding the sufficient condition for Gibbsianity of $\mu'$, in a certain deterministic setting, which was already heavily explored in \textcolor{red}{\texttt{[Berghout]}}.} \\
+
+To conclude this section, we provide two examples of RG transformations, one deterministic (decimation) and one stochastic (majority vote).
+
+\textcolor{blue}{
+\begin{ex}[Decimation of Ising model]
+~
+\end{ex}
+}
+
+\textcolor{blue}{
+\begin{ex}[Majority vote on Ising model]
+~
+\end{ex}
+}
+
 
 % #################################################################################################
 
@@ -567,7 +643,7 @@ We wish to show, that for each fixed $\eta\in\Omega_0$, $|\G_{\Omega_0}(\H^{(t)}
 $$\tilde{\H}_\Lambda^{(t)}(\sigma_\Lambda;\eta) ~=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}\oklepaj{h_1(t)+h_{1,2}(t)\eta(x)}\sigma(x),$$
 which induces the same specification as $\H^{(t)}(\pika,\eta)$, and hence 
 $$\G_{\Omega_0}(\tilde{\H}^{(t)}(\pika;\eta))=\G_{\Omega_0}(\H^{(t)}(\pika,\eta)).$$
-\textcolor{blue}{Since $\tilde{\H}^{(t)}(\pika;\eta)$ differs from $\H$ only in the single site interaction, $\tilde{\H}^{(t)}(\pika;\eta)$ satisfies \textcolor{red}{\texttt{[Dobrushin]}} if and only if $\H$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}}. $\H$ indeed satisfies it by assumption, from which it follows that $|\G_{\Omega_0}(\tilde{\H}^{(t)}(\pika;\eta))|=1$ and hence 
+\textcolor{blue}{Since $\tilde{\H}^{(t)}(\pika;\eta)$ differs from $\H$ only in the single site interaction, by \textcolor{red}{\texttt{[Lemma]}}, $\tilde{\H}^{(t)}(\pika;\eta)$ satisfies \textcolor{red}{\texttt{[Dobrushin]}} if and only if $\H$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}}. $\H$ indeed satisfies it by assumption, from which it follows that $|\G_{\Omega_0}(\tilde{\H}^{(t)}(\pika;\eta))|=1$ and hence 
 $$|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|=1.$$
 As this works for any choice of $\eta$, \textcolor{red}{\texttt{[reference of Proposition]}} allows us to conclude.
 \end{proof}
@@ -611,7 +687,7 @@ The same result can be obtained for $\varepsilon>0$, though in that case $t_i$'s
 
 \subsection{Alternative approach: dynamics as a fuzzy map}
 
-\textcolor{blue}{In the previous section, we have remarked on the similarity between \textcolor{red}{\texttt{[Proposition]}} and \textcolor{red}{\texttt{Berghout's result}}.} The aim of this section is firstly to argue that one can view the dynamics described in the previous section as a fuzzy model, and secondly to demonstrate that the proofs of those same results are very similar, despite the alternative approach. \\
+\textcolor{blue}{In the previous section, we have remarked on the similarity between \textcolor{red}{\texttt{[Proposition]}} and \textcolor{red}{\texttt{[Berghout's result]}}.} The aim of this section is firstly to argue that one can view the dynamics described in the previous section as a fuzzy model, and secondly to demonstrate that the proofs of those same results are very similar, despite the alternative approach. \\
 
 Recall again that we assumed that the dynamics are i.i.d.\footnote{This is concluded by combining the assumption that $\P_\omega=\bigotimes_{x\in\Z^d}\P_{\omega(x)}$ and the assumption that $(L_x)_{x\in\Z^d}$ are independent of $x$.}, with no bias towards either $+1$ or $-1$ spins ($\varepsilon=0$). Considering the spin flip rates $c(x,\omega)$, the first assumption removes the dependence on the first coordinate and restricts the dependence in the second coordinate to only $\omega(x)$, while the second assumptions fully removes the dependence on the second coordinate. This yields that the dynamics are given by a collection of independent \textcolor{blue}{Poisson clocks} with rate $c>0$. \\
 
@@ -622,7 +698,7 @@ It is thus rather simple to describe probabilities of a certain value being assu
 where $\P(\text{odd flips of}~x)$ of course corresponds to the probability of there being even number of arrivals of Poisson process with intensity $c$ until time $t$. Famously, the latter carries the probability of $\frac{1}{2}(1-e^{-2tc})$, yielding
 $$[\mu S(t)](\omega_t(x)=1) ~=~ \mu(\omega_0(x)=1)\frac{1+e^{-2tc}}{2} + \mu(\omega_0(x)=-1)\frac{1-e^{-2tc}}{2}.$$
 
-The assumptions of this particular model allow us to consider the alternative to considering the joint distribution of $(\omega_0,\omega_t)$, as was done before. In particular, we will rather focus on the joint distribution of $\omega_0$ and ``dynamics'' (that is, whether there was odd or even number of spins at any site) until time $t$. The advantage of this approach is, that while $\omega_t$ does indeed depend on $\omega_0$ (and their joint distribution is not necessarily Gibbsian), the information about the dynamics up until $t$ \textit{is} -- due to no bias via $\varepsilon=0$ -- independent of $\omega_0$. The joint distribution is thus a product measure and \textcolor{purple}{hence automatically Gibbsian} on $\Omega_0^2$. Moreover, it is also easy to see that such construction allows us to see each $\mu S(t)$ as a fuzzy Gibbs measure, allowing us to use tools from \textcolor{red}{\texttt{[first chapter]}}. \\
+The assumptions of this particular model allow us to consider the alternative to considering the joint distribution of $(\omega_0,\omega_t)$, as was done before. In particular, we will rather focus on the joint distribution of $\omega_0$ and ``dynamics'' (that is, whether there was odd or even number of spins at any site) until time $t$. The advantage of this approach is, that while $\omega_t$ does indeed depend on $\omega_0$ (and their joint distribution is not necessarily Gibbsian), the information about the dynamics up until $t$ \textit{is} -- due to no bias via $\varepsilon=0$ -- independent of $\omega_0$. The joint distribution is thus a product measure and \textcolor{purple}{hence automatically Gibbsian} on $\Omega_0^2$. Moreover, it is also easy to see that such construction allows us to see each $\mu S(t)$ as a fuzzy Gibbs measure, allowing us to use tools from \textcolor{red}{\texttt{[second chapter]}}. \\
 
 We first fix some value $\kappa\in[0,1]$ and define an $\Omega_0$-valued random variable $X\sim\mu$. Moreover, define another $\Omega_0$-valued random variable, $Y^\kappa$, whose law $\rho^\kappa$ is given as
 $$\rho^\kappa ~=~ \oglati{(1-\kappa)\delta_{+1}-\kappa\delta_{\set{-1}}}^{\otimes\Z^d},$$
@@ -676,6 +752,23 @@ Fixing some $\sigma\in\Sigma$, if one is to restrict possible values of $(\omega
 \end{align*}
 \textcolor{purple}{Similar as in the proof in the previous section, $(\omega\mapsto\H^\kappa(\omega,\omega\sigma))$ differs from $\H$ only by a single-site interaction}, yielding that one admits a unique Gibbs measure on $\Omega_0$ iff the other does. By assumption, $|\G_{\Omega_0}(\H)|=1$, so $|\G_{\Omega_0}(\H^\kappa(\pika,\pika\sigma))|=1$, regardless of $\sigma$. Given that $\Omega_\sigma=\set{(\omega,\omega\sigma):\omega\in\Omega}$, this is equivalent to $|\G_{\Omega_\sigma}(\H^\kappa)|=1$ for all $\sigma\in\Sigma$.
 \end{proof}
+
+In light of their proof of \textcolor{red}{\textcolor{red}{\texttt{Ising theorem}}}, in particular the fact that they argued via \textcolor{red}{\texttt{[Eq in Cor]}}, the sensible only way to obtain -- for sure -- the same $t_0$ and $t_1$, it to verify that we have Gibbsianity as soon as they have it. Due to the fact that they argued via \textcolor{red}{\texttt{[Eq in Cor]}}, it is sufficient to verify the following:
+\begin{prop} Let $t\geq 0$ and $\sigma\in\Sigma$ be arbitrary. Then $\H^{(t)}(\pika,\sigma)$ and $\H^{\kappa(t)}(\pika,\pika\sigma)$ differ only by a single site interaction.
+\end{prop}
+\begin{proof}
+In this particular case, one has
+\begin{align*}
+\H^{\kappa(t)}(\omega,\omega\sigma) ~&=~ -\beta\sum_{(x,y)}\sigma(x)\sigma(y) - h\sum_{x}\sigma(x) -\sum_{x}\log\rho^{\kappa(t)}(\omega(x)\sigma(x)), \omega\in\Omega.
+\end{align*}
+It follows that
+\begin{align*}
+\H^{\kappa(t)}(\omega,\omega\sigma) - \H^{(t)}(\omega,\sigma) ~&=~ h_t\sum_{x}\sigma(x)\eta(x) - \sum_{x}\log\rho^{\kappa(t)}(\omega(x)\sigma(x)),
+\end{align*}
+which indeed corresponds to a single-site interaction.
+\end{proof}
+
+This tells us that as soon as $|\G_{\Omega_0}(\H^{(t)}(\pika,\sigma)|=1$, one also has $|\G_{\Omega_0}^{\kappa(t)}(\omega,\omega\sigma)|=|\G_{\Omega_\sigma}(\H^{\kappa(t)})|=1$, so \textcolor{red}{\texttt{[Berghout's result]}} concludes the argument.
 
 % #################################################################################################
 
