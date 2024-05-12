@@ -27,8 +27,10 @@
 
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\B}{\mathcal{B}}
+\renewcommand{\AA}{\mathsf{A}}
 \newcommand{\BB}{\mathscr{B}}
 \newcommand{\BBB}{\mathbb{B}}
+\newcommand{\AB}{\mathsf{B}}
 \newcommand{\D}{\mathcal{D}}
 \renewcommand{\d}{\mathrm{d}}
 \newcommand{\F}{\mathcal{F}}
@@ -660,7 +662,7 @@ The Potts model enjoys \textcolor{blue}{a similar} phase transition result as th
 For $q$-state Potts model on $\Z^d$ with $d\geq 2$, there exists a critical inverse temprature $\beta_c=\beta_c(d,q)\in(0,\infty)$ such that
 \begin{itemize}
 	\item[(i)] for each $\beta<\beta_c$ there is a unique Gibbs measure, and 
-	\item[(ii)] for each $\beta>\beta_c$, there exist $q$ mutually singular Gibbs measures.
+	\item[(ii)] for each $\beta>\beta_c$, there exist $q$ mutually singular Gibbs measures. 
 \end{itemize}
 \end{thm}
 
@@ -687,21 +689,21 @@ i.e., $\pi_a=n$ iff $a\in(\sum_{i=1}^{n-1}r_i,\sum_{i=1}^n r_i]\cap \N$, $n\in\s
 
 Fixing $q\geq 2$, $\beta\geq 0$ and writing $\mu_{\beta,q}^{\Z^d,\xi}$ for the Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ for boundary condition $\xi\in\set{\emptyset,1,\ldots,q}$ with inverse temperature $\beta$, the fuzzy transformation $\pi_\r$ induces the fuzzy Gibbs measure 
 $$\nu_{\beta,q,\r}^{\Z^d,\xi} ~:=~ \mu_{\beta,q}^{\Z^d,\xi}\circ\pi_\r^{-1}.$$
-Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 2$ and $d\geq 2$}, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{\beta,q}^{\Z^d,\emptyset}=\mu_{\beta,q}^{\Z^d,1}=\ldots=\mu_{\beta,q}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures \textcolor{purple}{\texttt{[q+1?]}}.
+Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 2$ and $d\geq 2$}, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{\beta,q}^{\Z^d,\emptyset}=\mu_{\beta,q}^{\Z^d,1}=\ldots=\mu_{\beta,q}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures \textcolor{purple}{\texttt{[free b.c.~distrinc but not mut.~singular?]}}.
 
 \begin{thm}[H\"aggstr\"om, 2003, \textcolor{red}{\texttt{[reference]}}]
 Let $d\geq 2$, $q\geq 3$, $\xi\in\set{\emptyset,1,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min_{1\leq i\leq s}r_i$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\xi}=\mu_{q,\beta}^{\Z^d,\xi}\circ\pi_{\r}^{-1}$.
 \begin{itemize}
 	\item[(i)] For each $\beta<\beta_c(d,r^*)$, the measure $\nu_{\beta,q,\r}^{\Z^d,\xi}$ is a Gibbs measure.
-	\item[(ii)] For any $\beta>\frac{1}{2}\log\frac{1+(r^*-1)p_c(d)}{1-p_c(d)}$, $\nu_{\beta,q,\r}^{\Z^d,\xi}$ is not a Gibbs measure. Here $p_c(d)$ denotes the critical probability for Bernoulli percolation.
+	\item[(ii)] For any $\beta>\frac{1}{2}\log\frac{1+(r^*-1)p_c(d)}{1-p_c(d)}$, $\nu_{\beta,q,\r}^{\Z^d,\xi}$ is not a Gibbs measure. Here $p_c(d)$ denotes the critical probability for Bernoulli percolation, see \textcolor{red}{\texttt{[Appendix]}}.
 \end{itemize}
 \end{thm}
 
 \begin{rem}
-\textcolor{blue}{\texttt{Remark about the ordering of $\beta_c(d,r_1),\ldots,\beta_c(d,r_s)$, given the ordering of $r_1,\ldots,r_s$. Explain that this condition gives uniqueness of Gibbs measure on each $\set{1,\ldots,r_i}^{\Z^d}$.}}
+Given $q',q''\geq 2$ such that $q'\leq q''$, one has $\beta_c(d,q')\leq\beta_c(d,q'')$. The requiring that $\beta$ be smaller than the critical inverse temperature corresponding to the minimal $r_i$ guarantees that $\beta<\beta_c(d,r_i)$ for all $i=1,\ldots,s$. This indeed yields uniqueness of Gibbs measure for Potts model on $\set{1,\ldots,s_i}^{\Z^d}$ (with this choice of $\beta$) for all $i=1,\ldots,s$.  
 \end{rem}
 
-In light of the theory from the previous chapter, we are particularly interested in part (i) of the theorem, the Gibbs regime. The van Enter-Fern\'andez-Sokal hypothesis, would suggest that, since for $\beta<\beta_c(d,r^*)$ the Gibbs property is preserved, \textcolor{purple}{each $\mu_{q,\beta}^{\Z^d,\#}$ should admit a continuous disintegration in terms of $\nu_{q,\beta,\r}^{\Z^d,\#}$}. Moreover, proving the latter would -- applying the result of \textcolor{red}{\texttt{[theorem reference]}} -- constitute an alternative and independent proof of \textcolor{red}{\texttt{[Theorem]}}.(i). \\
+In light of the theory from the previous chapter, we are particularly interested in part (i) of the theorem, the Gibbs regime. The van Enter-Fern\'andez-Sokal hypothesis, would suggest that, since for $\beta<\beta_c(d,r^*)$ the Gibbs property is preserved, \textcolor{purple}{each $\mu_{\beta,q}^{\Z^d,\xi}$ should admit a continuous disintegration in terms of $\nu_{\beta,q,\r}^{\Z^d,\xi}$}. Moreover, proving the latter would -- applying the result of \textcolor{red}{\texttt{[theorem reference]}} -- constitute an alternative and independent proof of \textcolor{red}{\texttt{[Theorem]}}.(i). \\
 
 Given \textcolor{red}{\texttt{[Theorem reference]}}, it is sufficient to verify (for a fixed $\beta<\beta_c(d,r^*))$, that for each $\sigma\in\Sigma=\set{1,\ldots,s}^{\Z^d}$, there is a unique Gibbs measure for $q$-Potts model with inverse temperature beta on the fibre $\Omega_\sigma=\pi_\r^{-1}(\sigma)$, i.e., that
 $$|\G_{\Omega_\sigma}(\Phi_{\beta,q})| ~=~ 1, \quad \forall \sigma\in\Sigma.$$
@@ -716,14 +718,24 @@ One way of proving the uniqueness of $q$-Potts Gibbs measure on such $\Omega_\si
 	\item[(1)] Given the assumption on $\beta$, we know that for each $j=1,\ldots,s$, there is a unique Gibbs measure for Potts model on $\A_j^{\Z^d}$ with inverse temperature $\beta$. We wish to show that this implies also uniqueness of Gibbs measure for Potts model on $\A_j^{U_j}$, given the same inverse temperature.
 	\item[(2)] Given the uniqueness of Gibbs measure for Potts model on $\A_j^{U_j}$ with inverse temperature $\beta$ for all $j=1,\ldots,s$, we need to show that this implies the uniqueness of Gibbs measure for Potts model on $\bigotimes_{j=1}^s \A_j^{U_j}$, given the same inverse temperature.
 \end{itemize}
-\textcolor{blue}{\texttt{Here, I will remark that it is enough to check this for $s=2$, and proceed to restate the above points more formally, in terms of two propositions.}}
+It is clear that it is enough to verify the above steps for $s=2$, as the argument for larger $s$ follows immediately by induction. To be precise about what we wish to prove, we formulate two propositions that are to be verified, in order to obtain conclusion.
+
+\begin{prop}[Part 1]
+Let $\beta<\beta_c(d,q)$ (i.e., there's unique Gibbs measure for Potts model on $\set{1,\ldots,q}^{\Z^d}$) and let $U\subset\Z^d$. Then, there's a unique Gibbs measure for Potts model on $\set{1,\ldots,q}^U$ with inverse temprature $\beta$.\footnote{The subset $U$ is understood to be equipped with an edge set $\set{(x,y):x\sim y,\,x,y\in U}$}
+\end{prop}
+
+\begin{prop}[Part 2]
+Suppose $U,V\subset\Z^d$ form a partition of $\Z^d$ and let $\AA,\AB$ be disjoint alphabets. Suppose that for $\beta\in(0,\infty)$, Potts model with inverse temperature $\beta$ admits a unique Gibbs measure on both $\AA^U$ and $\AB^V$ (i.e., $|\G_{\AA^U}(\Phi_{\beta,|\AA|}|=|\G_{\AB^V}(\Phi_{\beta,|\AB|})|=1$). Then the same is the case for the Potts model with inverse temperature $\beta$ on $\AA^U\otimes\AB^V$, i.e.,
+$$|\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB|})| ~=~ 1.$$
+\end{prop}
+
+Before proving the proposition, we need to introduce some more tools, which are regulars in the mathematical statistical mechanics of lattice systems.
 
 % #################################################################################################
 
 \subsection{Preliminaries, part 1: stochastic domination}
 
-In this and the next section, we will introduce some tools, which will be used to prove \textcolor{red}{\texttt{[Proposition reference]}}. The section will cover the basics on stochastic domination, a well-established tool in mathematical statistical mechanics. In the section that follows, we introduce the theory of random cluster representations, which are important in study of the Potts model in particular. 
-
+In this and the next section, we will introduce some tools, which will be used to prove \textcolor{red}{\texttt{[Proposition reference]}}. The section will cover the basics on stochastic domination, a well-established tool in mathematical statistical mechanics. In the section that follows, we introduce the theory of random cluster representations, which are important in study of the Potts model in particular. \\
 
 Assume firstly that $\A\subset\R$ is linearly ordered; in our case, we are generally assuming $\A$ to be finite, though this theory can be extended to closed subsets of $\R$. Then linear order of $\A$ induces a natural (coordinatewise) partial order on $\Omega=\A^\L$: given two configurations $\xi,\xi'\in\Omega$, we write
 $$\xi\preceq\xi' ~\iff~ \xi(i)\leq\xi'(i),~\forall i\in\L.$$
@@ -738,7 +750,7 @@ This allows us to introduce a notion of increasing functions:
 \end{df}
 
 \begin{ex}
-\textcolor{blue}{\texttt{Percolation probability.}}
+A very simple example of an increasing event is $\set{x\leftrightarrow\infty}$, the event that $x\in\L$ belongs to an infinite cluster, see \textcolor{red}{\texttt{[Appendix]}}. Indeed, if $x$ belongs to some infinite cluster $C$, and we obtain a cluster $C'$ by opening some additional edges of the percolation configuration, we get that $C\subseteq C'$ and hence $x\in C'$.
 \end{ex}
 
  This allows us to define a certain partial order on $\M_1(\Omega)$, the set of probability measures on $\Omega$. \textcolor{blue}{\texttt{Some comment about motivation for defining stochastic domination/ordering on measures?}}
@@ -748,18 +760,98 @@ Let $\mu$ and $\mu'$ be probability measures on $\Omega$. We say that $\mu$ is \
 $$\int f\,\d\mu ~\leq~ \int f\,\d\mu', \quad \forall f\in\BM(\Omega,\R).$$
 \end{df}
 
-\textcolor{blue}{\texttt{Somethingsomething coupling}}
+\begin{rem}
+An important fact to note is, that given $\mu\preceq_\D\mu'$ and in increasing event $A$ (such that $\set{x\leftrightarrow\infty}$ for examples, one has 
+$$\mu(A) ~\leq~ \mu'(A).$$
+\textcolor{blue}{A reverse inequality holds for decreasing event.}
+\end{rem}
 
-\begin{df}[Coupling]
-Given two probability measures $\mu,\mu'$ on $\Omega$, their \textit{coupling} is defined to be a probability measure $\PP$ on $\Omega\times\Omega$, such that its marginals agree with $\mu$ and $\mu'$, that is
-$$\PP(\set{(\xi,\xi'):\xi\in A}) ~=~ \mu(A) \quad \text{and} \quad \PP(\set{(\xi,\xi'):\xi'\in B}) ~=~ \mu'(B).$$
-\end{df}
-
-\textcolor{blue}{\texttt{The rest of this section will depend on which argument exactly I will use in the proof, but both Strassen and Holley could be introduced, as a part of a ``general introduction''.}}
+\textcolor{blue}{\texttt{Should add something, but it really depends on how the final proof of Part 1 will look like.}}
 
 % #################################################################################################
 
 \subsection{Preliminaries, part 2: random cluster representations}
+
+We now present the \textit{random cluster representations}, first introduced by Fortuin and Kesteleyn (after whom it is also known as the \textit{Fortuin-Kesteleyn mode}, or simply \textit{FK model}), which is an indispensable tool for studying phase transition in Ising and Potts model. First, we will introduce the theory for the case of finite graphs, which will give the much needed intuition, and continue to extend it to the more useful infinite lattice setting.
+
+% *************************************************************************************************
+
+\subsubsection{Random cluster on a finite graph}
+
+Throughout the section, we consider a finite graph $G=(V,E)$. The \textit{random cluster measure}, defined shortly, is a percolation measure, i.e., a probability measure defined on $\set{0,1}^E$. Given $\eta\in\set{0,1}^E$, we write $G_\eta=(V,\eta)$ for the subgraph of $G$ given by 
+$$G_\eta ~=~ \set{V,\set{e\in E:\eta(e)=1}}.$$
+Moreover, we define the quantity $k(\eta)$, which represents the number of connected components in $G_\eta$ (including the isolated vertices).
+
+\begin{df}
+The \textit{random cluster measure} $\phi_{p,q}^G$ for $G$, with parameters $p\in[0,1]$ and $q>0$, is the probability measure on $\set{0,1}^E$, given by
+$$\phi_{p,q}^{G}(\eta) ~=~ \frac{1}{\ZZ_{p,q}^G}\set{\prod_{e\in E}p^{\eta(e)}(1-p)^{1-\eta(e)}}q^{k(\eta)}, \quad \eta\in\set{0,1}^E,$$
+where $\ZZ_{p,q}^{G}$ is the normalizing constant.
+\end{df} 
+
+Clearly, $q=1$ yields Bernoulli percolation measure, $\phi_{p,1}^G=\psi_{p}^G$, see \textcolor{red}{\texttt{[Appendix]}}; this is the only case where $\phi_{p,q}^G$ can be seen as a product measure (outside $p=1$ and $p=0$). \\
+
+It turns out, that for the case of $q\in\set{2,3,\ldots}$, there is an intimate relation with the Potts model. Writing $\H_\beta^G$ for the Hamiltonian of Potts model on $\set{1,\ldots,q}^V$ (in the sense of the finite volume setting, see \textcolor{red}{\texttt{[Section 1.1.1]}}, we write
+$$\mu_{\beta,q}^G(\omega) ~=~ \frac{1}{\ZZ_{\beta,q}^G}\exp(-\H_\beta^G(\omega)), \quad \omega\in\set{1,\ldots,q}^V,$$
+for the finite volume Gibbs measure for Potts model on $\set{1,\ldots,q}^V$ with inverse temperature $\beta$. It turns out that $\mu_{\beta,q}^G$ and $\phi_{p,q}^G$ can be very fruitfully related via a certain coupling, introduced by Swendsen and Wang in \textcolor{red}{\texttt{[reference]}} and further explored  by Edwards and Sokal in \textcolor{red}{\texttt{[reference]}}.
+
+\begin{df}
+Fix $q\in\set{2,3,\ldots}$ and $p\in[0,1]$. Let now $\PP_{p,q}^G$ be a probability measure on $\set{1,\ldots,q}^V\times\set{0,1}^E$, which corresponds to picking a random element according to the following procedure:
+\begin{itemize}
+	\item[(1)] To each $x\in V$, assign $X(x)\sim\mathrm{Unif}(1,\ldots,q)$, and to each $e\in E$, $Y(e)\sim\mathrm{Ber}(p)$, independently for all vertices and edges.
+	\item[(2)] Condition on the event that for any choice of $x\sim y$, $X(x)\neq X(y)$ imples $Y((x,y))=0$, i.e., vertices assuming different spin values are not connected by open edges.
+\end{itemize}
+In fact, one has
+$$\PP_{p,q}^G(\omega,\eta) ~\propto~ \prod_{e=(x,y)\in E}p^{\eta(e)}(1-p)^{1-\eta(e)}\1_{\set{(\omega(x)-\omega(y))\eta(e)=0}},$$
+where the event $\set{(\omega(x)-\omega(y))\eta(e)=0}$ enforces precisely the conditioning described in (2). We call $\PP_{p,q}^G$ the \textit{Edwards-Sokal measure}.
+\end{df}
+
+\begin{thm}[\textcolor{red}{\texttt{[GHM]}}, Theorem 6.2]
+Taking $\beta=\frac{1}{2}\log(1-p)$, $\PP_{p,q}^G$ constitutes a coupling of $\mu_{\beta,q}^G$ and $\phi_{p,q}^G$.	
+\end{thm}
+
+The usefulness of this coupling can be seen in the following corollary:
+
+\begin{cor}
+One can very simply ``obtain'' $\mu_{\beta,q}^G$ from $\phi_{p,q}^G$, and the other way around.
+\begin{itemize}
+	\item[(i)] Let $p=1-e^{-2\beta}$. Suppose we pick a $\set{1,\ldots,q}^V$-values random configuration $X$ as follows:
+	\begin{itemize}
+		\item[(1)] Pick a random edge configuration $Y\sim\phi_{p,q}^G$.
+		\item[(2)]  For each connected component $C$ of $G_Y=(V,Y)$, pick $Z_C\sim\mathrm{Unif}(1,\ldots,q)$ (for each $C$ independently) and assign to each vertex in $C$ the value assumed by $Z_C$.
+	\end{itemize}
+	Then, $X\sim\mu_{\beta,q}^G$.
+	\item[(i)] Let again $p=1-e^{-2\beta}$. Suppose now we pick a $\set{0,1}^E$-valued random edge configuration $Y$ according to the following procedure:
+	\begin{itemize}
+		\item[(1)] Pick a random configuration $X\sim\mu_{\beta,q}^G$.
+		\item[(2)] For each $e=(x,y)\in E$ independently, assign
+		$$Y(e) ~\sim~ \begin{cases}
+		\mathrm{Ber}(p): ~&X(x)=X(y),\\
+		\delta_0: ~&X(x)\neq X(y).
+		\end{cases}$$
+	\end{itemize}
+	Then, $Y\sim\phi_{p,q}^G$.
+\end{itemize}
+\end{cor}
+
+% *************************************************************************************************
+
+\subsubsection{Infinite volume random cluster and phase transitions}
+
+\textcolor{blue}{\texttt{To be written after the proof of Part 1 if finalized. Should include:
+\begin{itemize}
+	\item[(i)] General (DLR-type) definition of infinite volume random cluster measure.
+	\item[(ii)] Expression of $\phi(e~\text{open}|\eta)$.
+	\item[(iii)] Definition of relevant infinite volume limits, with some properties.
+	\item[(iv)] Statement of the theorem relating uniqueness of Potts Gibbs measure and $\phi_{p,q}^{1}(x\leftrightarrow\infty)=0$.
+\end{itemize}}}
+
+% #################################################################################################
+
+\subsection{Proof of \textcolor{blue}{Part 1}}
+
+% #################################################################################################
+
+\subsection{Proof of \textcolor{blue}{Part 2}}
 
 % #################################################################################################
 
@@ -1009,17 +1101,73 @@ This tells us that as soon as $|\G_{\Omega_0}(\H^{(t)}(\pika,\sigma)|=1$, one al
 
 \section{Technical appendix}
 
+This appendix introduces some technical notions that need to be understood, but whose definitions would disturb the flow of the main text, if included there.
+
 % #################################################################################################
 
-\subsection{Regular conditional probability}
+\subsection{Regular conditional probability }
+
+\textcolor{blue}{\texttt{Blahblahblah}} % from Leao, Fragoso, Ruffino (file art02) \\
+
+Consider an arbitrary probability space $(\Omega,\F,\P)$ and measurable space $(E,\mathcal{E})$. Recall that a \textit{probabilty kernel} from $(E,\mathcal{E)}$ to $(\Omega,\F)$ is a map $\kappa:E\times\F\mapsto[0,1]$, such that
+\begin{itemize}
+	\item[(i)] for each $x\in E$, $\kappa(x,\pika)$ is a probability measure on $(\Omega,\F)$,
+	\item[(ii)] for each $A\in\F$, $\kappa(\pika,A)$ is a measurable map ($E\ra[0,1]$).
+\end{itemize}
+
+\begin{df}
+Let $X:\Omega\ra E$ be a measurable function (random variable). A regular conditional probability w.r.t.~$X$ is a transition kernel $\kappa:E\times\F\ra[0,1]$, such that
+$$\P(A\cap X^{-1}(B)) ~=~ \int_B \kappa(x,A)\,\d[\P\circ T^{-1}](x), \quad \forall A\in\F,\,B\in\mathcal{E}.\footnote{Instead of $\P(A\cap X^{-1}(B))$, one could also write $\P(A\cap\set{X\in B)}$ or $\P(A~\text{and}~X\in B)$.}$$ 
+Given fixed $x\in E$ and $A\in\F$, one usually writes $\P(A|X=x)$ or $\P(A|x)$ instead of $\kappa(x,A)$.
+\end{df}
+
+In our case, we consider (usually) $\Omega=\A^{\Z^d}$ with some $\mu\in\M_1(\Omega)$. We then simply take $E=\Omega$ and $X=\mathrm{id}$, i.e., $X(\omega)=\omega$ for each congifuration $\omega\in\Omega$. In the definition of DLR Gibbs measure, we write the following:
+$$\mu(\omega~\text{on}~\Lambda|\xi~\text{off}~\Lambda),\quad \omega,\xi\in\Omega,\,\Lambda\Subset\Z^d.$$
+By event $\set{\omega~\text{on}~\Lambda}$, we refer to $\set{\tilde{\omega}\in\Omega:\tilde{\omega}_\Lambda=\omega_\Lambda}$, so we could consider $\mu(\omega~\text{on}~\Lambda|\pika)$ as above, so we'd have (using that $X=\mathrm{id}$),
+$$\mu(\set{\omega~\text{on}~\Lambda}\cap B) ~=~ \int_B \mu(\omega~\text{on}~\Lambda|\xi)\,\d\mu(\xi).$$
+However $\set{\xi~\text{off}~\Lambda}$ is a set of configurations, rather than a single configuration as desired. In particular $\set{\xi~\text{off}~\Lambda}=\{\tilde{\xi}\in\Omega:\tilde{\xi}_{\Lambda^\c}=\xi_{\Lambda^\c}\}$; however, since $\Lambda$ is finite, $\set{\xi~\text{off}~\Lambda}$ is finite too, so one has, now formally (as it is clear what we mean by $\mu(\omega~\text{on}~\Lambda|\xi)$),
+$$\mu(\omega~\text{on}~\Lambda|\xi~\text{off}~\Lambda) ~=~ \sum_{\substack{\tilde{\xi}\in\Omega:\\\tilde{\xi}_{\Lambda^\c}=\xi_{\Lambda^\c}}}\mu(\omega~\text{on}~\Lambda|\tilde{\xi}\,).$$ 
 
 % #################################################################################################
 
 \subsection{Coupling}
 
+\textcolor{blue}{\texttt{Blahblahblah}} % find source!!!
+
+We consider two (possibly equal) probability spaces, $(\Omega',\F',\P')$ and $(\Omega'',\F'',\P'')$.
+
+\begin{df}
+A coupling of $\P'$ and $\P''$ is any probability measure $\hat{\P}$ on product space $(\Omega'\times\Omega'',\F'\otimes\F'')$ such that 
+\begin{align*}
+\hat{\P}((\omega',\omega''):\omega'\in A) ~&=~ \P'(A), \quad \forall A\in\F', \\
+\hat{\P}((\omega',\omega'':\omega''\in B) ~&=~ \P''(B), \quad \forall B\in\F''.
+\end{align*}
+\end{df}
+
+\textcolor{blue}{\texttt{Mention alternative notion of coupling of random variables.}}
+
 % #################################################################################################
 
 \subsection{Bernoulli percolation}
+
+\textcolor{blue}{\texttt{Blahblahblah}} % based on GHM, Duminil-Copin
+
+Consider first a finite graph $G=(V,E)$.
+\begin{df}
+Let $p\in[0,1]$ be the probability parameter. \textit{Bernoulli percolation} is a probability measure $\psi_p=\psi_p^G$ on $\set{0,1}^E$, where each configuration $\eta$ (called a \textit{(site) percolation configuration}) is assigned probability
+$$\psi_p(\eta) ~=~ \prod_{e\in E}p^{\eta(e)}(1-p)^{1-\eta(e)}.$$
+\end{df}
+This can indeed be extended to an infinite graph $G=(V,E)$, where $\psi_p=\mathrm{Ber}(p)^{\otimes E}$.\footnote{It is clear that the finite graph version obeys this as well.} The configuration $\eta$ can be understood as a subgraph $(V,\set{e:\eta(e)=1})$ of $G$, which we will denote shorter by $G_\eta=(V,\eta)$.\\
+
+We are interested in $G=(\Z^d,\mathbb{E}^d)$ situation. Writing $\set{x\leftrightarrow\infty}$ for the event that $x\in\Z^d$ belongs to an infinite cluster of $(\Z^d,\eta)$, one might as  what is the probability of such event -- due to translation invariance, this probability should be same for any choice of $x$. Writing
+$$\theta(p) ~=~ \psi_p(0\leftrightarrow\infty),$$
+we define the critical probability
+$$p_c ~:=~ \inf\set{p\in[0,1]:\theta(p)>0}.$$
+It should be noted that $p_c$ does in fact depend on dimension $d$. For $d=1$, we clearly have $\theta(p)=0$ (unless $p=1$), and hence $p_c(1)=1$. 
+
+\begin{thm}[\textcolor{red}{\texttt{[D-C]}}, Theorem 1.1]
+For $d\geq 2$, $p_c(d)\in (0,1)$. \textcolor{blue}{\texttt{Some comment that it is a 0-1 thing?}}
+\end{thm} 
 
 % #################################################################################################
 
@@ -1027,6 +1175,12 @@ This tells us that as soon as $|\G_{\Omega_0}(\H^{(t)}(\pika,\sigma)|=1$, one al
 
 % #################################################################################################
 % #################################################################################################
+% #################################################################################################
+
+\begin{thebibliography}{++}
+\textcolor{blue}{\texttt{To be typeset...}}
+\end{thebibliography}
+
 % #################################################################################################
 
 \end{document}
