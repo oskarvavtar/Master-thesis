@@ -37,7 +37,9 @@
 \newcommand{\Loc}{\mathcal{L}}
 \renewcommand{\L}{\mathbb{L}}
 \newcommand{\M}{\mathcal{M}}
+\newcommand{\MM}{\mathfrak{M}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\NN}{\mathcal{N}}
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\PP}{\mathsf{P}}
 \newcommand{\R}{\mathbb{R}}
@@ -198,7 +200,13 @@ We write $\G_\Omega(\Phi)$ for the set of all Gibbs measure on $\Omega$ consiste
 
 \noindent\textcolor{blue}{Say something about infinite volume limits?}
 
-\textcolor{blue}{\begin{ex}[Ising model]~\end{ex}}
+\begin{ex}[Ising model]
+One of the most classical models in statistical mechanics is the Ising model, concerned with (ferro)magnetism. It is an example of a nearest-neighbour model with $\A=\set{-1,+1}$, where the Hamiltonian corresponding to a finite volume $\Lambda\Subset\Z^d$ is given by
+$$\H_{\Lambda;\beta,h}(\omega) ~=~ -\beta\!\!\!\!\!\!\!\sum_{\substack{x\sim y:\\x\in\Lambda~\text{or}~y\in\Lambda\\}}\!\!\!\!\!\!\!\omega(x)\omega(y) + h\sum_{x\in\Lambda}\omega(x),$$
+though one often writes ``$2\1_{\set{\omega(x)=\omega(y)}}-1$'' instead of ``$\omega(x)\omega(y)$'', the latter ceasing to be suitable in case of choosing alternative $\A$ (such as $\set{0,1}$ for example). The parameters $\beta\geq 0$ and $h\in\R$ represent the \textit{inverse temperature} and the \textit{external field}, respectively. Thus, considering a boundary condition $\xi\in\Omega$, the probability of configuration agreeing with $\omega$ on $\Lambda$, conditional on it agreeing with $\xi$ outside $\Lambda^c$, given by
+$$\gamma_{\Lambda;\beta,h}(\omega_\Lambda|\xi_{\Lambda^\c}) ~=~ \frac{1}{\ZZ_{\Lambda;\beta,h}^\xi}e^{-\H_{\Lambda;\beta,h}(\omega_\Lambda\xi_{\Lambda^\c})},$$
+where $\ZZ_{\Lambda;\beta,h}^\xi=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp(-\H_{\Lambda;\beta,h}(\tilde{\omega}_\Lambda\xi_{\Lambda^\c}))$, only depends on the boundary condition through vertices that are adjacent to some vertex in $\Lambda$, i.e., are touching the boundary. This is in fact a general property of nearest-neighbour models.
+\end{ex}
 
 Very important is the following characterization of Gibbs measures:
 \begin{prop}
@@ -220,21 +228,81 @@ Very important is the following characterization of Gibbs measures:
 
 \subsubsection{Coexistence of several Gibbs measures}
 
-While the result in \textcolor{red}{\texttt{[Remark]}}(ii) tells us that for an UAC interaction, there's always a Gibbs measure, it tells us nothing else about the cardinality in $\G_\Omega(\Phi)$: in particular it doesn't guarantee that there's only one. In fact several Gibbs measures consistent with the same interaction may exist; in this case, we say that the system has a \textit{phase transition}. Given a model with some parameter(s), an important question is for which parameter values there's only one Gibbs measure and for which parameter there's several.
+While the result in \textcolor{red}{\texttt{[Remark]}}(ii) tells us that for an UAC interaction, there's always a Gibbs measure, it tells us nothing else about the cardinality in $\G_\Omega(\Phi)$: in particular it doesn't guarantee that there's only one. In fact several Gibbs measures consistent with the same interaction may exist; in this case, we say that the system has a \textit{phase transition}. Given a model with some parameter(s), an important question is for which parameter values there's only one Gibbs measure and for which parameter there's several. \\
 
-\textcolor{blue}{\begin{ex}[Ising]~\end{ex}}
+We begin by introducing the most intuitive method of defining infinite volume Gibbs measure, which was already hinted on earlier, using the weak limits. Gibbs measures obtained in this way are often referred to as \textit{thermodynamic limits (of finite volume Gibbs measures)}. Despite definition being straightforward, it requires us to first introduce some technical notions, which will be used throughout the thesis:
 
-The spaces of Gibbs measures do carry some nice properties:
+\begin{df}
+~
+\begin{itemize}
+	\item[(1)] We say that $(\Lambda_n)_{n\in\N}$, where $\Lambda_n\Subset\Z^d$ for each $n\in\N$, is a \textit{van Hove sequence}, if it satisfies the following conditions:
+	\begin{itemize}
+		\item[(i)] it is \textit{increasing}: $\Lambda_n\subset\Lambda_{n+1}$ for each $n\in\N$,
+		\item[(ii)] it \textit{invades} $\Z^d$: $\bigcup_{n\geq 1}\Lambda_n=\Z^d$, and
+		\item[(iii)] $\lim_{n\ra\infty}\frac{|\partial\Lambda_n|}{|\Lambda_n|}=0$. \textcolor{blue}{\texttt{Add definition of $\partial\Lambda$?}}
+	\end{itemize}
+	We denote van Hove convergence by $\Lambda_n\Uparrow\Z^d$.
+	\item[(2)] A function $f:\Omega\ra\R$ is said to be \textit{local} if there's $\Delta\Subset\Z^d$, such that for any choice of $\omega,\tilde{\omega}\in\Omega$, 
+	$$\omega(x)=\tilde{\omega}(x)~\forall x\in\Delta ~\Longrightarrow~ f(\omega)=f(\tilde{\omega}).$$
+	We sometimes write $\supp(f)$ for the minimal such $\Delta$. We denote the collection of all local functions $f:\Omega\ra\R$ by $\Loc(\Omega)$.
+	\item[(c)] Given (probability) measures $\mu,\mu_1,\mu_2,\ldots$ on $\Omega$, we say that $(\mu_n)_{n\in\N}$ converges \textit{weakly} to $\mu$, writing $\mu_n\xrightarrow{w}\mu$, if
+	$$\int_\Omega f\,\d\mu_n ~\ra~ \int_\Omega f\,\d\mu, \quad \forall f\in\Loc(\Omega).$$
+\end{itemize}
+\end{df}
+
+The definitions then goes as follows:
+\textcolor{purple}{
+\begin{df}
+We say that $\mu$ is a thermodynamic-limit Gibbs measure for $\Phi\in\BB^1(\Omega)$, if there exists a boundary condition $\\xi\in\Omega$, such that
+$$\gamma_{\Lambda_n}^\Phi(\pika|\xi_{\Lambda^\c}) ~\xrightarrow{w}~ \mu \quad \text{as}~n\ra\infty,$$
+for arbitrary van Hove sequence $(\Lambda_n)_{n\in\N}$.
+\end{df}
+}
+
+\begin{rem}
+The notation in the above definition is slightly dishonest, in terms of what $\gamma_\Lambda^\Phi$ is supposed to represent, though conceptually is ``correct enough'' to allow for an abuse of notation. While is supposed to be a probability measure on $\Omega$, we have seen that given $\Lambda\Subset\Z^d$ and $\xi\in\Omega$ fixed, $\gamma_\Lambda^\Phi(\pika|\xi_{\Lambda^\c})$ is a probability measure on $\Omega_\Lambda$, so one could argue that the weak limit in the above definition technically speaking does not make sense. The formal way to correct it would be to define, for each $\Lambda\Subset\Z^d$ and $\xi\in\Omega$ a measure $\mu_\Lambda^\xi=\mu_\Lambda^{\Phi,\xi}$ given by
+$$\mu_\Lambda^\xi(\omega) ~=~ \1_{\set{\omega_{\Lambda^\c}=\xi_{\Lambda^\c}}}\gamma_\Lambda^\Phi(\omega_\Lambda|\xi_{\Lambda^\c}), \quad \omega\in\Omega,$$
+which is indeed a probability measure on $\Omega$ (while still in a sense ``supported'' on $\Omega_\Lambda$, as $\supp(\mu_\Lambda^\xi)=\Omega_\Lambda\times\set{\xi_{\Lambda^\c}}$), so the weak limit in the definition above indeed makes sense.
+\end{rem}
+
+\begin{ex}[Ising: $+$ and $-$ limits]
+Simple examples of thermodynamic limits are so-called $+$ and $-$ states. First, we define, for $\beta>0$, $h\in\R$, $\Lambda\Subset\Z^d$ and $\xi\in\Omega$,
+$$\mu_{\Lambda;\beta,h}^\xi(\omega) ~=~ \1_{\set{\omega_{\Lambda^\c}=\xi_{\Lambda^\c}}}\frac{1}{\ZZ_{\Lambda;\beta,h}^\xi}e^{-\H_{\Lambda;\beta,h}(\omega_\Lambda\xi_{\Lambda^\c})}, \quad \omega\in\Omega.$$
+Thermodynamic limits $\mu_{\beta,h}^{+}$ and $\mu_{\beta,h}^{-}$ are obtained as 
+$$\mu_{\BBB_n;\beta,h}^+\xrightarrow{w}\mu_{\beta,h}^+ \quad\text{and}\quad \mu_{\BBB_n;\beta,h}^-\xrightarrow{w}\mu_{\beta,h}^-,$$
+where $+$ is constant $+1$ and $-$ is constant $-1$. An important question is whether those limits coincide, i.e., if $\mu_{\beta,h}^+=\mu_{\beta,h}^-$ as members of $\M_1(\Omega)$. For $h\neq 0$, the answer is \textit{yes}. However, for $h=0$ and $d\geq 2$, this is no longer the case. For each dimension $d\geq 2$, there exists a critical inverse temperature $\beta_c=\beta_c(d)\in(0,\infty)$ such that for $\beta<\beta_c$ we have $\mu_{\beta,0}^+=\mu_{\beta,0}^-$ (and in fact $|\G_\Omega(\Phi_{\beta,0})|=1$) while for $\beta>\beta_c$ we have $\mu_{\beta,0}^+\neq\mu_{\beta,0}^-$ (so $|\G_{\Omega}(\Phi_{\beta,0})|>1$).
+\end{ex}
+
+\textcolor{purple}{
+\begin{rem}
+Using the same procedure, we may also define non-Gibbs thermodynamic-limit measures, using a more general specificaiton $\gamma$ (in the sense of \textcolor{red}{\texttt{[Remark]}}), not necessarily as configurations on vertices (but for example on edges, as will be seen later, in \textcolor{red}{\texttt{[Chapter 3]}}).
+\end{rem}
+}
+
+We now turn our attention to the general notion on Gibbs measures, as defined in \textcolor{red}{\texttt{[Definition]}}, which are often referred to as the \textit{DLR Gibbs measures}, named after Dobrushin, Lanford and Ruelle. Spaces of DLR Gibbs measures (from now on just Gibbs measures) do indeed carry some nice properties:
 \begin{prop}
 Let $\Phi\in\BB^1(\Omega)$.
 \begin{itemize}
 	\item[(i)] $\G_\Omega(\Phi)$ is convex.
 	\item[(ii)] Extremal measures of $\G_\Omega(\Phi)$ (denoted by $\extr(\G_\Omega(\Phi))$) are mutually singular.
 	\item[(iii)] For each $\mu\in\G_\Omega(\Phi)$,
-	$$\gamma_{\BBB_n}^\Phi(\pika|\omega) ~\xrightarrow{w}~ \mu, \quad \text{for}~\mu\text{-a.a.}~\omega\in\Omega.$$
-	In other words, $\mu$ can be obtained as a thermodynamic limit with some fixed boundary condition. (See next section.)
+	$$\gamma_{\BBB_n}^\Phi(\pika|\omega) ~\xrightarrow{w}~ \mu, \quad \text{for}~\mu\text{-a.a.}~\omega\in\Omega,$$
+	keeping in mind \textcolor{red}{\texttt{[Remark]}}. In other words, $\mu$ can be obtained as a thermodynamic limit with some fixed boundary condition.
 \end{itemize}
 \end{prop}
+
+\begin{ex}[Ising: +/- vs.~Dobrushin]
+In the case of Ising model in the non-uniqueness regime (that is, $d\geq 2$, $h=0$ and $\beta>\beta_c(d)$), the thermodynamic limits corresponding to boundary conditions $+$ and $-$ are both extremal Gibbs measures -- in fact, they are the only ones:
+$$\mathrm{extr}(\G_\Omega(\Phi_{\beta,h})) ~=~ \set{\mu_{\beta,0}^+,\mu_{\beta,0}^-}.$$
+An interesting example of a non-extremal boundary condition is the \textit{Dobrushin boundary condition}, which is given by
+$$\mathrm{Dob}(x) ~=~ \begin{cases}
++1: ~&x=(x_1,\ldots,x_d)~\text{with}~x_d\geq 0,\\
+-1: ~&\text{otherwise}. 
+\end{cases}$$
+While $\mu_{\beta,0}^{\mathrm{Dob}}\notin\mathrm{extr}(\G_\Omega(\Phi_{\beta,0}))$, it can still be obtained by a thermodynamical limit (and is a well-defined Gibbs measure), see \textcolor{red}{\texttt{[Velenik]}}, Theorem 3.58. One is then tempted to ask, whether all members of $\G_\Omega(\Phi_{\beta,0})$ can be obtained as thermodynamical limit (as we have seen to be the case for the extremal ones). The answer is \textit{no}, and it is precisely the Dobrushin boundary condition that helps us define a simple example. It is easy to see that considering a boundary condition $-\mathrm{Dob}$, $\mu_{\beta,0}^{-\mathrm{Dob}}\in\G_\Omega(\Phi_{\beta,0})$. Defining
+$$\tilde{\mu} ~=~ \frac{1}{2}\mu_{\beta,0}^{\mathrm{Dob}} + \frac{1}{2}\mu_{\beta,0}^{-\mathrm{Dob}},$$
+it immediately follows from \textcolor{red}{\texttt{[Proposition.(i)]}} that $\tilde{\mu}\in\G_{\Omega}(\Phi_{\beta,0})$, however, for $d\geq 3$, $\tilde{\mu}$ cannot possibly be obtained as a thermodynamical limit, as argued in \textcolor{red}{\texttt{[Velenik]}}, Example 6.64.
+\end{ex}
 
 \textcolor{blue}{Before concluding this preliminary section, we present an important result, which is very commonly used to verify uniqueness of a Gibbs measure with respect to the interaction:}
 \begin{thm}[Dobrushin's Uniqueness Condition]
@@ -269,52 +337,7 @@ By triangle inequality,
 Using that for any $x\in\Z^d$ and $\Lambda\Subset\Z^d$ containing $x$, $\Psi_\Lambda\equiv 0$ as soon as $\Lambda\neq\set{x}$, we have that
 $$\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Psi_\Lambda(\omega)-\Psi_\Lambda(\tilde{\omega})| ~=~ (|\!\set{x}\!|-1)\sup_{\omega,\tilde{\omega}\in\Omega}|\Psi_x(\omega)-\Psi_x(\tilde{\omega})|.$$
 The right-hand side clearly equals zero, since $|\!\set{x}\!|=1$, yielding the conclusion.
-\end{proof}
-
-% *************************************************************************************************
-
-\subsubsection{Thermodynamic limits}
-
-For technical reasons, we conclude this preliminary section with a few words about thermodynamic limits, on which we have already hinted earlier and also borrowed the notion in \textcolor{red}{\texttt{[Remark]}}. \\
-
-While definition is straightforward, it leads us to introduce a couple of notions beforehand.
-\begin{df}
-~
-\begin{itemize}
-	\item[(1)] We say that $(\Lambda_n)_{n\in\N}$, where $\Lambda_n\Subset\Z^d$ for each $n\in\N$, is a \textit{van Hove sequence}, if it satisfies the following conditions:
-	\begin{itemize}
-		\item[(i)] it is \textit{increasing}: $\Lambda_n\subset\Lambda_{n+1}$ for each $n\in\N$,
-		\item[(ii)] it \textit{invades} $\Z^d$: $\bigcup_{n\geq 1}\Lambda_n=\Z^d$, and
-		\item[(iii)] $\lim_{n\ra\infty}\frac{|\partial\Lambda_n|}{|\Lambda_n|}=0$. \textcolor{blue}{Definition of $\partial\Lambda$?}
-	\end{itemize}
-	We denote van Hove convergence by $\Lambda_n\Uparrow\Z^d$.
-	\item[(2)] A function $f:\Omega\ra\R$ is said to be \textit{local} if there's $\Delta\Subset\Z^d$, such that for any choice of $\omega,\tilde{\omega}\in\Omega$, 
-	$$\omega(x)=\tilde{\omega}(x)~\forall x\in\Delta ~\Longrightarrow~ f(\omega)=f(\tilde{\omega}).$$
-	We sometimes write $\supp(f)$ for the minimal such $\Delta$. We denote the collection of all local functions $f:\Omega\ra\R$ by $\Loc(\Omega)$.
-	\item[(c)] Given (probability) measures $\mu,\mu_1,\mu_2,\ldots$ on $\Omega$, we say that $(\mu_n)_{n\in\N}$ converges \textit{weakly} to $\mu$, writing $\mu_n\xrightarrow{w}\mu$, if
-	$$\int_\Omega f\,\d\mu_n ~\ra~ \int_\Omega f\,\d\mu, \quad \forall f\in\Loc(\Omega).$$
-\end{itemize}
-\end{df}
-
-Now we are fully equipped to define thermodynamic-limit Gibbs measures:
-\textcolor{purple}{
-\begin{df}
-We say that $\mu$ is a thermodynamic-limit Gibbs measure for $\Phi\in\BB^1(\Omega)$, if there exists a boundary condition $\omega\in\Omega$, such that
-$$\gamma_{\Lambda_n}^\Phi(\pika|\omega_{\Lambda^\c}) ~\xrightarrow{w}~ \mu \quad \text{as}~n\ra\infty,$$
-for some van Hove sequence $(\Lambda_n)_{n\in\N}$.
-\end{df}
-}
-
-\textcolor{purple}{
-\begin{rem}
-Using the same procedure, we may also define non-Gibbs thermodynamic-limit measures, using a more general specificaiton $\gamma$ (in the sense of \textcolor{red}{\texttt{[Remark]}}), not necessarily as configurations on vertices (but for example on edges, as will be seen later).
-\end{rem}
-}
-
-\textcolor{blue}{
-\begin{ex}[Ising: +,- vs Dobrushin]
-\end{ex}
-}
+\end{proof} 
 
 % #################################################################################################
 
@@ -343,18 +366,23 @@ it yields a new problem, which has \textcolor{purple}{first demonstrated} in \te
 
 To conclude this section, we provide two examples of RG transformations, one deterministic (decimation) and one stochastic (majority vote).
 
-\textcolor{blue}{
 \begin{ex}[Decimation of Ising model]
-~
+Given $\Omega=\Omega'=\set{-1,+1}^{\Z^d}$, consider an integer $b\geq 2$. The decimation map $T=T_b:\Omega\ra\Omega'$ is given so that for $\omega'=T(\omega)$,
+$$\omega'(x) ~=~ \omega(bx), \quad x\in\Z^d,$$
+where $b(x_1,\ldots,x_d)=(bx_1,\ldots,bx_d)$. More generally one could also consider a homomorphism $R:\Z^d\ra\Z^d$ with $\det R\neq 0$ and define $T=T_R$ so that $\omega'(x)=\omega(R(x))$. Pathologies of the renormalized Gibbs measure(s) of  this model were already pointed out by Israel in \textcolor{red}{\texttt{[paper]}} and rigorously treated in by van Enter, Fern\'andez and Sokal in \textcolor{red}{\texttt{[vEFS]}}. In particular, for $d=2$ and $h=0$, it was verified in \textcolor{red}{\texttt{[vEFS]}} that for $b=2$ and any $\beta>\frac{1}{2}\cosh^{-1}(1+\sqrt{2})\approx 1.73\beta_c$, transformed Gibbs measure is not Gibbsian. On the other hand, it was demonstrated in \textcolor{red}{\texttt{[paper]}} by Haller and Kennedy, that for the same choice of $d$, $h$ and $b$, taking $\beta<1.36\beta_c$ results in Gibbsian transformed measure. It was also verified in \textcolor{red}{\texttt{[vEFS]}}, see Theorem 4.3, that for $h=0$ and any choice of $d\geq 2$, $b\geq 2$, there's always some large $\beta_*$ so that choosing $\beta\geq \beta_*$ results in a non-Gibbsian renormalized measure.
 \end{ex}
-}
 
-\textcolor{blue}{
 \begin{ex}[Majority vote on Ising model]
-~
+Again taking $\Omega=\Omega'=\set{-1,+1}^{\Z^d}$, we consider an integer $b\geq 1$. We now let $\Lambda_*$ be a fixed finite subset of $\Z^d$ (also referred to as \textit{block}) and write $\Lambda_x=\Lambda_*+bx$ for the translations of $\Lambda_*$ by $bx$, that is, $\Lambda_x=\set{bx+y:y\in\Lambda_*}$. The majority vote map (or rather kernel) $T=T_{b,\Lambda_*}$ is given so that for each $x\in\Z^d$,
+$$\mathrm{Law}(\omega'(x)) ~=~ \begin{cases}
+\delta_{+1}: ~&\sum_{y\in\Lambda_x}\omega(y)>0, \\
+\frac{1}{2}\delta_{+1}+\frac{1}{2}\delta_{-1}: ~&\sum_{y\in\Lambda_x}\omega(y)=0, \\
+\delta_{-1}: ~&\sum_{y\in\Lambda_x}\omega(y)<0,
+\end{cases}$$
+that is $\omega'(x)$ equals $+1$ (resp., $-1$) if more sites in $\Lambda_x$ ``vote'' for $+1$ than for $-1$ (resp., more sites ``vote'' for $-1$ than for $+1$), and is decided by a fair coin flip in case of a draw.   It was conjectured in \textcolor{red}{\texttt{vEFS}}, that for \textcolor{purple}{$d=2$} and $b\geq 3$ odd\footnote{Notice that for $b$ odd, a draw cannot occur, so $T$ becomes a deterministic transformation.} (with $\Lambda_*$ a $b\times b$ box), one can always find $\beta_*$ sufficiently large, so that choosing $\beta\geq\beta_*$ results in a non-Gibbsian renormalized measure. This was in fact verified for the case $b=7$, see Theorem 4.5. \textcolor{blue}{\texttt{Any progress since then?}}
 \end{ex}
-}
 
+\textcolor{blue}{\texttt{Maybe a subsection on formalism from Chapter 3 in \textcolor{red}{[vEFS]}?}}
 
 % #################################################################################################
 
@@ -390,7 +418,13 @@ We say that $\pi:\Omega\ra\Sigma$ \textit{admits no hidden phase transitions}, i
 $$|\G_{\Omega_\sigma}(\Phi)| ~=~ 1, \quad \forall \sigma\in\Sigma.$$
 \end{df}
 We will see later, that absence of hidden phase transition is indeed the desirable scenario, as it ensures Gibbsianity of the fuzzy Gibbs meausure. This fact proves very handy, as fibres are usually not difficult to describe. The focus of the last two chapters of this thesis will in fact be providing alternative proofs of Gibbsianity using this approach. On the other hand, presence of phase transitions can cause trouble, as Gibbsianity of the fuzzy Gibbs measure is concerned. They do not, however, guarantee anything: it will be demonstrated in the following example, that there are cases where hidden phase transitions are present and yet the fuzzy Gibbs measure remains Gibbsian.
-\textcolor{blue}{\begin{ex}[example from \textcolor{red}{\texttt{[Berghout]}}]\end{ex}}
+
+\begin{ex}[\textcolor{red}{\texttt{[Berghout]}}, pp.~138]
+Consider (appropriate) space $\Omega_1,\Omega_2$ and consider
+$$\Omega=\Omega_1\times\Omega_2,\quad\Sigma=\Omega_1.$$
+A natural $\pi:\Omega\ra\Sigma$ to consider is a projection onto the first coordinate, i.e., $\pi(\omega_1,\omega_2)=\omega_1$. Let now $\Phi_1\in\BB^1(\Omega_1)$ be arbitrary and assume $\Phi_2\in\BB^1(\Omega_2)$ is such that $|\G_{\Omega_2}(\Phi_2)|>1$. Letting $\Phi:=\Phi_1+\Phi_2$, one has $\Phi\in\BB^1(\Omega)$ and given any $\mu\in\G_{\Omega}(\Phi)$, we have $\mu=\mu_1\otimes\mu_2$, where $\mu_1\in\G_{\Omega_1}(\Phi_1)$ and $\mu_2\in\G_{\Omega_2}(\Phi_2)$. Given arbitrary $\sigma\in\Sigma=\Omega_1$, one has $\Omega_\sigma=\set{\sigma}\times\Omega_2$ and hence $\G_{\Omega_\sigma}(\Phi)=\set{\delta_\sigma}\otimes\G_{\Omega_2}(\Phi_2)$, which is clearly not a singleton, so hidden phase transitions do indeed occur on all fibres. However, $\nu=\mu\circ\pi^{-1}=\mu_1$, which is indeed Gibbsian.
+\end{ex}
+
 Thus, the notion of hidden phase transitions does not solve the problem of sufficient and necessary conditions for Gibbsianity of a fuzzy Gibbs measure by itself. In fact, the problem is still open, though there is a conjecture due to van Enter, Fern\'andez and Sokal \textcolor{red}{\texttt{[vEFS]}}, also referred to as the \textit{van Enter-Fern\'andez-Sokal hypothesis}, which predicts that Gibbsianity of the fuzzy Gibbs measure is equivalent to the existence of a certain continuous measure disintegration, which we will introduce in the next section.\footnote{\textcolor{purple}{This is not the original formulation from \textcolor{red}{\texttt{[vEFS]}}, but a correction due to Berghout and Verbitskiy \textcolor{red}{\texttt{[source]}}.}} One of the directions (disintegration implying Gibbsianity) has already been verified, by Berghout and Verbitskiy \textcolor{red}{\texttt{[source]}}. The other direction, believed to be a more difficult problem, still remains unsolved. While this thesis does not tackle the problem directly, the proofs given to verify Gibbsianity of a fuzzy Gibbs measure also verify that the examples do not contradict this direction of the hypothesis. A better explanation of why this is the case will follow towards the end of the chapter, once we introduce a sufficient theoretical framework. \\
 
 \textcolor{blue}{\texttt{Example or two?}} \\
@@ -509,6 +543,51 @@ The measure $\mu\in\M_1(\Omega)$ admits a continuous measure disintegration $\se
 
 \subsection{Conditional measures, part 3: hidden phase transitions}
 
+At the end of \textcolor{red}{\texttt{[Section 2.2]}}, we raised the question of how (existence of) continuous measure disintegration might relate to hidden phase transitions. Given the equivalence established in \textcolor{red}{\texttt{[Section 2.3]}}, we are now better equipped to explore this question. \\
+
+It was pointed out that in some situations, hidden phase transitions are present, yet the fuzzy Gibbs measure remains Gibbsian, however, absence of hidden phase transition immediately gives the Gibbsianity. \textcolor{blue}{This is precisely what will be addressed in this section.} \\
+
+First we want to further explore the nets $\set{\mu^B:(B,V)\in D_\sigma}$ , $\sigma\in\Sigma$, beyond the case of convergence, as several \textit{accumulation points} may exist. Recall that a measure $\tilde{\mu}$ is an accumulation point of $\set{\mu^B:(B,V)\in D_\sigma}$ if for arbitrary $f\in C(\Omega,\R)$, $\varepsilon>0$ and $V\ni \sigma$ open, one can always find a ($\tilde{\F}$-)measurable set $B\subseteq V$ such that 
+$$\Big|\int f\,\d\mu^B - \int f\,\d\tilde{\mu}\Big| ~<~ \varepsilon.$$
+We will denote the set of all accumulation points of $\set{\mu^B:(B,V)\in D_\sigma}$ by $\overline{\MM}_\sigma$. It turns out that not only do accumulation points always exist (due to compactness of $\Omega$), they are in our setting in fact always Gibbs measures:
+\begin{thm}[\textcolor{red}{\texttt{[Berghout's thesis]}}]
+For each $\sigma\in\Sigma$, the following is true:
+\begin{itemize}
+	\item[(i)] $\overline{\MM}_\sigma\neq \emptyset$ and for each $\tilde{\mu}\in\overline{\MM}_\sigma$, $\lambda_\sigma(\Omega_\sigma)=1$.
+	\item[(ii)] If the original measure $\mu$ belongs to $\G_\Omega(\Phi)$, for some $\Phi\in\BB^1(\Omega)$, then $\overline{\MM}_\sigma\subseteq\G_{\Omega_\sigma}(\Phi)$.
+\end{itemize}
+\end{thm} 
+
+This yields two important corollaries. Firstly, having $|\overline{\MM}_\sigma|=1$ for some $\sigma\in\Sigma$ is equivalent to $\sigma\in\Sigma_0$, so by the prior demonstration of equivalence of the two notions of conditional measure \textcolor{red}{\texttt{[result]}} \textcolor{purple}{(what about uniformity?)} along with \textcolor{red}{\texttt{[Theorem]}} gives the following sufficient condition for Gibbsianity of the fuzzy Gibbs measure:
+\begin{cor}
+Suppose $\nu=\mu\circ\pi^{-1}$ is a fuzzy Gibbs measure for some Gibbs measure $\mu$ under the fuzzy map $\pi$ and assume that 
+$$|\overline{\MM}_\sigma| ~=~ 1, \quad \forall \sigma\in\Sigma.$$
+Then $\nu$ is Gibbsian.
+\end{cor}
+
+Given the \textcolor{red}{\texttt{[equivalence]}}, this may be seen precisely as verification of one of the directions of the van Enter-Fern\'andez-Sokal hypothesis, presented in \textcolor{red}{\texttt{[Conjecture]}}, which may also be reformulated in a more accessible way:
+\begin{conj}
+In the setting of \textcolor{red}{\texttt{Conjecture}},
+$$\nu=\mu\circ\pi^{-1}~\text{is Gibbsian}~\iff~|\overline{\MM}_\sigma|=1\,\forall \sigma\in\Sigma.$$
+\end{conj}
+
+Moreover, given the property \textcolor{red}{\texttt{[Theorem.(ii)]}}, we can establish that absence of hidden phase transitions indeed implies Gibbsianity of the fuzzy Gibbs measure:
+\begin{cor}
+In the setting of \textcolor{red}{\texttt{[previous corollary]}}, assume that 
+$$|\G_{\Omega_\sigma}(\Phi)| ~=~ 1, \quad \forall \sigma\in\Sigma,$$
+i.e., hidden phase transitions do not occur. Then $\nu$ is Gibbsian.
+\end{cor}
+
+% #################################################################################################
+
+\subsection{\textcolor{blue}{Implications on what follows}}
+
+The rest of the thesis will be concerned with two fuzzy Gibbs models, where certain sufficient conditions for Gibbsianity of the fuzzy Gibbs measure are known. In particular, the goal is to obtain alternative proofs of Gibbsianity of the fuzzy Gibbs measure, given the same conditions, using \textcolor{red}{\texttt{[Corollary]}}. While an alternative proof is a nice enough acquisition, the exact method we are to use provides a further information as van Enter-Fern\'andez-Sokal hypothesis is concerned. Given the fact that absence of phase transitions implies existence of a continuous measure disintegration, such a proof additionally verifies, that the known example indeed does not contradict the yet unconfirmed direction of the hypothesis \textcolor{red}{\texttt{[Conjecture]}}.
+$$\textcolor{blue}{\texttt{Maybe a diagriam demonstrating what is argued above?}}$$
+The first example, explored in \textcolor{red}{\texttt{[Chapter 3]}} is concerned with the fuzzy Potts model, for which a certain sufficient condition was found by H\"aggstr\"om in \textcolor{red}{\texttt{[reference]}}. The alternative proof we give is completely independent, as the original proof in the paper is based on the characterisation of Gibbsianity presented in \textcolor{red}{\texttt{[Proposition.(i)]}}, i.e., on verifying the quasilocality. \\
+
+The second example, treated in \textcolor{red}{\texttt{[Chapter 4]}} is concerned with the random spin-flip dynamics model, explored in \textcolor{red}{\texttt{[vE,F,dH,R paper]}}. While the paper is not at all concerned with fuzzy Gibbs formalism -- and neither can the general model presented be seen as a fuzzy Gibbs model -- we demonstrate that a special case of the model, for which in particular some interesting results were give, can indeed be easily seen as a fuzzy Gibbs model. Morevoer, we demonstrate that the proof given in the paper are based on a very similar idea, allowing to give a proof using \textcolor{red}{\texttt{[Corollary]}} only by introducing minor modification to the original proof.
+
 % #################################################################################################
 
 \pagebreak
@@ -519,7 +598,7 @@ The measure $\mu\in\M_1(\Omega)$ admits a continuous measure disintegration $\se
 
 \section{(Non-)Gibbsianity of fuzzy Potts model}
 
-This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's result \textcolor{red}{\texttt{[reference]}} about conditions for its Gibbsianity, using the results due to Berghout and Verbitskiy \textcolor{red}{\texttt{[reference]}}. Moreover, it introduces the notion of random cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
+This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's result \textcolor{red}{\texttt{[reference]}} about conditions for the Gibbsianity of the involed fuzzy Gibbs measure, using the results due to Berghout and Verbitskiy \textcolor{red}{\texttt{[reference]}}. Moreover, it introduces the notion of random cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
 
 % #################################################################################################
 
@@ -527,50 +606,52 @@ This chapter aims to introduce the fuzzy Potts model and provide an alternative,
 
 In this introductory section of the chapter, we define the classical Potts model, with respect to which the fuzzy Potts model will be later defined. We also state the celebrated result the existence of phase transition with respect to the inverse temperature parameter. \\
 
-The Potts model is a natural generalization of (ferromagnetic) Ising model with zero external field ($h=0$), where instead of two possible values ($+/-$ or $1/-1$ in the context of the Ising model), the spins may assume $q\geq 2$ different values, taking $\set{1,\ldots,q}$ to be the state \textcolor{blue}{(spin)} space, and consequently $\Omega=\set{1,\ldots,q}^{\Z^d}$ to be the configuration space. As in the case of the Ising model, the interaction $\Phi$ is defined for $\textcolor{blue}{A}=\set{x,y}$, with $x\sim y$ (i.e., $|x-y|=1$) and is given by
-$$\Phi(\omega_x,\omega_y) ~=~ 2\1_{\set{\omega_x\neq \omega_y}}-1 ~=~ \begin{cases}
-1: ~&\omega_x\neq\omega_y, \\
--1: ~&\omega_x=\omega_y.
+The Potts model is a natural generalization of (ferromagnetic) Ising model with zero external field ($h=0$), where instead of two possible values ($+1$ and $-1$, as in the context of the Ising model), the spins may assume $q\geq 2$ different values, taking $\A=\set{1,\ldots,q}$ to be the single-spin space, and consequently $\Omega=\set{1,\ldots,q}^{\Z^d}$ to be the configuration space. As in the case of the Ising model, Potts model is a nearest-neighbour model, so the interaction $\Phi$ is defined for $\Lambda=\set{x,y}$, with $x\sim y$ (i.e., $|x-y|=1$) and is given by
+$$\Phi_{x\sim y}(\omega) ~=~ 2\1_{\set{\omega(x)\neq \omega(y)}}-1 ~=~ \begin{cases}
+1: ~&\omega(x)\neq\omega(y), \\
+-1: ~&\omega(x)=\omega(y).
 \end{cases}$$
-Clearly, taking $q=2$ and identifying $\set{0,1}$ with $\set{-,+}$, one obtains the zero external field Ising model. The above interaction yields the following finite volume Hamiltonian expression: given $\Lambda\Subset\Z^d$, $\omega_\Lambda\in\Omega_\Lambda$ and $\sigma_{\Lambda^\c}\in\Omega_{\Lambda^\c}$, we have
-$$\H_\Lambda(\omega_\Lambda\sigma_{\Lambda^\c}) ~=~ \beta\sum_{(x,y)\in\tilde{\Lambda}}(2\1_{\set{\omega_x\neq\omega_y}}-1)+\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}(2\1_{\set{\omega_x\neq\sigma_y}}-1),$$
-where $\tilde{\Lambda}:=\set{(x,y):x\sim y,\,x,y\in\Lambda}$ and $\partial\tilde{\Lambda}:=\set{(x,y):x\sim y,\,x\in\Lambda,y\in\Lambda^\c}$. We might, however, take a simpler equivalent interaction, which we justify shortly, in a remark. In the spirit of thermodynamical formalism, the system of Hamiltonians $(\H_\Lambda)_{\Lambda\Subset\Z^d}$ yields admits a specification $\gamma=(\gamma_\Lambda)_{\Lambda\Subset\Z^d}$, where for each $\Lambda\Subset\Z^d$ we have
+One can check that this is (as interactions go) equivalent to the construction of the Ising model in \textcolor{red}{\texttt{[Example]}}: clearly, taking $q=2$ and identifying $\set{0,1}$ with $\set{-1,+1}$, one obtains the zero external field Ising model. The above interaction yields the following finite volume Hamiltonian expression: given a finite volume $\Lambda\Subset\Z^d$ and boundary condition $\xi\in\Omega$, we have
+$$\H_{\Lambda;\beta}(\omega_\Lambda\xi_{\Lambda^\c}) ~=~ \beta\sum_{(x,y)\in\tilde{\Lambda}}(2\1_{\set{\omega(x)\neq\omega(y)}}-1)+\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}(2\1_{\set{\omega(x)\neq\xi(y)}}-1), \quad \omega\in\Omega,$$
+where $\tilde{\Lambda}:=\set{(x,y):x\sim y,\,x,y\in\Lambda}$ and $\partial\tilde{\Lambda}:=\set{(x,y):x\sim y,\,x\in\Lambda,y\in\Lambda^\c}$. We might, however, take a simpler equivalent interaction, which we justify shortly, in a remark. In the spirit of thermodynamical formalism, the system of Hamiltonians $(\H_\Lambda)_{\Lambda\Subset\Z^d}$ admits a specification $\gamma=(\gamma_\Lambda)_{\Lambda\Subset\Z^d}$, where for each $\Lambda\Subset\Z^d$ we have
 \begin{align*}
-\gamma_\Lambda:\BB(\Omega_\Lambda)\times\Omega_{\Lambda^\c}&\ra (0,1) \\
-(\set{\omega_{\Lambda}},\sigma_{\Lambda^\c})&\mapsto\gamma_{\Lambda}(\omega_{\Lambda}|\sigma_{\Lambda^\c})=\frac{1}{\ZZ}\exp\!\oklepaj{-\H_\Lambda(\omega_\Lambda\sigma_{\Lambda^\c})},
+\gamma_\Lambda:\F_\Lambda\times\Omega_{\Lambda^\c}&\ra (0,1) \\
+(\set{\omega_{\Lambda}},\xi_{\Lambda^\c})&\mapsto\gamma_{\Lambda}(\omega_{\Lambda}|\xi_{\Lambda^\c})=\frac{1}{\ZZ_{\Lambda;\beta,q}^\xi}\exp\!\oklepaj{-\H_{\Lambda;\beta}(\omega_\Lambda\xi_{\Lambda^\c})},
 \end{align*}
-where $\ZZ_\Lambda=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp\!\oklepaj{-\H_\Lambda(\tilde{\omega}_{\Lambda}\sigma_{\Lambda^\c})}$.
+where $\ZZ_{\Lambda;\beta,q}^\xi=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp\!\oklepaj{-\H_\Lambda(\tilde{\omega}_{\Lambda}\xi_{\Lambda^\c})}$.
 
 \begin{rem}
 \begin{itemize}
-	\item[(1)] Both $\H_\Lambda$ and $\ZZ_\Lambda$, depend not only on $\Lambda$ but also on $q$ and $\beta$.
-	\item[(2)] Notice that $$\H_{\Lambda}(\omega_{\Lambda}\sigma_{\Lambda^\c})=2\beta\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega_x\neq\omega_y}} + 2\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega_x\neq\sigma_y}}-\beta(|\tilde{\Lambda}|+|\partial\tilde{\Lambda}|),$$
-	where $C_{\beta,\Lambda}:=\beta(|\tilde{\Lambda}|+|\partial\tilde{\Lambda}|)$ is a  constant independent of $\omega_{\Lambda},\sigma_{\Lambda^\c}$, giving us
+	\item[(1)] Notice that $$\H_{\Lambda;\beta}(\omega_{\Lambda}\xi_{\Lambda^\c}) ~=~ 2\beta\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega(x)\neq\omega(y)}} + 2\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega(x)\neq\xi(y)}}-\beta(|\tilde{\Lambda}|+|\partial\tilde{\Lambda}|),$$
+	where $C_{\beta,\Lambda}:=\beta(|\tilde{\Lambda}|+|\partial\tilde{\Lambda}|)$ is a  constant independent of $\omega,\xi$, giving us
 	\begin{align*}
-	\gamma_{\Lambda}(\omega_{\Lambda}|\sigma_{\Lambda^\c}) ~&=~ \frac{\exp(-\H_{\Lambda}(\omega_{\Lambda}\sigma_{\Lambda^\c}))}{\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp(-\H_{\Lambda}(\tilde{\omega}_{\Lambda}\sigma_{\Lambda^\c}))} \\
-	&=~ \frac{\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega_x\neq\omega_y}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega_x\neq\sigma_y}}}}\exp(C_{\beta,\Lambda})}{\exp(C_{\beta,\Lambda})\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\tilde{\omega}_x\neq\tilde{\omega}_y}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\tilde{\omega}_x\neq\sigma_y}}}}} \\
-	&=~ \frac{\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega_x\neq\omega_y}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega_x\neq\sigma_y}}}}}{\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\tilde{\omega}_x\neq\tilde{\omega}_y}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\tilde{\omega}_x\neq\sigma_y}}}}},
+	\gamma_{\Lambda}(\omega_{\Lambda}|\xi_{\Lambda^\c}) ~&=~ \frac{\exp(-\H_{\Lambda;\beta}(\omega_{\Lambda}\xi_{\Lambda^\c}))}{\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp(-\H_{\Lambda;\beta}(\tilde{\omega}_{\Lambda}\xi_{\Lambda^\c}))} \\
+	&=~ \frac{\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega(x)\neq\omega(y)}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega(x)\neq\xi(y)}}}}\!\exp(C_{\beta,\Lambda})}{\exp(C_{\beta,\Lambda})\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\tilde{\omega}(x)\neq\tilde{\omega}(y)}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\tilde{\omega}(x)\neq\xi(y)}}}}} \\
+	&=~ \frac{\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega(x)\neq\omega(y)}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega(x)\neq\xi(y)}}}}}{\sum_{\tilde{\omega}_{\Lambda}\in\Omega_{\Lambda}}\exp\!\oklepaj{-2\beta\!\oglati{\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\tilde{\omega}(x)\neq\tilde{\omega}(y)}} + \sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\tilde{\omega}(x)\neq\xi(y)}}}}},
 	\end{align*}
-	so the same specification would be obtained by selecting an alternative interaction and system of (finite volume) Hamiltonians
+	so the same specification would be obtained by selecting an alternative interaction and system of Hamiltonians
 	\begin{align*}
-	\Phi'(\omega_x,\omega_y) ~&=~ 2\1_{\set{\omega_x\neq\omega_y}}, \\
-	\H_{\Lambda}'(\omega_{\Lambda}\sigma_{\Lambda^\c}) ~&=~ 2\beta\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega_x\neq\omega_y}}+2\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega_x\neq\sigma_y}}.
+	\Phi_{x\sim y}' ~&=~ 2\1_{\set{\omega(x)\neq\omega(y)}}, \\
+	\H_{\Lambda;\beta}'(\omega_{\Lambda}\xi_{\Lambda^\c}) ~&=~ 2\beta\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega(x)\neq\omega(y)}}+2\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega(x)\neq\sigma(y)}}.
 	\end{align*}
-	For the sake of simplicity, from now on, we use will use $\Phi'$ and $(\H_\Lambda')_{\Lambda\Subset\Z^d}$ in our computations instead, and simply denote them by $\Phi$ and $(\H_{\Lambda})_{\Lambda\Subset\Z^d}$.
-	\item[(3)] The interaction we initially used, is often also written in the literature as 
-	$$\Phi(\omega_x,\omega_y) ~=~ 1-2\1_{\set{\omega_x=\omega_y}}.$$
-	Had we used this version, we would in point (2) obtain $\Phi'(\omega_x,\omega_y)=-2\1_{\set{\omega_x=\omega_y}}$ instead.
-	\item[(4)] There are several other interactions that equivalently define the Potts model. \textcolor{blue}{Give examples.} \textcolor{blue}{$\1_{\set{\omega_x\neq\omega_y}}$ and $-\1_{\set{\omega_x=\omega_y}}$?}
+	For the sake of simplicity, from now on, we use will use $\Phi'$ and $(\H_{\Lambda;\beta}')_{\Lambda\Subset\Z^d}$ in our computations instead, and simply denote them by $\Phi$ and $(\H_{\Lambda;\beta})_{\Lambda\Subset\Z^d}$.
+	\item[(2)] The interaction we initially used, is often also written in the literature as 
+	$$\Phi_{x\sim y}(\omega) ~=~ 1-2\1_{\set{\omega(x)=\omega(y)}}.$$
+	Had we used this version, we would in point (1) obtain $\Phi_{x\sim y}'(\omega)=-2\1_{\set{\omega(x)=\omega(y)}}$ instead.
+	\item[(3)] There are several other interactions that equivalently define the Potts model, such as $\Phi_{x\sim y}''(\omega)=\1_{\set{\omega(x)\neq\omega(y)}}$ and $\Phi_{x\sim y}'''(\omega)=-\1_{\set{\omega(x)=\omega(y)}}$ for example.
 \end{itemize}
 \end{rem}
 
-In the spirit of thermodynamical formalism, the (infinite volume) Gibbs measure for $q$-state Potts model on $\Omega$ with inverse temperature $\beta$ is any probability measure on $\Omega$, whose finite-volume conditional probabilities agree with the specification $\gamma$, that is, a measure $\mu\in\M_1(\Omega)$ such that for each $\Lambda\Subset\Z^d$ and $\omega$, one has
-$$\mu(\omega~\text{on}~\Lambda|\sigma~\text{off}~\Lambda) ~=~ \gamma_\Lambda(\omega_\Lambda|\sigma_{\Lambda^\c}),$$
-for $\mu$-a.e.~$\sigma\in\Omega$.
+In the spirit of thermodynamical formalism, the (infinite volume) Gibbs measure for $q$-state Potts model on $\Omega$ with inverse temperature $\beta$ is any probability measure on $\Omega$, whose finite-volume conditional probabilities agree with the specification $\gamma$, that is, a measure $\mu\in\M_1(\Omega)$ such that for each $\Lambda\Subset\Z^d$ and $\omega\in\Omega$, one has
+$$\mu(\omega~\text{on}~\Lambda|\xi~\text{off}~\Lambda) ~=~ \gamma_\Lambda(\omega_\Lambda|\xi_{\Lambda^\c}),$$
+for $\mu$-a.e.~$\xi\in\Omega$.
 
 \begin{rem}
-Notice that for any fixed $\sigma_{\Lambda^\c}\in\Omega_{\Lambda^\c}$, the map $\gamma_\Lambda(\pika|\sigma_{\Lambda^\c})$ is a probability measure on $\Omega_\Lambda$, which we can denote as $\mu_\Lambda^\sigma=\mu_{q,\beta,\Lambda}^\sigma$. We can, in this case, restate $\mu\in\M_1(\Omega)$ to be Gibbs measure for $q$-state Potts model with inverse temperature $\beta$ if for each $\Lambda\Subset\Z^d$ and $\mu$-a.e.~$\sigma\in\Omega$, 
-$$\mu(\pika~\text{on}~\Lambda|\sigma~\text{off}~\Lambda) ~=~ \mu_{q,\beta,\Lambda}^\sigma.$$
+Notice that for any fixed boundary condition $\xi\in\Omega$, the map $\gamma_\Lambda(\pika|\xi_{\Lambda^\c})$ is a probability measure on $\Omega_\Lambda$, which we can denote as $\tilde{\mu}_{\Lambda;\beta,q}^\xi$. We can, in this case, restate $\mu\in\M_1(\Omega)$ to be Gibbs measure for $q$-state Potts model with inverse temperature $\beta$ if for each $\Lambda\Subset\Z^d$ and $\mu$-a.e.~$\xi\in\Omega$, 
+$$\mu(\pika~\text{on}~\Lambda|\xi~\text{off}~\Lambda) ~=~ \tilde{\mu}_{\Lambda;\beta,q}^\xi.$$
+Moreover, in the spirit of \textcolor{red}{\texttt{[Remark]}}, we can for each $\tilde{\mu}_{\Lambda;\beta,q}^\xi$ define an analogue probability measure on $\Omega$, given by
+$$\mu_{\Lambda;\beta,q}^\xi(\omega) ~=~ \1_{\set{\omega_{\Lambda^\c}=\xi_{\Lambda^\c}}}\tilde{\mu}_{\Lambda;\beta,q}^\xi(\omega_\Lambda), \quad \omega\in\Omega,$$
+which one uses to obtain thermodynamical limits.
 \end{rem}
 
 The Potts model enjoys \textcolor{blue}{a similar} phase transition result as the Ising model, as is stated in the following theorem.
@@ -583,17 +664,17 @@ For $q$-state Potts model on $\Z^d$ with $d\geq 2$, there exists a critical inve
 \end{itemize}
 \end{thm}
 
-It is worth mentioning that the mutually singular Gibbs measures in the $\beta>\beta_c$ regime are precisely the measures $\mu_{q,\beta}^1,\ldots,\mu_{q,\beta}^q$, where for $i\in\set{1,\ldots,q}$, $\mu_{q,\beta}^i$ is the thermodynamical limit
-$$\mu_{q,\beta}^i ~=~ \lim_{\Lambda\Uparrow\Z^d}\mu_{q,\beta,\Lambda}^{\mathsf{i}},$$
-where $\mathsf{i}=\set{i}^{\Z^d}$ is the constant boundary condition.
+It is worth mentioning that the mutually singular Gibbs measures in the $\beta>\beta_c$ regime are precisely the measures $\mu_{\beta,q}^1,\ldots,\mu_{\beta,q}^q$, where for $i\in\set{1,\ldots,q}$, $\mu_{\beta,q}^i$ is the thermodynamical limit
+$$\mu_{\beta,q}^i ~=~ w\,\text{-}\!\lim_{\Lambda\Uparrow\Z^d}\mu_{\Lambda;\beta,q}^{\mathsf{i}},$$
+where $\mathsf{i}=\set{i}^{\Z^d}$ is the constant boundary condition. In other words, $\mathrm{extr}(\G_{\Omega}(\Phi_{\beta,q}))=\set{\mu_{\beta,q}^1,\ldots,\mu_{\beta,q}^q}$
 
 % #################################################################################################
 
 \subsection{Fuzzy Potts model}
 
-\textcolor{blue}{In this introductory section of the chapter, we define the fuzzy Potts model and state the celebrated result about its (non-)Gibbsianity, due to H\"aggstr\"om \textcolor{red}{\texttt{[reference]}}. Moreover, we explain the strategy and structure of our alternative proof of (part of) the said result.} \\
+\textcolor{blue}{We now turn our attention to the fuzzy Potts model, which we define and state the celebrated result about its (non-)Gibbsianity, due to H\"aggstr\"om \textcolor{red}{\texttt{[reference]}}. Moreover, we explain the strategy and structure of our alternative proof of (part of) the said result.} \\
 
-Consider the Potts model with spin space $\set{1,\ldots,q}$, $q\geq 2$, on lattice $\L$, say $\L=\Z^d$, which defines a model on $\Omega=\set{1,\ldots,q}^\L$. The \textit{fuzzy Potts model} is defined by considering some integer $1<s<q$, so that the spin space is $\set{1,\ldots,s}$ and the whole model defined on $\Sigma=\set{1,\ldots,s}^\L$. Moreover, we consider a vector $\r=(r_1,\ldots,r_s)\in\N^s$, such that $r_1+\ldots+r_s=q$ and define a fuzzy transformation $\pi_\r:\set{1,\ldots,q}\ra\set{1,\ldots,s}$ by putting 
+Consider the Potts model with spin space $\A=\set{1,\ldots,q}$, $q\geq 2$, on lattice $\L$, say $\L=\Z^d$, which defines a model on $\Omega=\set{1,\ldots,q}^\L$. The \textit{fuzzy Potts model} is defined by considering some integer $1<s<q$, so that the spin space is $\B=\set{1,\ldots,s}$ and the whole model defined on $\Sigma=\set{1,\ldots,s}^\L$. Moreover, we consider a vector $\r=(r_1,\ldots,r_s)\in\N^s$, such that $r_1+\ldots+r_s=q$ and define a fuzzy transformation $\pi_\r:\set{1,\ldots,q}\ra\set{1,\ldots,s}$ by putting 
 $$\pi_\r(a) ~:=~ \begin{cases}
 1: ~&1\leq a\leq r_1,\\
 2: ~&r_1+1\leq a\leq r_1+r_2 \\
@@ -604,15 +685,15 @@ s: ~&\sum_{i=1}^{s-1}r_i + 1\leq a\leq q,
 \end{cases}$$
 i.e., $\pi_a=n$ iff $a\in(\sum_{i=1}^{n-1}r_i,\sum_{i=1}^n r_i]\cap \N$, $n\in\set{1,\ldots,s}$. In other words, the entire fuzzy map $\pi=\pi_\r$ is encoded by a single $s$-vector $\r$. \\
 
-Fixing $q\geq 2$, $\beta\geq 0$ and writing $\mu_{q,\beta}^{\Z^d,\#}$ for the Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ for boundary condition $\#\in\set{0,\ldots,q}$ with inverse temperature $\beta$, the fuzzy transformation $\pi_\r$ induces the fuzzy Gibbs measure 
-$$\nu_{q,\beta,\r}^{\Z^d,\#} ~:=~ \mu_{q,\beta}^{\Z^d,\#}\circ\pi_\r^{-1}.$$
-Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 2$ and $d\geq 2$}, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{q,\beta}^{\Z^d,0}=\ldots=\mu_{q,\beta}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures \textcolor{purple}{\texttt{[q+1?]}}.
+Fixing $q\geq 2$, $\beta\geq 0$ and writing $\mu_{\beta,q}^{\Z^d,\xi}$ for the Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ for boundary condition $\xi\in\set{\emptyset,1,\ldots,q}$ with inverse temperature $\beta$, the fuzzy transformation $\pi_\r$ induces the fuzzy Gibbs measure 
+$$\nu_{\beta,q,\r}^{\Z^d,\xi} ~:=~ \mu_{\beta,q}^{\Z^d,\xi}\circ\pi_\r^{-1}.$$
+Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 2$ and $d\geq 2$}, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{\beta,q}^{\Z^d,\emptyset}=\mu_{\beta,q}^{\Z^d,1}=\ldots=\mu_{\beta,q}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures \textcolor{purple}{\texttt{[q+1?]}}.
 
 \begin{thm}[H\"aggstr\"om, 2003, \textcolor{red}{\texttt{[reference]}}]
-Let $d\geq 2$, $q\geq 3$, $\#\in\set{0,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min_{1\leq i\leq s}r_i$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\#}=\mu_{q,\beta}^{\Z^d,\#}\circ\pi_{\r}^{-1}$.
+Let $d\geq 2$, $q\geq 3$, $\xi\in\set{\emptyset,1,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min_{1\leq i\leq s}r_i$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\xi}=\mu_{q,\beta}^{\Z^d,\xi}\circ\pi_{\r}^{-1}$.
 \begin{itemize}
-	\item[(i)] For each $\beta<\beta_c(d,r^*)$, the measure $\nu_{q,\beta,\r}^{\Z^d,\#}$ is a Gibbs measure.
-	\item[(ii)] \textcolor{blue}{\texttt{The non-Gibbs part.}}
+	\item[(i)] For each $\beta<\beta_c(d,r^*)$, the measure $\nu_{\beta,q,\r}^{\Z^d,\xi}$ is a Gibbs measure.
+	\item[(ii)] For any $\beta>\frac{1}{2}\log\frac{1+(r^*-1)p_c(d)}{1-p_c(d)}$, $\nu_{\beta,q,\r}^{\Z^d,\xi}$ is not a Gibbs measure. Here $p_c(d)$ denotes the critical probability for Bernoulli percolation.
 \end{itemize}
 \end{thm}
 
@@ -620,10 +701,10 @@ Let $d\geq 2$, $q\geq 3$, $\#\in\set{0,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with
 \textcolor{blue}{\texttt{Remark about the ordering of $\beta_c(d,r_1),\ldots,\beta_c(d,r_s)$, given the ordering of $r_1,\ldots,r_s$. Explain that this condition gives uniqueness of Gibbs measure on each $\set{1,\ldots,r_i}^{\Z^d}$.}}
 \end{rem}
 
-In light of the theory from the previous chapter, we are particularly interested in part (i) of the theorem, the Gibbs regime. The van Enter-Fern\'andez-Sokal hypothesis, would suggest that, since for $\beta<\beta_c(d,r^*)$ the Gibbs property is preserved, \textcolor{purple}{each $\mu_{q,\beta}^{\Z^d,\#}$ should admit a continuous disintegration in terms of $\nu_{q,\beta,\r}^{\Z^d,\#}$}. Moreover, proving the latter would -- applying the result of \textcolor{red}{\texttt{[theorem reference]}} -- constitute an alternative and independent proof of \textcolor{red}{\texttt{[Theorem 2.1]}}.(i). \\
+In light of the theory from the previous chapter, we are particularly interested in part (i) of the theorem, the Gibbs regime. The van Enter-Fern\'andez-Sokal hypothesis, would suggest that, since for $\beta<\beta_c(d,r^*)$ the Gibbs property is preserved, \textcolor{purple}{each $\mu_{q,\beta}^{\Z^d,\#}$ should admit a continuous disintegration in terms of $\nu_{q,\beta,\r}^{\Z^d,\#}$}. Moreover, proving the latter would -- applying the result of \textcolor{red}{\texttt{[theorem reference]}} -- constitute an alternative and independent proof of \textcolor{red}{\texttt{[Theorem]}}.(i). \\
 
-Given \textcolor{red}{\texttt{Theorem reference}}, it is sufficient to verify (for a fixed $\beta<\beta_c(d,r^*))$, that for each $\sigma\in\Sigma=\set{1,\ldots,s}^{\Z^d}$, there is a unique Gibbs measure for $q$-Potts model with inverse temperature beta on the fibre $\Omega_\sigma=\pi_\r^{-1}(\sigma)$, i.e., that
-$$|\G_{\Omega_\sigma}(\Phi_{q,\beta}^\Potts)| ~=~ 1, \quad \forall \sigma\in\Sigma.$$
+Given \textcolor{red}{\texttt{[Theorem reference]}}, it is sufficient to verify (for a fixed $\beta<\beta_c(d,r^*))$, that for each $\sigma\in\Sigma=\set{1,\ldots,s}^{\Z^d}$, there is a unique Gibbs measure for $q$-Potts model with inverse temperature beta on the fibre $\Omega_\sigma=\pi_\r^{-1}(\sigma)$, i.e., that
+$$|\G_{\Omega_\sigma}(\Phi_{\beta,q})| ~=~ 1, \quad \forall \sigma\in\Sigma.$$
 Luckily, one can express the fibres in a rather nice way, allowing for an easier procedure. Given $\sigma\in\Sigma$, we simply have
 $$\Omega_\sigma ~=~ \pi_{\r}^{-1} ~=~ \prod_{i\in\Z^d}\pi_{\r}^{-1}(\sigma_i).$$
 Writing $\A_j:=\pi_{\r}^{-1}(j)$ and $U_j:=\set{i\in\Z^d:\pi_{\r}(\sigma_i)=j}$, $j=1,\ldots,s$, we could also write
@@ -917,6 +998,35 @@ which indeed corresponds to a single-site interaction.
 
 This tells us that as soon as $|\G_{\Omega_0}(\H^{(t)}(\pika,\sigma)|=1$, one also has $|\G_{\Omega_0}^{\kappa(t)}(\omega,\omega\sigma)|=|\G_{\Omega_\sigma}(\H^{\kappa(t)})|=1$, so \textcolor{red}{\texttt{[Berghout's result]}} concludes the argument.
 
+\pagebreak
+
+% #################################################################################################
+% #################################################################################################
+
+% #################################################################################################
+
+\appendix
+
+\section{Technical appendix}
+
+% #################################################################################################
+
+\subsection{Regular conditional probability}
+
+% #################################################################################################
+
+\subsection{Coupling}
+
+% #################################################################################################
+
+\subsection{Bernoulli percolation}
+
+% #################################################################################################
+
+\pagebreak
+
+% #################################################################################################
+% #################################################################################################
 % #################################################################################################
 
 \end{document}
