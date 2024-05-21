@@ -43,7 +43,8 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\NN}{\mathcal{N}}
 \renewcommand{\P}{\mathbb{P}}
-\newcommand{\PP}{\mathsf{P}}
+\newcommand{\PP}{\mathbf{P}}
+\newcommand{\Q}{\mathbf{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\RR}{\mathcal{R}}
 \renewcommand{\r}{\mathrm{r}}
@@ -598,7 +599,7 @@ The second example, treated in \textcolor{red}{\texttt{[Chapter 4]}} is concerne
 % #################################################################################################
 % #################################################################################################
 
-\section{(Non-)Gibbsianity of fuzzy Potts model}
+\section{Gibbsianity of fuzzy Potts model}
 
 This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's result \cite{Hag} about conditions for the Gibbsianity of the involed fuzzy Gibbs measure, using the results due to Berghout and Verbitskiy \cite{Ber}. Moreover, it introduces the notion of random cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
 
@@ -689,10 +690,10 @@ i.e., $\pi_a=n$ iff $a\in(\sum_{i=1}^{n-1}r_i,\sum_{i=1}^n r_i]\cap \N$, $n\in\s
 
 Fixing $q\geq 2$, $\beta\geq 0$ and writing $\mu_{\beta,q}^{\Z^d,\xi}$ for the Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ for boundary condition $\xi\in\set{\emptyset,1,\ldots,q}$ with inverse temperature $\beta$, the fuzzy transformation $\pi_\r$ induces the fuzzy Gibbs measure 
 $$\nu_{\beta,q,\r}^{\Z^d,\xi} ~:=~ \mu_{\beta,q}^{\Z^d,\xi}\circ\pi_\r^{-1}.$$
-Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 2$ and $d\geq 2$}, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{\beta,q}^{\Z^d,\emptyset}=\mu_{\beta,q}^{\Z^d,1}=\ldots=\mu_{\beta,q}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures \textcolor{purple}{\texttt{[free b.c.~distrinc but not mut.~singular?]}}.
+Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 2$ and $d\geq 2$}, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{\beta,q}^{\Z^d,\emptyset}=\mu_{\beta,q}^{\Z^d,1}=\ldots=\mu_{\beta,q}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures \textcolor{purple}{\texttt{[free b.c.~distinct but not mut.~singular?]}}.
 
 \begin{thm}[H\"aggstr\"om, 2003, \cite{Hag}]
-Let $d\geq 2$, $q\geq 3$, $\xi\in\set{\emptyset,1,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min_{1\leq i\leq s}r_i$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\xi}=\mu_{q,\beta}^{\Z^d,\xi}\circ\pi_{\r}^{-1}$.
+Let $d\geq 2$, $q\geq 3$, $i\in\set{\emptyset,1,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min_{1\leq i\leq s}r_i$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\xi}=\mu_{q,\beta}^{\Z^d,\xi}\circ\pi_{\r}^{-1}$.
 \begin{itemize}
 	\item[(i)] For each $\beta<\beta_c(d,r^*)$, the measure $\nu_{\beta,q,\r}^{\Z^d,\xi}$ is a Gibbs measure.
 	\item[(ii)] For any $\beta>\frac{1}{2}\log\frac{1+(r^*-1)p_c(d)}{1-p_c(d)}$, $\nu_{\beta,q,\r}^{\Z^d,\xi}$ is not a Gibbs measure. Here $p_c(d)$ denotes the critical probability for Bernoulli percolation, see \textcolor{red}{\texttt{[Appendix]}}.
@@ -729,7 +730,31 @@ Suppose $U,V\subset\Z^d$ form a partition of $\Z^d$ and let $\AA,\AB$ be disjoin
 $$|\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB|})| ~=~ 1.$$
 \end{prop}
 
-Before proving the proposition, we need to introduce some more tools, which are regulars in the mathematical statistical mechanics of lattice systems.
+\subsection{Outline of H\"aggstr\"om's proof}
+
+In light of the fact that our proof of absence of phase transition in the $\beta<\beta_c(d,r^*)$ regime constitutes an alternative proof of \textcolor{red}{\texttt{Theorem}.(i)}, it is worth outlining the proof given in \cite{Hag}, to highlight the differences between the two methods and to hopefully convince the reader of the significance of our alternative proof as well as of the possible applications of \textcolor{red}{\texttt{[Berghout's result]}} in general. \\
+
+H\"aggstr\"om's proof first and foremost relies on the alternative formulation of Gibbs measures via quasilocality and uniform non-nullness, as well as the fact that fuzzy Gibbs measures are always uniformly non-null, hence non-Gibbsianity is always the result of non-quasilocality. It is thus sufficient to verify, that for any choice of $\Delta\Subset\Z^d$, $\sigma\in\{1,\ldots,s\}^{\Z^d}$, $i\in\{0,1,\ldots,q\}$ and $\varepsilon>0$, there exists $N\in\N$ such that for any $n\geq N$ and any choice of $\eta,\eta'\in\set{1,\ldots,s}^{\Z^d}$ that agree on $\Lambda_n\setminus\Delta$,
+$$|\nu_{\beta,q,\r}^{\Z^d,i}(\sigma_{\Delta}|\eta_{\Delta^\c})-\nu_{\beta,q,\r}^{\Z^d,i}(\sigma_\Delta|\eta_{\Delta^c}')| ~\leq~ \varepsilon;$$
+here $(\Lambda_n)_{n\in\N}$ is the underlying increasing sequence of finite volumes. \\
+
+The author first remarks that it is sufficient to show, that given random fuzzy Potts configurations $Y$ and $Y'$, such that $Y\sim\nu_{\beta,q,\r}^{\Z^d,i}(\pika|\eta_{\Delta^\c})$ and $Y'\sim\nu_{\beta,q,\r}^{\Z^d,i}(\pika|\eta_{\Delta^\c})$, one can construct a coupling (see \textcolor{red}{\texttt{[Appendix]}}) $\Q$ of $Y,Y'$, such that
+$$\Q(Y_{\Delta}=Y_{\Delta}') ~\geq~ 1-\varepsilon.$$
+This can indeed be guaranteed by showing that with a probability at least $1-\varepsilon$, there exists a (random) edge set $E\subseteq\set{\sp{x,y}:x,y\in\Lambda_n\setminus\Delta}$, which separates $\Delta$ from $\Lambda_n^\c$ -- in a sense that any path from $\Delta$ to $\Lambda_n^\c$ must pass through at least on edge from $E$ -- and is such that given certain random configurations $U,U'$ corresponding to $Y,Y'$ (in the sense of the random cluster model, see \textcolor{red}{\texttt{[subsection]}}), $U_E=U_E'\equiv 0$. \\
+
+In light of \textcolor{red}{\texttt{[Edwards-Sokal coupling]}}, H\"aggstr\"om first considers the (joint) distribution $\PP$ of $(\tilde{U},\tilde{X},\tilde{Y})$, where $\tilde{U}$ is a random edge configuration, distributed according to the random cluster measure $\phi_{p,q}^{\Z^d,1}$ (see \textcolor{red}{\texttt{[section]}}), $X$ is a corresponding configuration in $\set{1,\ldots,q}^{\Z^d}$ obtained by assigning each connected component of $(\Z^d,U)$ a $\mathrm{Unif}(1,\ldots,r)$-drawn sign (which results in $\tilde{X}$ having a marginal distribution $\mu_{\beta,q}^{\Z^d, i}$, see \textcolor{red}{\texttt{[Corollary]}}) and $Y=\pi_\r(X)$ (which results in $\tilde{Y}$ having a marginal distribution $\nu_{\beta,q,\r}^{\Z^d,i}$). Given $\Delta$ as above and $\eta,\eta'$ agreeing on $\Lambda_n\setminus\Delta$ (as above) one can define a coupling $\Q$ of 
+$$(U,X,Y)\sim\PP(\pika|Y_{\Delta^c}=\eta_{\Delta^c}),~(U',X',Y')\sim\PP(\pika|Y_{\Delta^c}'=\eta_{\Delta^\c}')~\text{and}~U''\sim\phi_{p,r_*}^{\Z^d,1};$$
+this will be the coupling for which it is argued that $\Q(Y_{\Delta}=Y_{\Delta}')\geq 1-\varepsilon$. \\
+
+An appropriate $N$ is selected rather intuitively: the event that an infinite cluster exists has $\phi_{p,r^*}^{\Z^d,1}$-probability zero for any $\beta<\beta_c$, from which it follows that
+$$\phi_{p,r^*}^{\Z^d,1}(\exists~\text{open path from $\Delta$ to $\Lambda_n^\c$}) ~\xrightarrow{n\ra\infty}~ 0,$$
+so we let $N$ be the first integer for which the probability on the left-hand side is at most $\varepsilon$. \\
+
+It is established through various technical lemmas, that $\Q$ can be constructed so that there exists a finite subgraph $\tilde{G}=(\tilde{V},\tilde{E})$ that is isolated from the rest of the lattice by $U$- and $U'$-closed edges -- which allows us to assume $(U_{\tilde{E}},X_{\tilde{V}},Y_{\tilde{V}})=(U_{\tilde{E}}',X_{\tilde{V}}',Y_{\tilde{V}}')$ in the coupling -- and is such that $\tilde{V}$ includes $\Delta$ with $\Q$-probability at least $1-\varepsilon$.\footnote{The latter has everything to do with our choice of $N$ above and the fact that $\Delta\not\subseteq\tilde{V}$ implies existence of a path from $\Delta$ to $\Lambda_n^\c$.} Since $\Delta\subseteq\tilde{V}$ along with $Y_{\tilde{V}}=Y_{\tilde{V}}'$ implies that $Y_{\Delta}=Y_{\Delta}'$, one can infer that 
+$$\Q(Y_{\Delta}=Y_{\Delta}') ~\geq~ \Q(\Delta\subseteq\tilde{V}) ~\geq~ 1-\varepsilon,$$
+which gives the conclusion.\footnote{This exact line of argumentation requires an additional assumption that $r_j\geq 2$ for each $j=1,\ldots,s$. However, only a simple modification is needed to obtain the proof for general $\r$.} \\
+
+In contrast, being equipped with \textcolor{red}{\texttt{[Berghout's result]}} allows us to fix $Y$ and prove the fact by studying the distribution of $X^{(Y)}=\pi_\r^{-1}(Y)$. In particular, we have to show that for any realization of $Y$, there's a unique Gibbs-Potts measure that can be seen as the law of $X^{(Y)}$. This is done -- as explained before -- by first showing that the preimage of each monochromatic component of $Y$ admits a unique Gibbs-Potts measure (which ends up being purely an exercise about random cluster measures) and secondly that their product (measure) is a unique Gibbs-Potts measure on $\pi_\r^{-1}(Y)$. \textcolor{blue}{Overall, such proof -- while longer -- is subject to less technical nuance.}
 
 % #################################################################################################
 
@@ -1091,6 +1116,21 @@ which indeed corresponds to a single-site interaction.
 This tells us that as soon as $|\G_{\Omega_0}(\H^{(t)}(\pika,\sigma)|=1$, one also has $|\G_{\Omega_0}^{\kappa(t)}(\omega,\omega\sigma)|=|\G_{\Omega_\sigma}(\H^{\kappa(t)})|=1$, so \textcolor{red}{\texttt{[Berghout's result]}} concludes the argument.
 
 \pagebreak
+
+% #################################################################################################
+% #################################################################################################
+
+% #################################################################################################
+
+\section{Future directions}
+
+\textcolor{blue}{\texttt{\begin{itemize}
+	\item Opposite direction of the hypothesis
+	\item Gap in fuzzy Potts
+\end{itemize}}}
+
+\pagebreak
+
 
 % #################################################################################################
 % #################################################################################################
