@@ -145,13 +145,21 @@ As one then studies configurations $\omega'$ rather than $\omega$, one should as
 	$$\mu'(\omega') ~:=~ \sum_{\omega\in\set{-1,+1}^\Lambda}T(\omega,\omega')\mu(\omega);$$
 	$\mu'$ is then said to be the distribution of $\omega'$. In this sense $T$ defines a map $\mu\mapsto\mu$ on the space $\M_1(\set{-1,+1}^\Lambda)$.
 	\item[(2)] Since $\mu$ is derived from $\H$, one should want to obtain $\mu'$ in a similar way, by finding an appropriate Hamiltonian $\H'$ and put $\mu'(\omega')\propto\exp(-\H'(\omega'))$. In particular $\H'$ is taken such that
-	$$\exp(-\H(\omega')) ~=~ \sum_{\omega\in\set{-1,+1}^{\Lambda}}T(\omega,\omega')e^{-\H'(\omega')}.$$
-	This can be done unambiguously; in this sense $T$ induces a map $\H\mapsto\H'$ on Hamiltonians, which we denote by $\RR$ and refer to as the \textit{RG map} (RG standing for \textit{renormalization group}).
+	$$\exp(-\H(\omega')) ~=~ \sum_{\omega\in\set{-1,+1}^{\Lambda}}T(\omega,\omega')\exp(-\H'(\omega')).$$
+	This can be done unambiguously; in this sense $T$ induces a map $\H\mapsto\H'$ on Hamiltonians, which we denote by $\RR$.
 \end{itemize}
 
-As the infinite volume case is plagued with at least as much technical difficulties as the finite volume one, one might want to use a similar technique on the general $\Z^d$ setting. However, the situation does not remain as straightforward as in the setting described above, where one can freely switch between working with Hamiltonians and associated measures (as all the relevant maps between $\mu,\mu',\H,\H'$ are well-defined). First obvious issue is the possible coexistence of several infinite volume measures $\mu$ consistent with $\H$; in this case, the map $\H\mapsto\mu$ is multi-valued. Despite this, one can still formally define the map $\mu\mapsto\mu'$, to which we will return later. \\
+As all the maps between $\mu$, $\mu'$, $\H$ and $\H'$ are well defined, one can switch working between Hamiltonians and associated measures, as suggested by the diagram below:
+$$
+\begin{tikzcd}
+    \H \arrow[r, mapsto, "\RR"] \arrow[d, mapsto] & \H' \\
+    \mu \arrow[r, mapsto, "T"] & \mu' \arrow[u, mapsto]
+\end{tikzcd}
+$$
 
-Having obtain $\mu'$, one ``should'' then be able to recover an appropriate Hamiltonian $\H'$, with which $\mu'$ is consistent; At least, that was believed by physicists for a long time. In particular, it was assumed that for any image measure $\mu'$ (under $T$), there exists an appropriate Hamiltonian with which $\mu'$ is consistent, so that the map $\mu'\mapsto\H'$ is well defined (and hence $\H\mapsto\H'$). This assumption was challenged in the late 70's and in the 80's by Israel in \cite{Isr} as well as Griffiths and Pearce in \textcolor{red}{\texttt{[references]}}. In the early 90's, van Enter, Fern\'andez and Sokal rigorously demonstrated in \cite{EFS} that such assumption is false in many famous examples and provided a rigorous framework to study RG maps. This included a conjecture about the equivalent conditions for well-posedness of $\mu'\mapsto\H'$. \\
+As the infinite volume case is plagued with at least as much technical difficulties as the finite volume one, one might want to use a similar technique on the general $\Z^d$ setting. However, the situation does not remain as straightforward as in the setting described above: one can no longer freely switch between working with Hamiltonians and associated measures. First obvious issue is the possible coexistence of several infinite volume measures $\mu$ consistent with $\H$; in this case, the map $\H\mapsto\mu$ is multi-valued. Despite this, one can still formally define the map $\mu\mapsto\mu'$, to which we will return later. \\
+
+Having obtain $\mu'$, one ``should'' then be able to recover an appropriate Hamiltonian $\H'$, with which $\mu'$ is consistent; At least, that was believed by physicists for a long time. In particular, it was assumed that for any image measure $\mu'$ (under $T$), there exists an appropriate Hamiltonian with which $\mu'$ is consistent, so that the map $\mu'\mapsto\H'$ is well defined (and hence $\H\mapsto\H'$). This assumption was challenged in the late 70's and in the 80's by Israel in \cite{Isr} as well as Griffiths and Pearce in \cite{GP1},\cite{GP2},\cite{Grif}. In the early 90's, van Enter, Fern\'andez and Sokal rigorously demonstrated in \cite{EFS} that such assumption is false in many famous examples and provided a rigorous framework to study RG maps. This included a conjecture about the equivalent conditions for well-posedness of $\mu'\mapsto\H'$. \\
 
 It is precisely this conjecture that is central to this thesis. Before we continue any further, we introduce some formal background one should be equipped with when studying statistical mechanics of lattice systems. We then conclude this introductory chapter, by revisiting the basics of renormalization in a more formal light.
 
@@ -161,23 +169,23 @@ It is precisely this conjecture that is central to this thesis. Before we contin
 
 As mentioned before, the central aim of statistical mechanics is to provide a probabilistic description of microscopic physical phenomena. In particular one aims to study a collection of particles (often infinite), indexed in some lattice $\L$ and each taking values in some set $\A_x$, $x\in\L$, called the \textit{(single-)spin space}, which we will assume to be finite.\footnote{In general, one can take $\A$ to be infinite, even uncountable (e.g., $\R^d$).} Each manifestation of this macroscopic system corresponds to a (random) configuration in $\Omega=\prod_{x\in\L}\A_x$; often we will assume that the system is homogeneous, i.e., $\Omega=\A^{\L}$. In order to talk about randomness, we have to consider probability distributions on $\Omega$; we will write $\M_1(\Omega)$ for the set of probability measures on $\Omega$ (or rather $(\Omega,\F)$, where $\F$ is the  corresponding $\sigma$-algebra, \textcolor{purple}{generated by the cylinder sets}). One often calls those measures \textit{random fields}. \\
 
-There is however a particular class of probability measures that are of interest, called \textit{Gibbs measures}, which we will start introducing formally in a moment, but not before giving some intuitive but \textit{very} informal description. Generally, we assume that the particles interact in some sense, which contributes some (positive or negative) energy. If some configuration carries energy $\H(\omega)$, then the Gibbs measure (consistent with $\H$) would assign $\omega$ a probability proportional to $e^{-\H(\omega)}$. Intuitively, Gibbs measures award configurations with low energy and penalize configurations with high energy. 
+There is however a particular class of probability measures that are of interest, called \textit{Gibbs measures}, which we will start introducing formally in a moment, but not before giving some intuitive but \textit{very} informal description. Generally, we assume that the particles interact in some sense, which contributes some (positive or negative) energy. If some configuration carries energy $\H(\omega)$, then the Gibbs measure (consistent with $\H$) would assign $\omega$ a probability proportional to $\exp(-\H(\omega))$. Intuitively, Gibbs measures award configurations with low energy and penalize configurations with high energy. 
 
 % *************************************************************************************************
 
 \subsubsection{Formal definition, part 1: finite volume setting}
 
-In this section we assume $|\L|<\infty$; an often used example would be a finite graph $G=(V,E)$. In order to capture the interactions, one defines a collection of maps $\Phi=\set{\Phi_\Lambda:\Lambda\subseteq\L}$, called \textit{interaction}, where for $\omega\in\Omega$, $\Phi_\Lambda(\omega)$, depends on $\omega$ only through its values in $\Lambda$, that is, $\Phi_\Lambda(\omega)=\Phi_\Lambda(\omega(x):x\in\Lambda)$. The value $\Phi_\Lambda(\omega)$ represents the amount of energy that the interaction between particles in $\Lambda$ contributes to the system.
+In this section we assume $|\L|<\infty$; an often used example would be a finite graph $G=(V,E)$. In order to capture the interactions, one defines a collection of maps $\Phi=\set{\Phi_\Lambda:\Lambda\subseteq\L}$, called \textit{interaction}, where for $\omega\in\Omega$, $\Phi_\Lambda(\omega)$, depends on $\omega$ only through its values in $\Lambda$, that is, $\Phi_\Lambda(\omega)=\Phi_\Lambda(\omega(x)\!:\!x\in\Lambda)$. The value $\Phi_\Lambda(\omega)$ represents the amount of energy that the interaction between particles in $\Lambda$ contributes to the system.
 
 \begin{ex}
-Often studied are the \textit{nearest-neighbour} interactions. If $\L$ is a (not necessarily finite) graph $G=(V,E)$, then $\Phi_\Lambda$ is constant zero, unless $\Lambda=\set{x,y}$, where $x\sim y$. 
+Often studied are the \textit{nearest-neighbour} interactions. If $\L$ is a (not necessarily finite) graph $G=(V,E)$, then $\Phi_\Lambda$ is constant zero, unless $\Lambda=\set{x,y}$, where $x\sim y$, or $\Lambda=\set{x}$.
 \end{ex}
 
 The total energy of the systems is then obtained by summing up energies of all subsets:
 $$\H(\omega) ~=~ \sum_{\Lambda\subseteq \L}\Phi_\Lambda(\omega), \quad \omega\in\Omega.$$
 We call the function $\H=\H^\Phi$ a \textit{Hamiltonian} consistent with $\Phi$. As already suggested above, the Gibbs measure $\mu=\mu^\Phi$ is then defined so that
-$$\mu(\omega) ~=~ \frac{1}{\ZZ}e^{-\H(\omega)}, \quad \omega\in\Omega,$$
-where $\ZZ=\ZZ^\Phi$ is called the \textit{partition function} and is given by $\ZZ ~=~ \sum_{\omega\in\Omega}e^{-\H(\omega)}.$ In this finite volume setting, Gibbs measures also often called \textit{Gibbs canonical ensembles.} \\
+$$\mu(\omega) ~=~ \frac{1}{\ZZ}\exp(-\H(\omega)), \quad \omega\in\Omega,$$
+where $\ZZ=\ZZ^\Phi$ is called the \textit{partition function} and is given by $\ZZ ~=~ \sum_{\omega\in\Omega}\exp(-\H(\omega)).$ In this finite volume setting, Gibbs measures also often called \textit{Gibbs canonical ensembles.} \\
 
 While from probabilistic point of view, this may be interesting enough model, it is rather disinteresting from the statistical mechanical point of view. In particular, there is no notion of phase transitions, i.e., coexistence of several Gibbs measure consistent with the same interaction, which is one of the main focuses of study in statistical mechanics. This does, however, change when we relax the assumption about finiteness of $\L$ and take it to be a countably infinite lattice, as we will see shortly.
 
@@ -238,13 +246,11 @@ We write $\G_\Omega(\Phi)$ for the set of all Gibbs measure on $\Omega$ consiste
 \end{itemize}
 \end{rem}
 
-\noindent\textcolor{blue}{Say something about infinite volume limits?}
-
 \begin{ex}[Ising model]
 One of the most classical models in statistical mechanics is the Ising model, concerned with (ferro)magnetism. It is an example of a nearest-neighbour model with $\A=\set{-1,+1}$, where the Hamiltonian corresponding to a finite volume $\Lambda\Subset\Z^d$ is given by
 $$\H_{\Lambda;\beta,h}(\omega) ~=~ -\beta\!\!\!\!\!\!\!\sum_{\substack{x\sim y:\\x\in\Lambda~\text{or}~y\in\Lambda\\}}\!\!\!\!\!\!\!\omega(x)\omega(y) + h\sum_{x\in\Lambda}\omega(x),$$
 though one often writes ``$2\1_{\set{\omega(x)=\omega(y)}}-1$'' instead of ``$\omega(x)\omega(y)$'', the latter ceasing to be suitable in case of choosing alternative $\A$ (such as $\set{0,1}$ for example). The parameters $\beta\geq 0$ and $h\in\R$ represent the \textit{inverse temperature} and the \textit{external field}, respectively. Thus, considering a boundary condition $\xi\in\Omega$, the probability of configuration agreeing with $\omega$ on $\Lambda$, conditional on it agreeing with $\xi$ outside $\Lambda^c$, given by
-$$\gamma_{\Lambda;\beta,h}(\omega_\Lambda|\xi_{\Lambda^\c}) ~=~ \frac{1}{\ZZ_{\Lambda;\beta,h}^\xi}e^{-\H_{\Lambda;\beta,h}(\omega_\Lambda\xi_{\Lambda^\c})},$$
+$$\gamma_{\Lambda;\beta,h}(\omega_\Lambda|\xi_{\Lambda^\c}) ~=~ \frac{1}{\ZZ_{\Lambda;\beta,h}^\xi}\exp(-\H_{\Lambda;\beta,h}(\omega_\Lambda\xi_{\Lambda^\c})),$$
 where $\ZZ_{\Lambda;\beta,h}^\xi=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp(-\H_{\Lambda;\beta,h}(\tilde{\omega}_\Lambda\xi_{\Lambda^\c}))$, only depends on the boundary condition through vertices that are adjacent to some vertex in $\Lambda$, i.e., are touching the boundary. This is in fact a general property of nearest-neighbour models.
 \end{ex}
 
@@ -279,7 +285,7 @@ We begin by introducing the most intuitive method of defining infinite volume Gi
 	\begin{itemize}
 		\item[(i)] it is \textit{increasing}: $\Lambda_n\subset\Lambda_{n+1}$ for each $n\in\N$,
 		\item[(ii)] it \textit{invades} $\Z^d$: $\bigcup_{n\geq 1}\Lambda_n=\Z^d$, and
-		\item[(iii)] $\lim_{n\ra\infty}\frac{|\partial\Lambda_n|}{|\Lambda_n|}=0$. \textcolor{blue}{\texttt{Add definition of $\partial\Lambda$?}}
+		\item[(iii)] $\lim_{n\ra\infty}\frac{|\partial\Lambda_n|}{|\Lambda_n|}=0$, where $\partial \Lambda=\set{x\in\Lambda^\c:\exists y\in\Lambda,x\sim y}$
 	\end{itemize}
 	We denote van Hove convergence by $\Lambda_n\Uparrow\Z^d$.
 	\item[(2)] A function $f:\Omega\ra\R$ is said to be \textit{local} if there's $\Delta\Subset\Z^d$, such that for any choice of $\omega,\tilde{\omega}\in\Omega$, 
@@ -293,7 +299,7 @@ We begin by introducing the most intuitive method of defining infinite volume Gi
 The definitions then goes as follows:
 \textcolor{purple}{
 \begin{df}
-We say that $\mu$ is a thermodynamic-limit Gibbs measure for $\Phi\in\BB^1(\Omega)$, if there exists a boundary condition $\\xi\in\Omega$, such that
+We say that $\mu$ is a thermodynamic-limit Gibbs measure for $\Phi\in\BB^1(\Omega)$, if there exists a boundary condition $\xi\in\Omega$, such that
 $$\gamma_{\Lambda_n}^\Phi(\pika|\xi_{\Lambda^\c}) ~\xrightarrow{w}~ \mu \quad \text{as}~n\ra\infty,$$
 for arbitrary van Hove sequence $(\Lambda_n)_{n\in\N}$.
 \end{df}
@@ -307,7 +313,7 @@ which is indeed a probability measure on $\Omega$ (while still in a sense ``supp
 
 \begin{ex}[Ising: $+$ and $-$ limits]
 Simple examples of thermodynamic limits are so-called $+$ and $-$ states. First, we define, for $\beta>0$, $h\in\R$, $\Lambda\Subset\Z^d$ and $\xi\in\Omega$,
-$$\mu_{\Lambda;\beta,h}^\xi(\omega) ~=~ \1_{\set{\omega_{\Lambda^\c}=\xi_{\Lambda^\c}}}\frac{1}{\ZZ_{\Lambda;\beta,h}^\xi}e^{-\H_{\Lambda;\beta,h}(\omega_\Lambda\xi_{\Lambda^\c})}, \quad \omega\in\Omega.$$
+$$\mu_{\Lambda;\beta,h}^\xi(\omega) ~=~ \1_{\set{\omega_{\Lambda^\c}=\xi_{\Lambda^\c}}}\frac{1}{\ZZ_{\Lambda;\beta,h}^\xi}\exp(-\H_{\Lambda;\beta,h}(\omega_\Lambda\xi_{\Lambda^\c})), \quad \omega\in\Omega.$$
 Thermodynamic limits $\mu_{\beta,h}^{+}$ and $\mu_{\beta,h}^{-}$ are obtained as 
 $$\mu_{\BBB_n;\beta,h}^+\xrightarrow{w}\mu_{\beta,h}^+ \quad\text{and}\quad \mu_{\BBB_n;\beta,h}^-\xrightarrow{w}\mu_{\beta,h}^-,$$
 where $+$ is constant $+1$ and $-$ is constant $-1$. An important question is whether those limits coincide, i.e., if $\mu_{\beta,h}^+=\mu_{\beta,h}^-$ as members of $\M_1(\Omega)$. For $h\neq 0$, the answer is \textit{yes}. However, for $h=0$ and $d\geq 2$, this is no longer the case. For each dimension $d\geq 2$, there exists a critical inverse temperature $\beta_c=\beta_c(d)\in(0,\infty)$ such that for $\beta<\beta_c$ we have $\mu_{\beta,0}^+=\mu_{\beta,0}^-$ (and in fact $|\G_\Omega(\Phi_{\beta,0})|=1$) while for $\beta>\beta_c$ we have $\mu_{\beta,0}^+\neq\mu_{\beta,0}^-$ (so $|\G_{\Omega}(\Phi_{\beta,0})|>1$).
@@ -381,30 +387,50 @@ The right-hand side clearly equals zero, since $|\!\set{x}\!|=1$, yielding the c
 
 % #################################################################################################
 
-\subsection{Renormalisation group pathologies}
+\subsection{Renormalization group pathologies}
 
-We now direct our attention to the source of the questions that inspired the theory which is presented in this thesis. Those can be traced back to the seminal paper of Aernout van Enter, Roberto Fern\'andez and Alan Sokal, carrying the title \textit{Regularity Properties and Pathologies of Position-Space Renormalization-Group Transformations}. \\
+We now redirect our attention back to the source of the questions that inspired the theory which is presented in this thesis, which we have hinted on in the prologue. They can be traced back to the seminal paper of Aernout van Enter, Roberto Fern\'andez and Alan Sokal, carrying the title \textit{Regularity Properties and Pathologies of Position-Space Renormalization-Group Transformations}. \\
 
-\textcolor{blue}{Informally, the problem goes as follows.} Consider (measurable) spaces $\Omega,\Omega'$ of configurations on a (for now) finite volume $\Lambda$ and suppose $\Omega$ is equipped with a probability measure $\mu$. A renormalization-group (RG) map is given as a a probability kernel $T$ from $\Omega$ to $\Omega'$. $T$ can be either a deterministic or a stochastic map.\footnote{In the deterministic case, $T(\pika,\omega')$ corresponds to Dirac measure $\delta_{\omega'}$.} This maps gives us a natural measure $\mu'$ on $\Omega'$, which is given by
+\textcolor{blue}{To refresh, the problem goes -- informally -- as follows.} Consider (measurable) spaces $\Omega,\Omega'$ of configurations on a (for now) finite volume $\Lambda$ and suppose $\Omega$ is equipped with a probability measure $\mu$. A renormalization-group (RG) map is given as a a probability kernel $T$ from $\Omega$ to $\Omega'$. $T$ can be either a deterministic or a stochastic map.\footnote{In the deterministic case, $T(\pika,\omega')$ corresponds to Dirac measure $\delta_{\omega'}$.} This maps gives us a natural measure $\mu'$ on $\Omega'$, which is given by
 $$\mu'(\omega') ~=~ (\mu T)(\omega') ~:=~ \sum_{\omega\in\Omega}\mu(\omega)T(\omega,\omega'), \quad \omega'\in\Omega'.$$
-Note that if $T$ is deterministic, given by a map $\tilde{T}:\Omega\ra\Omega'$, $\mu T$ would correspond to the push-forward measure $\mu\circ \tilde{T}^{-1}$. Thus, the RG map is without a problem defined between measures. In applications, however, an alternative route is usually taken. In particular, one defines the RG map as a map $\RR$ between (suitable) Hamiltonians: given a Hamiltonian $\H$, with which $\mu$ is consistent $(\mu\propto e^{-\H})$, $\RR$ assigns $\H$ the Hamiltonian $\H'$, which corresponds to $\mu'=\mu T$ ($\mu'\propto e^{-\H'}$). In particular, $\H'$ may be obtained via the formula
-$$\H'(\omega') ~=~ (\RR\H)(\omega') ~=~ -\log\sum_{\omega\in\Omega} e^{-\H(\omega)}T(\omega,\omega)' + C,$$
-with $C$ a constant. The interplay between $T$ and $\RR$ is captured in the following diagram:
-$$\begin{tikzcd}
-\H & {\H'} \\
-	\mu & {\mu'}
-	\arrow["\RR", from=1-1, to=1-2]
-	\arrow[from=1-1, to=2-1]
-	\arrow["T"', from=2-1, to=2-2]
-	\arrow[from=2-2, to=1-2]
-\end{tikzcd}$$
-This nice formalism, however, fails to translate when we instead take an infinite volume $\Lambda$, for example $\Z^d$. First clear problem is that there might be several Gibbs measures consistent with $\H$, implying that $\H\mapsto\mu$ is a multi-valued map. \textcolor{purple}{While $\mu'$ can still be defined rather simply,
-$$\mu'(A') ~:=~ \int_\Omega T(\omega,A)\,\d\mu(\omega),$$}
-it yields a new problem, which was \textcolor{purple}{first demonstrated} in \cite{Isr} and widely argued in \cite{EFS} $\mu'$ might fail to be Gibbsian, that is, it might fail to be consistent with any suitable Hamiltonian, yielding that the map $\mu'\mapsto\H'$ might not be defined for all image measures $\mu'$. This led authors of \cite{EFS} to reformulate the formalism, for which several results were proven and many new open questions posed. \\
+Note that if $T$ is deterministic, given by a map $\tilde{T}:\Omega\ra\Omega'$, $\mu T$ would correspond to the push-forward measure $\mu\circ \tilde{T}^{-1}$. Thus, the RG map is without a problem defined between measures. In applications, however, an alternative route is usually taken. In particular, one defines the RG map as a map $\RR$ between (suitable) Hamiltonians: given a Hamiltonian $\H$, with which $\mu$ is consistent $(\mu\propto \exp(-\H))$, $\RR$ assigns $\H$ the Hamiltonian $\H'$, which corresponds to $\mu'=\mu T$ ($\mu'\propto \exp(-\H')$). In particular, $\H'$ may be obtained via the formula
+$$\H'(\omega') ~=~ (\RR\H)(\omega') ~=~ -\log\sum_{\omega\in\Omega} \exp(-\H(\omega))T(\omega,\omega)' + C,$$
+with $C$ a constant; we have already seen the interplay in \textcolor{red}{\texttt{[diagram]}}. Given the formalism presented in the previous chapters, it makes more sense to define $\RR$ between interactions rather than Hamiltonians (though it of course doesn't make any tangible difference). The \textcolor{red}{\texttt{[diagram]}} can thus be restated as follows:
+$$\begin{minipage}{0.5\textwidth}
+\begin{tikzcd}
+    \BB^1(\Omega) \arrow[r, "\RR"] \arrow[d] & \BB^1(\Omega')  \\
+    \G_\Omega \arrow[r, "T"] & \G_{\Omega'} \arrow[u]
+\end{tikzcd}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{tikzcd}
+    \Phi \arrow[r, mapsto, "\RR"] \arrow[d, mapsto] & \Phi' \\
+    \mu \arrow[r, mapsto, "T"] & \mu' \arrow[u, mapsto]
+\end{tikzcd}
+\end{minipage}$$
+where $\G_\Omega=\cap\set{\G_{\Omega}(\Phi):\Phi\in\BB^1(\Omega)}$. \\
+
+This nice formalism, however, fails to translate when we instead take an infinite volume $\Lambda$, for example $\Z^d$. First clear problem that we already mentioned is that there might be several Gibbs measures consistent with $\Phi$, implying that $\Phi\mapsto\mu$ is a multi-valued map and my be more appropriately written as $\Phi\mapsto\G_\Omega(\Phi)$. While $\mu'$ can still be defined rather simply,
+$$\mu'(A') ~:=~ \int_\Omega T(\omega,A')\,\d\mu(\omega),$$
+it yields a new problem, which was \textcolor{purple}{first demonstrated} in \cite{Isr} and widely argued in \cite{EFS}: $\mu'$ might fail to be Gibbsian, that is, it might fail to be consistent with any suitable Hamiltonian (interaction), yielding that the map $\mu'\mapsto\Phi'$ might not be defined for all image measures $\mu'$. In other words, despite being for a long time assumed that $T[\G_\Omega]\subseteq\G_{\Omega'}$, this turned out to not be the case. If $T[\G_\Omega]\not\subseteq\G_{\Omega'}$, it indeed follows that the map $\RR:\Phi\mapsto\Phi'$ is not defined either. This led authors of \cite{EFS} to reformulate the formalism, for which several results were proven and many new open questions posed. \\
+
+While many results proven are not central to the thesis and would require way more theoretical background, we give a taste of reformulated formalism with the new formal definition of the RG map $T$ they proposed:
+\begin{df}
+Consider two single-spin spaces $\A,\A'$, write $\Omega=\A^{\Z^d},\Omega'=(\A')^{\Z^{d}}$ and let $\F,\F'$ be the corresponding $\sigma$-algebras. The RG map $T$ is then such that 
+\begin{itemize}
+	\item[(A1)] $T$ is a probability kernel from $(\Omega,\F)$ to $(\Omega',\F')$.
+	\item[(A2)] If $\mu$ is a translation invariant measure on $\Omega$ ($\mu\in\M_{\mathrm{inv}(\Omega)}$), then $\mu T$ is a translation invariant measure on $\Omega'$ ($\mu T\in\M_{\mathrm{inv}}(\Omega')$).
+	\item[(A3)] $T$ is \textit{strictly local} in position space, with asymptotic compression factor $K<\infty$, in a sense that one has van Hove sequences $(\Lambda_n)_{n\in\N},(\Lambda_n')_{n\in\N}$, so that
+	\begin{itemize}
+		\item[(i)] for each $A'\in\F_{\Lambda_n'}'$, the map $T(\pika,A')$ is $\F_\Lambda$-measurable, i.e., (distribution of) $\omega_{\Lambda_n'}'$ only depends on $\omega_{\Lambda_n}$,
+		\item[(ii)] $\limsup_{n\ra\infty}\frac{|\Lambda_n|}{|\Lambda_n'|}\leq K$.
+	\end{itemize}
+\end{itemize}
+\end{df}
 
 \textcolor{blue}{This thesis in particular is concerned with a established conjecture, stated in the following chapter, regarding the sufficient condition for Gibbsianity of $\mu'$, in a certain deterministic setting, which was already heavily explored in \cite{Ber}.} \\
 
-To conclude this section, we provide two examples of RG transformations, one deterministic (decimation) and one stochastic (majority vote).
+To conclude this section, we revisit the examples given in \textcolor{red}{\texttt{[Example]}}, providing slightly more formal definitions and mentioning some results regarding associated pathologies.
 
 \begin{ex}[Decimation of Ising model]
 Given $\Omega=\Omega'=\set{-1,+1}^{\Z^d}$, consider an integer $b\geq 2$. The decimation map $T=T_b:\Omega\ra\Omega'$ is given so that for $\omega'=T(\omega)$,
@@ -413,16 +439,14 @@ where $b(x_1,\ldots,x_d)=(bx_1,\ldots,bx_d)$. More generally one could also cons
 \end{ex}
 
 \begin{ex}[Majority vote on Ising model]
-Again taking $\Omega=\Omega'=\set{-1,+1}^{\Z^d}$, we consider an integer $b\geq 1$. We now let $\Lambda_*$ be a fixed finite subset of $\Z^d$ (also referred to as \textit{block}) and write $\Lambda_x=\Lambda_*+bx$ for the translations of $\Lambda_*$ by $bx$, that is, $\Lambda_x=\set{bx+y:y\in\Lambda_*}$. The majority vote map (or rather kernel) $T=T_{b,\Lambda_*}$ is given so that for each $x\in\Z^d$,
+Again taking $\Omega=\Omega'=\set{-1,+1}^{\Z^d}$, we consider an integer $b\geq 1$. We now let $B_*$ be a fixed finite subset of $\Z^d$ (also referred to as \textit{block} and usually taken to be a $b\times b$ $d$-cube) and write $B_x=B_*+bx$ for the translations of $B_*$ by $bx$, that is, $B_x=\set{bx+y:y\in B_*}$. The majority vote map (or rather kernel) $T=T_{b,B_*}$ is given so that for each $x\in\Z^d$,
 $$\mathrm{Law}(\omega'(x)) ~=~ \begin{cases}
-\delta_{+1}: ~&\sum_{y\in\Lambda_x}\omega(y)>0, \\
-\frac{1}{2}\delta_{+1}+\frac{1}{2}\delta_{-1}: ~&\sum_{y\in\Lambda_x}\omega(y)=0, \\
-\delta_{-1}: ~&\sum_{y\in\Lambda_x}\omega(y)<0,
+\delta_{+1}: ~&\sum_{y\in B_x}\omega(y)>0, \\
+\frac{1}{2}\delta_{+1}+\frac{1}{2}\delta_{-1}: ~&\sum_{y\in B_x}\omega(y)=0, \\
+\delta_{-1}: ~&\sum_{y\in B_x}\omega(y)<0,
 \end{cases}$$
-that is $\omega'(x)$ equals $+1$ (resp., $-1$) if more sites in $\Lambda_x$ ``vote'' for $+1$ than for $-1$ (resp., more sites ``vote'' for $-1$ than for $+1$), and is decided by a fair coin flip in case of a draw.   It was conjectured in \cite{EFS}, that for \textcolor{purple}{$d=2$} and $b\geq 3$ odd\footnote{Notice that for $b$ odd, a draw cannot occur, so $T$ becomes a deterministic transformation.} (with $\Lambda_*$ a $b\times b$ box), one can always find $\beta_*$ sufficiently large, so that choosing $\beta\geq\beta_*$ results in a non-Gibbsian renormalized measure. This was in fact verified for the case $b=7$, see Theorem 4.5. \textcolor{blue}{\texttt{Any progress since then?}}
+that is $\omega'(x)$ equals $+1$ (resp., $-1$) if more sites in $B_x$ ``vote'' for $+1$ than for $-1$ (resp., more sites ``vote'' for $-1$ than for $+1$), and is decided by a fair coin flip in case of a draw. It was conjectured in \cite{EFS}, that for \textcolor{purple}{$d=2$} and $b\geq 3$ odd\footnote{Notice that for $b$ odd, a draw cannot occur, so $T$ becomes a deterministic transformation.} (with $B_*$ a $b\times b$ box), one can always find $\beta_*$ sufficiently large, so that choosing $\beta\geq\beta_*$ results in a non-Gibbsian renormalized measure. This was in fact verified for the case $b=7$, see Theorem 4.5. \textcolor{blue}{\texttt{Any progress since then?}}
 \end{ex}
-
-\textcolor{blue}{\texttt{Maybe a subsection on formalism from Chapter 3 in \textcolor{red}{\cite{EFS}}?}}
 
 % #################################################################################################
 
@@ -1279,6 +1303,12 @@ For $d\geq 2$, $p_c(d)\in (0,1)$. \textcolor{blue}{\texttt{Some comment that it 
 \bibitem[Geo88]{Geo} H.-O.~Georgii. \textit{Gibbs Measures and Phase Transitions}. Walter de Gruyter \& Co., Berlin (1988).
 
 \bibitem[GHM01]{GHM} H.-O.~Georgii, O.~H\"aggstro\"om, C.~Maes. \textit{The random geometry of equilibrium phases}. Ph.~Transit.~Cirt.~Phenom 18 (2001), 1-142.
+
+\bibitem[Gri81]{Grif} R.B.~Griffiths. \textit{Mathematical properties of renormalization-group transformations}. Physica, 106A (1981), 59-69.
+
+\bibitem[GP78]{GP1} R.B.~Griffiths, P.A.~Pearce. \textit{Position-space renormalization-group transformations: Some proofs and some problems}. Phys.~Rev.~Lett.~41 (1978), 917-920.
+
+\bibitem[GP79]{GP2} R.B.~Griffiths, P.A.~Pearce. \textit{Mathematical properties of position-space renormalization-group transformations}. J.~Stat.~Phys.~20 (1979), 499-545.
 
 \bibitem[Gri06]{Gri} G.R.~Grimmett. \textit{The Random-Cluster Model}. Grundlehren der Mathematischen Wissenschaften, vol.~333. Springer, Berlin (2006).
 
