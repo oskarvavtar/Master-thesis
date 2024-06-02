@@ -25,6 +25,7 @@
  bottom=20mm
 }
 
+
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\B}{\mathcal{B}}
 \renewcommand{\AA}{\mathsf{A}}
@@ -33,6 +34,7 @@
 \newcommand{\AB}{\mathsf{B}}
 \newcommand{\D}{\mathcal{D}}
 \renewcommand{\d}{\mathrm{d}}
+\newcommand{\E}{\mathsf{E}}
 \newcommand{\F}{\mathcal{F}}
 \newcommand{\G}{\mathcal{G}}
 \renewcommand{\H}{\mathcal{H}}
@@ -114,7 +116,7 @@ Oskar Vavtar \\
 % #################################################################################################
 % #################################################################################################
 
-\section{Introduction}
+\section{Introduction}\label{ch:1}
 
 \textcolor{blue}{Blahblahblah}
 
@@ -124,11 +126,11 @@ Oskar Vavtar \\
 
 Statistical mechanics of lattice systems is a significant field of modern physics, often overlapping with probability theory, that aims to study macroscopic properties of microscopic systems -- consisting of enormous amounts of non-independent particles -- whose microscopic interactions one can (probabilistically) describe. Much attention has been given to the critical behaviour of those systems, separating the ``stable'' behaviour from ``non-stable'' one, where one vs.~several phases can coexist, as one varies the parameters of the model (such as temperature, magnetic field, etc.). A simple example is a $d$-dimensional Ising model in the absence of the external magnetic field, in which each ``particle'' can assume value either $+1$ or $-1$. This allows us to study it as a model on the set of configurations $\set{-1,+1}^{\Lambda}$, where $\Lambda\subseteq\Z^d$. If $\Lambda$ is finite, each configuration $\omega$ can be assigned energy
 $$\H(\omega) ~=~ -\beta\sum_{x\sim y}\omega(x)\omega(y),$$
-where the sum is over all neighbours in $\Lambda$ (w.r.t.~the nearest-neighbour lattice structure of $\Z^d$) and the quantity $\beta$ represents the inverse temperature. Such function $\H:\set{-1,+1}^{\Lambda}\ra\R$ is called a \textit{Hamiltonian}. Those configurations are assumed to be random and hence one wants to describe their underlying distribution. A key observation is that such physical systems tend to assume configurations with less energy, so a natural choice (also due to some other deeper reasons) of probability distribution is such that each configuration $\omega$ is assigned probability proportional to $\exp(-\H(\omega))$; such measure is defined unambiguously. Problems arise when one wants to consider a similar method for an infinite $\Lambda$, usually $\Z^d$ itself. While one can still obtain a probability measure, that is appropriately consistent with $\H$ in the desired way, the uniqueness of such measure is no longer guaranteed. This is not only a mathematical bug, but reflects very concrete physical properties of the system -- if several consistent probability distributions exist, we say that the system exhibits a phase transition. For example, it has been shown that for the Ising model on $\Z^d$, $d\geq 2$, there's a critical inverse temperature $\beta_c(d)\in(0,\infty)$ so that there's unique such measure for any $\beta<\beta_c(d)$ and several such measures for any $\beta>\beta_c(d)$; for $d=2$, it is known that $\beta_c(2)=\frac{1}{2}\log(1+\sqrt{2})$, while the exact value \textcolor{purple}{remains unknown for $d\geq 3$}. \\
+where the sum is over all neighbours in $\Lambda$ (w.r.t.~the nearest-neighbour lattice structure of $\Z^d$) and the quantity $\beta$ represents the inverse temperature. Such function $\H:\set{-1,+1}^{\Lambda}\ra\R$ is called a \textit{Hamiltonian}. Those configurations are assumed to be random and hence one wants to describe their underlying distribution. A key observation is that such physical systems tend to assume configurations with less energy, so a natural choice (also due to some other deeper reasons) of probability distribution is such that each configuration $\omega$ is assigned probability proportional to $\exp(-\H(\omega))$; such measure is defined unambiguously. Problems arise when one wants to consider a similar method for an infinite $\Lambda$, usually $\Z^d$ itself. While one can still obtain a probability measure, that is appropriately consistent with $\H$ in the desired way, the uniqueness of such measure is no longer guaranteed. This is not only a mathematical bug, but reflects very concrete physical properties of the system -- if several consistent probability distributions exist, we say that the system exhibits a phase transition. For example, it has been shown that for the Ising model on $\Z^d$, $d\geq 2$, there's a critical inverse temperature $\beta_c(d)\in(0,\infty)$ so that there's unique such measure for any $\beta<\beta_c(d)$ and several such measures for any $\beta>\beta_c(d)$; for $d=2$, it is known that $\beta_c(2)=\frac{1}{2}\log(1+\sqrt{2})$, while the exact value remains unknown for $d\geq 3$. \\
 
-While the problem of coexistence of several such measures only comes to light in infinite volume, the effects of a high enough $\beta$ already become noticeable in finite volume. In particular, for a high enough $\beta$, the correlations associate with the distribution can be infinite (i.e., only bounded through geometry of the volume). This means, that a flip of a spin on an arbitrary location can influence spins on locations arbitrarily far away. This is rather impractical from the physicist's point of view, as it complicates the analysis of the model at different scales. Despite that, physicists came up with a clever solution on how to deal with this. Instead of considering each spin location $x\in\Lambda$ individually, one partitions $\Lambda$ into $b\times\ldots\times b=b^d$ blocks and considers each of them as one individual super-spin; a block $B$ can be seen as a point in alternative volume $\Lambda'$ (this can be done in several different ways and depends on specifics of the model). Moreover, one defines a ``rule'' $T$, that produces a new configuration $\omega'$, so that for each block $B\in\Lambda'$, $\omega'(B)$ depends (deterministically or stochastically) on $\omega_B=\set{\omega(x):x\in B}$. More formally, $T$ can be seen as a probability kernel $T:\set{-1,+1}^{\Lambda}\times\set{-1,+1}^{\Lambda'}\ra[0,1]$ (see \textcolor{red}{\texttt{[Appendix]}}). Below we give two examples of such rules:
+While the problem of coexistence of several such measures only comes to light in infinite volume, the effects of a high enough $\beta$ already become noticeable in finite volume. In particular, for a high enough $\beta$, the correlations associate with the distribution can be infinite (i.e., only bounded through geometry of the volume). This means, that a flip of a spin on an arbitrary location can influence spins on locations arbitrarily far away. This is rather impractical from the physicist's point of view, as it complicates the analysis of the model at different scales. Despite that, physicists came up with a clever solution on how to deal with this. Instead of considering each spin location $x\in\Lambda$ individually, one partitions $\Lambda$ into $b\times\ldots\times b=b^d$ blocks and considers each of them as one individual super-spin; a block $B$ can be seen as a point in alternative volume $\Lambda'$ (this can be done in several different ways and depends on specifics of the model). Moreover, one defines a ``rule'' $T$, that produces a new configuration $\omega'$, so that for each block $B\in\Lambda'$, $\omega'(B)$ depends (deterministically or stochastically) on $\omega_B=\set{\omega(x):x\in B}$. More formally, $T$ can be seen as a probability kernel $T:\set{-1,+1}^{\Lambda}\times\set{-1,+1}^{\Lambda'}\ra[0,1]$ (see Appendix \ref{app:1}). Below we give two examples of such rules:
 
-\begin{ex}
+\begin{ex}\label{RG:example}
 ~
 \begin{itemize}
 	\item[(1)] \textit{Decimation} rule simply forgets all but one of the spin values in $B$, and assigns the value of the one left as the value of the super-spin. In other words, if given $x\in\Z^d$, one has $B_x=\prod_{i=1}^d \set{b x_i,b x_i+1,\ldots,b x_i+(b-1)}=bx+\set{0,\ldots,b-1}^d$, then it is customary to assign
@@ -137,7 +139,7 @@ While the problem of coexistence of several such measures only comes to light in
 \end{itemize}
 \end{ex}
 
-\textcolor{blue}{\texttt{[PICTURES?]}} \\
+\textcolor{blue}{\texttt{[TikZ in the making]}} \\
 
 As one then studies configurations $\omega'$ rather than $\omega$, one should ask questions about the distribution of $\mu'$. In finite volume this can be done in one of two ways:
 \begin{itemize}
@@ -150,12 +152,12 @@ As one then studies configurations $\omega'$ rather than $\omega$, one should as
 \end{itemize}
 
 As all the maps between $\mu$, $\mu'$, $\H$ and $\H'$ are well defined, one can switch working between Hamiltonians and associated measures, as suggested by the diagram below:
-$$
+\begin{equation}\label{RGdiagram}
 \begin{tikzcd}
     \H \arrow[r, mapsto, "\RR"] \arrow[d, mapsto] & \H' \\
     \mu \arrow[r, mapsto, "T"] & \mu' \arrow[u, mapsto]
 \end{tikzcd}
-$$
+\end{equation}
 
 As the infinite volume case is plagued with at least as much technical difficulties as the finite volume one, one might want to use a similar technique on the general $\Z^d$ setting. However, the situation does not remain as straightforward as in the setting described above: one can no longer freely switch between working with Hamiltonians and associated measures. First obvious issue is the possible coexistence of several infinite volume measures $\mu$ consistent with $\H$; in this case, the map $\H\mapsto\mu$ is multi-valued. Despite this, one can still formally define the map $\mu\mapsto\mu'$, to which we will return later. \\
 
@@ -167,9 +169,9 @@ It is precisely this conjecture that is central to this thesis. Before we contin
 
 \subsection{Preliminaries: interactions, Hamiltonians and Gibbs measures}
 
-As mentioned before, the central aim of statistical mechanics is to provide a probabilistic description of microscopic physical phenomena. In particular one aims to study a collection of particles (often infinite), indexed in some lattice $\L$ and each taking values in some set $\A_x$, $x\in\L$, called the \textit{(single-)spin space}, which we will assume to be finite.\footnote{In general, one can take $\A$ to be infinite, even uncountable (e.g., $\R^d$).} Each manifestation of this macroscopic system corresponds to a (random) configuration in $\Omega=\prod_{x\in\L}\A_x$; often we will assume that the system is homogeneous, i.e., $\Omega=\A^{\L}$. In order to talk about randomness, we have to consider probability distributions on $\Omega$; we will write $\M_1(\Omega)$ for the set of probability measures on $\Omega$ (or rather $(\Omega,\F)$, where $\F$ is the  corresponding $\sigma$-algebra, \textcolor{purple}{generated by the cylinder sets}). One often calls those measures \textit{random fields}. \\
+As mentioned before, the central aim of statistical mechanics is to provide a probabilistic description of microscopic physical phenomena. In particular one aims to study a collection of particles (often infinite), indexed in some lattice $\L$ and each taking values in some set $\A_x$, $x\in\L$, called the \textit{(single-)spin space}, which we will assume to be finite.\footnote{In general, one can take $\A$ to be infinite, even uncountable (e.g., $\R^d$).} Each manifestation of this macroscopic system corresponds to a (random) configuration in $\Omega=\prod_{x\in\L}\A_x$; often we will assume that the system is homogeneous, i.e., $\Omega=\A^{\L}$. In order to talk about randomness, we have to consider probability distributions on $\Omega$; we will write $\M_1(\Omega)$ for the set of probability measures on $\Omega$ (or rather $(\Omega,\F)$, where $\F$ is the  corresponding $\sigma$-algebra, generated by cylinder sets). One often calls those measures \textit{random fields}. \\
 
-There is however a particular class of probability measures that are of interest, called \textit{Gibbs measures}, which we will start introducing formally in a moment, but not before giving some intuitive but \textit{very} informal description. Generally, we assume that the particles interact in some sense, which contributes some (positive or negative) energy. If some configuration carries energy $\H(\omega)$, then the Gibbs measure (consistent with $\H$) would assign $\omega$ a probability proportional to $\exp(-\H(\omega))$. Intuitively, Gibbs measures award configurations with low energy and penalize configurations with high energy. 
+There is however a particular class of probability measures that are of interest, called \textit{Gibbs measures}, which we will start introducing formally in a moment, but not before giving some intuitive but \textit{very} informal description. Generally, we assume that the particles interact in some sense, which contributes some (positive or negative) energy. If some configuration $\omega$ carries energy $\H(\omega)$, then the Gibbs measure (consistent with $\H$) would assign $\omega$ a probability proportional to $\exp(-\H(\omega))$. Intuitively, Gibbs measures award configurations with low energy and penalize configurations with high energy. 
 
 % *************************************************************************************************
 
@@ -183,7 +185,7 @@ Often studied are the \textit{nearest-neighbour} interactions. If $\L$ is a (not
 
 The total energy of the systems is then obtained by summing up energies of all subsets:
 $$\H(\omega) ~=~ \sum_{\Lambda\subseteq \L}\Phi_\Lambda(\omega), \quad \omega\in\Omega.$$
-We call the function $\H=\H^\Phi$ a \textit{Hamiltonian} consistent with $\Phi$. As already suggested above, the Gibbs measure $\mu=\mu^\Phi$ is then defined so that
+We call the function $\H=\H^\Phi$ a \textit{Hamiltonian} consistent with $\Phi$. As already suggested above, the Gibbs measure $\mu=\mu^\Phi$ is then defined as
 $$\mu(\omega) ~=~ \frac{1}{\ZZ}\exp(-\H(\omega)), \quad \omega\in\Omega,$$
 where $\ZZ=\ZZ^\Phi$ is called the \textit{partition function} and is given by $\ZZ ~=~ \sum_{\omega\in\Omega}\exp(-\H(\omega)).$ In this finite volume setting, Gibbs measures also often called \textit{Gibbs canonical ensembles.} \\
 
@@ -193,7 +195,7 @@ While from probabilistic point of view, this may be interesting enough model, it
 
 \subsubsection{Formal definition, part 2: infinite volume setting}
 
-In practice, one often wishes to consider $\L$ to be an infinite lattice. Unfortunately, the construction presented in the previous section doesn't translate to this setting, as the Hamiltonian \textcolor{blue}{would correspond to a infinite sum and hence the Gibbs measure wouldn't be well defined.} We thus have to consider an alternative construction of Gibbs measures in infinite volumes. The most intuitive approach perhaps appears to be to construct them as (weak) limits of measures from the previous section, as finite volumes increase to $\L$ in a suitable sense. This indeed is a valid idea: one can construct infinite-volume Gibbs measures in this way and those measures form an import class. However, it is not the entire story. We will now proceed to define (repeating some already mentioned notions) a more general notion of infinite-volume Gibbs measures, which includes all such limit measures as well as other ones. \\
+In practice, one often wishes to consider $\L$ to be an infinite lattice. Unfortunately, the construction presented in the previous section doesn't translate to this setting, as the Hamiltonian would correspond to an infinite sum and hence the Gibbs measure generally wouldn't be well defined. We thus have to consider an alternative construction of Gibbs measures in infinite volumes. The most intuitive approach perhaps appears to be to construct them as (weak) limits of measures from the previous section, as finite volumes increase to $\L$ in a suitable sense. This indeed is a valid idea: one can construct infinite-volume Gibbs measures in this way and those measures form an import class. However, it is not the entire story. We will now proceed to define (repeating some already mentioned notions) a more general notion of infinite-volume Gibbs measures, which includes all such limit measures as well as other ones. \\
 
 From now on we restrict ourselves to $\L=\Z^d$. In the rest of the thesis, we will only consider $\L$ to be either $\Z^d$ or some subset of it. Moreover, given $\omega\in\Omega$ and $\Lambda\subseteq\Z^d$, we write $\omega_\Lambda:=\omega|_\Lambda$ as well as $\Omega_\Lambda:=\prod_{x\in\Lambda}\A_x$, so that $\omega_\Lambda\in\Omega_\Lambda$, and $\F_\Lambda$ for the (corresponding) $\sigma$-algebra on $\Omega_\Lambda$, generated by the cylinders on subsets of $\Lambda$.\footnote{The advantage of directly selecting $\omega_\Lambda$ from $\Omega_\Lambda$, rather than $\omega$ from $\Omega$ and just restricting it, is that for $\Lambda\Subset\Z^d$ one has $|\Omega_\Lambda|<\infty$, which allows for finite sums.} Also, given another $\tilde{\omega}\in\Omega$, we write $$[\omega_\Lambda\tilde{\omega}_\Lambda](x) ~:=~ \begin{cases}
 \omega(x): ~&x\in\Lambda,\\
@@ -204,19 +206,18 @@ From now on we restrict ourselves to $\L=\Z^d$. In the rest of the thesis, we wi
 \begin{itemize}
 	\item[(1)] An \textit{interaction} is a collection of maps $\Phi=\{\Phi_\Lambda:\Lambda\Subset\Z^d\}$, such that
 $$\Phi_\Lambda(\omega) ~=~ \Phi_\Lambda(\omega_\Lambda), \quad \omega\in\Omega,$$
-that is, $\Phi_\Lambda$ depends on $\omega$ only through its values in $\Lambda$. We say that $\Phi$ is \textit{uniformly absolutely convergent} (write $\Phi\in\BB^1(\Omega)$) if 
+that is, $\Phi_\Lambda$ depends on $\omega$ only through its values in $\Lambda$. We say that $\Phi$ is \textit{uniformly absolutely convergent} (UAC) if 
 $$\|\Phi\| ~:=~ \sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Z^d}}\|\Phi_\Lambda\|_\infty ~<~ \infty$$
 and write $\BB^1(\Omega)$ for the collection of all UAC interactions on $\Omega$.
 	\item[(2)] For $\Phi\in\BB^1(\Omega)$, we define a corresponding collection of Hamiltonians $\H^\Phi=\set{\H_\Lambda^\Phi:\Lambda\Subset\Z^d}$, given by
 	$$\H_\Lambda^\Phi(\omega) ~=~ \sum_{\substack{\Delta\Subset\Z^d:\\\Delta\cap\Lambda\neq\emptyset}}\Phi_\Lambda(\omega), \quad \omega\in\Omega.$$
-	\textcolor{blue}{Add definition of quasilocal Hamiltonian?}
 	\item[(3)] For $\Phi\in\BB^1(\Omega)$, we define a \textit{specification} as a collection $\gamma^\Phi=\set{\gamma_\Lambda^\Phi:\Lambda\Subset\Z^d}$ via
 	$$\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\Lambda^\c}) ~=~ \frac{1}{\ZZ_\Lambda^{\Phi,\omega}}\exp(-\H_\Lambda^\Phi(\tilde{\omega}_\Lambda\omega_{\Lambda^\c})), \quad \omega,\tilde{\omega}\in\Omega,$$
 	where $\ZZ_\Lambda^{\Phi,\omega}=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp(-\H_\Lambda^\Phi(\tilde{\omega}_\Lambda\omega_{\Lambda^\c}))$.
 \end{itemize}
 \end{df}
 
-\begin{rem}
+\begin{rem}\label{rem:specification}
 Formally, $\gamma^\Phi$ should be seen as a collection of probability kernels, where for each $\Lambda\Subset\Z^d$, $\gamma_\Lambda^\Phi:\F_\Lambda\times\Omega_{\Lambda^\c}\ra(0,1)$, so $\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\Lambda^\c})$ should be actually read as $\gamma_\Lambda^{\Phi}(\set{\tilde{\omega}_\Lambda}|\omega_{\Lambda^\c})$. The probability of a general $A\in\F_\Lambda$ is now given by
 $$\gamma_\Lambda^\Phi(A|\omega_{\Lambda^\c}) ~=~ \sum_{\tilde{\omega}_\Lambda\in A}\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\Lambda^\c}).$$
 The corresponding expectation is given for suitable $f:\Omega\ra\R$ by
@@ -224,23 +225,23 @@ $$\gamma_\Lambda^\Phi[f|\omega_{\Lambda^\c}] ~=~ \sum_{\tilde{\omega}_\Lambda\in
 In further generality, we may call \textit{a specification} any collection of probability kernels $\gamma=\set{\gamma_\Lambda:\Lambda\Subset\Z^d}$ such that for each $\Lambda\Subset\Z^d$
 \begin{itemize}
 	\item and  $A\in\F_{\Lambda}$, $\omega\mapsto\gamma(A|\omega)$ is $\F_{\Lambda^\c}$-measurable,
-	\item $\gamma_\Lambda(A|\pika)=\1_A$ for each \textcolor{purple}{$A\in\F_\Lambda$},
+	\item $\gamma_\Lambda(A|\pika)=\1_A$ for each $A\in\F_{\Lambda^\c}$,
 	\item and $\Delta\subset\Lambda$, $\int \gamma_\Delta(A|\omega')\,\gamma_\Lambda(\d\omega'|\omega)=\gamma_\Lambda(A|\omega)$.
 \end{itemize}
 \end{rem}
 
 Finally, after introducing all this notions, we are able to formally define the infinite-volume Gibbs measures, using a very natural definition.
 
-\begin{df}
+\begin{df}[Infinite volume Gibbs measure]\label{def:DLR}
 A probability measure $\mu\in\M_1(\Omega)$ is said to be a Gibbs measure consistent with $\Phi\in\BB^1(\Omega)$, if it is consistent with $\gamma^\Phi$, that is, if for each $\Lambda\Subset\Z^d$ we have
 $$\mu(\omega_\Lambda|\omega_{\Lambda^\c}) ~=~ \gamma_\Lambda^\Phi(\omega_\Lambda|\omega_{\Lambda^\c}) \quad~\text{for}~\mu\text{-a.a.}~\omega\in\Omega.\footnote{The notation $\mu(a_\Lambda|b_{\Lambda^\c})$ should be read as $\mu(a~\text{on}~\Lambda|b~\text{off}~\Lambda)$.}$$
 We write $\G_\Omega(\Phi)$ for the set of all Gibbs measure on $\Omega$ consistent with $\Phi$. Alternatively, if our main reference is a specification $\gamma$ or a collection of Hamiltonians $\H$, we may also write $\G_\Omega(\gamma)$ or $\G_\Omega(\H)$, so in our notation $\G_\Omega(\Phi)$, $\G_\Omega(\H^\Phi)$ and $\G_\Omega(\gamma^\Phi)$ would refer to the same thing.
 \end{df}
 
-\begin{rem}
+\begin{rem}\label{Rem:DLR}
 ~
 \begin{itemize}
-	\item[(i)] Equivalently, one could define $\mu$ to be Gibbs for $\gamma$ if for each $\Lambda\Subset\Z^d$ and $f\in C(\Omega,\R)$ one has
+	\item[(i)] Equivalently, one could define $\mu$ to be Gibbs w.r.t.~specification $\gamma$ if for each $\Lambda\Subset\Z^d$ and $f\in C(\Omega)$ one has
 	$$\int f\,\d\mu ~=~ \int\gamma_\Lambda[f|\omega_{\Lambda^\c}]\,\d\mu(\omega).$$
 	\item[(ii)] For each $\Phi\in\BB^1(\Omega)$, $\G_\Omega(\Phi)\neq\emptyset$.
 \end{itemize}
@@ -249,13 +250,13 @@ We write $\G_\Omega(\Phi)$ for the set of all Gibbs measure on $\Omega$ consiste
 \begin{ex}[Ising model]
 One of the most classical models in statistical mechanics is the Ising model, concerned with (ferro)magnetism. It is an example of a nearest-neighbour model with $\A=\set{-1,+1}$, where the Hamiltonian corresponding to a finite volume $\Lambda\Subset\Z^d$ is given by
 $$\H_{\Lambda;\beta,h}(\omega) ~=~ -\beta\!\!\!\!\!\!\!\sum_{\substack{x\sim y:\\x\in\Lambda~\text{or}~y\in\Lambda\\}}\!\!\!\!\!\!\!\omega(x)\omega(y) + h\sum_{x\in\Lambda}\omega(x),$$
-though one often writes ``$2\1_{\set{\omega(x)=\omega(y)}}-1$'' instead of ``$\omega(x)\omega(y)$'', the latter ceasing to be suitable in case of choosing alternative $\A$ (such as $\set{0,1}$ for example). The parameters $\beta\geq 0$ and $h\in\R$ represent the \textit{inverse temperature} and the \textit{external field}, respectively. Thus, considering a boundary condition $\xi\in\Omega$, the probability of configuration agreeing with $\omega$ on $\Lambda$, conditional on it agreeing with $\xi$ outside $\Lambda^c$, given by
+though one often writes ``$2\1_{\set{\omega(x)=\omega(y)}}-1$'' instead of ``$\omega(x)\omega(y)$'', as the latter ceases to be suitable in case one chooses an alternative $\A$ (such as $\set{0,1}$ for example). The parameters $\beta\geq 0$ and $h\in\R$ represent the \textit{inverse temperature} and the \textit{external field}, respectively. Thus, considering a boundary condition $\xi\in\Omega$, the probability of configuration agreeing with $\omega$ on $\Lambda$, conditional on it agreeing with $\xi$ outside $\Lambda^c$, given by
 $$\gamma_{\Lambda;\beta,h}(\omega_\Lambda|\xi_{\Lambda^\c}) ~=~ \frac{1}{\ZZ_{\Lambda;\beta,h}^\xi}\exp(-\H_{\Lambda;\beta,h}(\omega_\Lambda\xi_{\Lambda^\c})),$$
 where $\ZZ_{\Lambda;\beta,h}^\xi=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp(-\H_{\Lambda;\beta,h}(\tilde{\omega}_\Lambda\xi_{\Lambda^\c}))$, only depends on the boundary condition through vertices that are adjacent to some vertex in $\Lambda$, i.e., are touching the boundary. This is in fact a general property of nearest-neighbour models.
 \end{ex}
 
-Very important is the following characterization of Gibbs measures:
-\begin{prop}
+Very important is the following characterization of Gibbs measures, which is often used to prove Gibbsianity of concrete measures.
+\begin{prop}\label{DLR:equiv}
 ~
 \begin{itemize}
 	\item[(i)] Let $\Phi\in\BB^1(\Omega)$. Then $\gamma^\Phi$ has the following two properties:
@@ -265,7 +266,7 @@ Very important is the following characterization of Gibbs measures:
 			\item \textit{quasilocality}: writing $\BBB_n=[-n,n]^d\cap\Z^d$ for $n\in\N$, for every $\Lambda\Subset\Z^d$ one has
 			$$\sup_{\omega,\tilde{\omega}\in\Omega}\sup_{\xi,\zeta\in\Omega}|\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\BBB_n\setminus\Lambda}\xi_{\BBB_n^\c\setminus\Lambda})-\gamma_\Lambda^\Phi(\tilde{\omega}_\Lambda|\omega_{\BBB_n\setminus\Lambda}\zeta_{\BBB_n^\c\setminus\Lambda})| ~\xrightarrow{n\ra\infty}~ 0.$$
 		\end{itemize}
-		\item[(ii)] Let $\mu$ be a fully supported Borel probability measure on $\Omega$. If there exists a specification (in the sense of \textcolor{red}{\texttt{[Remark]}}) which is uniformly non-null, quasilocal and with which $\mu$ is consistent (in the sense of \textcolor{red}{\texttt{[Definition]}}), then there exists some $\Phi\in\BB^1(\Omega)$ so that $\mu\in\G_\Omega(\Phi)$.
+		\item[(ii)] Let $\mu$ be a fully supported Borel probability measure on $\Omega$. If there exists a specification (in the sense of Remark \ref{rem:specification}) which is uniformly non-null, quasilocal and with which $\mu$ is consistent (in the sense of Definition \ref{def:DLR}/Remark \ref{Rem:DLR}), then there exists some $\Phi\in\BB^1(\Omega)$ so that $\mu\in\G_\Omega(\Phi)$.
 		
 \end{itemize}
 \end{prop}
@@ -274,7 +275,7 @@ Very important is the following characterization of Gibbs measures:
 
 \subsubsection{Coexistence of several Gibbs measures}
 
-While the result in \textcolor{red}{\texttt{[Remark]}}(ii) tells us that for an UAC interaction, there's always a Gibbs measure, it tells us nothing else about the cardinality in $\G_\Omega(\Phi)$: in particular it doesn't guarantee that there's only one. In fact several Gibbs measures consistent with the same interaction may exist; in this case, we say that the system has a \textit{phase transition}. Given a model with some parameter(s), an important question is for which parameter values there's only one Gibbs measure and for which parameter there's several. \\
+While the Remark \ref{Rem:DLR}.(ii) tells us that for an UAC interaction, there's always a Gibbs measure, it tells us nothing else about the cardinality in $\G_\Omega(\Phi)$: in particular it doesn't guarantee that there's only one. In fact several Gibbs measures consistent with the same interaction may exist; in this case, we say that the system has a \textit{phase transition}. Given a model with some parameter(s), an important question is for which parameter values there's only one Gibbs measure and for which parameter there's several. \\
 
 We begin by introducing the most intuitive method of defining infinite volume Gibbs measure, which was already hinted on earlier, using the weak limits. Gibbs measures obtained in this way are often referred to as \textit{thermodynamic limits (of finite volume Gibbs measures)}. Despite definition being straightforward, it requires us to first introduce some technical notions, which will be used throughout the thesis:
 
@@ -285,55 +286,49 @@ We begin by introducing the most intuitive method of defining infinite volume Gi
 	\begin{itemize}
 		\item[(i)] it is \textit{increasing}: $\Lambda_n\subset\Lambda_{n+1}$ for each $n\in\N$,
 		\item[(ii)] it \textit{invades} $\Z^d$: $\bigcup_{n\geq 1}\Lambda_n=\Z^d$, and
-		\item[(iii)] $\lim_{n\ra\infty}\frac{|\partial\Lambda_n|}{|\Lambda_n|}=0$, where $\partial \Lambda=\set{x\in\Lambda^\c:\exists y\in\Lambda,x\sim y}$
+		\item[(iii)] $\lim_{n\ra\infty}\frac{|\partial\Lambda_n|}{|\Lambda_n|}=0$, where $\partial \Lambda=\set{x\in\Lambda^\c:\exists y\in\Lambda,x\sim y}$.
 	\end{itemize}
 	We denote van Hove convergence by $\Lambda_n\Uparrow\Z^d$.
 	\item[(2)] A function $f:\Omega\ra\R$ is said to be \textit{local} if there's $\Delta\Subset\Z^d$, such that for any choice of $\omega,\tilde{\omega}\in\Omega$, 
 	$$\omega(x)=\tilde{\omega}(x)~\forall x\in\Delta ~\Longrightarrow~ f(\omega)=f(\tilde{\omega}).$$
-	We sometimes write $\supp(f)$ for the minimal such $\Delta$. We denote the collection of all local functions $f:\Omega\ra\R$ by $\Loc(\Omega)$.
+	We sometimes write $\supp(f)$ (or by abuse of notation, $\D_f$) for the minimal such $\Delta$. We denote the collection of all local functions $f:\Omega\ra\R$ by $\Loc(\Omega)$.
 	\item[(c)] Given (probability) measures $\mu,\mu_1,\mu_2,\ldots$ on $\Omega$, we say that $(\mu_n)_{n\in\N}$ converges \textit{weakly} to $\mu$, writing $\mu_n\xrightarrow{w}\mu$, if
 	$$\int_\Omega f\,\d\mu_n ~\ra~ \int_\Omega f\,\d\mu, \quad \forall f\in\Loc(\Omega).$$
 \end{itemize}
 \end{df}
 
 The definitions then goes as follows:
-\textcolor{purple}{
-\begin{df}
+
+\begin{df}[Thermodynamic-limit Gibbs measure]
 We say that $\mu$ is a thermodynamic-limit Gibbs measure for $\Phi\in\BB^1(\Omega)$, if there exists a boundary condition $\xi\in\Omega$, such that
 $$\gamma_{\Lambda_n}^\Phi(\pika|\xi_{\Lambda^\c}) ~\xrightarrow{w}~ \mu \quad \text{as}~n\ra\infty,$$
 for arbitrary van Hove sequence $(\Lambda_n)_{n\in\N}$.
 \end{df}
-}
 
-\begin{rem}
-The notation in the above definition is slightly dishonest, in terms of what $\gamma_\Lambda^\Phi$ is supposed to represent, though conceptually is ``correct enough'' to allow for an abuse of notation. While is supposed to be a probability measure on $\Omega$, we have seen that given $\Lambda\Subset\Z^d$ and $\xi\in\Omega$ fixed, $\gamma_\Lambda^\Phi(\pika|\xi_{\Lambda^\c})$ is a probability measure on $\Omega_\Lambda$, so one could argue that the weak limit in the above definition technically speaking does not make sense. The formal way to correct it would be to define, for each $\Lambda\Subset\Z^d$ and $\xi\in\Omega$ a measure $\mu_\Lambda^\xi=\mu_\Lambda^{\Phi,\xi}$ given by
+\begin{rem}\label{rem:InfVol}
+The notation in the above definition is slightly dishonest, in terms of what $\gamma_\Lambda^\Phi$ is supposed to represent, though conceptually is ``correct enough'' to allow for the abuse of notation. While ``$\mu_n$'' is supposed to be a probability measure on $\Omega$, we have seen that given $\Lambda\Subset\Z^d$ and $\xi\in\Omega$ fixed, $\gamma_\Lambda^\Phi(\pika|\xi_{\Lambda^\c})$ is a probability measure on $\Omega_\Lambda$, so one could argue that the weak limit in the above definition technically speaking does not make sense. The formal way to correct it would be to define, for each $\Lambda\Subset\Z^d$ and $\xi\in\Omega$ a measure $\mu_\Lambda^\xi=\mu_\Lambda^{\Phi,\xi}$ given by
 $$\mu_\Lambda^\xi(\omega) ~=~ \1_{\set{\omega_{\Lambda^\c}=\xi_{\Lambda^\c}}}\gamma_\Lambda^\Phi(\omega_\Lambda|\xi_{\Lambda^\c}), \quad \omega\in\Omega,$$
-which is indeed a probability measure on $\Omega$ (while still in a sense ``supported'' on $\Omega_\Lambda$, as $\supp(\mu_\Lambda^\xi)=\Omega_\Lambda\times\set{\xi_{\Lambda^\c}}$), so the weak limit in the definition above indeed makes sense.
+which is indeed a probability measure on $\Omega$ (while still in a sense ``supported'' on $\Omega_\Lambda$, in the sense that $\supp(\mu_\Lambda^\xi)=\Omega_\Lambda\times\set{\xi_{\Lambda^\c}}$), so the weak limit in the definition above indeed makes sense.
 \end{rem}
 
 \begin{ex}[Ising: $+$ and $-$ limits]
-Simple examples of thermodynamic limits are so-called $+$ and $-$ states. First, we define, for $\beta>0$, $h\in\R$, $\Lambda\Subset\Z^d$ and $\xi\in\Omega$,
+Simple examples of thermodynamic limits are so-called $+$ and $-$ states in Ising model. First, we define, for $\beta>0$, $h\in\R$, $\Lambda\Subset\Z^d$ and $\xi\in\Omega$,
 $$\mu_{\Lambda;\beta,h}^\xi(\omega) ~=~ \1_{\set{\omega_{\Lambda^\c}=\xi_{\Lambda^\c}}}\frac{1}{\ZZ_{\Lambda;\beta,h}^\xi}\exp(-\H_{\Lambda;\beta,h}(\omega_\Lambda\xi_{\Lambda^\c})), \quad \omega\in\Omega.$$
 Thermodynamic limits $\mu_{\beta,h}^{+}$ and $\mu_{\beta,h}^{-}$ are obtained as 
 $$\mu_{\BBB_n;\beta,h}^+\xrightarrow{w}\mu_{\beta,h}^+ \quad\text{and}\quad \mu_{\BBB_n;\beta,h}^-\xrightarrow{w}\mu_{\beta,h}^-,$$
 where $+$ is constant $+1$ and $-$ is constant $-1$. An important question is whether those limits coincide, i.e., if $\mu_{\beta,h}^+=\mu_{\beta,h}^-$ as members of $\M_1(\Omega)$. For $h\neq 0$, the answer is \textit{yes}. However, for $h=0$ and $d\geq 2$, this is no longer the case. For each dimension $d\geq 2$, there exists a critical inverse temperature $\beta_c=\beta_c(d)\in(0,\infty)$ such that for $\beta<\beta_c$ we have $\mu_{\beta,0}^+=\mu_{\beta,0}^-$ (and in fact $|\G_\Omega(\Phi_{\beta,0})|=1$) while for $\beta>\beta_c$ we have $\mu_{\beta,0}^+\neq\mu_{\beta,0}^-$ (so $|\G_{\Omega}(\Phi_{\beta,0})|>1$).
 \end{ex}
 
-\textcolor{purple}{
-\begin{rem}
-Using the same procedure, we may also define non-Gibbs thermodynamic-limit measures, using a more general specificaiton $\gamma$ (in the sense of \textcolor{red}{\texttt{[Remark]}}), not necessarily as configurations on vertices (but for example on edges, as will be seen later, in \textcolor{red}{\texttt{[Chapter 3]}}).
-\end{rem}
-}
+We now turn our attention to the general notion on Gibbs measures, as defined in Definition \ref{def:DLR}, which are often referred to as the \textit{DLR Gibbs measures}, named after Dobrushin, Lanford and Ruelle. Spaces of DLR Gibbs measures (from now on just Gibbs measures) do indeed carry some nice properties:
 
-We now turn our attention to the general notion on Gibbs measures, as defined in \textcolor{red}{\texttt{[Definition]}}, which are often referred to as the \textit{DLR Gibbs measures}, named after Dobrushin, Lanford and Ruelle. Spaces of DLR Gibbs measures (from now on just Gibbs measures) do indeed carry some nice properties:
-\begin{prop}
+\begin{prop}\label{DLR:properties}
 Let $\Phi\in\BB^1(\Omega)$.
 \begin{itemize}
 	\item[(i)] $\G_\Omega(\Phi)$ is convex.
 	\item[(ii)] Extremal measures of $\G_\Omega(\Phi)$ (denoted by $\extr(\G_\Omega(\Phi))$) are mutually singular.
 	\item[(iii)] For each $\mu\in\extr(\G_\Omega(\Phi))$,
 	$$\gamma_{\BBB_n}^\Phi(\pika|\omega) ~\xrightarrow{w}~ \mu, \quad \text{for}~\mu\text{-a.a.}~\omega\in\Omega,$$
-	keeping in mind \textcolor{red}{\texttt{[Remark]}}. In other words, extremal $\mu$ can be obtained as a thermodynamic limit with some fixed boundary condition.
+	keeping in mind Remark \ref{rem:InfVol}. In other words, extremal $\mu$ can be obtained as a thermodynamic limit with some fixed boundary condition.
 \end{itemize}
 \end{prop}
 
@@ -345,31 +340,31 @@ $$\mathrm{Dob}(x) ~=~ \begin{cases}
 +1: ~&x=(x_1,\ldots,x_d)~\text{with}~x_d\geq 0,\\
 -1: ~&\text{otherwise}. 
 \end{cases}$$
-While $\mu_{\beta,0}^{\mathrm{Dob}}\notin\mathrm{extr}(\G_\Omega(\Phi_{\beta,0}))$, it can still be obtained by a thermodynamical limit (and is a well-defined Gibbs measure), see \cite{FV}, Theorem 3.58. One is then tempted to ask, whether all members of $\G_\Omega(\Phi_{\beta,0})$ can be obtained as thermodynamical limit (as we have seen to be the case for the extremal ones). The answer is \textit{no}, and it is precisely the Dobrushin boundary condition that helps us define a simple example. It is easy to see that considering a boundary condition $-\mathrm{Dob}$, $\mu_{\beta,0}^{-\mathrm{Dob}}\in\G_\Omega(\Phi_{\beta,0})$. Defining
+While $\mu_{\beta,0}^{\mathrm{Dob}}\notin\mathrm{extr}(\G_\Omega(\Phi_{\beta,0}))$, it can still be obtained by a thermodynamical limit (and is a well-defined Gibbs measure), see \cite{FV}, Theorem 3.58. One is then tempted to ask, whether all members of $\G_\Omega(\Phi_{\beta,0})$ can be obtained as thermodynamical limits (as we have seen to be the case for the extremal ones). The answer is \textit{no}, and it is precisely the Dobrushin boundary condition that helps us define a simple example. It is easy to see that considering a boundary condition $-\mathrm{Dob}$, $\mu_{\beta,0}^{-\mathrm{Dob}}\in\G_\Omega(\Phi_{\beta,0})$. Defining
 $$\tilde{\mu} ~=~ \frac{1}{2}\mu_{\beta,0}^{\mathrm{Dob}} + \frac{1}{2}\mu_{\beta,0}^{-\mathrm{Dob}},$$
-it immediately follows from \textcolor{red}{\texttt{[Proposition.(i)]}} that $\tilde{\mu}\in\G_{\Omega}(\Phi_{\beta,0})$, however, for $d\geq 3$, $\tilde{\mu}$ cannot possibly be obtained as a thermodynamical limit, as argued in \cite{FV}, Example 6.64.
+it immediately follows from Proposition \ref{DLR:properties} that $\tilde{\mu}\in\G_{\Omega}(\Phi_{\beta,0})$, however, for $d\geq 3$, $\tilde{\mu}$ cannot possibly be obtained as a thermodynamical limit, as argued in \cite{FV}, Example 6.64.
 \end{ex}
 
-\textcolor{blue}{Before concluding this preliminary section, we present an important result, which is very commonly used to verify uniqueness of a Gibbs measure with respect to the interaction:}
-\begin{thm}[Dobrushin's Uniqueness Condition]
+Before concluding this preliminary section, we present an important result, which is very commonly used to verify uniqueness of a Gibbs measure with respect to the interaction:
+\begin{thm}[Dobrushin's Uniqueness Condition]\label{Dobrushin}
 Let $\Phi\in\BB^1(\Omega)$ and define for $x,y\in\Z^d$,
 $$c_{x,y}^\Phi ~:=~ \sup_{\substack{\omega,\tilde{\omega}\in\Omega:\\\omega\equiv\tilde{\omega}~\text{off}~ y}}\|\gamma_x^\Phi(\pika|\omega)-\gamma_x^\Phi(\pika|\tilde{\omega})\|_\TV.$$
 If
-$$\sup_{x\in\Z^d}\sum_{y\in\Z^d}c_{x,y}^\Phi ~<~ \textcolor{purple}{1},$$
+$$\sup_{x\in\Z^d}\sum_{y\in\Z^d}c_{x,y}^\Phi ~<~ 1,$$
 then $|\G_\Omega(\Phi)|=1$.
 \end{thm}
 
 In practice, the following criterion is useful in particular:
 
-\begin{cor}
+\begin{cor}[\cite{Geo}, Proposition 8.8]\label{DobCor}
 $\Phi\in\BB^1(\Omega)$ satisfies the Dobrushin's Uniqueness Condition as soon as
-$$\sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Phi_\Lambda(\omega)-\Phi_\Lambda(\tilde{\omega})| ~<~ \textcolor{purple}{2}.$$
+$$\sup_{x\in\Z^d}\sum_{\substack{\Lambda\Subset\Z^d:\\x\in\Lambda}}(|\Lambda|-1)\sup_{\omega,\tilde{\omega}}|\Phi_\Lambda(\omega)-\Phi_\Lambda(\tilde{\omega})| ~<~ 2.$$
 We will call interaction satisfying this \textit{high-temperature interactions}.
 \end{cor}
 
-In practice, one may sometimes approach a collection of Hamiltonians, that differ from each other purely by a single-site interaction. A very useful fact, which will be of great importance in a later chapter on spin-flip dynamics, is that as soon as one of them satisfies \textcolor{red}{\texttt{[Eq in Cor]}}, so do all the other:
-\begin{lem}
-Suppose that $\Phi\in\BB^1(\Omega)$ satisfies \textcolor{red}{\texttt{Eq in Cor}}. Moreover, let $\Psi\in\BB^1(\Omega)$ be a \textit{single-site} interaction, i.e., $\Psi_\Lambda$ is non-zero only for $\Lambda=\set{x}$, $x\in\Z^d$. Then, $\Phi^*:=\Phi+\Psi$ satisfies \textcolor{red}{\texttt{[Eq in Cor]}} as well.
+In practice, one may sometimes approach a collections of Hamiltonians, that differ from each other purely by a single-site interaction. A very useful fact, which will be of great importance in a later chapter on spin-flip dynamics, is that as soon as one of them satisfies the condition of Cor.~\ref{DobCor}, so do the others:
+\begin{lem}\label{DobLem}
+Suppose that $\Phi\in\BB^1(\Omega)$ satisfies the condition in Cor.~\ref{DobCor}. Moreover, let $\Psi\in\BB^1(\Omega)$ be a \textit{single-site} interaction, i.e., $\Psi_\Lambda$ is non-zero only for $\Lambda=\set{x}$, $x\in\Z^d$. Then, $\Phi^*:=\Phi+\Psi$ satisfies the condition of Cor.~\ref{DobCor} as well.
 \end{lem}
 
 \begin{proof}
@@ -391,18 +386,20 @@ The right-hand side clearly equals zero, since $|\!\set{x}\!|=1$, yielding the c
 
 We now redirect our attention back to the source of the questions that inspired the theory which is presented in this thesis, which we have hinted on in the prologue. They can be traced back to the seminal paper of Aernout van Enter, Roberto Fern\'andez and Alan Sokal, carrying the title \textit{Regularity Properties and Pathologies of Position-Space Renormalization-Group Transformations}. \\
 
-\textcolor{blue}{To refresh, the problem goes -- informally -- as follows.} Consider (measurable) spaces $\Omega,\Omega'$ of configurations on a (for now) finite volume $\Lambda$ and suppose $\Omega$ is equipped with a probability measure $\mu$. A renormalization-group (RG) map is given as a a probability kernel $T$ from $\Omega$ to $\Omega'$. $T$ can be either a deterministic or a stochastic map.\footnote{In the deterministic case, $T(\pika,\omega')$ corresponds to Dirac measure $\delta_{\omega'}$.} This maps gives us a natural measure $\mu'$ on $\Omega'$, which is given by
+To refresh, the problem goes -- informally -- as follows. Consider (measurable) spaces $\Omega,\Omega'$ of configurations on a (for now) finite lattice $\L$ and suppose $\Omega$ is equipped with a probability measure $\mu$. A renormalization-group (RG) map is given as a a probability kernel $T$ from $\Omega$ to $\Omega'$. $T$ can be either a deterministic or a stochastic map.\footnote{In the deterministic case, $T(\pika,\omega')$ corresponds to Dirac measure $\delta_{\omega'}$.} This maps gives us a natural measure $\mu'$ on $\Omega'$, which is given by
 $$\mu'(\omega') ~=~ (\mu T)(\omega') ~:=~ \sum_{\omega\in\Omega}\mu(\omega)T(\omega,\omega'), \quad \omega'\in\Omega'.$$
 Note that if $T$ is deterministic, given by a map $\tilde{T}:\Omega\ra\Omega'$, $\mu T$ would correspond to the push-forward measure $\mu\circ \tilde{T}^{-1}$. Thus, the RG map is without a problem defined between measures. In applications, however, an alternative route is usually taken. In particular, one defines the RG map as a map $\RR$ between (suitable) Hamiltonians: given a Hamiltonian $\H$, with which $\mu$ is consistent $(\mu\propto \exp(-\H))$, $\RR$ assigns $\H$ the Hamiltonian $\H'$, which corresponds to $\mu'=\mu T$ ($\mu'\propto \exp(-\H')$). In particular, $\H'$ may be obtained via the formula
-$$\H'(\omega') ~=~ (\RR\H)(\omega') ~=~ -\log\sum_{\omega\in\Omega} \exp(-\H(\omega))T(\omega,\omega)' + C,$$
-with $C$ a constant; we have already seen the interplay in \textcolor{red}{\texttt{[diagram]}}. Given the formalism presented in the previous chapters, it makes more sense to define $\RR$ between interactions rather than Hamiltonians (though it of course doesn't make any tangible difference). The \textcolor{red}{\texttt{[diagram]}} can thus be restated as follows:
+$$\H'(\omega') ~=~ (\RR\H)(\omega') ~=~ -\log\sum_{\omega\in\Omega} T(\omega,\omega')\exp(-\H(\omega)) + C,$$
+with $C$ a constant; we have already seen the interplay in diagram (\ref{RGdiagram}). Given the formalism presented in the previous chapters, it makes more sense to define $\RR$ between interactions rather than Hamiltonians (though it of course doesn't make any tangible difference). The diagram (\ref{RGdiagram}) can thus be restated as follows:
 $$\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tikzcd}
     \BB^1(\Omega) \arrow[r, "\RR"] \arrow[d] & \BB^1(\Omega')  \\
     \G_\Omega \arrow[r, "T"] & \G_{\Omega'} \arrow[u]
 \end{tikzcd}
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
+\centering
 \begin{tikzcd}
     \Phi \arrow[r, mapsto, "\RR"] \arrow[d, mapsto] & \Phi' \\
     \mu \arrow[r, mapsto, "T"] & \mu' \arrow[u, mapsto]
@@ -410,16 +407,16 @@ $$\begin{minipage}{0.5\textwidth}
 \end{minipage}$$
 where $\G_\Omega=\cap\set{\G_{\Omega}(\Phi):\Phi\in\BB^1(\Omega)}$. \\
 
-This nice formalism, however, fails to translate when we instead take an infinite volume $\Lambda$, for example $\Z^d$. First clear problem that we already mentioned is that there might be several Gibbs measures consistent with $\Phi$, implying that $\Phi\mapsto\mu$ is a multi-valued map and my be more appropriately written as $\Phi\mapsto\G_\Omega(\Phi)$. While $\mu'$ can still be defined rather simply,
+This nice formalism, however, fails to translate when we instead take an infinite volume $\L$, for example $\Z^d$. First clear problem that we already mentioned is that there might be several Gibbs measures consistent with $\Phi$, implying that $\Phi\mapsto\mu$ is a multi-valued map and my be more appropriately written as $\Phi\mapsto\G_\Omega(\Phi)$. While $\mu'=\mu T$ can still be defined rather simply,
 $$\mu'(A') ~:=~ \int_\Omega T(\omega,A')\,\d\mu(\omega),$$
-it yields a new problem, which was \textcolor{purple}{first demonstrated} in \cite{Isr} and widely argued in \cite{EFS}: $\mu'$ might fail to be Gibbsian, that is, it might fail to be consistent with any suitable Hamiltonian (interaction), yielding that the map $\mu'\mapsto\Phi'$ might not be defined for all image measures $\mu'$. In other words, despite being for a long time assumed that $T[\G_\Omega]\subseteq\G_{\Omega'}$, this turned out to not be the case. If $T[\G_\Omega]\not\subseteq\G_{\Omega'}$, it indeed follows that the map $\RR:\Phi\mapsto\Phi'$ is not defined either. This led authors of \cite{EFS} to reformulate the formalism, for which several results were proven and many new open questions posed. \\
+it yields a new problem, which was first demonstrated in \cite{Isr} and widely argued in \cite{EFS}: $\mu'$ might fail to be Gibbsian, that is, it might fail to be consistent with any suitable Hamiltonian (interaction), yielding that the map $\mu'\mapsto\Phi'$ might not be defined for all image measures $\mu'$. In other words, despite being for a long time assumed that $T[\G_\Omega]\subseteq\G_{\Omega'}$, this turned out to not be the case. If $T[\G_\Omega]\not\subseteq\G_{\Omega'}$, it indeed follows that the map $\RR:\Phi\mapsto\Phi'$ is not defined either. This led authors of \cite{EFS} to reformulate the formalism, for which several results were proven and many new open questions posed. \\
 
 While many results proven are not central to the thesis and would require way more theoretical background, we give a taste of reformulated formalism with the new formal definition of the RG map $T$ they proposed:
 \begin{df}
 Consider two single-spin spaces $\A,\A'$, write $\Omega=\A^{\Z^d},\Omega'=(\A')^{\Z^{d}}$ and let $\F,\F'$ be the corresponding $\sigma$-algebras. The RG map $T$ is then such that 
 \begin{itemize}
 	\item[(A1)] $T$ is a probability kernel from $(\Omega,\F)$ to $(\Omega',\F')$.
-	\item[(A2)] If $\mu$ is a translation invariant measure on $\Omega$ ($\mu\in\M_{\mathrm{inv}(\Omega)}$), then $\mu T$ is a translation invariant measure on $\Omega'$ ($\mu T\in\M_{\mathrm{inv}}(\Omega')$).
+	\item[(A2)] If $\mu$ is a translation invariant measure on $\Omega$ ($\mu\in\M_1^{\mathrm{inv}}(\Omega)$), then $\mu T$ is a translation invariant measure on $\Omega'$ ($\mu T\in\M_1^{\mathrm{inv}}(\Omega')$).
 	\item[(A3)] $T$ is \textit{strictly local} in position space, with asymptotic compression factor $K<\infty$, in a sense that one has van Hove sequences $(\Lambda_n)_{n\in\N},(\Lambda_n')_{n\in\N}$, so that
 	\begin{itemize}
 		\item[(i)] for each $A'\in\F_{\Lambda_n'}'$, the map $T(\pika,A')$ is $\F_\Lambda$-measurable, i.e., (distribution of) $\omega_{\Lambda_n'}'$ only depends on $\omega_{\Lambda_n}$,
@@ -428,24 +425,24 @@ Consider two single-spin spaces $\A,\A'$, write $\Omega=\A^{\Z^d},\Omega'=(\A')^
 \end{itemize}
 \end{df}
 
-\textcolor{blue}{This thesis in particular is concerned with a established conjecture, stated in the following chapter, regarding the sufficient condition for Gibbsianity of $\mu'$, in a certain deterministic setting, which was already heavily explored in \cite{Ber}.} \\
+This thesis in particular is concerned with an established conjecture, stated in the following chapter, regarding the sufficient condition for Gibbsianity of $\mu'$, in a certain deterministic setting, which was already heavily explored in \cite{Ber} and is presented in Chapter \ref{ch:2}. \\
 
-To conclude this section, we revisit the examples given in \textcolor{red}{\texttt{[Example]}}, providing slightly more formal definitions and mentioning some results regarding associated pathologies.
+To conclude this section, we revisit the examples given in Example \ref{RG:example}, providing slightly more formal definitions and mentioning some results regarding associated pathologies.
 
 \begin{ex}[Decimation of Ising model]
 Given $\Omega=\Omega'=\set{-1,+1}^{\Z^d}$, consider an integer $b\geq 2$. The decimation map $T=T_b:\Omega\ra\Omega'$ is given so that for $\omega'=T(\omega)$,
 $$\omega'(x) ~=~ \omega(bx), \quad x\in\Z^d,$$
-where $b(x_1,\ldots,x_d)=(bx_1,\ldots,bx_d)$. More generally one could also consider a homomorphism $R:\Z^d\ra\Z^d$ with $\det R\neq 0$ and define $T=T_R$ so that $\omega'(x)=\omega(R(x))$. Pathologies of the renormalized Gibbs measure(s) of  this model were already pointed out by Israel in \cite{Isr} and rigorously treated in by van Enter, Fern\'andez and Sokal in \cite{EFS}. In particular, for $d=2$ and $h=0$, it was verified in \cite{EFS} that for $b=2$ and any $\beta>\frac{1}{2}\cosh^{-1}(1+\sqrt{2})\approx 1.73\beta_c$, transformed Gibbs measure is not Gibbsian. On the other hand, it was demonstrated in \cite{HK} by Haller and Kennedy, that for the same choice of $d$, $h$ and $b$, taking $\beta<1.36\beta_c$ results in Gibbsian transformed measure. It was also verified in \cite{EFS}, see Theorem 4.3, that for $h=0$ and any choice of $d\geq 2$, $b\geq 2$, there's always some large $\beta_*$ so that choosing $\beta\geq \beta_*$ results in a non-Gibbsian renormalized measure.
+where $b(x_1,\ldots,x_d)=(bx_1,\ldots,bx_d)$. More generally one could also consider a homomorphism $R:\Z^d\ra\Z^d$ with $\det R\neq 0$ and define $T=T_R$ so that $\omega'(x)=\omega(R(x))$. Pathologies of the renormalized Gibbs measure(s) of  this model were already pointed out by Israel in \cite{Isr} and rigorously treated in by van Enter, Fern\'andez and Sokal in \cite{EFS}. In particular, for $d=2$ and $h=0$, it was verified in \cite{EFS} that for $b=2$ and any $\beta>\frac{1}{2}\cosh^{-1}(1+\sqrt{2})\approx 1.73\beta_c$, image measure is not Gibbsian. On the other hand, it was demonstrated in \cite{HK} by Haller and Kennedy, that for the same choice of $d$, $h$ and $b$, taking $\beta<1.36\beta_c$ results in Gibbsian image measure. It was also verified in \cite{EFS}, see Theorem 4.3, that for $h=0$ and any choice of $d\geq 2$, $b\geq 2$, there's always some large $\beta_*$ so that choosing $\beta\geq \beta_*$ results in a non-Gibbsian renormalized measure.
 \end{ex}
 
 \begin{ex}[Majority vote on Ising model]
-Again taking $\Omega=\Omega'=\set{-1,+1}^{\Z^d}$, we consider an integer $b\geq 1$. We now let $B_*$ be a fixed finite subset of $\Z^d$ (also referred to as \textit{block} and usually taken to be a $b\times b$ $d$-cube) and write $B_x=B_*+bx$ for the translations of $B_*$ by $bx$, that is, $B_x=\set{bx+y:y\in B_*}$. The majority vote map (or rather kernel) $T=T_{b,B_*}$ is given so that for each $x\in\Z^d$,
+Again taking $\Omega=\Omega'=\set{-1,+1}^{\Z^d}$, we consider an integer $b\geq 2$. We now let $B_*$ be a fixed finite subset of $\Z^d$ (also referred to as \textit{block} and usually taken to be a $b\times b$ $d$-cube) and write $B_x=B_*+bx$ for the translations of $B_*$ by $bx$, that is, $B_x=\set{bx+y:y\in B_*}$. The majority vote map (or rather kernel) $T=T_{b,B_*}$ is given so that for each $x\in\Z^d$,
 $$\mathrm{Law}(\omega'(x)) ~=~ \begin{cases}
 \delta_{+1}: ~&\sum_{y\in B_x}\omega(y)>0, \\
 \frac{1}{2}\delta_{+1}+\frac{1}{2}\delta_{-1}: ~&\sum_{y\in B_x}\omega(y)=0, \\
 \delta_{-1}: ~&\sum_{y\in B_x}\omega(y)<0,
 \end{cases}$$
-that is $\omega'(x)$ equals $+1$ (resp., $-1$) if more sites in $B_x$ ``vote'' for $+1$ than for $-1$ (resp., more sites ``vote'' for $-1$ than for $+1$), and is decided by a fair coin flip in case of a draw. It was conjectured in \cite{EFS}, that for \textcolor{purple}{$d=2$} and $b\geq 3$ odd\footnote{Notice that for $b$ odd, a draw cannot occur, so $T$ becomes a deterministic transformation.} (with $B_*$ a $b\times b$ box), one can always find $\beta_*$ sufficiently large, so that choosing $\beta\geq\beta_*$ results in a non-Gibbsian renormalized measure. This was in fact verified for the case $b=7$, see Theorem 4.5. \textcolor{blue}{\texttt{Any progress since then?}}
+that is $\omega'(x)$ equals $+1$ (resp., $-1$) if more sites in $B_x$ ``vote'' for $+1$ than for $-1$ (resp., more sites ``vote'' for $-1$ than for $+1$), and is decided by a fair coin flip in case of a draw. It was conjectured in \cite{EFS}, that for $d=2$ and $b\geq 3$ odd\footnote{Notice that for $b$ odd, a draw cannot occur, so $T$ becomes a deterministic transformation.} (with $B_*$ a $b\times b$ box), one can always find $\beta_*$ sufficiently large, so that choosing $\beta\geq\beta_*$ results in a non-Gibbsian renormalized measure. This was in fact verified for the case $b=7$, see Theorem 4.5. 
 \end{ex}
 
 % #################################################################################################
@@ -456,7 +453,7 @@ that is $\omega'(x)$ equals $+1$ (resp., $-1$) if more sites in $B_x$ ``vote'' f
 % #################################################################################################
 % #################################################################################################
 
-\section{Fuzzy Gibbs formalism}
+\section{Fuzzy Gibbs formalism}\label{ch:2}
 
 In this chapter, we introduce a type of deterministic renormalization transformations, with which the rest of the thesis is concerned -- the \textit{fuzzy maps}. \textcolor{blue}{\texttt{A sentence or two more.}} This chapter is mostly based on the Chapter 5 in \cite{Ber}.
 
@@ -464,7 +461,7 @@ In this chapter, we introduce a type of deterministic renormalization transforma
 
 \subsection{Set-up}
 
-In the remaining of this thesis, we consider two configuration spaces, $\Omega=\A^{\Z^d}$ and $\Sigma=\B^{\Z^d}$, where $\A$ and $\B$ are finite alphabets, such that $|\A|\geq|\B|$. Spaces $\Omega$ and $\Sigma$ are endowed with the corresponding \textcolor{purple}{cylinder-generated} $\sigma$-algebras $\F$ and $\tilde{\F}$. We consider a surjective map $\pi:\A\ra\B$, which automatically induces a surjective map $\pi^*:\Omega\ra\Sigma$ and a collection of surjective maps $\pi_V^*:\Omega_V\ra\Sigma_V$ for $V\subset\Z^d$ (where $\Omega_V=\A^V$ and $\Sigma_V=\B^V$, endowed with $\F_V$ and $\tilde{\F}_V$). We abuse notation and write $\pi$ to refer to all of them, as it should be always clear on what space we apply it. We call $\pi$ a \textit{fuzzy map} or a \textit{(single-block) factor map}.  \\
+In the remaining of this thesis, we consider two configuration spaces, $\Omega=\A^{\Z^d}$ and $\Sigma=\B^{\Z^d}$, where $\A$ and $\B$ are finite alphabets, such that $|\A|\geq|\B|$. Spaces $\Omega$ and $\Sigma$ are endowed with the corresponding (cylinder-generated) $\sigma$-algebras $\F$ and $\tilde{\F}$. We consider a surjective map $\pi:\A\ra\B$, which automatically induces a surjective map $\pi^*:\Omega\ra\Sigma$ and a collection of surjective maps $\pi_V^*:\Omega_V\ra\Sigma_V$ for $V\subset\Z^d$ (where $\Omega_V=\A^V$ and $\Sigma_V=\B^V$, endowed with $\F_V$ and $\tilde{\F}_V$). We abuse notation and write $\pi$ to refer to all of them, as it should be always clear on what space we apply it. We call $\pi$ a \textit{fuzzy map} or a \textit{(single-block) factor map}.  \\
 
 As indicated in the previous chapter, we are interested in the distributions of the renormalized system, in particular, in the distributions that arise:
 \begin{df}
@@ -472,7 +469,7 @@ Suppose $\mu$ is a Gibbs measure on $\Omega$, that is, $\mu\in\G_\Omega(\Phi)$ f
 $$\nu ~:=~ \mu \circ \pi^{-1},$$
 which we refer to as a \textit{fuzzy Gibbs measure}.
 \end{df}
-It was argued in the previous chapter, that we cannot immediately assume that $\nu$ is Gibbsian. The doubt is justified, as indeed, in general, fuzzy Gibbs measures aren't Gibbsian. Referring to the equivalent conditions for Gibbsianity in \textcolor{red}{\texttt{[Proposition]}}, one can in fact show that the uniform non-nullness is always inherited by the fuzzy Gibbs measure, so non-Gibbsianity is always a consequence of non-quasilocality of conditional probabilities. \\
+It was argued in the previous chapter, that we cannot immediately assume that $\nu$ is Gibbsian. The doubt is justified, as indeed, in general, fuzzy Gibbs measures aren't Gibbsian. Referring to the equivalent conditions for Gibbsianity in Proposition \ref{DLR:equiv}, one can in fact show that the uniform non-nullness is always inherited by the fuzzy Gibbs measure, so non-Gibbsianity is always a consequence of non-quasilocality of conditional probabilities. \\
 
 In many cases, the problem can be sourced back to a rather intuitive reason, which we refer to a the \textit{hidden phase transitions}. Due to the assumptions on $\A$, $\B$ and $\pi$, many different configurations in $\Omega$ can be mapped to the same configuration in $\Sigma$. This may or may not prove problematic, depending on the properties of the configurations sharing the image. This motivates us to introduce the notions of \textit{fibres}: given an image configuration $\sigma\in\Sigma$, one defines a fibre $\Omega_\sigma\subseteq\Omega$ as
 $$\Omega_\sigma ~:=~ \pi^{-1}(\sigma).$$
@@ -484,16 +481,24 @@ $$|\G_{\Omega_\sigma}(\Phi)| ~=~ 1, \quad \forall \sigma\in\Sigma.$$
 We will see later, that absence of hidden phase transition is indeed the desirable scenario, as it ensures Gibbsianity of the fuzzy Gibbs meausure. This fact proves very handy, as fibres are usually not difficult to describe. The focus of the last two chapters of this thesis will in fact be providing alternative proofs of Gibbsianity using this approach. On the other hand, presence of phase transitions can cause trouble, as Gibbsianity of the fuzzy Gibbs measure is concerned. They do not, however, guarantee anything: it will be demonstrated in the following example, that there are cases where hidden phase transitions are present and yet the fuzzy Gibbs measure remains Gibbsian.
 
 \begin{ex}[\cite{Ber}, pp.~138]
-Consider (appropriate) space $\Omega_1,\Omega_2$ and consider
-$$\Omega=\Omega_1\times\Omega_2,\quad\Sigma=\Omega_1.$$
-A natural $\pi:\Omega\ra\Sigma$ to consider is a projection onto the first coordinate, i.e., $\pi(\omega_1,\omega_2)=\omega_1$. Let now $\Phi_1\in\BB^1(\Omega_1)$ be arbitrary and assume $\Phi_2\in\BB^1(\Omega_2)$ is such that $|\G_{\Omega_2}(\Phi_2)|>1$. Letting $\Phi:=\Phi_1+\Phi_2$, one has $\Phi\in\BB^1(\Omega)$ and given any $\mu\in\G_{\Omega}(\Phi)$, we have $\mu=\mu_1\otimes\mu_2$, where $\mu_1\in\G_{\Omega_1}(\Phi_1)$ and $\mu_2\in\G_{\Omega_2}(\Phi_2)$. Given arbitrary $\sigma\in\Sigma=\Omega_1$, one has $\Omega_\sigma=\set{\sigma}\times\Omega_2$ and hence $\G_{\Omega_\sigma}(\Phi)=\set{\delta_\sigma}\otimes\G_{\Omega_2}(\Phi_2)$, which is clearly not a singleton, so hidden phase transitions do indeed occur on all fibres. However, $\nu=\mu\circ\pi^{-1}=\mu_1$, which is indeed Gibbsian.
+Consider (appropriate) space $\Omega',\Omega''$ and consider
+$$\Omega=\Omega'\times\Omega'',\quad\Sigma=\Omega'.$$
+A natural $\pi:\Omega\ra\Sigma$ to consider is a projection onto the first coordinate, i.e., $\pi(\omega',\omega'')=\omega'$. Let now $\Phi'\in\BB^1(\Omega')$ be arbitrary and assume $\Phi''\in\BB^1(\Omega'')$ is such that $|\G_{\Omega''}(\Phi'')|>1$. Letting $\Phi:=\Phi'+\Phi''$, one has $\Phi\in\BB^1(\Omega)$ and given any $\mu\in\G_{\Omega}(\Phi)$, we have $\mu=\mu'\otimes\mu''$, where $\mu'\in\G_{\Omega'}(\Phi')$ and $\mu''\in\G_{\Omega''}(\Phi'')$. Given arbitrary $\sigma\in\Sigma=\Omega'$, one has $\Omega_\sigma=\set{\sigma}\times\Omega''$ and hence $\G_{\Omega_\sigma}(\Phi)=\set{\delta_\sigma}\otimes\G_{\Omega''}(\Phi'')$, which is clearly not a singleton, so hidden phase transitions do indeed occur on all fibres. However, $\nu=\mu\circ\pi^{-1}=\mu'$, which is indeed Gibbsian.
 \end{ex}
 
-Thus, the notion of hidden phase transitions does not solve the problem of sufficient and necessary conditions for Gibbsianity of a fuzzy Gibbs measure by itself. In fact, the problem is still open, though there is a conjecture due to van Enter, Fern\'andez and Sokal \cite{Ber}, also referred to as the \textit{van Enter-Fern\'andez-Sokal hypothesis}, which predicts that Gibbsianity of the fuzzy Gibbs measure is equivalent to the existence of a certain continuous measure disintegration, which we will introduce in the next section.\footnote{\textcolor{purple}{This is not the original formulation from \cite{EFS}, but a correction due to Berghout and Verbitskiy \cite{Ber}.}} One of the directions (disintegration implying Gibbsianity) has already been verified, by Berghout and Verbitskiy \textcolor{red}{\cite{Ber}?}. The other direction, believed to be a more difficult problem, still remains unsolved. While this thesis does not tackle the problem directly, the proofs given to verify Gibbsianity of a fuzzy Gibbs measure also verify that the examples do not contradict this direction of the hypothesis. A better explanation of why this is the case will follow towards the end of the chapter, once we introduce a sufficient theoretical framework. \\
+Thus, the notion of hidden phase transitions does not solve the problem of sufficient and necessary conditions for Gibbsianity of a fuzzy Gibbs measure by itself. In fact, the problem is still open, though there is a conjecture due to van Enter, Fern\'andez and Sokal \cite{Ber}, also referred to as the \textit{van Enter-Fern\'andez-Sokal hypothesis}, which predicts that Gibbsianity of the fuzzy Gibbs measure is equivalent to the existence of a certain continuous measure disintegration, which we will introduce in the next section.\footnote{This is not the original formulation from \cite{EFS}, but a reformulation due to Berghout and Verbitskiy, see \cite{Ber}.} One of the directions (disintegration implying Gibbsianity) has already been verified, by Berghout and Verbitskiy (see \cite{Ber}). The other direction, believed to be a more difficult problem, still remains unsolved. While this thesis does not tackle the problem directly, the proofs given to verify Gibbsianity of a fuzzy Gibbs measure also verify that the examples do not contradict this direction of the hypothesis. A better explanation of why this is the case will follow towards the end of the chapter, once we introduce a sufficient theoretical framework. \\
 
-\textcolor{blue}{\texttt{Example or two?}} \\
+\begin{ex}
+In fact, decimation of Ising model can be seen as a fuzzy map. To be able carry out this interpretation, we have to consider $\B=\set{-1,1}$ and $\A=\set{-1,1}^{B}$, where $B$ is a $b\times b$ box.
+\end{ex}
 
-\textcolor{blue}{\texttt{Section based on 5.2.2 in \textcolor{red}{\cite{Ber}}?}}
+Before we continue exploring the conditions for Gibbsianity of $\nu$, we give a taste of a condition that yields non-Gibbsianity, which is an existence of a ``bad configuration''.
+
+\begin{df}
+We call $\sigma\in\Sigma$ a bad configuration (for a fuzzy Gibbs measure $\nu$) if one can find a finite volume $\Lambda\Subset\Z^d$ and $\varepsilon>0$, so that for arbitrary finite volume $V\Subset\Z^d$, one is able to find another finite volume $W\Subset\Z^d$ containing $V$ and two distinct points $\omega',\omega''$, so that
+$$\nu(\sigma_\Lambda|\sigma_{V\setminus\Lambda}\sigma_{W\setminus V\setminus\Lambda})-\nu(\sigma_\Lambda|\sigma_{V\setminus\Lambda}\sigma_{W\setminus V\setminus\Lambda}) ~\geq~ \varepsilon.$$
+\end{df}
+The reason why an existence of a bad configurations implies non-Gibbsianity of $\nu$ is the fact that no version of conditional probabilities $\nu(\sigma_\Lambda|\sigma_{\Lambda^\c})$ can be continuous at $\sigma$ from which it fails that no quasilocal specification can be consistent with $\nu$.
 
 % #################################################################################################
 
@@ -514,17 +519,15 @@ A family of measures $\set{\mu_\sigma:\sigma\in\Sigma}\textcolor{purple}{\subset
 Given a continuous surjection $\pi:\Omega\ra\Sigma$, such disintegration exists for any Borel \textcolor{purple}{(probability)} measure on $\Omega$.
 \end{rem}
 
-\textcolor{blue}{\texttt{Mention the $\int_{\Omega_\sigma}f\,\d\mu_\sigma=\mathbb{E}_\mu[f|\pi^{-1}\tilde{\F}]$ interpretation?}}\\
-
 As previously mentioned, the conjecture requires an additional continuity assumption:
 
 \begin{df}
-We say that the family $\set{\mu_\sigma:\sigma\in\Sigma}$ defined above is a \textit{continuous measure disintegration} if the map $\sigma\mapsto\mu_\sigma$ is weakly continuous, that is, if for each $f\in C(\Omega,\R)$, the map $y\mapsto\int_{\Omega_\sigma}f\,\d\mu_\sigma$ is continuous on $\Sigma$.
+We say that the family $\set{\mu_\sigma:\sigma\in\Sigma}$ defined above is a \textit{continuous measure disintegration} if the map $\sigma\mapsto\mu_\sigma$ is weakly continuous, that is, if for each $f\in C(\Omega)$, the map $y\mapsto\int_{\Omega_\sigma}f\,\d\mu_\sigma$ is continuous on $\Sigma$.
 \end{df}
 
 The above notion is precisely the one, which is conjecture to be the equivalent condition for Gibbsianity of the fuzzy Gibbs measure:
 \textcolor{purple}{
-\begin{conj}
+\begin{conj}\label{vEFShypothesis}
 Given $\mu\in\G_\Omega(\Phi)$, $\Phi\in\BB^1(\Omega)$, and a fuzzy map $\pi:\Omega\ra\Sigma$, $\nu=\mu\circ\pi^{-1}$ is Gibbsian if and only $\mu$ admits a continuous measure disintegration w.r.t.~$\nu$.
 \end{conj}}
 
@@ -555,7 +558,7 @@ Equipping $D_\sigma$ with a partial order $\preceq$, given by
 $$(V,B)\preceq(V',B') ~\iff~ V'\subseteq V,$$
 to be interpreted as ``\textit{$(V',B')$ is closer to $\sigma$ than $(V,B)$}'', defines an upwards directed set $(D_\sigma,\preceq)$, which turns the collection $\set{\mu^B:(B,V)\in D_\sigma}$ into a net, so we are able to talk about limits and related notions. \\
 
-To be precise, the limits we are talking about are the weak limits: we say that limit $\mu^\sigma$ of $\set{\mu^B:(B,V)\in D_\sigma}\subset\M_1(\Omega)$ exists, if for any choice of $\varepsilon>0$ and $f\in C(\Omega,\R)$, there exists an open neighbourhood $V$ of $\sigma$, such that for any $B\subseteq V:\nu(B)>0$ one has
+To be precise, the limits we are talking about are the weak limits: we say that limit $\mu^\sigma$ of $\set{\mu^B:(B,V)\in D_\sigma}\subset\M_1(\Omega)$ exists, if for any choice of $\varepsilon>0$ and $f\in C(\Omega)$, there exists an open neighbourhood $V$ of $\sigma$, such that for any $B\subseteq V:\nu(B)>0$ one has
 $$\Big|\int f\,\d\mu^\sigma-\int f\,\d\mu^B\Big| ~<~ \varepsilon.$$
 Since $\Omega$ is compact, we automatically have that, if it indeed exists, $\mu^\sigma$ is a probability measure.
 
@@ -611,7 +614,7 @@ At the end of \textcolor{red}{\texttt{[Section 2.2]}}, we raised the question of
 
 It was pointed out that in some situations, hidden phase transitions are present, yet the fuzzy Gibbs measure remains Gibbsian, however, absence of hidden phase transition immediately gives the Gibbsianity. \textcolor{blue}{This is precisely what will be addressed in this section.} \\
 
-First we want to further explore the nets $\set{\mu^B:(B,V)\in D_\sigma}$ , $\sigma\in\Sigma$, beyond the case of convergence, as several \textit{accumulation points} may exist. Recall that a measure $\tilde{\mu}$ is an accumulation point of $\set{\mu^B:(B,V)\in D_\sigma}$ if for arbitrary $f\in C(\Omega,\R)$, $\varepsilon>0$ and $V\ni \sigma$ open, one can always find a ($\tilde{\F}$-)measurable set $B\subseteq V$ such that 
+First we want to further explore the nets $\set{\mu^B:(B,V)\in D_\sigma}$ , $\sigma\in\Sigma$, beyond the case of convergence, as several \textit{accumulation points} may exist. Recall that a measure $\tilde{\mu}$ is an accumulation point of $\set{\mu^B:(B,V)\in D_\sigma}$ if for arbitrary $f\in C(\Omega)$, $\varepsilon>0$ and $V\ni \sigma$ open, one can always find a ($\tilde{\F}$-)measurable set $B\subseteq V$ such that 
 $$\Big|\int f\,\d\mu^B - \int f\,\d\tilde{\mu}\Big| ~<~ \varepsilon.$$
 We will denote the set of all accumulation points of $\set{\mu^B:(B,V)\in D_\sigma}$ by $\overline{\MM}_\sigma$. It turns out that not only do accumulation points always exist (due to compactness of $\Omega$), they are in our setting in fact always Gibbs measures:
 \begin{thm}[\cite{Ber}, \textcolor{blue}{Theorem ...}]
@@ -636,7 +639,7 @@ $$\nu=\mu\circ\pi^{-1}~\text{is Gibbsian}~\iff~|\overline{\MM}_\sigma|=1\,\foral
 \end{conj}
 
 Moreover, given the property \textcolor{red}{\texttt{[Theorem.(ii)]}}, we can establish that absence of hidden phase transitions indeed implies Gibbsianity of the fuzzy Gibbs measure:
-\begin{cor}
+\begin{cor}\label{Berghout}
 In the setting of \textcolor{red}{\texttt{[previous corollary]}}, assume that 
 $$|\G_{\Omega_\sigma}(\Phi)| ~=~ 1, \quad \forall \sigma\in\Sigma,$$
 i.e., hidden phase transitions do not occur. Then $\nu$ is Gibbsian.
@@ -660,7 +663,7 @@ The second example, treated in \textcolor{red}{\texttt{[Chapter 4]}} is concerne
 % #################################################################################################
 % #################################################################################################
 
-\section{Gibbsianity of fuzzy Potts model}
+\section{Gibbsianity of fuzzy Potts model}\label{ch:3}
 
 This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's result \cite{Hag} about conditions for the Gibbsianity of the involed fuzzy Gibbs measure, using the results due to Berghout and Verbitskiy \cite{Ber}. Moreover, it introduces the notion of random cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
 
@@ -684,7 +687,7 @@ where $\tilde{\Lambda}:=\set{(x,y):x\sim y,\,x,y\in\Lambda}$ and $\partial\tilde
 \end{align*}
 where $\ZZ_{\Lambda;\beta,q}^\xi=\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp\!\oklepaj{-\H_\Lambda(\tilde{\omega}_{\Lambda}\xi_{\Lambda^\c})}$.
 
-\begin{rem}
+\begin{rem}\label{HamiltEquiv}
 \begin{itemize}
 	\item[(1)] Notice that $$\H_{\Lambda;\beta}(\omega_{\Lambda}\xi_{\Lambda^\c}) ~=~ 2\beta\sum_{(x,y)\in\tilde{\Lambda}}\1_{\set{\omega(x)\neq\omega(y)}} + 2\beta\sum_{(x,y)\in\partial\tilde{\Lambda}}\1_{\set{\omega(x)\neq\xi(y)}}-\beta(|\tilde{\Lambda}|+|\partial\tilde{\Lambda}|),$$
 	where $C_{\beta,\Lambda}:=\beta(|\tilde{\Lambda}|+|\partial\tilde{\Lambda}|)$ is a  constant independent of $\omega,\xi$, giving us
@@ -753,7 +756,7 @@ Fixing $q\geq 2$, $\beta\geq 0$ and writing $\mu_{\beta,q}^{\Z^d,\xi}$ for the G
 $$\nu_{\beta,q,\r}^{\Z^d,\xi} ~:=~ \mu_{\beta,q}^{\Z^d,\xi}\circ\pi_\r^{-1}.$$
 Of great interest is the potential Gibbsianity of such measure. \textcolor{blue}{\texttt{Something about the H\"aggstr\"om's result blahblahblah.}} Recall that for \textcolor{purple}{$q\geq 2$ and $d\geq 2$}, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{\beta,q}^{\Z^d,\emptyset}=\mu_{\beta,q}^{\Z^d,1}=\ldots=\mu_{\beta,q}^{\Z^d,q}$, i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures \textcolor{purple}{\texttt{[free b.c.~distinct but not mut.~singular?]}}.
 
-\begin{thm}[H\"aggstr\"om, 2003, \cite{Hag}]
+\begin{thm}[H\"aggstr\"om, 2003, \cite{Hag}]\label{Haggstrom}
 Let $d\geq 2$, $q\geq 3$, $i\in\set{\emptyset,1,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min(\set{r_1,\ldots,r_n}\cap\N_{\geq 2})$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,\xi}=\mu_{q,\beta}^{\Z^d,\xi}\circ\pi_{\r}^{-1}$.
 \begin{itemize}
 	\item[(i)] For each $\beta<\beta_c(d,r^*)$, the measure $\nu_{\beta,q,\r}^{\Z^d,\xi}$ is a Gibbs measure.
@@ -843,7 +846,7 @@ A very simple example of an increasing event is $\set{x\leftrightarrow\infty}$, 
  
 \begin{df}[Stochastic domination]
 Let $\mu$ and $\mu'$ be probability measures on $\Omega$. We say that $\mu$ is \textit{stochastically dominated} by $\mu'$, writing $\mu\preceq_\D\mu'$, if
-$$\int f\,\d\mu ~\leq~ \int f\,\d\mu', \quad \forall f\in\BM(\Omega,\R).$$
+$$\int f\,\d\mu ~\leq~ \int f\,\d\mu', \quad \forall f\in\BM(\Omega).$$
 \end{df}
 
 \begin{rem}
@@ -947,9 +950,9 @@ One can very simply ``obtain'' $\mu_{\beta,q}^G$ from $\phi_{p,q}^G$, and the ot
 % #################################################################################################
 % #################################################################################################
 
-\section{(Non-)Gibbsianity of random spin-flip dynamics}
+\section{Gibbsianity of random spin-flip dynamics}\label{ch:4}
 
-In this chapter, we introduce the random spin-flip dynamics model, which was explored by van Enter, Fern\'andez, den Hollander and Redig in \cite{EFHR}, and proceed to demonstrate, that a special case of this model may be seen as a fuzzy Gibbs model. We present some results about conditions for Gibbsianity and \textcolor{blue}{demonstrate that in the fuzzy Gibbs case, the proofs are analogue to \texttt{our} approach, which in turn verifies, that the example does not contradict the van Enter-Fern\'andez-Sokal hypothesis}.
+In this chapter, we introduce the random spin-flip dynamics model, which was studied by van Enter, Fern\'andez, den Hollander and Redig in \cite{EFHR}, and proceed to demonstrate, that a special case of this model may be seen as a fuzzy Gibbs model. We present some results about conditions for Gibbsianity and demonstrate that in the fuzzy Gibbs case, the proofs are analogue to \texttt{our} approach, which in turn verifies, that the example does not contradict the van Enter-Fern\'andez-Sokal hypothesis.
 
 % #################################################################################################
 
@@ -957,10 +960,10 @@ In this chapter, we introduce the random spin-flip dynamics model, which was exp
 
 We proceed to introduce the model, as defined in \cite{EFHR}, with some minor changes in notation. In principle, we are interested in a (probability) measure valued stochastic process $(\nu_t)_{t\geq 0}$, starting from a Gibbs measure. In particular the question the original paper explores is how the conditions on the starting measure and on process-inducing dynamics influence the (non-)Gibbsianity of $\nu_t$, $t>0$. \\
 
-Define first $\Omega_0:=\set{-1,+1}^{\Z^d}$ to be the configuration space. We first consider dynamics on configurations, which is governed by spin-flip rates $\Z^d\times\Omega_0\ni(x,\omega)\mapsto c(x,\omega)$, which satisfy the following conditions:
+Let $\Omega_*:=\set{-1,+1}^{\Z^d}$ be the configuration space. We consider dynamics on configurations, which is governed by spin-flip rates $\Z^d\times\Omega_*\ni(x,\omega)\mapsto c(x,\omega)$, which satisfy the following conditions:
 \begin{itemize}
 	\item[(i)] Finite range: for any $x\in\Z^d$, the map $c_x:=(\omega\mapsto c(x,\omega))$ is a local function of $\omega$, with $\mathrm{diam}(\D_{c_x})\leq R<\infty$.
-	\item[(ii)] Translation invariance: \textcolor{blue}{for any $x\in\Z^d$, $\tau_x c_0=c_x$}. % define $\tau_x$
+	\item[(ii)] Translation invariance in the second coordinate: for any $y\in\Z^d$, $c_x((\omega(x))_{x\in\Z^d})=c_0((\omega(x+y))_{x\in\Z^d})$.
 	\item[(iii)] Strict positivity: for all $x\in\Z^d$ and $\omega\in\Omega$, $c(x,\omega)>0$.
 \end{itemize}
 
@@ -969,46 +972,46 @@ It is a direct consequence of assuming (i)-(iii), that there's $m,M\in(0,\infty)
 $$0 ~<~ m ~\leq~ c(x,\omega) ~\leq~ M ~<~ \infty, \quad \forall x\in\Z^d,\,\omega\in\Omega.$$
 \end{rem}
 
-The idea behind the dynamics is as follows: one starts with a (possibly random) configuration $\omega_0$ at time $0$ and flips (random) spins at random times, which are being governed by $(c_x)_{x\in\Z^d}$. That is, site $x\in\Z^d$ is being flipped at \textcolor{blue}{(exponential?)} rate $c_x$, which in general depends on the current configuration, through its value at $x$ and a certain neighbourhood of $x$. Note that unless $\mathrm{diam}(\D_{c_x})=0$ for each $x\in\Z^d$ (i.e., $c(x,\omega)=c(x,\omega(x))$), the flips of individual sites are not independent.\footnote{This scenario, however, will be the one we will focus on later on.} \\
+The idea behind the dynamics is as follows: one starts with a (possibly random) configuration $\Omega_*$ at time $0$ and flips (random) spins at random times, which are being governed by $(c_x)_{x\in\Z^d}$. That is, site $x\in\Z^d$ is being flipped at (exponential) rate $c_x$, which in general depends on the current configuration, through its value at $x$ and a certain neighbourhood of $x$. Note that unless $\mathrm{diam}(\D_{c_x})=0$ for each $x\in\Z^d$ (i.e., $c(x,\omega)=c(x,\omega(x))$), the flips of individual sites are not independent.\footnote{This scenario, however, will be the one we will focus on later on.} \\
 
 The goal now is to describe a semigroup $(S(t))_{t\geq 0}$ that will describe the dynamics induced by $(c_x)_{x\in\Z^d}$. This motivates us to define a generator $L$ on the space of local functions; writing $\omega^x$ for the configuration that agrees with $\omega$ off $x$ and with $-\omega$ on $x$, we can define
-$$Lf ~=~ \sum_{x\in\Z^d}c_x(f(\omega^x)-f(\omega)), \quad f\in\Loc.$$ It is known \textcolor{red}{\texttt{[reference?]}} that the closure of $L$ on $\mathcal{C}(\Omega_0)$ constitutes a generator of a unique Feller process $(\omega_t)_{t\geq 0}$, with $\P_\omega$ the corresponding path-measure, conditional on $\omega_0=\omega$. Furthermore, we obtain the associated semigroup $(S(t))_{t\geq 0}$, which is given by
+$$Lf ~=~ \sum_{x\in\Z^d}c_x(f(\omega^x)-f(\omega)), \quad f\in\Loc(\Omega_*).$$ It is known (\cite{Lig}, Theorem 3.9) that the closure of $L$ on $C(\Omega_*)$ constitutes a generator of a unique Feller process $(\omega_t)_{t\geq 0}$, with $\P_\omega$ the corresponding path-measure, conditional on $\omega_0=\omega$. Furthermore, we obtain the associated semigroup $(S(t))_{t\geq 0}$, which is given by
 $$S(t) ~=~ \exp(tL), \quad t\geq 0.$$
 It is precisely this semigroup, that in turn also gives us dynamics on measures. To be precise, $(S(t))_{t\geq 0}$ acts on probability measures via	
-$$\int_{\Omega_0} [S(t)f](\omega)\,\d\nu(\omega) ~=~ \int_{\Omega_0}f(\omega)\,\d[\nu S(t)](\omega), \quad f\in\Loc,\,\nu\in\M_1(\Omega),\,t\geq 0.$$
-In a more explicit language, the measure $\nu S(t)$ assigns a measurable set $A\subset\Omega_0$ a value $[\nu S(t)](A)=\int S(t)\1_A\,\d\nu$. \\
+$$\int_{\Omega_*} [S(t)f](\omega)\,\d\nu(\omega) ~=~ \int_{\Omega_*}f(\omega)\,\d[\nu S(t)](\omega), \quad f\in\Loc(\Omega_*),\,\nu\in\M_1(\Omega_*),\,t\geq 0.$$
+In a more explicit language, the measure $\nu S(t)$ assigns a measurable set $A\subset\Omega_*$  value $[\nu S(t)](A)=\int S(t)\1_A\,\d\nu$. \\
 
-The interpretation turn out to be very intuitive. Letting $\omega_0\in\nu$ be the initial configuration and running the spin-flip dynamics the measure, then
+The interpretation turns out to be very intuitive. Letting $\omega_0\sim\nu$ be the initial configuration and running the spin-flip dynamics the measure, then
 $$\nu S(t) ~=~ \Law(\omega_t), \quad \forall t\geq 0.$$ 
 
-Of central interest is the situation where $\omega_0\sim\mu$, where $\mu$ is a Gibbs measure, that is, $\mu\in\G_{\Omega_0}(\Phi)$ for some translation invariant, finite range \textcolor{blue}{good} interaction $\Phi$. It is also worth noting, that the dynamics induced by $(c_x)_{x\in\Z^d}$ \textcolor{blue}{admits (was this assumption or fact)} a $L$-invariant\footnote{$\int Lf\,\d\rho=0$ for each $f\in\Loc$.} Borel probability measure $\rho$ on $\Omega_0$ which is \textit{reversible}, that is,
-$$\int_{\Omega_0}(Lf)g\,\d\rho ~=~ \int_{\Omega_0}f(Lg)\,\d\rho, \quad \forall f,g\in\Loc.$$
-Writing $\rho^x$ for the law of $\omega^x$ where $\omega\sim\rho$, the reversibility of $\rho$ for $L$-induced spin flip dynamics is equivalent to
-$$\frac{\d\rho^x}{\d\rho} ~=~ \frac{c(x,\omega)}{c(x,\omega^x)}, \quad \forall x\in\Z^d,\,\sigma\in\Omega_0,$$
-which implies that there exists a continuous version of Radon-Nikod\'ym derivative $\frac{\d\rho^x}{\d\rho}$. It then follows from Proposition 2.2.~in \cite{EFHR} that there exists a \textcolor{blue}{good} interaction $\Psi_\rho$ such that $\rho\in\G_{\Omega_0}(\Psi_\rho)$. Since we assumed $(c_{x})_{x\in\Z^d}$ to have finite range and be translation invariant, we can choose $\Psi_\rho$ to be of finite range and translation invariant as well.\\
+Of central interest is the situation where $\omega_0\sim\mu$, where $\mu$ is a Gibbs measure, that is, $\mu\in\G_{\Omega_*}(\Phi)$ for some translation invariant, (finite range) UAC interaction $\Phi$. It is also worth noting, that the dynamics induced by $(c_x)_{x\in\Z^d}$ admits an $L$-invariant\footnote{$\int Lf\,\d\rho=0$ for each $f\in\Loc(\Omega_*)$.} Borel probability measure $\rho$ on $\Omega_*$ which is \textit{reversible}, that is,
+$$\int_{\Omega_*}(Lf)g\,\d\rho ~=~ \int_{\Omega_*}f(Lg)\,\d\rho, \quad \forall f,g\in\Loc.$$
+Writing $\rho^x$ for the law of $\omega^x$ where $\omega\sim\rho$, the reversibility of $\rho$ for $L$-induced spin-flip dynamics is equivalent to
+$$\frac{\d\rho^x}{\d\rho} ~=~ \frac{c(x,\omega)}{c(x,\omega^x)}, \quad \forall x\in\Z^d,\,\sigma\in\Omega_*,$$
+which implies that there exists a continuous version of Radon-Nikod\'ym derivative $\frac{\d\rho^x}{\d\rho}$. It then follows from Proposition 2.2.~in \cite{EFHR} that there exists an appropriate (see properties listed above) interaction $\Psi_\rho$ such that $\rho\in\G_{\Omega_*}(\Psi_\rho)$. Since we assumed $(c_{x})_{x\in\Z^d}$ to have finite range and be translation invariant, we can choose $\Psi_\rho$ to be of finite range and translation invariant as well.\\
 
 The most general result given in the paper is the following:
 
 \begin{thm}
-Let $\mu\in\G_{\Omega_0}(\Phi)$ be the law of the original configuration and $\rho\in\Phi(\Psi)$ the reversible measure associated with $(c_x)_{x\in\Z^d}$-dynamics, with $\Phi,\Psi$ finite range \textcolor{blue}{and translation invariant}. Then there exists $t_0=t_0(\mu,\rho)>0$, such that $\mu S(t)$ is Gibbsian for each $0\leq t\leq t_0$. 
+Let $\mu\in\G_{\Omega_*}(\Phi)$ be the law of the original configuration and $\rho\in\Phi(\Psi)$ the reversible measure associated with $(c_x)_{x\in\Z^d}$-dynamics, with $\Phi,\Psi$ as described above. Then there exists $t_0=t_0(\mu,\rho)>0$, such that $\mu S(t)$ is Gibbsian for each $0\leq t\leq t_0$. 
 \end{thm}
 
-\textcolor{blue}{\texttt{A brief comment.}}
+This is a very strong result that really puts very little assumptions on $\mu$ and $\rho$ and it would be difficult to say much more without further assumptions on them. The rest of the paper then explores what else can be said once one puts additional conditions (regarding ``temperature'', read correlations lengths) on either the original configuration measure or dynamics measure. A certain specific set of additional assumptions allows one to see the whole system as a fuzzy Gibbs system, with original configuration space a product space of two copies of $\Omega_*$.
  
 % #################################################################################################
 
 \subsection{Infinite-temperature dynamics}
 
-A particularly nice setting, which my much nicer computational prospects is one of ``infinite-temperature'' dynamics, which means simply that spin flips of sites are independent of each other, i.e., the path measure $\P_\omega$ may be expressed as a product measure,
+A particularly nice setting, one which offers much nicer computational prospects, is one of ``infinite-temperature'' dynamics, which means simply that spin flips of sites are independent of each other, i.e., the path measure $\P_\omega$ may be expressed as a product measure
 $$\P_\omega ~=~ \bigotimes_{x\in\Z^d}\P_{\omega(x)}.$$
 This regime corresponds to $c_x$ depending on configuration only through its values at site $x$, that is, $\mathrm{diam}(\D_{c_x})=0$ for each $x\in\Z^d$. We will see why this model is computationally much simpler in the next section. \\
 
-In this section, we will present some results from \cite{EFHR} regarding the Gibbsianity of $(\mu S(t))_{t\geq 0}$ as well as present their proofs, which we will in the next section argue to be \textcolor{blue}{almost analogous} to our approach. \\
+In this section, we will present some results from \cite{EFHR} regarding the Gibbsianity of $(\mu S(t))_{t\geq 0}$ as well as present their proofs, which we will in the next section argue to be rather analogous to our approach. \\
 
-Before that, we present a result that is the central tool used in those proofs. If $\mu\in\G_{\Omega_0}(\Phi)$ is the law of the initial configuration, write $\H=(\H_\Lambda)_{\Lambda\Subset\Z^d}$ for the Hamiltonians consistent with $\Phi$. In all the proofs that will be presented, one argues by considering the distributions $\hat{\mu}_t$ of random variables of form $(\omega_0,\omega_t)$, $t\geq 0$. Formally, $\hat{\mu}_t$ enjoys the following correspondence with $\mu$ and $S(t)$:
-$$\int_{\Omega_0^2} f(\sigma)g(\eta)\,\d\hat{\mu}_t(\sigma,\eta) ~=~ \int_{\Omega_0}f(\omega)[S(t)g](\omega)\,\d\mu(\omega), \quad f,g\in\Loc.$$
-Technically speaking, due to its definition as a joint distribution, $\hat{\mu}_t$ has ``better chances'' of being Gibbsian than $\mu S(t)$. \textcolor{blue}{\texttt{(Elaboration? Any implication?)}} Assuming that it is indeed Gibbsian and writing $(p_t^x)_{t\geq 0}$ for the transition kernel associated with the dynamics at site $x$, the Hamiltonians associated with $\hat{\mu}_t$ may be expressed as
-$$\H_\Lambda^{(t)}(\sigma_\Lambda,\eta_\Lambda) ~=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}\log p_t^x(\sigma(x),\eta(x)), \quad \sigma,\eta\in\Omega_0.$$
+Before that, we present a result that is the central tool used in those proofs. If $\mu\in\G_{\Omega_*}(\Phi)$ is the law of the initial configuration, write $\H=(\H_\Lambda)_{\Lambda\Subset\Z^d}$ for the Hamiltonians consistent with $\Phi$. In all the proofs that will be presented, one argues by considering the distributions $\hat{\mu}_t$ of random variables of form $(\omega_0,\omega_t)$, $t\geq 0$. Formally, $\hat{\mu}_t$ enjoys the following correspondence with $\mu$ and $S(t)$:
+$$\int_{\Omega_*^2} f(\sigma)g(\eta)\,\d\hat{\mu}_t(\sigma,\eta) ~=~ \int_{\Omega_*}f(\omega)[S(t)g](\omega)\,\d\mu(\omega), \quad f,g\in\Loc(\Omega_*).$$
+Technically speaking, due to its definition as a joint distribution, $\hat{\mu}_t$ has -- according to \cite{EFHR} -- ``better chances'' of being Gibbsian than $\mu S(t)$. Assuming that it is indeed Gibbsian and writing $(p_t^x)_{t\geq 0}$ for the transition kernel associated with the dynamics at site $x$, the Hamiltonians associated with $\hat{\mu}_t$ may be expressed as
+$$\hat{\H}_\Lambda^{(t)}(\sigma,\eta) ~=~ \H_\Lambda(\sigma) - \sum_{x\in\Lambda}\log p_t^x(\sigma(x),\eta(x)), \quad \sigma,\eta\in\Omega_*.$$
 Another assumption that authors make in this section is, that the generators of local spin-sites $(L_x)_{x\in\Z^d}$ are independent of $x$ (i.e., are all the same), and are of form
 $$L_x ~=~ \frac{1}{2}\begin{pmatrix}
 -1+\varepsilon & 1-\varepsilon \\
@@ -1017,47 +1020,45 @@ $$L_x ~=~ \frac{1}{2}\begin{pmatrix}
 which indeed yields that rates $(p_t^x)_{x\in\Z^d}$ are also independent of $x$, hence all the same.\\
 
 The following result is the first part of the Proposition 3.7.~in \cite{EFHR}:
-\begin{prop}
-Assume that $\hat{\mu}_t$ is indeed Gibbsian. If for each fixed $\eta\in\Omega_0$, there is a unique Gibbs measure associated with the Hamiltonians $(\H_\Lambda^{(t)}(\pika,\eta))_{\Lambda\Subset\Z^d}$ (which one could denote by $|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|=1$), then $\nu S(t)$ is Gibbsian.
+\begin{prop}\label{BerghoutAnalogue}
+Assume that $\hat{\mu}_t$ is indeed Gibbsian. If for each fixed $\eta\in\Omega_*$, there is a unique Gibbs measure associated with the Hamiltonians $(\hat{\H}_\Lambda^{(t)}(\pika,\eta))_{\Lambda\Subset\Z^d}$ (which we shall denote by $|\G_{\Omega_*}(\hat{\H}^{(t)}(\pika,\eta))|=1$), then $\nu S(t)$ is Gibbsian.
 \end{prop}
-One can quickly notice a similarity with \textcolor{blue}{\texttt{Berghout's resut}}. \\
-
-\textcolor{blue}{\texttt{Background about Dobrushin's uniqueness condition/high temperature Gibbs measures, if not done before.}}\\
+One can rather quickly notice a jarring similarity with Corollary \ref{Berghout}. It is precisely this fact that led authors to construct proofs that will be easy to modify into ones accommodating the use of Cor.~\ref{Berghout}. \\
 
 The first result of interest is rather general, as it assumes nothing about the Gibbs measure of the initial configuration, other than its uniqueness w.r.t.~the associated interaction:
 
-\begin{thm}
-Let $\mu$ be \textcolor{blue}{either an infinite-~or high-temprature Gibbs measure}, that is, $\mu\in\G_{\Omega_0}(\Phi)$, where $\Phi$ is such that $|\G_{\Omega_0}(\Phi)|=1$. Then, $\mu S(t)$ is Gibbsian for each $t\geq 0$.
+\begin{thm}\label{HighTempTHM}
+Let $\mu$ be either an infinite-~or high-temprature Gibbs measure, that is, $\mu\in\G_{\Omega_*}(\Phi)$, where $\Phi$ is such that $|\G_{\Omega_*}(\Phi)|=1$. Then, $\mu S(t)$ is Gibbsian for each $t\geq 0$.
 \end{thm}
 
-Before stating the proof, we remark that $\H_\Lambda^t$ may be rewritten as
-$$\H_\Lambda^{(t)}(\sigma_\Lambda,\eta_\Lambda) ~=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}h_1^x(t)\sigma(x) - \sum_{x\in\Lambda}h_2^x(t)\eta(x) - \sum_{x\in\Lambda}h_{1,2}^x(t)\sigma(x)\eta(x), \quad \sigma,\eta\in\Omega_0,$$
+Before stating the proof, we remark that $\hat{\H}_\Lambda^{(t)}$ may be rewritten as
+$$\hat{\H}_\Lambda^{(t)}(\sigma,\eta) ~=~ \H_\Lambda(\sigma) - \sum_{x\in\Lambda}h_1^x(t)\sigma(x) - \sum_{x\in\Lambda}h_2^x(t)\eta(x) - \sum_{x\in\Lambda}h_{1,2}^x(t)\sigma(x)\eta(x), \quad \sigma,\eta\in\Omega_*,$$
 where 
 \begin{align*}
 h_1^x(t) ~&=~ \frac{1}{4}\log\frac{p_t^x(+1,+1)p_t^x(+1,-1)}{p_t^x(-1,+1)p_t^x(-1,-1)}, \\
 h_2^x(t) ~&=~ \frac{1}{4}\log\frac{p_t^x(+1,+1)p_t^x(-1,+1)}{p_t^x(+1,-1)p_t^x(-1,-1)} \\
 h_{1,2}^x(t) ~&=~ \frac{1}{4}\log\frac{p_t^{x}(+1,+1)p_t^x(-1,-1)}{p_t^x{(+1,-1)}p_t^{x}(-1,+1)}.
 \end{align*}
-The assumption of independence of $p_t^x$ from $x$, allows us to simply write $h_1,h_2,h_{1,2}$. In fact, the precise expression by which $L_x$ is given also allows us to write those values out nicely, as can be seen in Equation (5.9) in \cite{EFHR}, but is for our purposes unimportant.
+The assumption of independence of $p_t^x$ from $x$, allows us to simply write $h_1,h_2,h_{1,2}$. In fact, the precise expression by which $L_x$ is given also allows us to write those values out nicely, as can be seen in Equation (5.9) in \cite{EFHR}, but this is unimportant for the purposes of the following proof.
 
 \begin{proof}
-In this case, \textcolor{blue}{we know} the joint distribution $\hat{\mu}_t$ of $(\omega_0,\omega_t)$ to be Gibbsian and consistent with the Hamiltonians $\H^{(t)}$, which can -- due to assumptions of independence of $L_x$ from $x$ -- be written out as
+In this case, we know (see \cite{EFHR}) the joint distribution $\hat{\mu}_t$ of $(\omega_0,\omega_t)$ to be Gibbsian and consistent with the Hamiltonians $\hat{\H}^{(t)}$, which can -- due to assumptions of independence of $L_x$ from $x$ -- be written out as
 \begin{align*}
-\H_\Lambda^{(t)}(\sigma_\Lambda,\eta_\Lambda) ~&=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}\oklepaj{h_1(t)+h_{1,2}(t)\eta(x)}\sigma(x) - h_2(t)\sum_{x\in\Lambda}\eta(x).
+\H_\Lambda^{(t)}(\sigma,\eta) ~&=~ \H_\Lambda(\sigma) - \sum_{x\in\Lambda}\oklepaj{h_1(t)+h_{1,2}(t)\eta(x)}\sigma(x) - h_2(t)\sum_{x\in\Lambda}\eta(x).
 \end{align*}
-We wish to show, that for each fixed $\eta\in\Omega_0$, $|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|=1$, as the conclusion then follows from \textcolor{red}{\texttt{[reference of Proposition]}}. Indeed, fix arbitrary $\sigma\in\Omega_0$; we immediately notice, that the last term on the RHS is constant in $\sigma$, so we can consider an alternative collection of Hamiltonians $\tilde{\H}^{(t)}(\pika;\eta)$, given by
-$$\tilde{\H}_\Lambda^{(t)}(\sigma_\Lambda;\eta) ~=~ \H_\Lambda(\sigma_\Lambda) - \sum_{x\in\Lambda}\oklepaj{h_1(t)+h_{1,2}(t)\eta(x)}\sigma(x),$$
-which induces the same specification as $\H^{(t)}(\pika,\eta)$, and hence 
-$$\G_{\Omega_0}(\tilde{\H}^{(t)}(\pika;\eta))=\G_{\Omega_0}(\H^{(t)}(\pika,\eta)).$$
-\textcolor{blue}{Since $\tilde{\H}^{(t)}(\pika;\eta)$ differs from $\H$ only in the single site interaction, by \textcolor{red}{\texttt{[Lemma]}}, $\tilde{\H}^{(t)}(\pika;\eta)$ satisfies \textcolor{red}{\texttt{[Dobrushin]}} if and only if $\H$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}}. $\H$ indeed satisfies it by assumption, from which it follows that $|\G_{\Omega_0}(\tilde{\H}^{(t)}(\pika;\eta))|=1$ and hence 
-$$|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|=1.$$
-As this works for any choice of $\eta$, \textcolor{red}{\texttt{[reference of Proposition]}} allows us to conclude.
+We wish to show, that for each fixed $\eta\in\Omega_*$, $|\G_{\Omega_*}(\hat{\H}^{(t)}(\pika,\eta))|=1$, as the conclusion then follows from Proposition \ref{BerghoutAnalogue}. Indeed, fix arbitrary $\eta\in\Omega_*$; we immediately notice, that the last term on the right-hand side is constant in $\sigma$, so we can consider an alternative collection of Hamiltonians $\tilde{\H}^{(t)}(\pika;\eta)$, given by
+$$\tilde{\H}_\Lambda^{(t)}(\sigma;\eta) ~=~ \H_\Lambda(\sigma) - \sum_{x\in\Lambda}\oklepaj{h_1(t)+h_{1,2}(t)\eta(x)}\sigma(x),$$
+which induces the same\footnote{This is because Hamiltonians only differ by a constant and hence cancellation of terms occurs, similarly as in Remark \ref{HamiltEquiv}.} specification as $\hat{\H}^{(t)}(\pika,\eta)$, and hence 
+$$\G_{\Omega_*}(\tilde{\H}^{(t)}(\pika;\eta))=\G_{\Omega_*}(\hat{\H}^{(t)}(\pika,\eta)).$$
+Since $\tilde{\H}^{(t)}(\pika;\eta)$ differs from $\H$ only in the single site interaction, by Lemma \ref{DobLem}, $\tilde{\H}^{(t)}(\pika;\eta)$ satisfies Cor.~\ref{DobCor} (and hence Theorem \ref{Dobrushin}) if and only if $\H$ satisfies Cor.~\ref{DobCor}. $\H$ indeed satisfies it by assumption, from which it follows that $|\G_{\Omega_*}(\tilde{\H}^{(t)}(\pika;\eta))|=1$ and hence 
+$$|\G_{\Omega_*}(\H^{(t)}(\pika,\eta))|=1.$$
+As this works for any choice of $\eta$, Proposition \ref{BerghoutAnalogue} allows us to conclude.
 \end{proof}
 
-Another example the authors consider is one of the Ising model in the non-uniqueness regime, in particular of $\beta\gg\beta_c$. Here they make an additional assumption on the dynamics, which is that $\varepsilon=0$ in the definition of $L_x$, which translates on neither $+1$ nor $-1$ being favoured, and \textcolor{blue}{results in $h_1\equiv 0$, $h_2\equiv 0$} and $h_{1,2}(t)=:h_t=-\frac{1}{2}\log\tanh(\frac{t}{2})$.
+Another example the authors consider is one of the Ising model in the non-uniqueness regime, in particular of $\beta\gg\beta_c$. Here they make an additional assumption on the dynamics, which is that $\varepsilon=0$ in the definition of $L_x$, which translates on neither $+1$ nor $-1$ being favoured, and results in $h_1\equiv 0$, $h_2\equiv 0$ and $h_{1,2}(t)=:h_t=-\frac{1}{2}\log\tanh(\frac{t}{2})$.
 
-\begin{thm}
-Let $\mu_{\beta,h}$ denote some Gibbs measure of Ising model on $\Omega_0$ with $\beta\gg\beta_c$.
+\begin{thm}\label{IsingTHM}
+Let $\mu_{\beta,h}$ denote some Gibbs measure of Ising model on $\Omega_*$ with inverse temperature $\beta\gg\beta_c(d)$.
 \begin{itemize}
 	\item[(1)] There exists a $t_0=t_0(\beta,h)$, such that $\nu_{\beta,h}S(t)$ is Gibbsian for all $0\leq t\leq t_0$.
 	\item[(2)] Moreover, if $h>0$, then there exists a $t_1=t_1(h)$, such that $\mu_{\beta,h}S(t)$ is Gibbsian for all $t\geq t_1$.
@@ -1066,22 +1067,22 @@ Let $\mu_{\beta,h}$ denote some Gibbs measure of Ising model on $\Omega_0$ with 
 
 \begin{proof}
 Recalling that the Hamiltonian of the Ising model is of form 
-$$\H(\sigma)=-\beta\sum_{(x,y)}\sigma(x)\sigma(y)-h\sum_{x}\sigma(x),$$ 
-\textcolor{blue}{slightly ignoring the finite volume and boundary condition business}, we obtain that $\H^{(t)}$ is of form
-$$\H^{(t)}(\sigma,\eta) ~=~ -\beta\sum_{(x,y)}\sigma(x)\sigma(y)-h\sum_{x}\sigma(x) - h_t\sum_x \sigma(x)\eta(x).$$
+$$\H(\sigma)=-\beta\sum_{\sp{x,y}}\sigma(x)\sigma(y)-h\sum_{x}\sigma(x),$$ 
+(by a slight abuse of notation, ignoring the finite volume and boundary condition business in notation, though causing no confusion) we obtain that $\hat{\H}^{(t)}$ is of form
+$$\hat{\H}^{(t)}(\sigma,\eta) ~=~ -\beta\sum_{\sp{x,y}}\sigma(x)\sigma(y)-h\sum_{x}\sigma(x) - h_t\sum_x \sigma(x)\eta(x).$$
 \begin{itemize}
 	\item[(1)] We want to exploit the fact that for small $t$, the ``dynamical field'' $h_t$ is large and -- intuitively speaking -- ``forces'' $\sigma$ in ``direction'' of $\eta$. In this spirit, we wish to rewrite the joint Hamiltonian as
 \begin{align*}
-\H^{(t)}(\sigma,\eta) ~&=~ \sqrt{h_t}\oklepaj{-\frac{\beta}{\sqrt{h_t}}\sum_{(x,y)}\sigma(x)\sigma(y)-\frac{h}{\sqrt{h_t}}\sum_{x}\sigma(x)-\sqrt{h_t}\sum_{x}\sigma(x)\eta(x)} \\
-&=:~ \sqrt{h_t}\hat{\H}^{(t)}(\sigma,\eta).
+\hat{\H}^{(t)}(\sigma,\eta) ~&=~ \sqrt{h_t}\oklepaj{-\frac{\beta}{\sqrt{h_t}}\sum_{\sp{x,y}}\sigma(x)\sigma(y)-\frac{h}{\sqrt{h_t}}\sum_{x}\sigma(x)-\sqrt{h_t}\sum_{x}\sigma(x)\eta(x)} \\
+&=:~ \sqrt{h_t}\tilde{\H}^{(t)}(\sigma,\eta).
 \end{align*}
-\textcolor{blue}{It is known from \cite{Geo} (Example 2 on page 147)} that for fixed $\eta\in\Omega_0$ and for $0\leq t\leq t_0'$ small enough, $\eta$ is the unique ground state of $\hat{\H}^{(t)}(\pika,\eta)$, so for any $\lambda\geq\lambda_0$ large enough, $\lambda\hat{\H}^{(t)}$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}. It follows that for $0\leq t\leq t_0$ such that $\sqrt{h_t}\geq \lambda_0$, $|\G_{\Omega_0}(\H^{(t)}(\pika,\eta))|$ for all $\eta\in\Omega_0$, allowing us to conclude.
+It is known from (\cite{Geo}, Example 2 on page 147) that for fixed $\eta\in\Omega_*$ and for $0\leq t\leq t_0'$ small enough, $\eta$ is the unique ground state of $\tilde{\H}^{(t)}(\pika,\eta)$, so for any $\lambda\geq\lambda_0$ large enough, $\lambda\tilde{\H}^{(t)}$ satisfies Theorem \ref{Dobrushin}. It follows that for $0\leq t\leq t_0$ such that $\sqrt{h_t}\geq \lambda_0$, $|\G_{\Omega_*}(\hat{\H}^{(t)}(\pika,\eta))|=1$ for all $\eta\in\Omega_*$, allowing us to conclude.
 	\item[(2)] We want to exploit the fact that $h_t$ is small for large field and is hence overpowered by $h$; this time around, we write
 \begin{align*}
-\H^{(t)}(\sigma,\eta) ~&=~ \beta\oklepaj{-\sqrt{\beta}\sum_{(x,y)}\sigma(x)\sigma(y)-\frac{h}{\beta}\sum_{x}\sigma(x)-\frac{h_t}{\sqrt{\beta}}\sum_{x}\sigma(x)\eta(x)} \\
-&=:~ \sqrt{\beta}\overline{\H}^{(t)}(\sigma,\eta).
+\hat{\H}^{(t)}(\sigma,\eta) ~&=~ \sqrt{\beta}\oklepaj{-\sqrt{\beta}\sum_{\sp{x,y}}\sigma(x)\sigma(y)-\frac{h}{\beta}\sum_{x}\sigma(x)-\frac{h_t}{\sqrt{\beta}}\sum_{x}\sigma(x)\eta(x)} \\
+&=:~ \sqrt{\beta}\tilde{\H}^{(t)}(\sigma,\eta).
 \end{align*}
-\textcolor{blue}{For fixed $\eta\in\Omega_0$ and $t>t_1(h)$ large enough, $\frac{h}{|h|}$ is the unique ground state of $\overline{\H}^{(t)}(\pika,\eta)$.} Thus, again by \cite{Geo}, for $\beta$ large enough, $\sqrt{\beta}\overline{\H}^{(t)}(\pika,\eta)$ satisfies \textcolor{red}{\texttt{[Dobrushin]}}. \textcolor{purple}{Why is this enough? Is ``large enough'' independent of $\eta$? Or is there a uniform bound?}
+For fixed $\eta\in\Omega_*$ and $t>t_1(h)$ large enough, $\frac{h}{|h|}$ is the unique ground state of $\tilde{\H}^{(t)}(\pika,\eta)$. Thus, again by \cite{Geo}, for $\beta$ large enough, $\sqrt{\beta}\tilde{\H}^{(t)}(\pika,\eta)$ satisfies Theorem \ref{Dobrushin}, which allows us (after a minor uniformization, not expanded on in the original proof) to again conclude via Proposition \ref{BerghoutAnalogue}.
 \end{itemize}
 \end{proof}
 
@@ -1093,21 +1094,21 @@ The same result can be obtained for $\varepsilon>0$, though in that case $t_i$'s
 
 \subsection{Alternative approach: dynamics as a fuzzy map}
 
-\textcolor{blue}{In the previous section, we have remarked on the similarity between \textcolor{red}{\texttt{[Proposition]}} and \textcolor{red}{\texttt{[Berghout's result]}}.} The aim of this section is firstly to argue that one can view the dynamics described in the previous section as a fuzzy model, and secondly to demonstrate that the proofs of those same results are very similar, despite the alternative approach. The alternative perspective taken here is heavily inspired by \cite{Ver}. \\
+In the previous section, we have remarked on the similarity between Proposition \ref{BerghoutAnalogue} and Corollary \ref{Berghout}. The aim of this section is firstly to argue that one can view the dynamics described in the previous section as a fuzzy model, and secondly to demonstrate that the proofs of those same results are very similar, despite the alternative approach. The alternative perspective taken here is heavily inspired by \cite{Ver}. \\
 
-Recall again that we assumed that the dynamics are i.i.d.\footnote{This is concluded by combining the assumption that $\P_\omega=\bigotimes_{x\in\Z^d}\P_{\omega(x)}$ and the assumption that $(L_x)_{x\in\Z^d}$ are independent of $x$.}, with no bias towards either $+1$ or $-1$ spins ($\varepsilon=0$). Considering the spin flip rates $c(x,\omega)$, the first assumption removes the dependence on the first coordinate and restricts the dependence in the second coordinate to only $\omega(x)$, while the second assumptions fully removes the dependence on the second coordinate. This yields that the dynamics are given by a collection of independent \textcolor{blue}{Poisson clocks} with rate $c>0$. \\
+Recall again that we assumed that the dynamics are i.i.d.\footnote{This is concluded by combining the assumption that $\P_\omega=\bigotimes_{x\in\Z^d}\P_{\omega(x)}$ and the assumption that $(L_x)_{x\in\Z^d}$ are independent of $x$.}, with no bias towards either $+1$ or $-1$ spins ($\varepsilon=0$). Considering the spin flip rates $c(x,\omega)$, the first assumption removes the dependence on the first coordinate and restricts the dependence in the second coordinate to only $\omega(x)$, while the second assumptions fully removes the dependence on the second coordinate. This yields that the dynamics are given by a collection of independent Poisson clocks with rate $c>0$. \\
 
 It is thus rather simple to describe probabilities of a certain value being assumed at a specific spin at any given time. Indeed, on has that, for $x\in\Z^d$ and $t>0$,
 \begin{align*}
-[\mu S(t)](\omega_t(x)=1) ~=~ \mu(\omega_0(x)=1)\P(\text{even flips of}~x) + \mu(\omega_0(x)=-1)\P(\text{odd flips of}~x),
+[\mu S(t)](\omega_t(x)=1) ~=~ \mu(\omega_0(x)=1)\P\big(\substack{\text{even flips of}~x\\\text{until time}~t}\big) + \mu(\omega_0(x)=-1)\P\big(\substack{\text{odd flips of}~x\\\text{until time}~t}\big),
 \end{align*}
-where $\P(\text{odd flips of}~x)$ of course corresponds to the probability of there being even number of arrivals of Poisson process with intensity $c$ until time $t$. Famously, the latter carries the probability of $\frac{1}{2}(1-e^{-2tc})$, yielding
+where $\P(\text{odd flips of}~x~\text{until time}~t)$ of course corresponds to the probability of there being odd number of arrivals of Poisson process with intensity $c$ until time $t$. Famously, the latter carries the probability of $\frac{1}{2}(1-e^{-2tc})$, yielding
 $$[\mu S(t)](\omega_t(x)=1) ~=~ \mu(\omega_0(x)=1)\frac{1+e^{-2tc}}{2} + \mu(\omega_0(x)=-1)\frac{1-e^{-2tc}}{2}.$$
 
-The assumptions of this particular model allow us to consider the alternative to considering the joint distribution of $(\omega_0,\omega_t)$, as was done before. In particular, we will rather focus on the joint distribution of $\omega_0$ and ``dynamics'' (that is, whether there was odd or even number of spins at any site) until time $t$. The advantage of this approach is, that while $\omega_t$ does indeed depend on $\omega_0$ (and their joint distribution is not necessarily Gibbsian), the information about the dynamics up until $t$ \textit{is} -- due to no bias via $\varepsilon=0$ -- independent of $\omega_0$. The joint distribution is thus a product measure and \textcolor{purple}{hence automatically Gibbsian} on $\Omega_0^2$. Moreover, it is also easy to see that such construction allows us to see each $\mu S(t)$ as a fuzzy Gibbs measure, allowing us to use tools from \textcolor{red}{\texttt{[second chapter]}}. \\
+The assumptions of this particular model allow us to consider the alternative to considering the joint distribution of $(\omega_0,\omega_t)$, as was done before. In particular, we will rather focus on the joint distribution of $\omega$ and ``dynamics'' (that is, whether there was odd or even number of spins at any site) until time $t$. The advantage of this approach is, that while $\omega_t$ does indeed depend on $\omega_0$ (and their joint distribution is not necessarily Gibbsian), the information about the dynamics up until $t$ \textit{is} -- due to no bias (via $\varepsilon=0$) -- independent of $\omega_0$. The joint distribution is thus a product measure of two Gibbsian measures on $\Omega_*$ and hence automatically Gibbsian on $\Omega_*^2$. Moreover, it is also easy to see that such construction allows us to see each $\mu S(t)$ as a fuzzy Gibbs measure, allowing us to use tools from Chapter \ref{ch:2}. \\
 
-We first fix some value $\kappa\in[0,1]$ and define an $\Omega_0$-valued random variable $X\sim\mu$. Moreover, define another $\Omega_0$-valued random variable, $Y^\kappa$, whose law $\rho^\kappa$ is given as
-$$\rho^\kappa ~=~ \oglati{(1-\kappa)\delta_{+1}-\kappa\delta_{\set{-1}}}^{\otimes\Z^d},$$
+We first fix some value $\kappa\in[0,1]$ and define an $\Omega_*$-valued random variable $X\sim\mu$. Moreover, define another $\Omega_*$-valued random variable, $Y^\kappa$, whose law $\rho^\kappa$ is given as
+$$\rho^\kappa ~=~ \oglati{(1-\kappa)\delta_{+1}-\kappa\delta_{-1}}^{\otimes\Z^d},$$
 that is $(Y_x^\kappa)_{x\in\Z^d}$ are i.i.d.~with
 $$Y_x^\kappa ~=~ \begin{cases}
 1, \quad &\text{with probability}~1-\kappa,\\
@@ -1118,7 +1119,7 @@ $$Z_x^\kappa ~=~ \begin{cases}
 X_i, \quad &\text{with probability}~1-\kappa,\\
 -X_i, \quad &\text{with probability}~\kappa.
 \end{cases}$$
-It follows that arbitrary $x\in\Z^d$, one has
+It follows that for arbitrary $x\in\Z^d$, one has
 \begin{align*}
 \nu^\kappa(Z_x^\kappa=1) ~&=~ \mu(X_x=1)\rho^\kappa(Y_x^\kappa=1) + \mu(X_x=-1)\rho^\kappa(Y_x^\kappa=-1) \\
 &=~ \mu(X_x=1)(1-\kappa)+\mu(X_x=-1)\kappa.
@@ -1129,52 +1130,60 @@ we obtain
 $$\mu S(t) ~=~ \nu^{\kappa(t)}, \quad t\geq 0.$$
 One the other hand, defining the map
 \begin{align*}
-\pi:\Omega_0\times\Omega_0&\ra\Omega_0 \\
+\pi:\Omega_*\times\Omega_*&\ra\Omega_* \\
 (\omega^\c,\omega^\mathsf{d})&\mapsto\omega^\c\omega^\mathsf{d},
 \end{align*}
 we can clearly see that
 $$\nu^{\kappa} ~=~ (\mu\otimes\rho^\kappa)\circ\pi^{-1}.$$
-Clearly, such map is a surjection from $\Omega=\Omega_0^2$ to $\Sigma=\Omega_0$, so $\mu\otimes\rho^\kappa$ being Gibbsian, it yields that $\nu^\kappa$ is indeed a fuzzy Gibbs measure, so the same holds true for $\mu S(t)$, $t\geq 0$. \\
+Clearly, such map is a surjection from $\Omega=\Omega_*^2$ to $\Sigma=\Omega_*$, so $\mu\otimes\rho^\kappa$ being Gibbsian, it yields that $\nu^\kappa$ is indeed a fuzzy Gibbs measure, so the same holds true for $\mu S(t)$, $t\geq 0$. \\
 
-This allows us to utilize the \textcolor{blue}{fibre approach} on measures $\mu S(t)$. In this case, the particular fibres are very simple: for each $\sigma\in\Sigma$ and $\omega\in\Omega_0$, there a unique $\omega'\in\Omega_0$, such that $\omega\omega'=\sigma$. In fact, one precisely has that
+This allows us to utilize the fibre approach on measures $\mu S(t)$. In this case, the particular fibres are very simple: for each $\sigma\in\Sigma$ and $\omega\in\Omega_*$, there a unique $\omega'\in\Omega_*$, such that $\omega\omega'=\sigma$. In fact, one precisely has that
 $$\omega' ~=~ \oklepaj{\frac{\sigma(x)}{\omega(x)}}_{x\in\Z^d}.$$
 Since individual sites can only assume values $+1$ and $-1$, we can utilize the fact that for $\alpha,\beta\in\set{-1,+1}$ one has $\frac{\alpha}{\beta}=\alpha\beta$, to write
-$$\Omega_\sigma ~=~ \set{(\omega,\omega\sigma):\omega\in\Omega_0}.\footnote{Here, there should be no confusion between $\Omega_0=\set{-1,+1}^{\Z^d}$ and $\Omega_{\mathbf{0}}=\pi^{-1}(\mathbf{0})$, where $\mathbf{0}$ is the configuration with all sites equal to $0$.}$$ 
+$$\Omega_\sigma ~=~ \set{(\omega,\omega\sigma):\omega\in\Omega_*}.$$ 
 
-First we demonstrate, how we can prove \textcolor{red}{\texttt{[Theorem for unique $\mu$]}}, using the fibre approach.  Before starting, we remark that since $\mu\otimes\rho^\kappa$ is a product measure, its Hamiltonians $\H^\kappa=(\H_\Lambda^\kappa)_{\Lambda\Subset\Z^d}$ take the from
-$$\H^\kappa(\omega^\c,\omega^\mathsf{d}) ~=~ \H(\omega^\c)-\sum_{x}\log\rho^\kappa(\omega^\mathsf{d}(x)),$$
+First we demonstrate, how we can prove Theorem \ref{HighTempTHM}, using the fibre approach.  Before starting, we remark that since $\mu\otimes\rho^\kappa$ is a product measure, its Hamiltonians $\H^\kappa=(\H_\Lambda^\kappa)_{\Lambda\Subset\Z^d}$ take the from
+$$\H_\Lambda^\kappa(\omega^\c,\omega^\mathsf{d}) ~=~ \H_\Lambda(\omega^\c)-\sum_{x\in\Lambda}\log\rho^\kappa(\omega^\mathsf{d}(x)),$$
 where $\rho^\kappa(\omega^\mathsf{d}(x))$ equals $1-\kappa$ is $\omega^\mathsf{d}(x)=+1$ and $\kappa$ if $\omega^\mathsf{d}(x)=-1$.
-In light of \textcolor{red}{\texttt{[Berghout's result]}} and the fact that $\set{\kappa(t):t\geq 0}\subset[0,1]$, we only need to prove the following:
+In light of Corollary \ref{Berghout} and the fact that $\set{\kappa(t):t\geq 0}\subset[0,1]$, we only need to prove the following:
 
-\begin{prop}
+\begin{prop}\label{HighTempAlt}
 For each $\kappa\in[0,1]$, we have $|\G_{\Omega_\sigma}(\H^\kappa)|=1$ for each $\sigma\in\Sigma$.
 \end{prop}
 
 \begin{proof}
-Fixing some $\sigma\in\Sigma$, if one is to restrict possible values of $(\omega^\c,\omega^\mathsf{d})$ to $\Omega_\sigma$, we are left to consider $\H^\kappa(\omega,\omega\sigma)$, $\omega\in\Omega_0$, where
+Fixing some $\sigma\in\Sigma$, if one is to restrict possible values of $(\omega^\c,\omega^\mathsf{d})$ to $\Omega_\sigma$, we are left to consider $\H^\kappa(\omega,\omega\sigma)$, $\omega\in\Omega_*$, where
 \begin{align*}
-\H^\kappa(\omega,\omega\sigma) ~&=~ \H(\omega) - \sum_{x:\sigma(x)=1}\log\rho^\kappa(\omega(x)) - \sum_{x:\sigma(x)=-1}\log\rho^\kappa(-\omega(x)) \\
-&=~ \H(\omega) - \sum_{x:\sigma(x)=1}\log\rho^\kappa(\omega(x)) - \sum_{x:\sigma(x)=-1}\log\!\oklepaj{1-\rho^\kappa(\omega(x))}.
+\H_\Lambda^\kappa(\omega,\omega\sigma) ~&=~ \H_\Lambda(\omega) - \sum_{\substack{x\in\Lambda:\\\sigma(x)=1}}\log\rho^\kappa(\omega(x)) - \sum_{\substack{x\in\Lambda:\\\sigma(x)=-1}}\log\rho^\kappa(-\omega(x)) \\
+&=~ \H_\Lambda(\omega) - \sum_{\substack{x\in\Lambda:\\\sigma(x)=1}}\log\rho^\kappa(\omega(x)) - \sum_{\substack{x\in\Lambda:\\\sigma(x)=-1}}\log\!\oklepaj{1-\rho^\kappa(\omega(x))}.
 \end{align*}
-\textcolor{purple}{Similar as in the proof in the previous section, $(\omega\mapsto\H^\kappa(\omega,\omega\sigma))$ differs from $\H$ only by a single-site interaction}, yielding that one admits a unique Gibbs measure on $\Omega_0$ iff the other does. By assumption, $|\G_{\Omega_0}(\H)|=1$, so $|\G_{\Omega_0}(\H^\kappa(\pika,\pika\sigma))|=1$, regardless of $\sigma$. Given that $\Omega_\sigma=\set{(\omega,\omega\sigma):\omega\in\Omega}$, this is equivalent to $|\G_{\Omega_\sigma}(\H^\kappa)|=1$ for all $\sigma\in\Sigma$.
+Similar as in the proof in the previous section, $\omega\mapsto\H^\kappa(\omega,\omega\sigma)$ differs from $\H$ only by a single-site interaction, yielding via Lemma~\ref{DobLem} that one admits a unique Gibbs measure on $\Omega_*$ via Dobrushin argument iff the other does. By assumption, $|\G_{\Omega_*}(\H)|=1$ via Dobrushin, so $|\G_{\Omega_*}(\H^\kappa(\pika,\pika\sigma))|=1$, regardless of $\sigma$. Given that $\Omega_\sigma=\set{(\omega,\omega\sigma):\omega\in\Omega}$, this is equivalent to $|\G_{\Omega_\sigma}(\H^\kappa)|=1$ for all $\sigma\in\Sigma$.
 \end{proof}
 
-In light of their proof of \textcolor{red}{\textcolor{red}{\texttt{Ising theorem}}}, in particular the fact that they argued via \textcolor{red}{\texttt{[Eq in Cor]}}, the sensible only way to obtain -- for sure -- the same $t_0$ and $t_1$, it to verify that we have Gibbsianity as soon as they have it. Due to the fact that they argued via \textcolor{red}{\texttt{[Eq in Cor]}}, it is sufficient to verify the following:
-\begin{prop} Let $t\geq 0$ and $\sigma\in\Sigma$ be arbitrary. Then $\H^{(t)}(\pika,\sigma)$ and $\H^{\kappa(t)}(\pika,\pika\sigma)$ differ only by a single site interaction.
+\begin{cor}
+For each $\kappa\in[0,1]$, $\nu^\kappa=\nu S(t)$ is Gibbsian.
+\end{cor}
+
+\begin{proof}
+This is a direct consequence of Proposition \ref{HighTempAlt} and Corollary \ref{Berghout}.
+\end{proof}
+
+In light of their proof of Theorem \ref{IsingTHM}, in particular the fact that they argued via Theorem \ref{Dobrushin} (in particular via Cor.~\ref{DobCor}), the sensible only way to obtain -- for sure -- the same $t_0$ and $t_1$, it to verify that we have Gibbsianity as soon as they have it. Due to the fact that they argued via Cor.~\ref{DobCor}, it is sufficient to verify the following:
+\begin{prop} Let $t\geq 0$ and $\sigma\in\Sigma$ be arbitrary. Then $\hat{\H}^{(t)}(\pika,\sigma)$ and $\H^{\kappa(t)}(\pika,\pika\sigma)$ differ only by a single site interaction.
 \end{prop}
 \begin{proof}
-In this particular case, one has
+In this particular case, one has (slightly abusing the notation as in the previous section)
 \begin{align*}
-\H^{\kappa(t)}(\omega,\omega\sigma) ~&=~ -\beta\sum_{(x,y)}\sigma(x)\sigma(y) - h\sum_{x}\sigma(x) -\sum_{x}\log\rho^{\kappa(t)}(\omega(x)\sigma(x)), \omega\in\Omega.
+\H^{\kappa(t)}(\omega,\omega\sigma) ~&=~ -\beta\sum_{\sp{x,y}}\sigma(x)\sigma(y) - h\sum_{x}\sigma(x) -\sum_{x}\log\rho^{\kappa(t)}(\omega(x)\sigma(x))
 \end{align*}
-It follows that
+for any choice of $\omega\in\Omega_*$. It follows that
 \begin{align*}
-\H^{\kappa(t)}(\omega,\omega\sigma) - \H^{(t)}(\omega,\sigma) ~&=~ h_t\sum_{x}\sigma(x)\eta(x) - \sum_{x}\log\rho^{\kappa(t)}(\omega(x)\sigma(x)),
+\H^{\kappa(t)}(\omega,\omega\sigma) - \hat{H}^{(t)}(\omega,\sigma) ~&=~ h_t\sum_{x}\sigma(x)\eta(x) - \sum_{x}\log\rho^{\kappa(t)}(\omega(x)\sigma(x)),
 \end{align*}
 which indeed corresponds to a single-site interaction.
 \end{proof}
 
-This tells us that as soon as $|\G_{\Omega_0}(\H^{(t)}(\pika,\sigma)|=1$, one also has $|\G_{\Omega_0}^{\kappa(t)}(\omega,\omega\sigma)|=|\G_{\Omega_\sigma}(\H^{\kappa(t)})|=1$, so \textcolor{red}{\texttt{[Berghout's result]}} concludes the argument.
+This tells us that as soon as $|\G_{\Omega_*}(\hat{\H}^{(t)}(\pika,\sigma)|=1$ via Cor.~\ref{DobCor}-type argument, Lemma \ref{DobLem} tells us that one also has $|\G_{\Omega_*}(\H^{\kappa(t)}(\pika,\pika\sigma))|=|\G_{\Omega_\sigma}(\H^{\kappa(t)})|=1$, so Cor.~\ref{Berghout} concludes the argument, giving us the same result as Theorem \ref{IsingTHM}.
 
 \pagebreak
 
@@ -1183,19 +1192,19 @@ This tells us that as soon as $|\G_{\Omega_0}(\H^{(t)}(\pika,\sigma)|=1$, one al
 
 % #################################################################################################
 
-\section{Future directions}
+\section{Future directions}\label{ch:5}
 
-In the general theory discussed in \textcolor{red}{\texttt{[Chapter 2]}}, the major achievement remains Berghout and Verbitskiy proof of the $(\Leftarrow)$ direction of van Enter-Fern\'andez Sokal hypothesis \textcolor{red}{\texttt{[reference]}}. Moreover, the sufficient condition via absence of fuzzy phase transitions allows for a (sometimes nicer) alternative proofs of Gibbsianity of some fuzzy Gibbs models, as demonstrated \cite{Gas}, \textcolor{red}{\texttt{[Chapter 3]}} and \textcolor{red}{\texttt{[Chapter 4]}}, which at the same time verify that those models in the Gibbbsian regime don't contradict the $(\Rightarrow)$ direction of the hypothesis. \\
+In the general theory discussed in Chapter \ref{ch:2}, the major achievement remains Berghout and Verbitskiy proof of the $(\Leftarrow)$ direction of van Enter-Fern\'andez Sokal hypothesis (Conjecture~\ref{vEFShypothesis}. Moreover, the sufficient condition via absence of fuzzy phase transitions allows for a (sometimes nicer) alternative proofs of Gibbsianity of some fuzzy Gibbs models, as demonstrated \cite{Gas}, Chapter \ref{ch:3} and Chapter \ref{ch:4}, which at the same time verify that those models in the Gibbbsian regime don't contradict the $(\Rightarrow)$ direction of the hypothesis. \\
 
 Still, the big question that remains unanswered is the $(\Rightarrow)$ direction of the van Enter-Fern\'andez-Sokal hypothesis, i.e., if it indeed holds that Gibbsianity of $\nu=\mu\circ\pi^{-1}$ implies that each $\sigma\in\Sigma$ is a Tjur point (equivalently, that $\mu$ admits a continuous measure disintegration w.r.t~$\nu$). We firmly believe, that this indeed holds. \\
 
-Another open question that remains of interest concerned with the fuzzy Potts model. In particular, \textcolor{red}{\texttt{[Hgstrm thm]}} provides the answer about the nature of the fuzzy Potts-Gibbs measure for
+Another open question that remains of interest concerned with the fuzzy Potts model. In particular, Theorem \ref{Haggstrom} provides the answer about the nature of the fuzzy Potts-Gibbs measure for
 $$\beta < \beta_c(d,r^*) \quad \text{and} \quad \beta>\frac{1}{2}\log\frac{1+(r^*-1)p_c(d)}{1-p_c(d)}.$$
 The natural question remains about what happens for
 $$\beta_c(d,r^*) ~\leq~ \beta ~\leq~ \frac{1}{2}\log\frac{1+(r^*-1)p_c(d)}{1-p_c(d)}$$
 and in particular if one of those values is in fact the critical value of sorts (in the sense that a phase transition between Gibbsiniaty and non-Gibbsianity occurs at it). As far as this question is concerned, H\"aggstr\"om provided the following conjecture:
 \begin{conj}[\cite{Hag}]
-For each $\beta>\beta_c(d,r^*)$, $\nu_{\beta,q,\r}^{\Z^d,i}$ is non-Gibbsian, i.e., the bound in \textcolor{red}{\texttt{[THM]}}.(i) is sharp.
+For each $\beta>\beta_c(d,r^*)$, $\nu_{\beta,q,\r}^{\Z^d,i}$ is non-Gibbsian, i.e., the bound in Theorem \ref{Haggstrom}.(i) is sharp.
 \end{conj}
 We do in fact agree with H\"aggstr\"om in his conjecture. Recalling that presence of hidden phase transition often hints of non-Gibbsianity, we can quickly verify that a hidden phase transition is guaranteed, as soon as $\beta>\beta_c(d,r^*)$. Indeed, assuming (without loss of generality) that $r^*=r_1$, $\beta>\beta_c(d,r^*)$ implies that there's several Gibbs measures on $\set{1,\ldots,r_1}^{\Z^d}$, where it is guaranteed that $r_1\geq 2$. Considering a configuration $\mathsf{1}\in\Sigma$ ($\mathsf{1}(x)=1$ for all $x\in\Z^d$), one obtains $\Omega_{\mathsf{1}}=\pi_\r^{-1}(\mathsf{1})=\set{1,\ldots,r_1}^{\Z^d}$, which we know admits several Gibbs measures. In other words, $\Omega_{\mathsf{1}}$ facilitates a hidden phase transition. 
 
@@ -1215,7 +1224,7 @@ This appendix introduces some technical notions that need to be understood, but 
 
 % #################################################################################################
 
-\subsection{Regular conditional probability }
+\subsection{Regular conditional probability}\label{app:1}
 
 \textcolor{blue}{\texttt{Blahblahblah}} % from Leao, Fragoso, Ruffino (file art02) \\
 
@@ -1240,7 +1249,7 @@ $$\mu(\omega~\text{on}~\Lambda|\xi~\text{off}~\Lambda) ~=~ \sum_{\substack{\tild
 
 % #################################################################################################
 
-\subsection{Coupling}
+\subsection{Coupling}\label{app:2}
 
 \textcolor{blue}{\texttt{Blahblahblah}} % find source!!!
 
@@ -1258,7 +1267,7 @@ A coupling of $\P'$ and $\P''$ is any probability measure $\hat{\P}$ on product 
 
 % #################################################################################################
 
-\subsection{Bernoulli percolation}
+\subsection{Bernoulli percolation}\label{app:3}
 
 \textcolor{blue}{\texttt{Blahblahblah}} % based on GHM, Duminil-Copin
 
@@ -1287,6 +1296,110 @@ For $d\geq 2$, $p_c(d)\in (0,1)$. \textcolor{blue}{\texttt{Some comment that it 
 % #################################################################################################
 % #################################################################################################
 
+\section*{List of Symbols}
+
+\begin{tabular}{p{4cm}p{10cm}}
+$\Subset$ & ``finite subset'' relation \\
+$\propto$ & ``proportional to'' relation \\
+$\preceq$ & (preceding in the) partial order \\
+$\preceq_\D$ & stochastic domination relation \\
+$\1_A$ & indicator function for set $A$ \\
+$\Uparrow$ & van Hove convergence \\
+$\xrightarrow{w}$ & weak convergence, i.e., convergence in $\sigma(\M_1(\Omega),\Loc(\Omega))$ topology \\
+$\sp{x,y}$ & edge with endpoints $x$ and $y$ \\
+$|A|$ & cardinality of set $A$ \\
+$\|\!\pika\!\|_\TV$ & total variation norm \\
+$\set{\Lambda\leftrightarrow\Delta}$ & event that there exists an open path between sets $\Lambda$ and $\Delta$; either of the sets could be replaced by a point (then understood as singleton) or $\infty$ \\
+$\AA^U\otimes\AB^{\Z^d\setminus U}$ & $\prod_{x\in\Z^d}\A_x$, where $\A_x=\AA$ for $x\in U$ and $\A_x=\AB$ for $x\notin U$ \\
+$\BB^1(\Omega)$ & space of uniformly absolutely convergent interactions \\
+$\BBB_n$ & $[-n,n]^d\cap\Z^d$ \\
+$\mathrm{Ber}(p)$ & Bernoulli distribution with parameter $p$ \\
+$\BM(\Omega)$ & space of bounded measurable functions $\Omega\ra\R$ \\
+$C(\Omega)$ & space of continuous functions $\Omega\ra\R$ \\
+$C_n^\sigma$ & cylinder set of all configurations that agree with $\sigma$ on $\BBB_n$ \\
+$D_\sigma$ & pairs $(V,B$), where $V$ is an open neighbourhood of $\sigma$ and $B$ a measurable subset of $V$ with positive $\nu$-measure \\
+$\D_f$ & domain of function $f$, by abuse of notation its support in the case of local functions \\
+$\frac{\d\nu}{\d\mu}$ & Radon-Nikod\'ym derivative of $\nu$ w.r.t~$\mu$ \\
+$\mathrm{diam}(A)$ & diameter of a set $A$ \\
+$\mathrm{Dob}$ & Dobrushin boundary condition \\
+$\E_\Lambda$ & edges with both endpoints in $\Lambda$ \\
+$\partial\E_\Lambda$ & edges with precisely one endpoint of $\Lambda$, ``boundary of $\E_\Lambda$'' \\
+$\F$ & underlying (cylinder generated) $\sigma$-algebra on $\Omega$ \\
+$\F_\Lambda$ & sub-$\sigma$-algebra of $\F$, generated by values in $\Lambda$ (or, equivalently, values outside $\Lambda$)  
+\end{tabular} 
+
+\pagebreak
+
+\begin{tabular}{p{4cm}p{10cm}}
+$G_\eta=(V,\eta)$ & given $G=(V,E)$ and $\eta\in\set{0,1}^E$, a graph with vertex set $V$ and edge set $\set{e\in E:\eta(e)=1}$; subgraph of $\eta$-open edges \\
+$\G_\Omega(\Phi),\G_\Omega(\H),\G_\Omega(\gamma)$ & space of Gibbs measures on $\Omega$ consistent with interaction $\Phi$, Hamiltonian $\H$, specification $\gamma$\\
+$\extr(\G_\Omega(\Phi))$ & extremal measures of $\G_\Omega(\Phi)$ \\
+$\G_\Omega$ & $\cap\set{\G_\Omega(\Phi):\Phi\in\BB^1(\Omega)}$, all Gibbs measures on $\Omega$ \\
+$h$ & external magnetic force (in Ising model) \\
+$\H$, $\H_\Lambda$ & Hamiltonian, Hamiltonian of a finite volume $\Lambda$ \\
+$\mathrm{L}^1(\Omega,\F,\mu)$ & (quotient space of) $\mu$-integrable $\F/\R$-measurable functions on $\Omega$ (under $\mu$-a.e.~equivalence) \\
+$\Loc(\Omega)$ & local functions $\Omega\ra\R$ \\
+$\L$ & some lattice \\
+$\mathrm{Law}(X)$ & law (distribution) of a random variable $X$ \\
+$\M_1(\Omega)$ & space of probability measures on $\Omega$ \\
+$\M_1^{\mathrm{inv}}(\Omega)$ & translation invariant probability measures on $\Omega$ \\
+$\overline{\mathfrak{M}}_{\sigma}$ & accumulation points of $\set{\mu^B:(V,B)\in D_\sigma}$ \\
+$\N$ & natural numbers \\
+$p_c(d)$ & critical probability for Bernoulli percolation on $\Z^d$ \\
+$\PP_{p,q}^G$ & Edwards-Sokal coupling of $\mu_{\beta,q}^G$ and $\phi_{p,q}^G$ on a finite graph $G$ \\
+$\P$ & probability (measure), used in informal probabilistic statements \\
+$\RR$ & renormalization group between Hamiltonians (interctions) \\
+$\R$ & real numbers \\
+$\supp(\mu)$ & support of measure $\mu$ \\
+$T$ & renormalization group kernel \\
+$\mathrm{Unif}(A)$ & uniform distribution on set $A$ \\
+$\text{w-}\lim$ & weak limit \\
+$\ZZ,\ZZ_\Lambda^\xi$ & partition function, partition functions for a finite volume $\Lambda$ and boundary condition $\xi$ \\
+$\Z$ & integers \\
+$\beta$ & inverse temperature \\
+$\beta_c(d)$ & critical inverse temperature of Ising model on $\Z^d$ \\
+$\beta_c(d,q)$ & critical inverse temperature of $q$-state Potts model on $\Z^d$ \\
+$\delta_\omega$ & Dirac measure concentrated at point $\omega$ \\
+$\gamma_\Lambda[f|\omega_{\Lambda^\c}]$  & integral of $f$ w.r.t.~probability measure induced by $\gamma_\Lambda(\pika|\omega_{\Lambda^\c})$ \\
+$\theta(p)$ & probability of $0$ belonging to an infinite connected component in $p$-Bernoulli percolation
+\end{tabular}
+
+\pagebreak
+
+\begin{tabular}{p{4cm}p{10cm}}
+$\Lambda$ & a (usually finite) volume, a subset of $\Z^d$ \\
+$\partial\Lambda$ & boundary of $\Lambda$, points outside $\Lambda$ that are adjacent to it \\
+$\mu\otimes\nu$ & product measure of $\mu$ and $\nu$ \\
+$\mu^{\otimes A}$ & $\bigotimes_{a\in A}\mu$ \\
+$\mu(A|B)$ & conditional probability of $A$ given $B$ w.r.t.~probability measure $\mu$ \\
+$\mu[f|B]$ & conditional expectation of $f$ given $B$ w.r.t.~probability measure $\mu$ \\
+$\mu T$ & image (measure) of probability measure $\mu$ under probability kernel $T$ \\
+$\mu_\sigma$ & conditional measure on a fibre $\Omega_\sigma$ \\
+$\mu^B$ & $\mu(\pika|\pi^{-1}(B))$, conditional measure on the outcome mapping to $B$ under $\pi$ \\
+$\mu^\sigma$ & ``$\mu(\pika|\pi^{-1}(\sigma))$'', conditional measure on the outcome mapping to $\sigma$ under $\sigma$, if the limit in question exists \\
+$\mu_{\beta,q}^{G,\xi}$ & Gibbs measure of $q$-state Potts model on graph $G$ with inverse temperature $\beta$ and boundary condition $\xi$ \\
+$\nu_{\beta,q,\r}^{G,\xi}$ & $\mu_{\beta,q}^{G,\xi}\circ\pi_\r^{-1}$, fuzzy Potts measure \\
+$\pi$ & fuzzy map \\
+$\Sigma$ & image configuration space onto which fuzzy map $\pi$ maps $\Omega$ \\
+$\Sigma_0$ & Tjur points \\
+$\phi_{p,q}^{G,\xi}$ & random cluster measure on graph $G$ with parameters $p,q$ and boundary condition $\xi$ \\
+$\Phi_{\beta,h}$ & interaction of Ising model with inverse temperature $\beta$ and external magnetic force $h$ \\
+$\Phi_{\beta,q}$ & interaction of $q$-state Potts model with inverse temperature $\beta$ \\
+$\psi_p,\psi_p^G$ & probability measure associated with $p$-Bernoulli percolation (on graph $G$) \\
+$\omega^x$ & modification of $\omega$ obtained by flipping the spin value at $x$ \\ 
+$\Omega,\Omega_*$ & configuration space \\
+$\Omega_\sigma$ & $\pi^{-1}(\sigma)$, fibre corresponding to the fuzzy configuration $\sigma$ \\
+$\Omega_\Lambda$ & restriction of $\Omega$ to $\Lambda$ (in the sense of seeing $\omega$ as maps on $\Z^d$), $\prod_{x\in\Lambda}\A_x$
+\end{tabular}
+
+\pagebreak
+
+% #################################################################################################
+% #################################################################################################
+% #################################################################################################
+
+
+\addcontentsline{toc}{section}{References}
 \begin{thebibliography}{++}
 
 \bibitem[ACCN88]{ACCN} M.~Aizenman, J.T.~Chayes, L.~Chayes, C.M.~Newman. \textit{Discontinuity of magnetization in one-dimensional $1/|x-y|^2$ Ising and Potts model}. J.~Statist.~Phys.~50, no.~1-2, 1-40.
@@ -1336,6 +1449,8 @@ For $d\geq 2$, $p_c(d)\in (0,1)$. \textcolor{blue}{\texttt{Some comment that it 
 \bibitem[Isr81]{Isr} R.B.~Israel. \textit{Banach algebras and Kadanoff transformations}. Random Fields 2 (1981), 593-608.
 
 \bibitem[LFR04]{LFR} D.~Leao Jr., M.~Fragoso, P.~Ruffino. \textit{Regular conditional probability, disintegration of probability and Radon spaces}. Proyecciones 23 (2004), no.~1, 15-29.
+
+\bibitem[Lig85]{Lig} T.M.~Liggett. \textit{Interacting Particle Systems}. Grundlehren der Mathematischen Wissenschaften, vol.~276. Springer-Verlag, New York (1985).
 
 \bibitem[SW87]{SW} R.H.~Swendsen, J.-S.~Wang. \textit{Nonuniversal critical dynamics in Monte Carlo simulations}. Phys.~Rev.~Lett.~58 (1987), 86-88.
 
