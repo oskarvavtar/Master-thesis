@@ -211,7 +211,7 @@ There is however a particular class of probability measures that are of interest
 
 % *************************************************************************************************
 
-\subsubsection{Formal definition, part 1: finite volume setting}
+\subsubsection{Formal definition, part 1: finite volume setting}\label{FiniteVolumeSetting}
 
 In this section we assume $|\L|<\infty$; an often used example would be a finite graph $G=(V,E)$. In order to capture the interactions, one defines a collection of maps $\Phi=\set{\Phi_\Lambda:\Lambda\subseteq\L}$, called \textit{interaction}, where for $\omega\in\Omega$, $\Phi_\Lambda(\omega)$, depends on $\omega$ only through its values in $\Lambda$, that is, $\Phi_\Lambda(\omega)=\Phi_\Lambda(\omega(x)\!:\!x\in\Lambda)$. The value $\Phi_\Lambda(\omega)$ represents the amount of energy that the interaction between particles in $\Lambda$ contributes to the system.
 
@@ -712,7 +712,7 @@ The second example, treated in Chapter \ref{ch:4} is concerned with the random s
 
 \section{Gibbsianity of fuzzy Potts model}\label{ch:3}
 
-This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's result \cite{Hag} about conditions for the Gibbsianity of the involed fuzzy Gibbs measure, using the results due to Berghout and Verbitskiy \cite{Ber}. Moreover, it introduces the notion of random cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
+This chapter aims to introduce the fuzzy Potts model and provide an alternative, independent proof of H\"aggstr\"om's result \cite{Hag} about conditions for the Gibbsianity of the involed fuzzy Gibbs measure, using the results due to Berghout and Verbitskiy \cite{Ber}. Moreover, it introduces the notion of random-cluster representations, a powerful tool in the theory of Potts model, which is used in the proof.
 
 % #################################################################################################
 
@@ -843,37 +843,37 @@ Suppose $U,V\subset\Z^d$ form a partition of $\Z^d$ and let $\AA,\AB$ be disjoin
 $$|\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB|})| ~=~ 1.$$
 \end{prop}
 
-\subsection{Outline of H\"aggstr\"om's proof}
+\subsection{Outline of H\"aggstr\"om's proof}\label{ProofComparison}
 
-In light of the fact that our proof of absence of phase transition in the $\beta<\beta_c(d,r^*)$ regime constitutes an alternative proof of \textcolor{red}{\texttt{Theorem}.(i)}, it is worth outlining the proof given in \cite{Hag}, to highlight the differences between the two methods and to hopefully convince the reader of the significance of our alternative proof as well as of the possible applications of \textcolor{red}{\texttt{[Berghout's result]}} in general. \\
+In light of the fact that our proof of absence of phase transition in the $\beta<\beta_c(d,r^*)$ regime constitutes an alternative proof of Theorem \ref{Haggstrom}.(i), it is worth outlining the proof given in \cite{Hag}, to highlight the differences between the two methods and to hopefully convince the reader of the significance of our alternative proof as well as of the possible applications of Corollary \ref{Berghout} in general. \\
 
 H\"aggstr\"om's proof first and foremost relies on the alternative formulation of Gibbs measures via quasilocality and uniform non-nullness, as well as the fact that fuzzy Gibbs measures are always uniformly non-null, hence non-Gibbsianity is always the result of non-quasilocality. It is thus sufficient to verify, that for any choice of $\Delta\Subset\Z^d$, $\sigma\in\{1,\ldots,s\}^{\Z^d}$, $i\in\{0,1,\ldots,q\}$ and $\varepsilon>0$, there exists $N\in\N$ such that for any $n\geq N$ and any choice of $\eta,\eta'\in\set{1,\ldots,s}^{\Z^d}$ that agree on $\Lambda_n\setminus\Delta$,
 $$|\nu_{\beta,q,\r}^{\Z^d,i}(\sigma_{\Delta}|\eta_{\Delta^\c})-\nu_{\beta,q,\r}^{\Z^d,i}(\sigma_\Delta|\eta_{\Delta^c}')| ~\leq~ \varepsilon;$$
 here $(\Lambda_n)_{n\in\N}$ is the underlying increasing sequence of finite volumes. \\
 
-The author first remarks that it is sufficient to show, that given random fuzzy Potts configurations $Y$ and $Y'$, such that $Y\sim\nu_{\beta,q,\r}^{\Z^d,i}(\pika|\eta_{\Delta^\c})$ and $Y'\sim\nu_{\beta,q,\r}^{\Z^d,i}(\pika|\eta_{\Delta^\c})$, one can construct a coupling (see \textcolor{red}{\texttt{[Appendix]}}) $\Q$ of $Y,Y'$, such that
+The author first remarks that it is sufficient to show, that given random fuzzy Potts configurations $Y$ and $Y'$, such that $Y\sim\nu_{\beta,q,\r}^{\Z^d,i}(\pika|\eta_{\Delta^\c})$ and $Y'\sim\nu_{\beta,q,\r}^{\Z^d,i}(\pika|\eta_{\Delta^\c})$, one can construct a coupling (see Appendix \ref{app:2}) $\Q$ of $Y,Y'$, such that
 $$\Q(Y_{\Delta}=Y_{\Delta}') ~\geq~ 1-\varepsilon.$$
-This can indeed be guaranteed by showing that with a probability at least $1-\varepsilon$, there exists a (random) edge set $E\subseteq\set{\sp{x,y}:x,y\in\Lambda_n\setminus\Delta}$, which separates $\Delta$ from $\Lambda_n^\c$ -- in a sense that any path from $\Delta$ to $\Lambda_n^\c$ must pass through at least on edge from $E$ -- and is such that given certain random configurations $U,U'$ corresponding to $Y,Y'$ (in the sense of the random cluster model, see \textcolor{red}{\texttt{[subsection]}}), $U_E=U_E'\equiv 0$. \\
+This can indeed be guaranteed by showing that with a probability at least $1-\varepsilon$, there exists a (random) edge set $E\subseteq\E_{\Lambda_n\setminus\Delta}=\set{\sp{x,y}:x,y\in\Lambda_n\setminus\Delta}$, which separates $\Delta$ from $\Lambda_n^\c$ -- in a sense that any path from $\Delta$ to $\Lambda_n^\c$ must pass through at least on edge from $E$ -- and is such that given certain random configurations $U,U'$ corresponding to $Y,Y'$ (in the sense of the random-cluster model, see Section \ref{sec:RandomCluster}), $U_E=U_E'\equiv 0$. \\
 
-In light of \textcolor{red}{\texttt{[Edwards-Sokal coupling]}}, H\"aggstr\"om first considers the (joint) distribution $\PP$ of $(\tilde{U},\tilde{X},\tilde{Y})$, where $\tilde{U}$ is a random edge configuration, distributed according to the random cluster measure $\phi_{p,q}^{\Z^d,1}$ (see \textcolor{red}{\texttt{[section]}}), $X$ is a corresponding configuration in $\set{1,\ldots,q}^{\Z^d}$ obtained by assigning each connected component of $(\Z^d,U)$ a $\mathrm{Unif}(1,\ldots,r)$-drawn sign (which results in $\tilde{X}$ having a marginal distribution $\mu_{\beta,q}^{\Z^d, i}$, see \textcolor{red}{\texttt{[Corollary]}}) and $Y=\pi_\r(X)$ (which results in $\tilde{Y}$ having a marginal distribution $\nu_{\beta,q,\r}^{\Z^d,i}$). Given $\Delta$ as above and $\eta,\eta'$ agreeing on $\Lambda_n\setminus\Delta$ (as above) one can define a coupling $\Q$ of 
+In light of Definition \ref{def:EdwardsSokal}, H\"aggstr\"om first considers the (joint) distribution $\PP$ of $(\tilde{U},\tilde{X},\tilde{Y})$, where $\tilde{U}$ is a random edge configuration, distributed according to the random-cluster measure $\phi_{p,q}^{\Z^d,1}$ (see \textcolor{red}{\texttt{[section]}}), $\tilde{X}$ is a corresponding configuration in $\set{1,\ldots,q}^{\Z^d}$ obtained by assigning each connected component of $(\Z^d,U)$ a $\mathrm{Unif}(1,\ldots,q)$-drawn sign (which results in $\tilde{X}$ having a marginal distribution $\mu_{\beta,q}^{\Z^d, i}$, see Cor.~\ref{cor:EdwardsSokal}.(i)) and $Y=\pi_\r(X)$ (which results in $\tilde{Y}$ having a marginal distribution $\nu_{\beta,q,\r}^{\Z^d,i}$). Given $\Delta$ as above and $\eta,\eta'$ agreeing on $\Lambda_n\setminus\Delta$ (as above) one can define a coupling $\Q$ of 
 $$(U,X,Y)\sim\PP(\pika|Y_{\Delta^c}=\eta_{\Delta^c}),~(U',X',Y')\sim\PP(\pika|Y_{\Delta^c}'=\eta_{\Delta^\c}')~\text{and}~U''\sim\phi_{p,r_*}^{\Z^d,1};$$
 this will be the coupling for which it is argued that $\Q(Y_{\Delta}=Y_{\Delta}')\geq 1-\varepsilon$. \\
 
-An appropriate $N$ is selected rather intuitively: the event that an infinite cluster exists has $\phi_{p,r^*}^{\Z^d,1}$-probability zero for any $\beta<\beta_c$, from which it follows that
+An appropriate $N$ is selected rather intuitively: the event that an infinite cluster exists has $\phi_{p,r^*}^{\Z^d,1}$-probability zero for any $\beta<\beta_c(d,r^*)$ (see \textcolor{red}{\texttt{[ACCN result]}}), from which it follows that
 $$\phi_{p,r^*}^{\Z^d,1}(\exists~\text{open path from $\Delta$ to $\Lambda_n^\c$}) ~\xrightarrow{n\ra\infty}~ 0,$$
 so we let $N$ be the first integer for which the probability on the left-hand side is at most $\varepsilon$. \\
 
-It is established through various technical lemmas, that $\Q$ can be constructed so that there exists a finite subgraph $\tilde{G}=(\tilde{V},\tilde{E})$ that is isolated from the rest of the lattice by $U$- and $U'$-closed edges -- which allows us to assume $(U_{\tilde{E}},X_{\tilde{V}},Y_{\tilde{V}})=(U_{\tilde{E}}',X_{\tilde{V}}',Y_{\tilde{V}}')$ in the coupling -- and is such that $\tilde{V}$ includes $\Delta$ with $\Q$-probability at least $1-\varepsilon$.\footnote{The latter has everything to do with our choice of $N$ above and the fact that $\Delta\not\subseteq\tilde{V}$ implies existence of a path from $\Delta$ to $\Lambda_n^\c$.} Since $\Delta\subseteq\tilde{V}$ along with $Y_{\tilde{V}}=Y_{\tilde{V}}'$ implies that $Y_{\Delta}=Y_{\Delta}'$, one can infer that 
+It is established through various technical lemmas, that $\Q$ can be constructed so that there exists a finite subgraph $\tilde{G}=(\tilde{V},\tilde{E})$ that is isolated from the rest of the lattice by $U$- and $U'$-closed edges -- which allows us to assume $(U_{\tilde{E}},X_{\tilde{V}},Y_{\tilde{V}})=(U_{\tilde{E}}',X_{\tilde{V}}',Y_{\tilde{V}}')$ in the coupling -- and is such that $\tilde{V}$ contains $\Delta$ with $\Q$-probability at least $1-\varepsilon$.\footnote{The latter has everything to do with our choice of $N$ above and the fact that $\Delta\not\subseteq\tilde{V}$ implies existence of a path from $\Delta$ to $\Lambda_n^\c$.} Since $\Delta\subseteq\tilde{V}$ along with $Y_{\tilde{V}}=Y_{\tilde{V}}'$ implies that $Y_{\Delta}=Y_{\Delta}'$, one can infer that 
 $$\Q(Y_{\Delta}=Y_{\Delta}') ~\geq~ \Q(\Delta\subseteq\tilde{V}) ~\geq~ 1-\varepsilon,$$
 which gives the conclusion.\footnote{This exact line of argumentation requires an additional assumption that $r_j\geq 2$ for each $j=1,\ldots,s$. However, only a simple modification is needed to obtain the proof for general $\r$.} \\
 
-In contrast, being equipped with \textcolor{red}{\texttt{[Berghout's result]}} allows us to fix $Y$ and prove the fact by studying the distribution of $X^{(Y)}=\pi_\r^{-1}(Y)$. In particular, we have to show that for any realization of $Y$, there's a unique Gibbs-Potts measure that can be seen as the law of $X^{(Y)}$. This is done -- as explained before -- by first showing that the preimage of each monochromatic component of $Y$ admits a unique Gibbs-Potts measure (which ends up being purely an exercise about random cluster measures) and secondly that their product (measure) is a unique Gibbs-Potts measure on $\pi_\r^{-1}(Y)$. \textcolor{blue}{Overall, such proof -- while longer -- is subject to less technical nuance.}
+In contrast, being equipped with Corollary \ref{Berghout} allows us to fix $Y$ and prove the fact by studying the distribution of $X^{(Y)}=\pi_\r^{-1}(Y)$. In particular, we have to show that for any realization of $Y$, there's a unique Gibbs-Potts measure that can be seen as the law of $X^{(Y)}$. This is done -- as explained before -- by first showing that the preimage of each monochromatic component of $Y$ admits a unique Gibbs-Potts measure (which ends up being purely an exercise about random-cluster measures) and secondly that their product (measure) is a unique Gibbs-Potts measure on $\pi_\r^{-1}(Y)$. Overall, such proof -- while not necessarily shorter -- is subject to less technical nuance.
 
 % #################################################################################################
 
 \subsection{Preliminaries, part 1: stochastic domination}
 
-In this and the next section, we will introduce some tools, which will be used to prove \textcolor{red}{\texttt{[Proposition reference]}}. The section will cover the basics on stochastic domination, a well-established tool in mathematical statistical mechanics. In the section that follows, we introduce the theory of random cluster representations, which are important in study of the Potts model in particular. \\
+In this and the next section, we will introduce some tools, which will be used to prove Proposition \ref{FP:part1}. This section will cover the basics on stochastic domination, a well-established tool in mathematical statistical mechanics. In the section that follows, we introduce the theory of random-cluster representations, which are important in study of the Potts model in particular. \\
 
 Assume firstly that $\A\subset\R$ is linearly ordered; in our case, we are generally assuming $\A$ to be finite, though this theory can be extended to closed subsets of $\R$. Then linear order of $\A$ induces a natural (coordinatewise) partial order on $\Omega=\A^\L$: given two configurations $\xi,\xi'\in\Omega$, we write
 $$\xi\preceq\xi' ~\iff~ \xi(i)\leq\xi'(i),~\forall i\in\L.$$
@@ -888,51 +888,72 @@ This allows us to introduce a notion of increasing functions:
 \end{df}
 
 \begin{ex}
-A very simple example of an increasing event is $\set{x\leftrightarrow\infty}$, the event that $x\in\L$ belongs to an infinite cluster, see \textcolor{red}{\texttt{[Appendix]}}. Indeed, if $x$ belongs to some infinite cluster $C$, and we obtain a cluster $C'$ by opening some additional edges of the percolation configuration, we get that $C\subseteq C'$ and hence $x\in C'$.
+A very simple example of an increasing event is $\set{x\leftrightarrow\infty}$, the event that $x\in\L$ belongs to an infinite cluster, see Appendix \ref{app:3}. Indeed, if $x$ belongs to some infinite cluster $C$, and we obtain a cluster $C'$ by opening some additional edges of the percolation configuration, we get that $C\subseteq C'$ and hence $x\in C'$. The same holds for the events of type $\set{\Lambda\leftrightarrow\Delta}$ where $\Lambda,\Delta$ are disjoint.
 \end{ex}
 
- This allows us to define a certain partial order on $\M_1(\Omega)$, the set of probability measures on $\Omega$. \textcolor{blue}{\texttt{Some comment about motivation for defining stochastic domination/ordering on measures?}}
+ This allows us to define a certain partial order on $\M_1(\Omega)$, the set of probability measures on $\Omega$, which turns out to come very handy in the statistical mechanics of lattice systems. In particular, we will heavily rely on this notion in our proof of Proposition \ref{FP:part1}.
  
 \begin{df}[Stochastic domination]
 Let $\mu$ and $\mu'$ be probability measures on $\Omega$. We say that $\mu$ is \textit{stochastically dominated} by $\mu'$, writing $\mu\preceq_\D\mu'$, if
-$$\int f\,\d\mu ~\leq~ \int f\,\d\mu', \quad \forall f\in\BM(\Omega).$$
+$$\int f\,\d\mu ~\leq~ \int f\,\d\mu'$$
+for each increasing $f\in\BM(\Omega)$.
 \end{df}
 
 \begin{rem}
-An important fact to note is, that given $\mu\preceq_\D\mu'$ and in increasing event $A$ (such that $\set{x\leftrightarrow\infty}$ for examples, one has 
+An important fact to note is, that given $\mu\preceq_\D\mu'$ and an increasing event $A$ (such as $\set{x\leftrightarrow\infty}$ for example), one has 
 $$\mu(A) ~\leq~ \mu'(A).$$
-\textcolor{blue}{A reverse inequality holds for decreasing event.}
+Note that there exists an analogue notion of \textit{decreasing events}, for which a reverse inequality would hold.
 \end{rem}
 
-\textcolor{blue}{\texttt{Should add something, but it really depends on how the final proof of Part 1 will look like.}}
+While the notions presented above are sufficient for us to carry out the proof, we shall present two fundamental results, which indeed hide in the proof of the known results we will use in our proof. First is the Holley's Theorem, which is a powerful way of verifying stochastic domination between concrete measures:
+\begin{thm}[Holley, Theorem 4.8 in \cite{GHM}]\label{Holley}
+Let $\A\subset\R$ finite as before and suppose $\L$ is finite as well. We now consider $\mu,\mu'\in\M_1(\Omega)$ and assume that $\mu'$ is irreducible\footnote{This means that any two configurations in $\supp(\mu)$ can be reached from one another via successive coordinate changes without ``passing through'' $\supp(\mu)^\c$.} and that it assigns a positive probability to $\preceq$-maximal element of $\Omega$. Suppose that
+$$\mu(\omega(x)\geq a|\xi~\text{off}~x) ~\leq~ \mu'(\omega(x)\geq a|\eta~\text{off}~x), \quad \omega\in\Omega,$$
+for any choice of $x\in\L$, $a\in \A$, and $\xi,\eta\in\Omega_{\L\setminus\set{x}}$ with $\xi\preceq\eta$ and $\mu(\xi~\text{off}~x),\mu'(\eta~\text{off}~x)>0$. Then $\mu\preceq_\D\mu'$.
+\end{thm}
+
+This result is in particularly useful in the case of percolation measures (i.e., measures on $\set{0,1}^E$, with $E$ some edge set), since due to $\A=\set{0,1}$, one only need to check the inequality for $a=1$ (one for $a=0$ being fulfilled automatically). \\
+
+The next import result is the Strassen's Theorem, which sheds light on an important connection between stochastic domination and the coupling theory (Appendix \ref{app:2}). 
+
+\begin{thm}[Strassen, Theorem 4.6 in \cite{GHM}]
+Let $\mu,\mu'\in\M_1(\Omega)$. The following are equivalent:
+\begin{itemize}
+	\item[(i)] $\mu\preceq_\D\mu'$
+	\item[(ii)] For any choice of increasing bounded continuous function $f:\Omega\ra\R$, $\int f\,\d\mu\leq \int f\,\d\mu'$.
+	\item[(iii)] There exists a coupling $\PP$ of $X\sim\mu$ and $X'\sim\mu'$, such that $\PP(X\preceq X')=1$.
+\end{itemize}
+\end{thm}
+
+While one is usually mostly interested in the equivalence (i)$\Leftrightarrow$(iii), the equivalence (i)$\Leftrightarrow$(ii) also gives an interesting immediate corollary, which is that stochastic domination is preserved under weak limits.
 
 % #################################################################################################
 
-\subsection{Preliminaries, part 2: random cluster representations}
+\subsection{Preliminaries, part 2: random-cluster representations}\label{sec:RandomCluster}
 
-We now present the \textit{random cluster representations}, first introduced by Fortuin and Kesteleyn in \cite{FK},\cite{For1},\cite{For2} (after whom it is also known as the \textit{Fortuin-Kesteleyn mode}, or simply \textit{FK model}), which is an indispensable tool for studying phase transition in Ising and Potts model. First, we will introduce the theory for the case of finite graphs, which will give the much needed intuition, and continue to extend it to the more useful infinite lattice setting.
+We now present the \textit{random-cluster representations}, first introduced by Fortuin and Kesteleyn in \cite{FK},\cite{For1},\cite{For2} (after whom it is also known as the \textit{Fortuin-Kesteleyn model}, or simply \textit{FK model}), which is an indispensable tool for studying phase transition in Ising and Potts model. First, we will introduce the theory for the case of finite graphs, which will give the much needed intuition, and continue to extend it to the more useful infinite lattice setting. The section is almost entirely based on \cite{GHM} and \cite{Gri}.
 
 % *************************************************************************************************
 
-\subsubsection{Random cluster on a finite graph}
+\subsubsection{random-cluster on a finite graph}
 
-Throughout the section, we consider a finite graph $G=(V,E)$. The \textit{random cluster measure}, defined shortly, is a percolation measure, i.e., a probability measure defined on $\set{0,1}^E$. Given $\eta\in\set{0,1}^E$, we write $G_\eta=(V,\eta)$ for the subgraph of $G$ given by 
+Throughout the section, we consider a finite graph $G=(V,E)$. The \textit{random-cluster measure}, defined shortly, is a percolation measure, i.e., a probability measure defined on $\set{0,1}^E$. Given $\eta\in\set{0,1}^E$, we write $G_\eta=(V,\eta)$ for the subgraph of $G$ given by 
 $$G_\eta ~=~ \set{V,\set{e\in E:\eta(e)=1}}.$$
-Moreover, we define the quantity $k(\eta)$, which represents the number of connected components in $G_\eta$ (including the isolated vertices).
+Moreover, we define the quantity $k(\eta)$, which represents the number of connected components in $G_\eta$ (including the isolated vertices). 
 
 \begin{df}
-The \textit{random cluster measure} $\phi_{p,q}^G$ for $G$, with parameters $p\in[0,1]$ and $q>0$, is the probability measure on $\set{0,1}^E$, given by
+The \textit{random-cluster measure} $\phi_{p,q}^G$ for $G$, with parameters $p\in[0,1]$ and $q>0$, is the probability measure on $\set{0,1}^E$, given by
 $$\phi_{p,q}^{G}(\eta) ~=~ \frac{1}{\ZZ_{p,q}^G}\set{\prod_{e\in E}p^{\eta(e)}(1-p)^{1-\eta(e)}}q^{k(\eta)}, \quad \eta\in\set{0,1}^E,$$
 where $\ZZ_{p,q}^{G}$ is the normalizing constant.
 \end{df} 
 
-Clearly, $q=1$ yields Bernoulli percolation measure, $\phi_{p,1}^G=\psi_{p}^G$, see \textcolor{red}{\texttt{[Appendix]}}; this is the only case where $\phi_{p,q}^G$ can be seen as a product measure (outside $p=1$ and $p=0$). \\
+Clearly, $q=1$ yields Bernoulli percolation measure, $\phi_{p,1}^G=\psi_{p}^G$, see Appendix \ref{app:3}; this is the only case where $\phi_{p,q}^G$ can be seen as a product measure (outside $p=1$ and $p=0$). \\
 
-It turns out, that for the case of $q\in\set{2,3,\ldots}$, there is an intimate relation with the Potts model. Writing $\H_\beta^G$ for the Hamiltonian of Potts model on $\set{1,\ldots,q}^V$ (in the sense of the finite volume setting, see \textcolor{red}{\texttt{[Section 1.1.1]}}, we write
+It turns out, that for the case of $q\in\set{2,3,\ldots}$, there is an intimate relation with the Potts model. Writing $\H_\beta^G$ for the Hamiltonian of Potts model on $\set{1,\ldots,q}^V$ (in the sense of the finite volume setting, see Section \ref{FiniteVolumeSetting}, we write
 $$\mu_{\beta,q}^G(\omega) ~=~ \frac{1}{\ZZ_{\beta,q}^G}\exp(-\H_\beta^G(\omega)), \quad \omega\in\set{1,\ldots,q}^V,$$
 for the finite volume Gibbs measure for Potts model on $\set{1,\ldots,q}^V$ with inverse temperature $\beta$. It turns out that $\mu_{\beta,q}^G$ and $\phi_{p,q}^G$ can be very fruitfully related via a certain coupling, introduced by Swendsen and Wang in \cite{SW} and further explored  by Edwards and Sokal in \cite{ES}.
 
-\begin{df}
+\begin{df}\label{def:EdwardsSokal}
 Fix $q\in\set{2,3,\ldots}$ and $p\in[0,1]$. Let now $\PP_{p,q}^G$ be a probability measure on $\set{1,\ldots,q}^V\times\set{0,1}^E$, which corresponds to picking a random element according to the following procedure:
 \begin{itemize}
 	\item[(1)] To each $x\in V$, assign $X(x)\sim\mathrm{Unif}(1,\ldots,q)$, and to each $e\in E$, $Y(e)\sim\mathrm{Ber}(p)$, independently for all vertices and edges.
@@ -949,7 +970,7 @@ Taking $\beta=\frac{1}{2}\log(1-p)$, $\PP_{p,q}^G$ constitutes a coupling of $\m
 
 The usefulness of this coupling can be seen in the following corollary:
 
-\begin{cor}
+\begin{cor}\label{cor:EdwardsSokal}
 One can very simply ``obtain'' $\mu_{\beta,q}^G$ from $\phi_{p,q}^G$, and the other way around.
 \begin{itemize}
 	\item[(i)] Let $p=1-e^{-2\beta}$. Suppose we pick a $\set{1,\ldots,q}^V$-values random configuration $X$ as follows:
@@ -961,7 +982,7 @@ One can very simply ``obtain'' $\mu_{\beta,q}^G$ from $\phi_{p,q}^G$, and the ot
 	\item[(i)] Let again $p=1-e^{-2\beta}$. Suppose now we pick a $\set{0,1}^E$-valued random edge configuration $Y$ according to the following procedure:
 	\begin{itemize}
 		\item[(1)] Pick a random configuration $X\sim\mu_{\beta,q}^G$.
-		\item[(2)] For each $e=(x,y)\in E$ independently, assign
+		\item[(2)] For each $e=\sp{x,y}\in E$ independently, assign
 		$$Y(e) ~\sim~ \begin{cases}
 		\mathrm{Ber}(p): ~&X(x)=X(y),\\
 		\delta_0: ~&X(x)\neq X(y).
@@ -973,23 +994,144 @@ One can very simply ``obtain'' $\mu_{\beta,q}^G$ from $\phi_{p,q}^G$, and the ot
 
 % *************************************************************************************************
 
-\subsubsection{Infinite volume random cluster and phase transitions}
+\subsubsection{Infinite-volume random-cluster and phase transitions}\label{subsec:RCinf}
 
-\textcolor{blue}{\texttt{To be written after the proof of Part 1 if finalized. Should include:
+We now proceed with introducing the notion of an infinite-volume random-cluster measure. While we will define them for the lattice $(\Z^d,\E^d)$, the construction can be done on a much more general class of infinite graphs $G=(V,E)$. An alternative to $\Z^d$ we will be in particular interested in will be its subgraphs $(U,\E_U)$, $U\subset\Z^d$. \\
+
+Letting $G=(V,E)$ be a locally finite infinite graph, we consider finite simply connected region $F\subset E$ and write $V_F\subset V$ for the set of vertices to which at least one member of $F$ is incident to. Given a boundary condition $\xi\in\set{0,1}^E$, we define a \textit{random-cluster distribution} $\phi_{F;p,q}^{\xi}$, given by 
+$$\phi_{F;p,q}^{\xi}(\eta) ~=~ \frac{1}{\ZZ_{F;p,q}^\xi}\1_{\set{\eta_{F^\c}=\xi_{F^\c}}}\!\set{\prod_{e\in F}p^{\eta(e)}(1-p)^{1-\eta(e)}}q^{k(\eta,F)}, \quad \eta\in\set{0,1}^E,$$
+where $\ZZ_{F;p,q}^\xi$ is the normalization constant and $k(\eta,F)$ the number of connected components of $\eta$ which intersect $V_F$.
+
+\begin{df}
+A probability measure $\phi\in\M_1(\set{0,1}^E)$ is a \textit{random-cluster} measure (with parameters $p\in[0,1]$ and $q>0$) if
+$$\phi(\eta_F|\xi_{F^\c}) ~=~ \phi_{F;p,q}^\xi(\eta)$$
+for all finite simply connected $F\subset E$, $\phi$-a.a.~$\xi\in\set{0,1}^E$ and all $\eta\in\set{0,1}^E:\eta_{F^\c}=\xi_{F^\c}$.
+\end{df}
+
+A very handy property of random-cluster measures, which works great in tandem with Holley's Theorem (which is very easy to see given the remark we gave about how nicely the latter works with percolation measures) is the following:
+\begin{prop}[Lemma 6.18 in \cite{GHM}]\label{prop:e open}
+A probability measure $\phi\in\M_1(\set{0,1}^E)$ is a random-cluster measure (for $p\in[0,1]$ and $q>0$) if and only if for all $e=\sp{x,y}\in E$ and $\phi$-a.a.~$\xi\in\set{0,1}^E$, one has
+$$\phi(e~\text{is open}|\xi_{E\setminus\set{e}}) ~=~ \begin{cases}
+p, ~&x\leftrightarrow y~\text{in}~G_\xi=(V,\xi), \\
+\frac{p}{p+(1-p)q},~&\text{otherwise}.
+\end{cases}$$
+\end{prop}
+
+However, we are interested in a very particular class of random-cluster measures, which are rather analogue to the infinite-volume limit Gibbs measures introduced in Chapter \ref{ch:1}. We will now define it for the lattice $(\Z^d,\E^d)$, but it is not difficult to see that the same can be done for $(U,\E_U)$, $U\subset\Z^d$. Letting $\Lambda\Subset\Z^d$, we fix parameters $p\in[0,1]$, $q>0$ and a boundary condition $\xi\in\set{0,1}^{\E^d}$, we define $\phi_{\Lambda;p,q}^{\Z^d,\xi}$ via
+$$\phi_{\Lambda;p,q}^{\Z^d,\xi}(\eta) ~=~ \frac{1}{\ZZ_{\Lambda;p,q}^{\Z^d,\xi}}\1_{\set{\eta_{\E_\Lambda^\c}=\xi_{\E_\Lambda^\c}}}\!\set{\prod_{e\in\E_\Lambda}p^{\eta(e)}(1-p)^{1-\eta(e)}}q^{k(\eta,\Lambda)}, \quad \eta\in\set{0,1}^{\E^d},$$
+where $\ZZ_{\Lambda;p,q}^{\Z^d,\xi}$ is the normalization constant and $k(\eta,\Lambda)$ the number of connected components of $(\Z^d,\eta)$ that intersect $\Lambda$. The obvious similarities with previously defined $\phi_{F;p,q}^{\xi}$ justify the perhaps uncomfortably similar notation. \\
+
+Notice that the only way the values inside $\E_\Lambda$ are affected by the boundary condition is through $k(\eta,\Lambda)$. Consider the connected components only within $\Lambda$; the way that the boundary condition can affect the counting of $k(\eta,\Lambda)$ is if there exists an $\xi$-open path in $\E_\Lambda^\c$, that connects two different connected components in $\Lambda$ -- they are now no longer counted as two separate connected components, but a single one. That way, for $\xi\equiv 1$, there is a ``single'' connected component touching $\partial\Lambda$, while for $\xi\equiv 0$, the boundary doesn't affect $k(\eta,\Lambda)$. The latter in particular will be important latter. \\
+
+We now proceed to list some important properties of the measures defined above, which will be of major importance to our proof of Proposition \ref{FP:part1}.  \\
+
+The first one show us, how the boundary condition influences the stochastic ordering of the given measures:
+\begin{prop}[Lemma 4.14.(b) in \cite{Gri}]
+For $\xi,\zeta\in\set{0,1}^{\E^d}:\xi\preceq\zeta$,
+$$\phi_{\Lambda;p,q}^{\Z^d,\xi} ~\preceq_\D~ \phi_{\Lambda;p,q}^{\Z^d,\zeta}.$$
+In fact, it is sufficient that $\xi(e)\leq\zeta(e)$ for all $e\in\E_\Lambda^\c$.
+\end{prop}
+
+Next, we describe how the stochastic ordering is influenced by the choice of finite volume $\Lambda$, assuming a fixed boundary condition $\xi\equiv 1$, and what this tells us about the infinite-volume (weak) limit:
+\begin{prop}[Theorem 4.19.(a) in \cite{Gri}; equation (29) in \cite{GHM}]
+For $\Lambda\subset\Delta\Subset\Z^d$,
+$$\phi_{\Delta;p,q}^{\Z^d,1} ~\preceq_\D~ \phi_{\Lambda;p,q}^{\Z^d,1}.$$
+In particular,
+$$\phi_{p,q}^{\Z^d,1} ~=~ \text{w-}\!\!\lim_{\Lambda\Uparrow\Z^d}\phi_{\Lambda;p,q}^{\Z^d,1}$$
+exists, with $\phi_{\Lambda;p,q}^{\Z^d,1}(A)\downarrow\phi_{p,q}^{\Z^d,1}(A)$ for any increasing event $A$.
+\end{prop}
+The last one is concerned with the consistency of conditional probabilities. It might not appear very relevant at the moment, but will play a huge importance in the proof that follows.
+\begin{prop}[Lemma 4.13 in \cite{Gri}]
+Let $\Lambda\subset\Delta\Subset\Z^d$. Then for any choice of $\eta\in\set{0,1}^{\E^d}:\eta_{\E_\Lambda^\c}=\xi_{\E_\Lambda^\c}$,
+$$\phi_{\Delta;p,q}^{\Z^d,\xi}(A|\F_\Lambda)(\eta) ~=~ \phi_{\Lambda;p,q}^{\Z^d,\xi}(A), \quad \forall A\in\F.$$
+\end{prop}
+
+We conclude this section by finally listing result due to Aizenman, Chayes, Chayes and Newman that reveals how the intimate between random-cluster measures and Gibbs measures of the Potts model can be fruitful in studying the phase transitions in the latter. While it is again stated for the case of $\Z^d$, all the arguments constituting the proof can be -- as stated in the Section 6.3 in \cite{GHM} -- carried out for an arbitrary (locally finite) infinite graph (hence also in those of form $(U,\E_U)$, $U\subset\Z^d$).
+
+\begin{thm}[Aizenman, Chayes, Chayes, Newman, \cite{ACCN}; Theorem 6.10 in \cite{GHM}]\label{ACCN} Let $\beta>0$, $p=1-e^{-2\beta}$, $x\in\Z^d$ and $i\in\set{1,\ldots,q}$. The following are equivalent:
 \begin{itemize}
-	\item[(i)] General (DLR-type) definition of infinite volume random cluster measure.
-	\item[(ii)] Expression of $\phi(e~\text{open}|\eta)$.
-	\item[(iii)] Definition of relevant infinite volume limits, with some properties.
-	\item[(iv)] Statement of the theorem relating uniqueness of Potts Gibbs measure and $\phi_{p,q}^{1}(x\leftrightarrow\infty)=0$.
-\end{itemize}}}
+	\item[(i)] $|\G_{\set{1,\ldots,q}^{\Z^d}}(\Phi_{\beta,q})|=1$, i.e., there is a unique Gibbs measure for the $q$-state Potts model on $\Z^d$ with inverse temperature $\beta$,
+	\item[(ii)] $\mu_{\beta,q}^{\Z^d,i}(\omega:\omega(x)=i)=\frac{1}{q}$,
+	\item[(iii)] $\phi_{p,q}^{\Z^d,1}(x\leftrightarrow\infty)=0$.
+\end{itemize}
+\end{thm}
 
 % #################################################################################################
 
-\subsection{Proof of \textcolor{blue}{Part 1}}
+\subsection{Proof of Proposition \ref{FP:part1}}
+
+Given the equivalence (i)$\Leftrightarrow$(iii) in \ref{ACCN}, it is sufficient to prove the following:
+\begin{lem}\label{part1:MainLemma}
+Let $U\subset\Z^d$ and consider $(U,\E_U)$, which we refer to just by $U$. If for certain $\beta$ (writing $p=1-e^{-2\beta}$) one has $\phi_{p,q}^{\Z^d,1}(x\leftrightarrow\infty)=0$, then also
+$$\phi_{p,q}^{U,1}(x\leftrightarrow\infty) ~=~ 0.$$
+\end{lem}
+\begin{rem}
+Note that while we write $\set{x\leftrightarrow\infty}$ in both cases, we are in the first case thinking of the union of configurations in $\set{0,1}^{\E^d}$ and in the second case of ones in $\set{0,1}^{\E_U}$.
+\end{rem}
+
+Before we prove Lemma \ref{part1:MainLemma}, we enrich our toolbox a little further, to make our job as easy as possible.
+
+\begin{lem}\label{Part1:Lemma1}
+Let $\mu,\nu_1,\ldots,\nu_n$ be such that $\mu\preceq_\D\nu_i$ for all $i=1,\ldots,n$, and let $(p_1,\ldots,p_n)$ be a probability vector. Then
+$$\mu ~\preceq_\D~ p_1\nu_1+\ldots+p_n\nu_n.$$
+\end{lem}
+\begin{proof}
+By definition of $\preceq_\D$, $\int f\,\d\mu\leq\int f\,\d\nu_i$ for each increasing $f\in\BM(\Omega)$. It thus follows that
+\begin{align*}
+\int f\,\d\mu ~&=~ \sum_{i=1}^n p_i\int f\,\d\mu ~\leq~ \sum_{i=1}^n p_i\int f\,\d\nu_i ~=~ \int f\,\d[p_1\nu_1+\ldots p_n\nu_n]
+\end{align*}
+for any increasing $f\in\BM(\Omega)$ which yields the conclusion.
+\end{proof}
+
+\begin{lem}\label{Part1:Lemma2}
+Let $\Lambda\subset\Delta$ and let $\xi\in\set{0,1}^{\E^d}$ be such that $\xi(e)$ for all $e\in\E_\Delta\setminus\E_\Lambda$. Then
+$$\phi_{\Lambda;p,q}^{\Z^d,\xi} ~\preceq_\D~ \phi_{\Delta;p,q}^{\Z^d,\xi}.$$
+\end{lem}
+
+\pagebreak
 
 % #################################################################################################
 
-\subsection{Proof of \textcolor{blue}{Part 2}}
+\subsection{Proof of Proposition \ref{FP:part2}}
+
+As described in Section \ref{ProofComparison}, the proof of Proposition \ref{FP:part2} consists of two parts. The goal is to show that the product measure (of unique Gibbs measures on preimages of monochromatic componenets) is indeed the unique Gibbs measure on their product. \\
+
+The first step is indeed to verify that such product measure is in fact a Gibbs measure on the product space. We recall that $\set{U,V}$ is a partition of $\Z^d$ and that $\AA\cap\AB=\emptyset$. 
+
+\begin{lem}
+Assume that $\mu_\AA\in\G_{\AA^U}(\Phi_{\beta,|\AA|})$ and $\mu_\AB\in\G_{\AB^U}(\Phi_{\beta,|\AB|})$. Then $\mu_\AA\otimes\mu_\AB\in\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB|})$.
+\end{lem}
+
+\begin{proof}
+Let $\Lambda\Subset\Z^d$. We write $\H_{\Lambda;\beta}$ for the Hamiltonian on $\AA^U\otimes\AB^V$ and $\H_{\Lambda;\beta}^\AA,\H_{\Lambda;\beta}^{\AB}$ for the respective Hamiltonians on $\AA^U,\AB^V$. We fist have, for any choice of $\omega\in\Omega$ 
+\begin{align*}
+\H_{\Lambda;\beta}(\omega) ~&=~ 2\beta\sum_{\sp{x,y}\in\E_\Lambda\cup\partial\E_\Lambda}\!\!\!\1_{\omega(x)\neq\omega(y)} \\
+&=~ 2\beta\!\oglati{\sum_{\substack{\sp{x,y}\in\E_\Lambda\cup\partial\E_\Lambda:\\(x,y)\in U\times U}}\!\!\!\1_{\omega(x)\neq\omega(y)}+\sum_{\substack{\sp{x,y}\in\E_\Lambda\cup\partial\E_\Lambda:\\(x,y)\in V\times V}}\!\!\!\1_{\omega(x)\neq\omega(y)}+\sum_{\substack{\sp{x,y}\in\E_\Lambda\cup\partial\E_\Lambda:\\(x,y)\in U\times V}}\!\!\!\1_{\omega(x)\neq\omega(y)}} \\
+&=~ \H_{\Lambda;\beta}^\AA(\omega_U) + \H_{\Lambda;\beta}^\AB(\omega_V) + \underbrace{2\beta|\{\sp{x,y}\in\E_\Lambda\cup\partial\E_\Lambda:x\in U,y\in V\}|}_{C_{\beta,\Lambda}},
+\end{align*}
+using the fact that if $x\in U$ and $y\in V$, $\omega(x)\in\AA$ and $\omega(y)\in\AB$, hence $\omega(x)\neq\omega(y)$. As seen before, Hamiltonians differing only by constants yield equivalent specifications, hence $(\H_{\Lambda;\beta})_{\Lambda\Subset\Z^d}$ yields the same specification, which shall be denoted by $\gamma_\beta$, as $(\H_{\Lambda;\beta}^\AA+\H_{\Lambda;\beta}^\AB)_{\Lambda\Subset\Z^d}$, that is
+$$\gamma_{\Lambda;\beta}(\omega_\Lambda|\xi_{\Lambda^\c}) ~=~ \frac{\exp(-\H_{\Lambda;\beta}^\AA(\omega_{U\cap\Lambda}\xi_{U\cap\Lambda^\c}))\exp(-\H_{\Lambda;\beta}^\AB(\omega_{V\cap\Lambda}\xi_{V\cap\Lambda^\c}))}{\sum_{\tilde{\omega}_\Lambda\in\Omega_\Lambda}\exp(-\H_{\Lambda;\beta}^\AA(\tilde{\omega}_{U\cap\Lambda}\xi_{U\cap\Lambda^\c}))\exp(-\H_{\Lambda;\beta}^\AB(\tilde{\omega}_{V\cap\Lambda}\xi_{V\cap\Lambda^\c}))}.$$
+On the other hand, $(\H_{\Lambda;\beta}^\AA)_{\Lambda\Subset\Z^d}$ yields a specification $\gamma_\beta^\AA$ with $\gamma_{\Lambda;\beta}^\AA:\F_{U\cap\Lambda}\times\Omega_{U\cap\Lambda^\c}\ra(0,1)$ and
+$$\gamma_{\Lambda;\beta}^\AA(\omega_{U\cap\Lambda}|\xi_{U\cap\Lambda^\c}) ~=~ \frac{\exp(-\H_{\Lambda;\beta}^{\AA}(\omega_{U\cap\Lambda}\xi_{U\cap\Lambda^\c}))}{\sum_{\tilde{\omega}_{U\cap\Lambda}\in\Omega_{U\cap\Lambda}}\exp(-\H_{\Lambda;\beta}^{\AA}(\tilde{\omega}_{U\cap\Lambda}\xi_{U\cap\Lambda^\c}))};$$
+similarly, $(\H_{\Lambda;\beta}^\AB)_{\Lambda\Subset\Z^d}$ yields a specification $\gamma_\beta^\AB$ with $\gamma_{\Lambda;\beta}^\AB:\F_{V\cap\Lambda}\times\Omega_{V\cap\Lambda^\c}\ra(0,1)$ and
+$$\gamma_{\Lambda;\beta}^\AB(\omega_{V\cap\Lambda}|\xi_{V\cap\Lambda^\c}) ~=~ \frac{\exp(-\H_{\Lambda;\beta}^{\AB}(\omega_{V\cap\Lambda}\xi_{V\cap\Lambda^\c}))}{\sum_{\tilde{\omega}_{V\cap\Lambda}\in\Omega_{V\cap\Lambda}}\exp(-\H_{\Lambda;\beta}^{\AB}(\tilde{\omega}_{V\cap\Lambda}\xi_{V\cap\Lambda^\c}))}.$$
+In other words, one has precisely that
+$$\gamma_{\Lambda;\beta}(\omega_\Lambda|\xi_{\Lambda^\c}) ~=~ \gamma_{\Lambda;\beta}^\AA(\omega_{U\cap\Lambda}|\xi_{U\cap\Lambda^\c})\gamma_{\Lambda;\beta}^\AB(\omega_{V\cap\Lambda}|\xi_{V\cap\Lambda^\c})$$
+and hence
+\begin{align*}
+\mu_\AA\otimes\mu_\AB(\omega_\Lambda|\xi_{\Lambda^\c}) ~&=~ \mu_\AA(\omega_{U\cap\Lambda}|\xi_{U\cap\Lambda^\c})\mu_\AB(\omega_{V\cap\Lambda}|\xi_{V\cap\Lambda^\c}) \\
+&=~ \gamma_{\Lambda;\beta}^\AA(\omega_{U\cap\Lambda}|\xi_{U\cap\Lambda^\c})\gamma_{\Lambda;\beta}^\AB(\omega_{V\cap\Lambda}|\xi_{V\cap\Lambda^\c}) \\
+&=~ \gamma_{\Lambda;\beta}(\omega_\Lambda|\xi_{\Lambda^\c}).
+\end{align*}
+It follows precisely from Definition \ref{def:DLR} that $\mu_\AA\otimes\mu_\AB\in\G_{\AA^U\otimes\AB^V}(\gamma_\beta)=\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB|})$.
+\end{proof}
+
+Now, we are left by showing that $\mu_\AA\otimes\mu_\AB$ is the only member of $\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB|})$. Recalling Proposition \ref{DLR:properties}, we notice that it is sufficient to prove that 
+$$\extr(\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+\AB|}))=\set{\mu_\AA\otimes\mu_\AB}.$$
+We are thus just left with verifying the following:
+\begin{lem}
+Let $\mu\in\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB})$. Then $\mu=\mu_\AA\otimes\mu_\AB$.
+\end{lem}
 
 % #################################################################################################
 
@@ -1327,7 +1469,7 @@ $$\psi_p(\eta) ~=~ \prod_{e\in E}p^{\eta(e)}(1-p)^{1-\eta(e)}.$$
 \end{df}
 This can indeed be extended to an infinite graph $G=(V,E)$, where $\psi_p=\mathrm{Ber}(p)^{\otimes E}$.\footnote{It is clear that the finite graph version obeys this as well.} The configuration $\eta$ can be understood as a subgraph $(V,\set{e:\eta(e)=1})$ of $G$, which we will denote shorter by $G_\eta=(V,\eta)$.\\
 
-We are interested in $G=(\Z^d,\mathbb{E}^d)$ situation. Writing $\set{x\leftrightarrow\infty}$ for the event that $x\in\Z^d$ belongs to an infinite cluster of $(\Z^d,\eta)$, one might as  what is the probability of such event -- due to translation invariance, this probability should be same for any choice of $x$. Writing
+We are interested in $G=(\Z^d,\E^d)$ situation. Writing $\set{x\leftrightarrow\infty}$ for the event that $x\in\Z^d$ belongs to an infinite cluster of $(\Z^d,\eta)$, one might as  what is the probability of such event -- due to translation invariance, this probability should be same for any choice of $x$. Writing
 $$\theta(p) ~=~ \psi_p(0\leftrightarrow\infty),$$
 we define the critical probability
 $$p_c ~:=~ \inf\set{p\in[0,1]:\theta(p)>0}.$$
@@ -1358,7 +1500,7 @@ $\xrightarrow{w}$ & weak convergence, i.e., convergence in $\sigma(\M_1(\Omega),
 $\sp{x,y}$ & edge with endpoints $x$ and $y$ \\
 $|A|$ & cardinality of set $A$ \\
 $\|\!\pika\!\|_\TV$ & total variation norm \\
-$\set{\Lambda\leftrightarrow\Delta}$ & event that there exists an open path between sets $\Lambda$ and $\Delta$; either of the sets could be replaced by a point (then understood as singleton) or $\infty$ \\
+$\set{\Lambda\leftrightarrow\Delta}$ & event that there exists an open path between (disjoint) sets $\Lambda$ and $\Delta$; either of the sets could be replaced by a point (then understood as singleton) or $\infty$ \\
 $\AA^U\otimes\AB^{\Z^d\setminus U}$ & $\prod_{x\in\Z^d}\A_x$, where $\A_x=\AA$ for $x\in U$ and $\A_x=\AB$ for $x\notin U$ \\
 $\BB^1(\Omega)$ & space of uniformly absolutely convergent interactions \\
 $\BBB_n$ & $[-n,n]^d\cap\Z^d$ \\
@@ -1373,6 +1515,7 @@ $\mathrm{diam}(A)$ & diameter of a set $A$ \\
 $\mathrm{Dob}$ & Dobrushin boundary condition \\
 $\E_\Lambda$ & edges with both endpoints in $\Lambda$ \\
 $\partial\E_\Lambda$ & edges with precisely one endpoint of $\Lambda$, ``boundary of $\E_\Lambda$'' \\
+$\E^d$ & nearest neighbour edge set on $\Z^d$ \\
 $\F$ & underlying (cylinder generated) $\sigma$-algebra on $\Omega$ \\
 $\F_\Lambda$ & sub-$\sigma$-algebra of $\F$, generated by values in $\Lambda$ (or, equivalently, values outside $\Lambda$)  
 \end{tabular} 
@@ -1431,7 +1574,7 @@ $\nu_{\beta,q,\r}^{G,\xi}$ & $\mu_{\beta,q}^{G,\xi}\circ\pi_\r^{-1}$, fuzzy Pott
 $\pi$ & fuzzy map \\
 $\Sigma$ & image configuration space onto which fuzzy map $\pi$ maps $\Omega$ \\
 $\Sigma_0$ & Tjur points \\
-$\phi_{p,q}^{G,\xi}$ & random cluster measure on graph $G$ with parameters $p,q$ and boundary condition $\xi$ \\
+$\phi_{p,q}^{G,\xi}$ & random-cluster measure on graph $G$ with parameters $p,q$ and boundary condition $\xi$ \\
 $\Phi_{\beta,h}$ & interaction of Ising model with inverse temperature $\beta$ and external magnetic force $h$ \\
 $\Phi_{\beta,q}$ & interaction of $q$-state Potts model with inverse temperature $\beta$ \\
 $\psi_p,\psi_p^G$ & probability measure associated with $p$-Bernoulli percolation (on graph $G$) \\
