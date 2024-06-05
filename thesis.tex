@@ -135,7 +135,7 @@ While the problem of coexistence of several such measures only comes to light in
 \begin{itemize}
 	\item[(1)] \textit{Decimation} rule simply forgets all but one of the spin values in $B$, and assigns the value of the one left as the value of the super-spin. In other words, if given $x\in\Z^d$, one has $B_x=\prod_{i=1}^d \set{b x_i,b x_i+1,\ldots,b x_i+(b-1)}=bx+\set{0,\ldots,b-1}^d$, then it is customary to assign
 	$$\omega'(B_x) ~=~ \omega(bx).$$
-\vspace{-0.6cm}
+\vspace{-0.9cm}
 \begin{figure}[h!]
 \centering
 \resizebox{0.9\textwidth}{!}{
@@ -855,11 +855,11 @@ The author first remarks that it is sufficient to show, that given random fuzzy 
 $$\Q(Y_{\Delta}=Y_{\Delta}') ~\geq~ 1-\varepsilon.$$
 This can indeed be guaranteed by showing that with a probability at least $1-\varepsilon$, there exists a (random) edge set $E\subseteq\E_{\Lambda_n\setminus\Delta}=\set{\sp{x,y}:x,y\in\Lambda_n\setminus\Delta}$, which separates $\Delta$ from $\Lambda_n^\c$ -- in a sense that any path from $\Delta$ to $\Lambda_n^\c$ must pass through at least on edge from $E$ -- and is such that given certain random configurations $U,U'$ corresponding to $Y,Y'$ (in the sense of the random-cluster model, see Section \ref{sec:RandomCluster}), $U_E=U_E'\equiv 0$. \\
 
-In light of Definition \ref{def:EdwardsSokal}, H\"aggstr\"om first considers the (joint) distribution $\PP$ of $(\tilde{U},\tilde{X},\tilde{Y})$, where $\tilde{U}$ is a random edge configuration, distributed according to the random-cluster measure $\phi_{p,q}^{\Z^d,1}$ (see \textcolor{red}{\texttt{[section]}}), $\tilde{X}$ is a corresponding configuration in $\set{1,\ldots,q}^{\Z^d}$ obtained by assigning each connected component of $(\Z^d,U)$ a $\mathrm{Unif}(1,\ldots,q)$-drawn sign (which results in $\tilde{X}$ having a marginal distribution $\mu_{\beta,q}^{\Z^d, i}$, see Cor.~\ref{cor:EdwardsSokal}.(i)) and $Y=\pi_\r(X)$ (which results in $\tilde{Y}$ having a marginal distribution $\nu_{\beta,q,\r}^{\Z^d,i}$). Given $\Delta$ as above and $\eta,\eta'$ agreeing on $\Lambda_n\setminus\Delta$ (as above) one can define a coupling $\Q$ of 
+In light of Definition \ref{def:EdwardsSokal}, H\"aggstr\"om first considers the (joint) distribution $\PP$ of $(\tilde{U},\tilde{X},\tilde{Y})$, where $\tilde{U}$ is a random edge configuration, distributed according to the random-cluster measure $\phi_{p,q}^{\Z^d,1}$ (see Section \ref{subsec:RCinf}), $\tilde{X}$ is a corresponding configuration in $\set{1,\ldots,q}^{\Z^d}$ obtained by assigning each connected component of $(\Z^d,U)$ a $\mathrm{Unif}(1,\ldots,q)$-drawn sign (which results in $\tilde{X}$ having a marginal distribution $\mu_{\beta,q}^{\Z^d, i}$, see Cor.~\ref{cor:EdwardsSokal}.(i)) and $Y=\pi_\r(X)$ (which results in $\tilde{Y}$ having a marginal distribution $\nu_{\beta,q,\r}^{\Z^d,i}$). Given $\Delta$ as above and $\eta,\eta'$ agreeing on $\Lambda_n\setminus\Delta$ (as above) one can define a coupling $\Q$ of 
 $$(U,X,Y)\sim\PP(\pika|Y_{\Delta^c}=\eta_{\Delta^c}),~(U',X',Y')\sim\PP(\pika|Y_{\Delta^c}'=\eta_{\Delta^\c}')~\text{and}~U''\sim\phi_{p,r_*}^{\Z^d,1};$$
 this will be the coupling for which it is argued that $\Q(Y_{\Delta}=Y_{\Delta}')\geq 1-\varepsilon$. \\
 
-An appropriate $N$ is selected rather intuitively: the event that an infinite cluster exists has $\phi_{p,r^*}^{\Z^d,1}$-probability zero for any $\beta<\beta_c(d,r^*)$ (see \textcolor{red}{\texttt{[ACCN result]}}), from which it follows that
+An appropriate $N$ is selected rather intuitively: the event that an infinite cluster exists has $\phi_{p,r^*}^{\Z^d,1}$-probability zero for any $\beta<\beta_c(d,r^*)$ (see Theorem \ref{ACCN}), from which it follows that
 $$\phi_{p,r^*}^{\Z^d,1}(\exists~\text{open path from $\Delta$ to $\Lambda_n^\c$}) ~\xrightarrow{n\ra\infty}~ 0,$$
 so we let $N$ be the first integer for which the probability on the left-hand side is at most $\varepsilon$. \\
 
@@ -1026,14 +1026,14 @@ Notice that the only way the values inside $\E_\Lambda$ are affected by the boun
 We now proceed to list some important properties of the measures defined above, which will be of major importance to our proof of Proposition \ref{FP:part1}.  \\
 
 The first one show us, how the boundary condition influences the stochastic ordering of the given measures:
-\begin{prop}[Lemma 4.14.(b) in \cite{Gri}]
+\begin{prop}[Lemma 4.14.(b) in \cite{Gri}]\label{RC:boundarydomination}
 For $\xi,\zeta\in\set{0,1}^{\E^d}:\xi\preceq\zeta$,
 $$\phi_{\Lambda;p,q}^{\Z^d,\xi} ~\preceq_\D~ \phi_{\Lambda;p,q}^{\Z^d,\zeta}.$$
 In fact, it is sufficient that $\xi(e)\leq\zeta(e)$ for all $e\in\E_\Lambda^\c$.
 \end{prop}
 
 Next, we describe how the stochastic ordering is influenced by the choice of finite volume $\Lambda$, assuming a fixed boundary condition $\xi\equiv 1$, and what this tells us about the infinite-volume (weak) limit:
-\begin{prop}[Theorem 4.19.(a) in \cite{Gri}; equation (29) in \cite{GHM}]
+\begin{prop}[Theorem 4.19.(a) in \cite{Gri}; equation (29) in \cite{GHM}]\label{RC:decr converg}
 For $\Lambda\subset\Delta\Subset\Z^d$,
 $$\phi_{\Delta;p,q}^{\Z^d,1} ~\preceq_\D~ \phi_{\Lambda;p,q}^{\Z^d,1}.$$
 In particular,
@@ -1041,7 +1041,7 @@ $$\phi_{p,q}^{\Z^d,1} ~=~ \text{w-}\!\!\lim_{\Lambda\Uparrow\Z^d}\phi_{\Lambda;p
 exists, with $\phi_{\Lambda;p,q}^{\Z^d,1}(A)\downarrow\phi_{p,q}^{\Z^d,1}(A)$ for any increasing event $A$.
 \end{prop}
 The last one is concerned with the consistency of conditional probabilities. It might not appear very relevant at the moment, but will play a huge importance in the proof that follows.
-\begin{prop}[Lemma 4.13 in \cite{Gri}]
+\begin{prop}[Lemma 4.13 in \cite{Gri}]\label{RC:conditionalconsisteny}
 Let $\Lambda\subset\Delta\Subset\Z^d$. Then for any choice of $\eta\in\set{0,1}^{\E^d}:\eta_{\E_\Lambda^\c}=\xi_{\E_\Lambda^\c}$,
 $$\phi_{\Delta;p,q}^{\Z^d,\xi}(A|\F_\Lambda)(\eta) ~=~ \phi_{\Lambda;p,q}^{\Z^d,\xi}(A), \quad \forall A\in\F.$$
 \end{prop}
@@ -1060,7 +1060,7 @@ We conclude this section by finally listing result due to Aizenman, Chayes, Chay
 
 \subsection{Proof of Proposition \ref{FP:part1}}
 
-Given the equivalence (i)$\Leftrightarrow$(iii) in \ref{ACCN}, it is sufficient to prove the following:
+Given the equivalence (i)$\Leftrightarrow$(iii) in Theorem \ref{ACCN}, it is sufficient to prove the following:
 \begin{lem}\label{part1:MainLemma}
 Let $U\subset\Z^d$ and consider $(U,\E_U)$, which we refer to just by $U$. If for certain $\beta$ (writing $p=1-e^{-2\beta}$) one has $\phi_{p,q}^{\Z^d,1}(x\leftrightarrow\infty)=0$, then also
 $$\phi_{p,q}^{U,1}(x\leftrightarrow\infty) ~=~ 0.$$
@@ -1084,11 +1084,48 @@ for any increasing $f\in\BM(\Omega)$ which yields the conclusion.
 \end{proof}
 
 \begin{lem}\label{Part1:Lemma2}
-Let $\Lambda\subset\Delta$ and let $\xi\in\set{0,1}^{\E^d}$ be such that $\xi(e)$ for all $e\in\E_\Delta\setminus\E_\Lambda$. Then
+Let $\Lambda\subset\Delta$ and let $\xi\in\set{0,1}^{\E^d}$ be such that $\xi(e)=0$ for all $e\in\E_\Delta\setminus\E_\Lambda$. Then
 $$\phi_{\Lambda;p,q}^{\Z^d,\xi} ~\preceq_\D~ \phi_{\Delta;p,q}^{\Z^d,\xi}.$$
 \end{lem}
 
-\pagebreak
+\begin{proof}
+Consider some $A\subseteq\E_\Delta\setminus\E_U$; since $\xi_{\E_\Delta\setminus\E_\Lambda}\equiv 0$, we have $\xi+\1_A\in\set{0,1}^{\E^d}$ again and it is clear from definition that
+$$\phi_{\Delta;p,q}^{\Z^d,\xi} ~=~ \phi_{\Delta;p,q}^{\Z^d,\xi+\1_A}.$$
+It thus follows from Proposition \ref{RC:conditionalconsisteny} that for any choice of $\eta\in\set{0,1}^{\E^d}$ that agrees with $\xi+\1_A$ on $\E_\Lambda^\c$,
+$$\phi_{\Delta;p,q}^{\Z^d,\xi}(\pika|\F_\Lambda)(\eta) ~=~ \phi_{\Delta;p,q}^{\Z^d,\xi+\1_A}(\pika|\F_\Lambda)(\eta) ~=~ \phi_{\Lambda;p,q}^{\Z^d,\xi+\1_A}.$$ 
+Writing $[\xi+\1_A]:=\set{\eta:\eta\equiv \xi+\1_A~\text{off}~\E_\Lambda}\in\F_\Lambda$, we can see that cylinders of this form constitute a finite partition of $\set{0,1}^{\E^d}$. We write $n$ for its cardinality and $(A_1,\ldots,A_n)$ for (some) enumeration of it. Note also that since $\F_\Lambda$ can be seen as generated by edges of $\E_\Lambda^\c$, one has 
+$$\phi_{\Delta;p,q}^{\Z^d,\xi}(\pika|\F_\Lambda)(\eta) ~=~ \phi_{\Delta;p,q}^{\Z^d,\xi}(\pika|[\xi+\1_A]), \quad \eta\in[\xi+\1_A].$$
+Writing $p_i$ for the $\phi_{\Lambda;p,q}^{\Z^d,\xi}$-probability of edges in $\E_\Delta\setminus\E_\Lambda$ agreeing with $\1_{A_i}$, the Law of Total Probability yields
+\begin{align*}
+\phi_{\Delta;p,q}^{\Z^d,\xi} ~&=~ \sum_{i=1}^n p_i\cdot\phi_{\Delta;p,q}^{\Z^d,\xi}(\pika|[\xi+\1_{A_i}]) \\
+&=~ \sum_{i=1}^n p_i\cdot\phi_{\Delta;p,q}^{\Z^d,\xi}(\pika|\F_\Lambda)([\xi+\1_{A_i}]) \\
+&=~ \sum_{i=1}^n p_i\cdot\phi_{\Delta;p,q}^{\Z^d,\xi+\1_{A_i}}(\pika|\F_\Lambda)([\xi+\1_{A_i}]) \\
+&=~ \sum_{i=1}^n p_i\cdot\phi_{\Lambda;p,q}^{\Z^d,\xi+\1_{A_i}}.
+\end{align*}
+As $\xi\preceq\xi+\1_A$ for any appropriate $A$, we indeed have by Proposition \ref{RC:boundarydomination} that
+$$\phi_{\Lambda;p,q}^{\Z^d,\xi} ~\preceq_\D~ \phi_{\Lambda,p,q}^{\Z^d,\xi+\1_A},$$
+so it follows by Lemma \ref{Part1:Lemma1} that
+$$\phi_{\Lambda;p,q}^{\Z^d,\xi} ~\preceq_\D~ \sum_{i=1}^n p_i\cdot\phi_{\Lambda;p,q}^{\Z^d,\xi+\1_{A_i}} ~=~ \phi_{\Delta;p,q}^{\Z^d,\xi}.$$
+\end{proof}
+
+We are now fully equipped to provide the final proof:
+\begin{proof}[Proof of Lemma \ref{part1:MainLemma}]
+Recalling that $\set{x\leftrightarrow y}$ is an increasing event, we have (by Proposition \ref{RC:decr converg}) that 
+$$\phi_{\Lambda;p,q}^{\Z^d,1}(x\leftrightarrow y)~\downarrow~\phi_{p,q}^{\Z^d,1}(x\leftrightarrow y)\quad\text{and}\quad\phi_{\Lambda\cap U;p,q}^{U,1}(x\leftrightarrow y)~\downarrow~\phi_{p,q}^{U,1}(x\leftrightarrow y),$$
+so it is sufficient to show that
+$$\phi_{\Lambda\cap U;p,q}^{U,1}(x\leftrightarrow\infty) ~\leq~ \phi_{\Lambda;p,q}^{\Z^d,1}(x\leftrightarrow\infty), \quad \forall \Lambda\Subset\Z^d.$$
+Due to $\set{x\leftrightarrow\infty}$, one is tempted to argue via stochastic domination, though this of course doesn't make sense, as the measures in question are defined on two different spaces. There is however a solution, as -- recalling an earlier remark about $0$-boundary condition not disturbing the counting of $k$ of connected components -- we have that
+$$\phi_{\Lambda\cap U;p,q}^{U,1}(x\leftrightarrow\infty) ~=~ \phi_{\Lambda\cap U;p,q}^{U,1}\otimes\delta_{\mathsf{0}}^{\E^d\setminus\E_U}(x\leftrightarrow\infty).$$
+\textcolor{blue}{One can easily verify that indeed} 
+$$\phi_{\Lambda\cap U;p,q}^{U,1}\otimes\delta_\mathsf{0}^{\E^d\setminus\E_U} ~=~ \phi_{\Lambda\cap U;p,q}^{\Z^d,\1_{\E_U}},\footnote{Heuristically, this is easy to see via the prior remark about $0$-boundary condition not affecting the counting of $k$ in the definition of the random cluster measure.}$$
+so we are just left with showing that
+$$\phi_{\Lambda\cap U;p,q}^{\Z^d,\1_{\E_U}} ~\preceq_\D~ \phi_{\Lambda;p,q}^{\Z^d,1}.$$
+Using that $\1_{\E_U}\preceq 1-\1_{\E_\Lambda\setminus\E_U}$, one obtains that 
+$$\phi_{\Lambda\cap U;p,q}^{\Z^d,\1_{\E_U}}~\preceq_\D~\phi_{\Lambda\cap U;p,q}^{\Z^d,1-\1_{\E_\Lambda\setminus\E_U}}.$$
+Moreover, using that $\Lambda\cap U\subset\Lambda$ implies that $1-\1_{\E_\Lambda\setminus\E_U}$ agrees with $\mathsf{0}$ on $\E_\Lambda\setminus\E_U$ and with $\mathsf{1}$ on $\E^d\setminus\E_\Lambda$, we can conclude via Lemma \ref{Part1:Lemma2} that
+$$\phi_{\Lambda\cap U;p,q}^{\Z^d,1-\1_{\E_\Lambda\setminus\E_U}} ~\preceq_\D~ \phi_{\Lambda;p,q}^{\Z^d,1-\1_{\E_\Lambda\setminus\E_U}} ~=~ \phi_{\Lambda;p,q}^{\Z^d,1},$$
+which completes the proof.
+\end{proof}
 
 % #################################################################################################
 
@@ -1411,13 +1448,13 @@ We do in fact agree with H\"aggstr\"om in his conjecture. Recalling that presenc
 
 \section{Technical appendix}
 
-This appendix introduces some technical notions that need to be understood, but whose definitions would disturb the flow of the main text, if included there.
+This appendix introduces some technical notions that need to be understood, but whose definitions would disturb the flow of the main text. All of them are rather standard notions in modern probability theory, which reader is not unlikely to already be familiar with.
 
 % #################################################################################################
 
 \subsection{Regular conditional probability}\label{app:1}
 
-\textcolor{blue}{\texttt{Blahblahblah}} % from Leao, Fragoso, Ruffino (file art02) \\
+We first introduce regular conditional probabilities, which are used to define DLR measures and quietly used throughout the thesis. The definition is given as in \cite{LFR}. On the way we also recall the notion of probability kernels, which also appear in the text. \\
 
 Consider an arbitrary probability space $(\Omega,\F,\P)$ and measurable space $(E,\mathcal{E})$. Recall that a \textit{probabilty kernel} from $(E,\mathcal{E)}$ to $(\Omega,\F)$ is a map $\kappa:E\times\F\mapsto[0,1]$, such that
 \begin{itemize}
@@ -1434,15 +1471,15 @@ Given fixed $x\in E$ and $A\in\F$, one usually writes $\P(A|X=x)$ or $\P(A|x)$ i
 In our case, we consider (usually) $\Omega=\A^{\Z^d}$ with some $\mu\in\M_1(\Omega)$. We then simply take $E=\Omega$ and $X=\mathrm{id}$, i.e., $X(\omega)=\omega$ for each congifuration $\omega\in\Omega$. In the definition of DLR Gibbs measure, we write the following:
 $$\mu(\omega~\text{on}~\Lambda|\xi~\text{off}~\Lambda),\quad \omega,\xi\in\Omega,\,\Lambda\Subset\Z^d.$$
 By event $\set{\omega~\text{on}~\Lambda}$, we refer to $\set{\tilde{\omega}\in\Omega:\tilde{\omega}_\Lambda=\omega_\Lambda}$, so we could consider $\mu(\omega~\text{on}~\Lambda|\pika)$ as above, so we'd have (using that $X=\mathrm{id}$),
-$$\mu(\set{\omega~\text{on}~\Lambda}\cap B) ~=~ \int_B \mu(\omega~\text{on}~\Lambda|\xi)\,\d\mu(\xi).$$
-However $\set{\xi~\text{off}~\Lambda}$ is a set of configurations, rather than a single configuration as desired. In particular $\set{\xi~\text{off}~\Lambda}=\{\tilde{\xi}\in\Omega:\tilde{\xi}_{\Lambda^\c}=\xi_{\Lambda^\c}\}$; however, since $\Lambda$ is finite, $\set{\xi~\text{off}~\Lambda}$ is finite too, so one has, now formally (as it is clear what we mean by $\mu(\omega~\text{on}~\Lambda|\xi)$),
-$$\mu(\omega~\text{on}~\Lambda|\xi~\text{off}~\Lambda) ~=~ \sum_{\substack{\tilde{\xi}\in\Omega:\\\tilde{\xi}_{\Lambda^\c}=\xi_{\Lambda^\c}}}\mu(\omega~\text{on}~\Lambda|\tilde{\xi}\,).$$ 
+$$\mu(\set{\omega~\text{on}~\Lambda}\cap B) ~=~ \int_B \mu(\omega~\text{on}~\Lambda|\xi_{\Lambda^\c})\,\d\mu(\xi_{\Lambda^\c}).$$
+However $\set{\xi~\text{off}~\Lambda}$ is a set of configurations, rather than a single configuration as desired. In particular $\set{\xi~\text{off}~\Lambda}=\{\tilde{\xi}\in\Omega:\tilde{\xi}_{\Lambda^\c}=\xi_{\Lambda^\c}\}$; however, since $\Lambda$ is finite, $\set{\xi~\text{off}~\Lambda}$ is finite too, so one has, now formally (as it is clear what we mean by $\mu(\omega~\text{on}~\Lambda|\xi_{\Lambda^\c})$),
+$$\mu(\omega~\text{on}~\Lambda|\xi~\text{off}~\Lambda) ~=~ \sum_{\substack{\tilde{\xi}\in\Omega:\\\tilde{\xi}_{\Lambda^\c}=\xi_{\Lambda^\c}}}\mu(\omega~\text{on}~\Lambda|\tilde{\xi}_{\Lambda^\c}).$$ 
 
 % #################################################################################################
 
 \subsection{Coupling}\label{app:2}
 
-\textcolor{blue}{\texttt{Blahblahblah}} % find source!!!
+Coupling is a classical but very powerful technique in probability theory which allows us to compare two random variables, possibly defined on different probability spaces. Reader is encouraged to read more about it in \cite{dH}.\\ 
 
 We consider two (possibly equal) probability spaces, $(\Omega',\F',\P')$ and $(\Omega'',\F'',\P'')$.
 
@@ -1454,13 +1491,13 @@ A coupling of $\P'$ and $\P''$ is any probability measure $\hat{\P}$ on product 
 \end{align*}
 \end{df}
 
-\textcolor{blue}{\texttt{Mention alternative notion of coupling of random variables.}}
+Given random variables $X',X''$, defined on $(\Omega',\F',\P'),(\Omega'',\F',\P')$ respectively, one can also talk about a coupling of $X'$ and $X''$, which is actually simply a coupling of their respective laws.
 
 % #################################################################################################
 
 \subsection{Bernoulli percolation}\label{app:3}
 
-\textcolor{blue}{\texttt{Blahblahblah}} % based on GHM, Duminil-Copin
+Percolation theory is an important topic in the intersection of probability theory and statistical mechanics, which remains very active up until this day, and which includes a variety of different models in different set-ups. Below, we present the very basics of Bernoulli (bond) percolation, which might help with understanding the random-cluster representations defined in Chapter \ref{ch:3}. This mini section is based on \cite{D-C} and \cite{GHM}. \\
 
 Consider first a finite graph $G=(V,E)$.
 \begin{df}
@@ -1470,13 +1507,13 @@ $$\psi_p(\eta) ~=~ \prod_{e\in E}p^{\eta(e)}(1-p)^{1-\eta(e)}.$$
 This can indeed be extended to an infinite graph $G=(V,E)$, where $\psi_p=\mathrm{Ber}(p)^{\otimes E}$.\footnote{It is clear that the finite graph version obeys this as well.} The configuration $\eta$ can be understood as a subgraph $(V,\set{e:\eta(e)=1})$ of $G$, which we will denote shorter by $G_\eta=(V,\eta)$.\\
 
 We are interested in $G=(\Z^d,\E^d)$ situation. Writing $\set{x\leftrightarrow\infty}$ for the event that $x\in\Z^d$ belongs to an infinite cluster of $(\Z^d,\eta)$, one might as  what is the probability of such event -- due to translation invariance, this probability should be same for any choice of $x$. Writing
-$$\theta(p) ~=~ \psi_p(0\leftrightarrow\infty),$$
+$$\theta(p) ~=~ \psi_p(0\leftrightarrow\infty),\footnote{As a consequence of Kolmogorov 0-1 Law, $\theta(p)\in\set{0,1}$.}$$
 we define the critical probability
 $$p_c ~:=~ \inf\set{p\in[0,1]:\theta(p)>0}.$$
 It should be noted that $p_c$ does in fact depend on dimension $d$. For $d=1$, we clearly have $\theta(p)=0$ (unless $p=1$), and hence $p_c(1)=1$. 
 
 \begin{thm}[\cite{D-C}, Theorem 1.1]
-For $d\geq 2$, $p_c(d)\in (0,1)$. \textcolor{blue}{\texttt{Some comment that it is a 0-1 thing?}}
+For $d\geq 2$, $p_c(d)\in (0,1)$.
 \end{thm} 
 
 % #################################################################################################
