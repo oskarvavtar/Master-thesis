@@ -781,7 +781,7 @@ For $q$-state Potts model on $\Z^d$ with $d\geq 2$, there exists a critical inve
 \end{thm}
 
 It is worth mentioning that the mutually singular Gibbs measures in the $\beta>\beta_c$ regime are precisely the measures $\mu_{\beta,q}^1,\ldots,\mu_{\beta,q}^q$, where for $i\in\set{1,\ldots,q}$, $\mu_{\beta,q}^i$ is the thermodynamical limit
-$$\mu_{\beta,q}^i ~=~ w\,\text{-}\!\lim_{\Lambda\Uparrow\Z^d}\mu_{\Lambda;\beta,q}^{\mathsf{i}},$$
+$$\mu_{\beta,q}^i ~=~ \text{w-}\!\!\lim_{\Lambda\Uparrow\Z^d}\mu_{\Lambda;\beta,q}^{\mathsf{i}},$$
 where $\mathsf{i}=\set{i}^{\Z^d}$ is the constant boundary condition. In other words, $\mathrm{extr}(\G_{\Omega}(\Phi_{\beta,q}))=\{\mu_{\beta,q}^1,\ldots,\mu_{\beta,q}^q\}$.
 
 % #################################################################################################
@@ -806,7 +806,7 @@ $$\nu_{\beta,q,\r}^{\Z^d,\xi} ~:=~ \mu_{\beta,q}^{\Z^d,\xi}\circ\pi_\r^{-1}.$$
 Of great interest is the potential Gibbsianity of such measure. This was partly answered by H\"aggstr\"om in \cite{Hag}, though -- as we will see -- there remains a gap in the result. Recall that for $q\geq 2$ and $d\geq 2$, there exists $\beta_c(d,q)\in(0,\infty)$ such that for each $\beta<\beta_c(d,q)$, $\mu_{\beta,q}^{\Z^d,0}=\mu_{\beta,q}^{\Z^d,1}=\ldots=\mu_{\beta,q}^{\Z^d,q}$,\footnote{Here, $\mu_{\beta,q}^{\Z^d,0}$ denotes the Gibbs measure corresponding to the free boundary condition.} i.e., there is a unique Gibbs measure of the Potts model on $\set{1,\ldots,q}^{\Z^d}$ with inverse temperature $\beta$, while for each $\beta>\beta_c(d,q)$ there are $q$ mutually singular Gibbs measures, which are precisely $\mu_{\beta,q}^{\Z^d,1},\ldots,\mu_{\beta,q}^{\Z^d,q}$.
 
 \begin{thm}[H\"aggstr\"om, 2003, \cite{Hag}]\label{Haggstrom}
-Let $d\geq 2$, $q\geq 3$, $i\in\set{0,1,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min(\set{r_1,\ldots,r_n}\cap\N_{\geq 2})$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,i}=\mu_{q,\beta}^{\Z^d,i}\circ\pi_{\r}^{-1}$.
+Let $d\geq 2$, $q\geq 3$, $i\in\set{0,1,\ldots,q}$ and $\r=(r_1,\ldots,r_s)$ with $1<s<q$, $r_1+\ldots+r_s=q$, and write $r^*=\min(\set{r_1,\ldots,r_s}\cap\N_{\geq 2})$. Consider a fuzzy Gibbs measure $\nu_{q,\beta,\r}^{\Z^d,i}=\mu_{q,\beta}^{\Z^d,i}\circ\pi_{\r}^{-1}$.
 \begin{itemize}
 	\item[(i)] For each $\beta<\beta_c(d,r^*)$, the measure $\nu_{\beta,q,\r}^{\Z^d,i}$ is a Gibbs measure.
 	\item[(ii)] For any $\beta>\frac{1}{2}\log\frac{1+(r^*-1)p_c(d)}{1-p_c(d)}$, $\nu_{\beta,q,\r}^{\Z^d,i}$ is not a Gibbs measure. Here $p_c(d)$ denotes the critical probability for Bernoulli percolation, see Appendix \ref{app:3}.
@@ -860,7 +860,7 @@ $$(U,X,Y)\sim\PP(\pika|Y_{\Delta^c}=\eta_{\Delta^c}),~(U',X',Y')\sim\PP(\pika|Y_
 this will be the coupling for which it is argued that $\Q(Y_{\Delta}=Y_{\Delta}')\geq 1-\varepsilon$. \\
 
 An appropriate $N$ is selected rather intuitively: the event that an infinite cluster exists has $\phi_{p,r^*}^{\Z^d,1}$-probability zero for any $\beta<\beta_c(d,r^*)$ (see Theorem \ref{ACCN}), from which it follows that
-$$\phi_{p,r^*}^{\Z^d,1}(\exists~\text{open path from $\Delta$ to $\Lambda_n^\c$}) ~\xrightarrow{n\ra\infty}~ 0,$$
+$$\phi_{p,r^*}^{\Z^d,1}(\Delta\leftrightarrow\Lambda_n^\c) ~\xrightarrow{n\ra\infty}~ 0,$$
 so we let $N$ be the first integer for which the probability on the left-hand side is at most $\varepsilon$. \\
 
 It is established through various technical lemmas, that $\Q$ can be constructed so that there exists a finite subgraph $\tilde{G}=(\tilde{V},\tilde{E})$ that is isolated from the rest of the lattice by $U$- and $U'$-closed edges -- which allows us to assume $(U_{\tilde{E}},X_{\tilde{V}},Y_{\tilde{V}})=(U_{\tilde{E}}',X_{\tilde{V}}',Y_{\tilde{V}}')$ in the coupling -- and is such that $\tilde{V}$ contains $\Delta$ with $\Q$-probability at least $1-\varepsilon$.\footnote{The latter has everything to do with our choice of $N$ above and the fact that $\Delta\not\subseteq\tilde{V}$ implies existence of a path from $\Delta$ to $\Lambda_n^\c$.} Since $\Delta\subseteq\tilde{V}$ along with $Y_{\tilde{V}}=Y_{\tilde{V}}'$ implies that $Y_{\Delta}=Y_{\Delta}'$, one can infer that 
@@ -1167,8 +1167,53 @@ Now, we are left by showing that $\mu_\AA\otimes\mu_\AB$ is the only member of $
 $$\extr(\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+\AB|}))=\set{\mu_\AA\otimes\mu_\AB}.$$
 We are thus just left with verifying the following:
 \begin{lem}
-Let $\mu\in\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB})$. Then $\mu=\mu_\AA\otimes\mu_\AB$.
+Let $\mu\in\extr(\G_{\AA^U\otimes\AB^V}(\Phi_{\beta,|\AA|+|\AB|}))$. Then $\mu=\mu_\AA\otimes\mu_\AB$.
 \end{lem}
+
+\begin{proof} Recalling Proposition \ref{DLR:properties}, there does indeed exist $\omega\in\AA^U\otimes\AB^V$ such that $\gamma_{\Lambda;\beta}(\pika|\omega_{\Lambda^\c})\xrightarrow{w}\mu$. Combining this with what we obtained in the previous proof, we indeed have that $\gamma_{\Lambda;\beta}^\AA(\pika|\omega_{U\cap\Lambda^\c})\gamma_{\Lambda;\beta}^\AB(\pika|\omega_{V\cap\Lambda^\c})\xrightarrow{w}\mu$. Thus, what we need to verify is that this implies that
+$$\gamma_{\Lambda;\beta}^\AA(\pika|\omega_{U\cap\Lambda^\c})~\xrightarrow{w}~\mu_\AA \quad\text{and}\quad\gamma_{\Lambda;\beta}^\AB(\pika|\omega_{V\cap\Lambda^\c})~\xrightarrow{w}~\mu_\AB,$$
+which indeed implies that $\gamma_{\Lambda;\beta}^\AA(\pika|\omega_{U\cap\Lambda^\c})\gamma_{\Lambda;\beta}^\AB(\pika|\omega_{V\cap\Lambda^\c})\xrightarrow{w}\mu_{\AA}\otimes\mu_{\AB}$, which is precisely what we want (since the underlying topology is Hausdorff). Note that automatically, $\text{w-}\!\lim_{\Lambda\Uparrow\Z^d}\gamma_{\Lambda;\beta}^\AA(\pika|\omega_{U\cap\Lambda^\c})\in\G_{\AA^U}(\Phi_{\beta,|\AA|})$ if it exists, so the fact that (for our choice of $\beta$) $\mu_\AA$ is the only element of the set implies that existence of the limit yields the desired conclusion. The same holds for $\text{w-}\!\lim_{\Lambda^\c}\gamma_{\Lambda;\beta}^\AB(\pika|\omega_{V\cap\Lambda^\c})$ and $\mu_\AB$. It is thus sufficient to verify that $\mu$ is a product measure of form $\mathfrak{m}\otimes\mathfrak{n}$ with $\mathfrak{m}$ a measure on $\AA^U$ and $\mathfrak{n}$ a measure on $\AB^V$, each of them being an appropriate weak limit as seen above. \\
+
+We will only show this for $\gamma_{\Lambda;\beta}^\AA(\pika|\omega_{U\cap\Lambda^\c})$, as the reasoning for $\gamma_{\Lambda;\beta}^\AB(\pika|\omega_{V\cap\Lambda^\c})$ goes exactly the same. In particular, we will show that
+$$\gamma_{\Lambda;\beta}^\AA[g|\omega_{U\cap\Lambda^\c}] ~\ra~ \int g\,\d\mathfrak{m}, \quad \forall g\in\Loc(\AA^U),$$
+where $\mathfrak{m}$ is a probability measure on $\AA^U$, given by $\mathfrak{m}(A)=\mu(A\times\AB^V)$. For $\gamma_{\Lambda;\beta}^\AB(\pika|\omega_{V\cap\Lambda^\c})$ one obtains an analogue convergence to a measure $\mathfrak{n}$ on $\AB^V$, given by $\mathfrak{n}(B)=\mu(\AA^U\times B)$. \\
+
+From Proposition \ref{DLR:properties} we have that
+$$\gamma_{\Lambda;\beta}[f|\omega_{\Lambda^\c}] ~\ra~ \int f\,\d\mu, \quad \forall f\in\Loc(\AA^U\otimes\AB^V),$$
+where indeed
+\begin{align*}
+\gamma_{\Lambda;\beta}[f|\omega_{\Lambda^\c}] ~&=~ \sum_{\omega_\Lambda\in(\AA^U\otimes\AB^V)_\Lambda} f(\omega)\gamma_{\Lambda;\beta}(\omega_\Lambda|\omega_{\Lambda^\c}) \\
+&=~ \sum_{\omega_{U\cap\Lambda}\in\AA^{U\cap\Lambda}}\sum_{\omega_{V\cap\Lambda}\in\AB^{V\cap\Lambda}}f(\omega)\gamma_{\Lambda;\beta}^\AA(\omega_{U\cap\Lambda}|\omega_{U\cap\Lambda^\c})\gamma_{\Lambda;\beta}^\AB(\omega_{V\cap\Lambda}|\omega_{V\cap\Lambda^\c}).
+\end{align*}
+Let now $g\in\Loc(\AA^U)$; one can then find $\hat{g}\in\Loc(\AA^U\otimes\AB^V)$, such that $\hat{g}(\omega)=g(\omega_U)$ for any choice of $\omega$. One then has that indeed
+\begin{align*}
+\gamma_{\Lambda;\beta}[\hat{g}|\omega_{\Lambda^\c}] ~&=~ \sum_{\omega_{U\cap\Lambda}\in\AA^{U\cap\Lambda}}g(\omega_U)\gamma_{\Lambda;\beta}^\AA(\omega_{U\cap\Lambda}|\omega_{U\cap\Lambda^\c})\sum_{\omega_{V\cap\Lambda}\in\AB^{V\cap\Lambda}}\gamma_{\Lambda;\beta}^{\AB}(\omega_{V\cap \Lambda}|\omega_{V\cap\Lambda^\c}) \\
+&=~ \gamma_{\Lambda;\beta}^\AA[g|\omega_{U\cap\Lambda^\c}]\gamma_{\Lambda;\beta}^\AB(\AB^{V\cap U}|\omega_{V\cap\Lambda^\c}) \\
+&=~ \gamma_{\Lambda;\beta}^\AA[g|\omega_{U\cap\Lambda^\c}],
+\end{align*} 
+that is, for each $g\in\Loc(\AA^U)$ there exists $\hat{g}\in\Loc(\AA^U\otimes\AB^V)$ so that 
+$$\gamma_{\Lambda;\beta}^\AA[g|\omega_{U\cap\Lambda^\c}] ~\ra~ \int \hat{g}\,\d\mu.$$
+Left to show is that there indeed exists a measure $\mathfrak{m}$ on $\AA^U$ (independent of $g$) such that 
+$$\int \hat{g}\,\d\mu ~=~ \int g\,\d\mathfrak{m}.$$
+Since $g\in\Loc(\AA^U)$, there's a finite subset $\Delta_g\subseteq U$, such that $g(\omega_U)=g(\omega(x):x\in\Delta_g)$; given the construction, we also have $\hat{g}(\omega)=g(\omega(x):x\in\Delta_g)$. It thus follows that one can write
+$$\hat{g}(\omega) ~=~  \sum_{\tilde{\omega}_{\Delta_g}\in\AA^{\Delta_g}}g(\tilde{\omega}_{\Delta_g})\1_{[\tilde{\omega}_{\Delta_g}]}(\omega) ~=~ g(\omega_U),$$
+and hence
+\begin{align*}
+\int \hat{g}(\omega)\,\d\mu(\omega) ~&=~ \int \sum_{\tilde{\omega}_{\Delta_g}\in\AA^{\Delta_g}}g(\tilde{\omega}_{\Delta_g})\1_{[\tilde{\omega}_{\Delta_g}]}(\omega)\,\d\mu(\omega) \\
+&=~ \sum_{\tilde{\omega}_{\Delta_g}\in\AA^{\Delta_g}}g(\tilde{\omega}_{\Delta_g})\mu([\tilde{\omega}_{\Delta_g}]) \\
+&=~ (*).
+\end{align*}
+Taking $\mathfrak{m}=\mu(\pika\times\AB^V)$ as mentioned before, one indeed obtains
+$$\mu([\omega_{\Delta_g}]) ~=~ \mu(\set{\omega_{\Delta^\c}}\times\AA^{U\setminus\Delta_g}\times\AB^{V}) ~=~ \mathfrak{m}(\set{\omega_{\Delta^\c}}\times\AA^{U\setminus\Delta_g}) ~=~ \mathfrak{m}([\omega_{\Delta_g}]_U)$$
+and hence
+\begin{align*}
+(*) ~&=~ \sum_{\tilde{\omega}_{\Delta_g}\in\AA^{\Delta_g}}g(\tilde{\omega}_{\Delta_g})\mathfrak{m}([\omega_{\Delta_g}]_U) \\
+&=~ \int \sum_{\tilde{\omega}_{\Delta_g}\in\AA^{\Delta_g}}g(\tilde{\omega}_{\Delta_g})\1_{[\tilde{\omega}_{\Delta_g}]_U}(\omega_U)\,\d\mathfrak{m}(\omega_U) \\
+&=~ \int g(\omega_U)\,\d\mathfrak{m}(\omega_U),
+\end{align*}
+which concludes the proof.
+
+\end{proof}
 
 % #################################################################################################
 
@@ -1524,6 +1569,7 @@ For $d\geq 2$, $p_c(d)\in (0,1)$.
 % #################################################################################################
 % #################################################################################################
 
+\addcontentsline{toc}{section}{List of Symbols}
 \section*{List of Symbols}
 
 \begin{tabular}{p{4cm}p{10cm}}
@@ -1554,19 +1600,19 @@ $\E_\Lambda$ & edges with both endpoints in $\Lambda$ \\
 $\partial\E_\Lambda$ & edges with precisely one endpoint of $\Lambda$, ``boundary of $\E_\Lambda$'' \\
 $\E^d$ & nearest neighbour edge set on $\Z^d$ \\
 $\F$ & underlying (cylinder generated) $\sigma$-algebra on $\Omega$ \\
-$\F_\Lambda$ & sub-$\sigma$-algebra of $\F$, generated by values in $\Lambda$ (or, equivalently, values outside $\Lambda$)  
-\end{tabular} 
-
-\pagebreak
-
-\begin{tabular}{p{4cm}p{10cm}}
+$\F_\Lambda$ & sub-$\sigma$-algebra of $\F$, generated by values in $\Lambda$ (or, equivalently, values outside $\Lambda$)  \\
 $G_\eta=(V,\eta)$ & given $G=(V,E)$ and $\eta\in\set{0,1}^E$, a graph with vertex set $V$ and edge set $\set{e\in E:\eta(e)=1}$; subgraph of $\eta$-open edges \\
 $\G_\Omega(\Phi),\G_\Omega(\H),\G_\Omega(\gamma)$ & space of Gibbs measures on $\Omega$ consistent with interaction $\Phi$, Hamiltonian $\H$, specification $\gamma$\\
 $\extr(\G_\Omega(\Phi))$ & extremal measures of $\G_\Omega(\Phi)$ \\
 $\G_\Omega$ & $\cap\set{\G_\Omega(\Phi):\Phi\in\BB^1(\Omega)}$, all Gibbs measures on $\Omega$ \\
 $h$ & external magnetic force (in Ising model) \\
 $\H$, $\H_\Lambda$ & Hamiltonian, Hamiltonian of a finite volume $\Lambda$ \\
-$\mathrm{L}^1(\Omega,\F,\mu)$ & (quotient space of) $\mu$-integrable $\F/\R$-measurable functions on $\Omega$ (under $\mu$-a.e.~equivalence) \\
+$\mathrm{L}^1(\Omega,\F,\mu)$ & (quotient space of) $\mu$-integrable $\F/\R$-measurable functions on $\Omega$ (under $\mu$-a.e.~equivalence) 
+\end{tabular} 
+
+\pagebreak
+
+\begin{tabular}{p{4cm}p{10cm}}
 $\Loc(\Omega)$ & local functions $\Omega\ra\R$ \\
 $\L$ & some lattice \\
 $\mathrm{Law}(X)$ & law (distribution) of a random variable $X$ \\
@@ -1588,14 +1634,9 @@ $\Z$ & integers \\
 $\beta$ & inverse temperature \\
 $\beta_c(d)$ & critical inverse temperature of Ising model on $\Z^d$ \\
 $\beta_c(d,q)$ & critical inverse temperature of $q$-state Potts model on $\Z^d$ \\
-$\delta_\omega$ & Dirac measure concentrated at point $\omega$ \\
+$\delta_\omega,\delta_\omega^\Lambda$ & Dirac measure concentrated at point $\omega$, possibly restricted to a smaller volume, which is acknowledges via a superscript \\
 $\gamma_\Lambda[f|\omega_{\Lambda^\c}]$  & integral of $f$ w.r.t.~probability measure induced by $\gamma_\Lambda(\pika|\omega_{\Lambda^\c})$ \\
-$\theta(p)$ & probability of $0$ belonging to an infinite connected component in $p$-Bernoulli percolation
-\end{tabular}
-
-\pagebreak
-
-\begin{tabular}{p{4cm}p{10cm}}
+$\theta(p)$ & probability of $0$ belonging to an infinite connected component in $p$-Bernoulli percolation \\
 $\Lambda$ & a (usually finite) volume, a subset of $\Z^d$ \\
 $\partial\Lambda$ & boundary of $\Lambda$, points outside $\Lambda$ that are adjacent to it \\
 $\mu\otimes\nu$ & product measure of $\mu$ and $\nu$ \\
@@ -1606,7 +1647,13 @@ $\mu T$ & image (measure) of probability measure $\mu$ under probability kernel 
 $\mu_\sigma$ & conditional measure on a fibre $\Omega_\sigma$ \\
 $\mu^B$ & $\mu(\pika|\pi^{-1}(B))$, conditional measure on the outcome mapping to $B$ under $\pi$ \\
 $\mu^\sigma$ & ``$\mu(\pika|\pi^{-1}(\sigma))$'', conditional measure on the outcome mapping to $\sigma$ under $\sigma$, if the limit in question exists \\
-$\mu_{\beta,q}^{G,\xi}$ & Gibbs measure of $q$-state Potts model on graph $G$ with inverse temperature $\beta$ and boundary condition $\xi$ \\
+$\mu_{\beta,q}^{G,\xi}$ & Gibbs measure of $q$-state Potts model on graph $G$ with inverse temperature $\beta$ and boundary condition $\xi$ 
+\end{tabular}
+
+\pagebreak
+
+\begin{tabular}{p{4cm}p{10cm}}
+
 $\nu_{\beta,q,\r}^{G,\xi}$ & $\mu_{\beta,q}^{G,\xi}\circ\pi_\r^{-1}$, fuzzy Potts measure \\
 $\pi$ & fuzzy map \\
 $\Sigma$ & image configuration space onto which fuzzy map $\pi$ maps $\Omega$ \\
